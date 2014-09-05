@@ -1,4 +1,7 @@
-
+---
+layout: post
+title: Javascript in footer wordpress
+---
 
 
 <h1>Add the javascript to the footer in wordpress</h1>
