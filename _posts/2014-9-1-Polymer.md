@@ -2,6 +2,9 @@
 layout: post
 title: Polymer!
 ---
+
+
+<h1>Bootstrap</h1>
 <!-- Import element -->
 <link rel="import" href="google-map.html">
 
