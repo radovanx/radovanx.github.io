@@ -1,15 +1,13 @@
 ---
 layout: post
-title: Debouncing Your JavaScript Functions: A Guide to Faster and Smarter Code
+title: You're up and running!
 ---
 
-Debouncing Your JavaScript Functions: A Guide to Faster and Smarter Code
+Next you can update your site name, avatar and other options using the _config.yml file in the root of your repository (shown below :point_down:).
 
+![_config.yml]({{ site.baseurl }}/images/config.png)
 
-Debouncing in JavaScript
-Debouncing is a technique in JavaScript where a function is prevented from being executed multiple times in a short interval. This is usually done to improve performance, as expensive operations can cause slowdowns and lags when executed frequently.
+The easiest way to make your first post is to edit this one. Go into /_posts/ and update the Hello World markdown file. For more instructions head over to the [Jekyll Now repository](https://github.com/barryclark/jekyll-now) on GitHub.
 
-Debouncing works by delaying the execution of a function after it is called. If the function is called again before the delay time has passed, the previous call is cancelled and the delay time is reset. This way, the function is only executed once after the user stops calling it.
-
-To implement debouncing in JavaScript, you can use the setTimeout function. Here is an example of how you can debounce a function:
-
+LINKS:
+http://blog.premium-templates.eu/creating-custom-hooks-in-prestashop-1-5-the-easy-way
