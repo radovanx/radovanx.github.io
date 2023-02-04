@@ -6,7 +6,7 @@
 name: Radomir Bednar 
 
 # Short bio or description (displayed in the header)
-description: Web Developer from Prague
+description: DEV JOURNAL
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: https://avatars1.githubusercontent.com/u/1188079?v=1&s=460
@@ -21,12 +21,12 @@ footer-links:
   email: radovanmail@gmail.com
   facebook: 
   flickr: 
-  github: barryclark/jekyll-now
+  github: radovanx
   instagram: 
   linkedin: 
   pinterest: 
   rss: # just type anything here for a working RSS icon, make sure you set the "url" above!
-  twitter: jekyllrb
+  twitter: 
 
 # Your disqus shortname, entering this will enable commenting on posts
 disqus: 
