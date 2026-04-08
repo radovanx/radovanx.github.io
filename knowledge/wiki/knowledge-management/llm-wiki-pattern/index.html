@@ -146,13 +146,12 @@ View on GitHub
 <p>At ~100 sources, the pattern works with simple keyword search and full-context loading. Beyond that:</p>
 <ul>
 <li><strong>Vector search</strong> for semantic retrieval (find related pages even when keywords don’t match)</li>
-<li><strong>Tool search</strong> ([[ai-agents/tool-search]]) for dynamic context loading (load only relevant pages)</li>
-<li><strong>Persistent agent memory</strong> ([[ai-agents/persistent-agent-memory]]) for maintaining wiki state across sessions</li>
+<li><strong>Tool search</strong> and <strong>persistent memory</strong> ([[ai-agents/ai-agent-reliability]]) for dynamic context loading and maintaining wiki state across sessions</li>
 </ul>
 <h2 id="community-ecosystem">Community Ecosystem</h2>
 <p>The pattern spawned multiple implementations: quicky-wiki, SwarmVault, grover, wikigen, wikimind. Extensions include confidence scoring, temporal tracking, graph-based retrieval, and interactive visualization.</p>
 <h2 id="connection-to-agent-reliability">Connection to Agent Reliability</h2>
-<p>The wiki pattern is itself a response to the [[ai-agents/llm-reliability-limits|LLM reliability problem]]. Instead of trusting an LLM to derive correct answers from raw sources in real-time (unreliable), you pre-compile knowledge into structured pages where errors are visible and correctable. It’s the “guardrail” approach applied to knowledge management.</p> </div> </article> <footer class="mt-20 pt-6 border-t border-border" data-astro-cid-tknqs5hn> <p class="text-xs text-muted" data-astro-cid-tknqs5hn>Built from markdown + git</p> </footer>  </div></body></html>  <script>
+<p>The wiki pattern is itself a response to the [[ai-agents/ai-agent-reliability|LLM reliability problem]]. Instead of trusting an LLM to derive correct answers from raw sources in real-time (unreliable), you pre-compile knowledge into structured pages where errors are visible and correctable. It’s the “guardrail” approach applied to knowledge management.</p> </div> </article> <footer class="mt-20 pt-6 border-t border-border" data-astro-cid-tknqs5hn> <p class="text-xs text-muted" data-astro-cid-tknqs5hn>Built from markdown + git</p> </footer>  </div></body></html>  <script>
   document.addEventListener("astro:page-load", function() {
     var bar = document.getElementById("reading-progress");
     if (!bar) return;
