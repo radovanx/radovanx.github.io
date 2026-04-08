@@ -1,0 +1,67 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="A personal, LLM-maintained knowledge wiki"><title>A2UI Protocol — Agent-to-User Interface</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/knowledge/_astro/Base.7v06QO4K.css"></head> <body class="bg-neutral text-skin-base font-body antialiased min-h-screen"> <div class="max-w-6xl mx-auto px-6 py-12">  <nav class="mb-8"> <a href="/knowledge" class="text-sm text-muted hover:text-primary transition-colors duration-200 inline-flex items-center gap-1.5"> <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path> </svg>
+Back to wiki
+</a> </nav> <article class="max-w-3xl"> <header class="mb-8"> <div class="flex items-center gap-3 mb-4"> <span class="text-[0.6875rem] font-semibold uppercase tracking-wider text-secondary bg-secondary/10 px-2 py-0.5 rounded"> ai design </span> <time class="text-xs text-muted">Wed Apr 08 2026 00:00:00 GMT+0000 (Coordinated Universal Time)</time> </div> <h1 class="font-heading font-extrabold text-3xl md:text-4xl tracking-tight leading-tight mb-4"> A2UI Protocol — Agent-to-User Interface </h1> <div class="flex flex-wrap gap-1.5"> <span class="text-[0.6875rem] font-medium text-tertiary bg-tertiary/[0.08] px-2 py-0.5 rounded"> a2ui </span><span class="text-[0.6875rem] font-medium text-tertiary bg-tertiary/[0.08] px-2 py-0.5 rounded"> ai-design </span><span class="text-[0.6875rem] font-medium text-tertiary bg-tertiary/[0.08] px-2 py-0.5 rounded"> protocols </span><span class="text-[0.6875rem] font-medium text-tertiary bg-tertiary/[0.08] px-2 py-0.5 rounded"> generative-ui </span><span class="text-[0.6875rem] font-medium text-tertiary bg-tertiary/[0.08] px-2 py-0.5 rounded"> google </span> </div> </header> <div class="prose prose-invert prose-sm max-w-none
+      prose-headings:font-heading prose-headings:font-semibold prose-headings:tracking-tight
+      prose-h2:text-xl prose-h2:mt-8 prose-h2:mb-3
+      prose-h3:text-lg prose-h3:mt-6 prose-h3:mb-2
+      prose-p:text-muted prose-p:leading-relaxed
+      prose-strong:text-skin-base prose-strong:font-semibold
+      prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+      prose-li:text-muted
+      prose-code:text-tertiary prose-code:bg-surface prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm
+    "> <h1 id="a2ui-protocol--agent-to-user-interface">A2UI Protocol — Agent-to-User Interface</h1>
+<p>A2UI is an open-source specification by Google that standardizes how AI agents generate user interfaces on demand. Instead of text-only responses, agents output structured JSON that describes UI components — the client renders them natively.</p>
+<h2 id="how-it-works">How It Works</h2>
+<ol>
+<li><strong>Agent decides</strong> it needs to show a form, chart, card, or layout</li>
+<li><strong>Agent outputs JSON</strong> describing the UI structure declaratively</li>
+<li><strong>Client renders</strong> using its own native components (React, SwiftUI, Flutter, etc.)</li>
+</ol>
+<p>The separation is key: the agent defines WHAT to show, the client decides HOW to render it. This gives you security, brand consistency, and cross-platform portability.</p>
+<h2 id="the-2026-protocol-stack">The 2026 Protocol Stack</h2>
+<p>A2UI sits at the top of a layered protocol stack for AI agents:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Layer</th><th>Protocol</th><th>Purpose</th></tr></thead><tbody><tr><td>Coordination</td><td>A2A (Agent-to-Agent)</td><td>Agents talking to agents</td></tr><tr><td>Tools</td><td>MCP (Model Context Protocol)</td><td>Agents using tools and data</td></tr><tr><td>Runtime</td><td>AG-UI</td><td>Agent-to-frontend streaming</td></tr><tr><td>Interface</td><td><strong>A2UI</strong></td><td>Agent generating UI components</td></tr></tbody></table>
+<h2 id="why-it-matters">Why It Matters</h2>
+<p><strong>Before A2UI:</strong> AI agents return text or markdown. If you want rich UI, you build it yourself.</p>
+<p><strong>After A2UI:</strong> AI agents can request specific UI components — forms, data tables, charts, interactive cards — on the fly. The UI is generated at runtime, not designed upfront.</p>
+<p>This is the shift from <strong>static design systems</strong> to <strong>generative UI</strong> — interfaces that materialize on demand based on context.</p>
+<h2 id="connection-to-design-skills">Connection to Design Skills</h2>
+<p>[[design-taste-for-ai]] solves the aesthetics problem — making AI-generated UI look good. A2UI solves the structure problem — giving agents a standard way to describe UI. Together they form the full picture: agents that generate beautiful, structured interfaces on demand.</p>
+<h2 id="open-questions">Open Questions</h2>
+<ul>
+<li>How does A2UI handle complex interactions (drag, gestures, state)?</li>
+<li>How does it compare to CopilotKit’s AG-UI approach?</li>
+<li>Can A2UI schemas be styled with design tokens / taste skills?</li>
+<li>What’s the security model for agent-generated UI?</li>
+</ul>
+<p>Sources: <a href="https://venturebeat.com/technology/dynamic-ui-for-dynamic-ai-inside-the-emerging-a2ui-model">VentureBeat</a>, <a href="https://www.griddynamics.com/blog/ai-agent-for-ui-a2ui">Grid Dynamics</a>, <a href="https://dev.to/czmilo/the-a2ui-protocol-a-2026-complete-guide-to-agent-driven-interfaces-2l3c">DEV Community</a>, <a href="https://github.com/CopilotKit/generative-ui">CopilotKit</a></p> </div> <div class="mt-12 pt-6 border-t border-white/[0.06]"> <h3 class="font-heading font-semibold text-sm text-muted uppercase tracking-wider mb-3">Sources</h3> <ul class="space-y-1"> <li class="text-sm text-muted">web-search</li> </ul> </div> </article> <footer class="mt-16 pt-6 border-t border-white/[0.06]"> <p class="text-xs text-muted">Built from markdown + git</p> </footer>  </div></body></html>
