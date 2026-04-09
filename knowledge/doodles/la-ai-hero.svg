@@ -1,22 +1,4 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="A personal, LLM-maintained knowledge wiki"><title>Project Glasswing — AI-Powered Defensive Cybersecurity</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/knowledge/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DjWSsicL.js"></script><script>
-      // Dark mode: Astro docs pattern (docs.astro.build/en/tutorial/6-islands/2/)
-      // Single is:inline script — event delegation so the click handler
-      // survives every view-transition DOM swap without data-astro-rerun.
-      function applyTheme() {
-        var saved = localStorage.getItem("theme");
-        var isDark = saved === "dark" || (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches);
-        document.documentElement.classList.toggle("dark", isDark);
-      }
-      applyTheme();
-      document.addEventListener("astro:after-swap", applyTheme);
-      document.addEventListener("click", function(e) {
-        if (e.target.closest("#theme-toggle")) {
-          var isDark = document.documentElement.classList.toggle("dark");
-          localStorage.setItem("theme", isDark ? "dark" : "light");
-        }
-      });
-    </script><link rel="stylesheet" href="/knowledge/_astro/card-image.Dw31E5_x.css">
-<link rel="stylesheet" href="/knowledge/_astro/_..3FIjdLV_.css"><script type="module" src="/knowledge/_astro/page.BsR3CxQd.js"></script></head> <body class="bg-neutral text-skin-base font-body antialiased min-h-screen transition-colors duration-300"> <div class="max-w-6xl mx-auto px-6 py-12 relative"> <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark mode"> <!-- Sun icon (shown in dark mode) --> <svg class="theme-icon theme-icon--sun w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path> </svg> <!-- Moon icon (shown in light mode) --> <svg class="theme-icon theme-icon--moon w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path> </svg> </button>  <div id="reading-progress" class="reading-progress" aria-hidden="true" data-astro-cid-tknqs5hn></div> <nav class="mb-10 max-w-[65ch] mx-auto flex items-center gap-2 text-sm text-muted" aria-label="Breadcrumb" data-astro-cid-tknqs5hn> <a href="/knowledge" class="hover:text-primary transition-colors duration-150" data-astro-cid-tknqs5hn>Wiki</a> <span class="opacity-30" data-astro-cid-tknqs5hn>/</span> <a href="/knowledge/category/ai-security/" class="hover:text-primary transition-colors duration-150 capitalize" data-astro-cid-tknqs5hn>ai security</a> <span class="opacity-30" data-astro-cid-tknqs5hn>/</span> <span class="text-skin-base truncate max-w-[30ch]" data-astro-cid-tknqs5hn>Project Glasswing — AI-Powered Defensive Cybersecurity</span> </nav> <article class="max-w-[65ch] mx-auto detail-reveal" data-astro-cid-tknqs5hn> <div class="hero-image rounded-xl overflow-hidden mb-10" data-astro-cid-tknqs5hn> <img src="https://picsum.photos/seed/1056556521/800/400" alt="" loading="eager" decoding="async" class="hero-photo" data-astro-cid-tknqs5hn> <div class="hero-blur-layer" data-astro-cid-tknqs5hn></div> <div class="hero-color-wash" style="background: linear-gradient(135deg, #FFB74Ddd, #F59E0B88, #DC7A18cc);" data-astro-cid-tknqs5hn></div> <div class="hero-gradient-overlay" style="background: radial-gradient(51% 51% at 41% 54%, #FFB74D, transparent), radial-gradient(76% 76% at 77% 65%, #F59E0B, transparent), radial-gradient(54% 54% at 57% 62%, #EF8F2E, transparent), linear-gradient(306deg, #FFB74D, #DC7A18);" data-astro-cid-tknqs5hn></div> <div class="hero-vignette" data-astro-cid-tknqs5hn></div> <div class="hero-grain" data-astro-cid-tknqs5hn></div> <div class="hero-scanlines" data-astro-cid-tknqs5hn></div> <div class="hero-doodle" data-astro-cid-tknqs5hn><?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 406.19 561.79">
   <defs>
     <style>
@@ -506,63 +488,4 @@
       <path class="cls-28" d="M75.75,75.05c-6.73-8.85-13.62-17.57-20.36-26.4-1.52-1.99-3.06-3.97-4.47-6.05-.9-1.33-1.88-2.72-3.4-3.38-1.92-.84-4.27-.34-6.24,.05-2.42,.48-4.77,1.29-6.99,2.37-4.5,2.2-8.35,5.57-11.11,9.74-.52,.78,.74,1.51,1.25,.73,2.37-3.58,5.6-6.52,9.37-8.59,2.05-1.13,4.24-1.99,6.51-2.56,1.96-.49,4.8-1.31,6.74-.38,1.56,.75,2.44,2.5,3.38,3.86,1.35,1.95,2.86,3.82,4.3,5.7,3.03,3.96,6.1,7.9,9.17,11.83,3.57,4.57,7.09,9.19,10.6,13.8,.56,.73,1.82,.01,1.25-.73h0Z"/>
     </g>
   </g>
-</svg></div> </div> <header class="mb-10" data-astro-cid-tknqs5hn> <div class="flex items-center gap-3 mb-5 flex-wrap" data-astro-cid-tknqs5hn>  <span class="type-badge" data-type="entity" data-astro-cid-tknqs5hn> entity </span> <span class="text-[0.6875rem] font-semibold uppercase tracking-wider text-secondary" data-astro-cid-tknqs5hn> ai security </span> <span class="flex items-center gap-2 text-xs text-muted" data-astro-cid-tknqs5hn> <time data-astro-cid-tknqs5hn>2026-04-08</time> <span class="opacity-30" data-astro-cid-tknqs5hn>|</span> <span data-astro-cid-tknqs5hn>1 min read</span>  <span class="opacity-30" data-astro-cid-tknqs5hn>|</span> <span class="inline-flex items-center gap-1" data-astro-cid-tknqs5hn> <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24" data-astro-cid-tknqs5hn><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z" data-astro-cid-tknqs5hn></path><path fill="var(--color-surface)" d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z" data-astro-cid-tknqs5hn></path></svg> 1 video </span>  </span> </div> <h1 class="font-heading font-extrabold text-[2rem] md:text-[2.421rem] tracking-tighter leading-[1.15] mb-[1.25em] detail-title-gradient" style="--g-from: #FFB74D; --g-via: #F59E0B; --g-to: #DC7A18;" data-astro-cid-tknqs5hn> Project Glasswing — AI-Powered Defensive Cybersecurity </h1> <div class="flex flex-wrap items-center gap-1.5 mb-4" data-astro-cid-tknqs5hn> <span class="text-[0.6875rem] font-medium text-tertiary bg-tertiary/[0.08] px-2 py-0.5 rounded" data-astro-cid-tknqs5hn> cybersecurity </span><span class="text-[0.6875rem] font-medium text-tertiary bg-tertiary/[0.08] px-2 py-0.5 rounded" data-astro-cid-tknqs5hn> anthropic </span><span class="text-[0.6875rem] font-medium text-tertiary bg-tertiary/[0.08] px-2 py-0.5 rounded" data-astro-cid-tknqs5hn> ai-safety </span><span class="text-[0.6875rem] font-medium text-tertiary bg-tertiary/[0.08] px-2 py-0.5 rounded" data-astro-cid-tknqs5hn> open-source </span><span class="text-[0.6875rem] font-medium text-tertiary bg-tertiary/[0.08] px-2 py-0.5 rounded" data-astro-cid-tknqs5hn> vulnerability-detection </span> </div> <div class="mt-5 p-4 bg-surface rounded-xl border border-border" data-astro-cid-tknqs5hn> <div class="flex flex-wrap items-center gap-x-5 gap-y-2" data-astro-cid-tknqs5hn> <a href="https://www.anthropic.com/glasswing" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-base text-primary font-medium detail-transition" data-astro-cid-tknqs5hn> <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" data-astro-cid-tknqs5hn> <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" data-astro-cid-tknqs5hn></path> </svg> anthropic.com — Original source
-</a><a href="https://www.youtube.com/watch?v=INGOC6-LLv0" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-base text-primary font-medium detail-transition" data-astro-cid-tknqs5hn> <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" data-astro-cid-tknqs5hn> <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" data-astro-cid-tknqs5hn></path> </svg> youtube.com — Original source
-</a> <a href="https://github.com/radovanx/knowledge/blob/main/wiki/ai-security/glasswing-project.md" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm text-muted hover:text-primary detail-transition" data-astro-cid-tknqs5hn> <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 16 16" data-astro-cid-tknqs5hn> <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" data-astro-cid-tknqs5hn></path> </svg>
-View on GitHub
-</a> </div> </div> </header> <div class="mb-10" data-astro-cid-tknqs5hn> <h2 class="text-xs font-semibold uppercase tracking-wider text-muted mb-3" data-astro-cid-tknqs5hn>Video Sources</h2> <div class="youtube-embeds" data-astro-cid-tknqs5hn> <div class="youtube-wrap" data-astro-cid-tknqs5hn> <iframe src="https://www.youtube.com/embed/INGOC6-LLv0" title="Video source" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen data-astro-cid-tknqs5hn></iframe> </div> </div> </div> <div class="prose dark:prose-invert max-w-none
-      prose-headings:font-heading prose-headings:font-[800] prose-headings:tracking-tight prose-headings:leading-[1.15] prose-headings:text-skin-base
-      prose-h2:text-[1.953rem] prose-h2:mt-[3.2em] prose-h2:mb-[0.8em]
-      prose-h3:text-[1.563rem] prose-h3:mt-[2.4em] prose-h3:mb-[0.6em]
-      prose-h4:text-[1.25rem] prose-h4:mt-[1.6em] prose-h4:mb-[0.4em]
-      prose-p:text-muted prose-p:leading-[1.6] prose-p:text-[1rem] prose-p:mb-[1.25em]
-      prose-strong:text-skin-base prose-strong:font-semibold
-      prose-a:text-primary prose-a:no-underline prose-a:hover:underline
-      prose-li:text-muted prose-li:text-[1rem] prose-li:leading-[1.6]
-      prose-code:text-tertiary prose-code:bg-surface prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm
-      prose-blockquote:text-muted prose-blockquote:leading-[1.6]
-    " data-astro-cid-tknqs5hn> <h1 id="project-glasswing--ai-powered-defensive-cybersecurity">Project Glasswing — AI-Powered Defensive Cybersecurity</h1>
-<p>Anthropic’s initiative to deploy frontier AI models defensively to find and fix security vulnerabilities in critical software before attackers exploit them. Launched with a coalition including AWS, Apple, Google, Microsoft, NVIDIA, CrowdStrike, and the Linux Foundation.</p>
-<h2 id="claude-mythos-preview">Claude Mythos Preview</h2>
-<p>The project’s core capability — a frontier model that autonomously discovers vulnerabilities and develops exploits without human guidance. Key findings include:</p>
-<ul>
-<li>A <strong>27-year-old flaw in OpenBSD</strong> enabling remote crashes</li>
-<li>A <strong>16-year-old FFmpeg bug</strong> missed after 5 million automated test runs</li>
-<li><strong>Privilege escalation chains</strong> in the Linux kernel</li>
-<li>Vulnerabilities in every major OS and web browser</li>
-</ul>
-<p>Mythos Preview is not publicly available. Anthropic plans future safeguards before broader deployment.</p>
-<h2 id="the-defensive-thesis">The Defensive Thesis</h2>
-<p>AI vulnerability detection capabilities are proliferating. Rather than try to prevent this, Glasswing deploys the same capabilities defensively — finding flaws before attackers do. The urgency: global cybercrime costs ~$500 billion annually, and state-sponsored attacks target healthcare, energy, and government systems.</p>
-<h2 id="investment-and-structure">Investment and Structure</h2>
-<ul>
-<li><strong>$100 million</strong> in model usage credits for partners</li>
-<li><strong>$4 million</strong> donated to open-source security organizations</li>
-<li>40+ organizations gaining access to scan both proprietary and open-source infrastructure</li>
-<li>Responsible disclosure: vulnerabilities reported to maintainers before publication</li>
-<li>Public reporting on fixes within 90 days</li>
-</ul>
-<h2 id="cross-references">Cross-References</h2>
-<ul>
-<li>Central case study in [[ai-agents/ai-agent-reliability]] — Glasswing demonstrates where AI agents excel (pattern matching at scale) vs. where they struggle (sequential reasoning)</li>
-<li>The responsible disclosure model reflects the broader reliability problem — AI findings need human verification before action</li>
-</ul> </div> </article> <nav class="mt-20 pt-8 border-t border-border max-w-[65ch] mx-auto" data-astro-cid-tknqs5hn> <div class="grid grid-cols-2 gap-4" data-astro-cid-tknqs5hn> <a href="/knowledge/wiki/knowledge-management/llm-wiki-pattern/" class="group flex flex-col gap-1 p-4 rounded-lg hover:bg-surface-hover transition-colors duration-150" data-astro-cid-tknqs5hn> <span class="text-xs text-muted uppercase tracking-wider" data-astro-cid-tknqs5hn>Previous</span> <span class="text-sm font-medium text-skin-base group-hover:text-primary transition-colors duration-150 line-clamp-2" data-astro-cid-tknqs5hn>The LLM Wiki Pattern — From Bookmarks to Knowledge Compilation</span> </a> <a href="/knowledge/wiki/ai-agents/ai-agent-reliability/" class="group flex flex-col gap-1 p-4 rounded-lg hover:bg-surface-hover transition-colors duration-150 text-right ml-auto" data-astro-cid-tknqs5hn> <span class="text-xs text-muted uppercase tracking-wider" data-astro-cid-tknqs5hn>Next</span> <span class="text-sm font-medium text-skin-base group-hover:text-primary transition-colors duration-150 line-clamp-2" data-astro-cid-tknqs5hn>AI Agent Reliability — From Failure Modes to Working Patterns</span> </a> </div> </nav> <footer class="mt-8 pt-4 border-t border-border max-w-[65ch] mx-auto" data-astro-cid-tknqs5hn> <p class="text-xs text-muted" data-astro-cid-tknqs5hn>Built from markdown + git</p> </footer>  </div></body></html>  <script>
-  document.addEventListener("astro:page-load", function() {
-    var bar = document.getElementById("reading-progress");
-    if (!bar) return;
-    bar.style.transform = "scaleX(0)";
-    var ticking = false;
-    window.addEventListener("scroll", function() {
-      if (!ticking) {
-        requestAnimationFrame(function() {
-          var scrollTop = window.scrollY;
-          var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-          var pct = docHeight > 0 ? Math.min(scrollTop / docHeight, 1) : 0;
-          bar.style.transform = "scaleX(" + pct + ")";
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }, { passive: true });
-  });
-</script>
+</svg>
