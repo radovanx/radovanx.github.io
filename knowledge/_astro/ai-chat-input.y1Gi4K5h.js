@@ -1,4 +1,4 @@
-import{h as g,s as f,a as v,f as y}from"./ai-engine.Bpmh-5dj.js";const l="ai-article-chat";d();document.addEventListener("astro:page-load",d);function d(){const n=document.querySelector(".prose");if(!n||!g())return;document.getElementById(l)?.remove();const e=document.createElement("div");e.id=l,e.className="ai-chat",e.innerHTML=`
+import{h as g,s as f,a as v,f as y}from"./ai-engine.D8__WGB7.js";const l="ai-article-chat";d();document.addEventListener("astro:page-load",d);function d(){const n=document.querySelector(".prose");if(!n||!g())return;document.getElementById(l)?.remove();const e=document.createElement("div");e.id=l,e.className="ai-chat",e.innerHTML=`
     <div class="ai-chat-header">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
         <path d="M12 2a8 8 0 0 1 8 8c0 3.4-2.1 6.3-5 7.5V20a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-2.5C6.1 16.3 4 13.4 4 10a8 8 0 0 1 8-8z"/>
