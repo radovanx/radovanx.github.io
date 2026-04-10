@@ -1,6 +1,0 @@
-import{_ as p}from"./Base.astro_astro_type_script_index_0_lang.-diBPhjP.js";function f(){return"gpu"in navigator}let s=null,o=null;function y(e){o=e}async function m(){if(!f())throw new Error("WebGPU not available");return s||(s=d()),s}async function d(){const{CreateMLCEngine:e}=await p(async()=>{const{CreateMLCEngine:t}=await import("./index.Djdld9tR.js");return{CreateMLCEngine:t}},[]);return await e("Llama-3.2-1B-Instruct-q4f16_1-MLC",{initProgressCallback:t=>{const a=typeof t=="string"?t:t?.text??"Loading model...";o&&o(a)}})}async function _(e,n,t,a){const i=await m(),l=`You are a helpful assistant for a knowledge wiki. You answer questions about articles concisely and accurately. Use the article content as your primary source.
-
-Article: "${e}"
-
-Content:
-${n.slice(0,4e3)}`,u=await i.chat.completions.create({messages:[{role:"system",content:l},{role:"user",content:t}],stream:!0,max_tokens:512,temperature:.7});let r="";for await(const g of u){const c=g.choices?.[0]?.delta?.content??"";c&&(r+=c,a(r))}return r}function C(e){return e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/\n\n/g,"</p><p>").replace(/\n/g,"<br>").replace(/`([^`]+)`/g,"<code>$1</code>").replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>").replace(/^/,"<p>").replace(/$/,"</p>")}export{_ as a,C as f,f as h,y as s};
