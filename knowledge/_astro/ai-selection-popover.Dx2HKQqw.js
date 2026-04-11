@@ -1,4 +1,4 @@
-import{a as k,f as E,s as b}from"./ai-engine.CcK6lLP7.js";const y="ai-selection-popover",g="ai-selection-response";f();document.addEventListener("astro:page-load",f);function f(){const r=document.querySelector(".prose");if(!r)return;document.getElementById(y)?.remove(),document.getElementById(g)?.remove();const e=document.createElement("div");e.id=y,e.className="ai-popover",e.innerHTML=`
+import{a as k,f as E,s as b}from"./ai-engine.bZ5x7f3m.js";const y="ai-selection-popover",g="ai-selection-response";f();document.addEventListener("astro:page-load",f);function f(){const r=document.querySelector(".prose");if(!r)return;document.getElementById(y)?.remove(),document.getElementById(g)?.remove();const e=document.createElement("div");e.id=y,e.className="ai-popover",e.innerHTML=`
     <button class="ai-popover-btn" aria-label="Ask AI about selection">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
         <path d="M12 2a8 8 0 0 1 8 8c0 3.4-2.1 6.3-5 7.5V20a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-2.5C6.1 16.3 4 13.4 4 10a8 8 0 0 1 8-8z"/>
