@@ -78,7 +78,7 @@ View on GitHub
 <span class="line"><span>└─────────────────────────────────────────────────┘</span></span></code></pre>
 <p>That’s it. The loop terminates when the model stops calling tools and returns a final text response.</p>
 <h2 id="minimal-implementation">Minimal Implementation</h2>
-<div class="runnable-code-wrapper" data-runnable-id="runnable-7" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// A coding agent in ~80 lines of TypeScript</span></span>
+<div class="runnable-code-wrapper" data-runnable-id="runnable-6" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// A coding agent in ~80 lines of TypeScript</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// This is the conceptual core of Claude Code / Cursor / Amp</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">import</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> Anthropic </span><span style="color:#D73A49;--shiki-dark:#F97583">from</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> "@anthropic-ai/sdk"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">;</span></span>
@@ -178,8 +178,8 @@ View on GitHub
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Usage: runAgent("Fix the TypeScript error in src/auth.ts")</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-7" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-7" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-7" style="display:none"></pre></div>
-<div class="runnable-code-wrapper" data-runnable-id="runnable-8" data-runnable-lang="php"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">&#x3C;?</span><span style="color:#005CC5;--shiki-dark:#79B8FF">php</span></span>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Usage: runAgent("Fix the TypeScript error in src/auth.ts")</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-6" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-6" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-6" style="display:none"></pre></div>
+<div class="runnable-code-wrapper" data-runnable-id="runnable-7" data-runnable-lang="php"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">&#x3C;?</span><span style="color:#005CC5;--shiki-dark:#79B8FF">php</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// PHP equivalent — same agentic loop</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Uses Anthropic PHP SDK (hypothetical) or raw HTTP</span></span>
 <span class="line"></span>
@@ -211,7 +211,7 @@ View on GitHub
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        }</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        $messages[] </span><span style="color:#D73A49;--shiki-dark:#F97583">=</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> [</span><span style="color:#032F62;--shiki-dark:#9ECBFF">'role'</span><span style="color:#D73A49;--shiki-dark:#F97583"> =></span><span style="color:#032F62;--shiki-dark:#9ECBFF"> 'user'</span><span style="color:#24292E;--shiki-dark:#E1E4E8">, </span><span style="color:#032F62;--shiki-dark:#9ECBFF">'content'</span><span style="color:#D73A49;--shiki-dark:#F97583"> =></span><span style="color:#24292E;--shiki-dark:#E1E4E8"> $toolResults];</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-8" type="button">Run PHP</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-8" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-8" style="display:none"></pre></div>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-7" type="button">Run PHP</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-7" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-7" style="display:none"></pre></div>
 <blockquote>
 <p><strong>Key insight:</strong> The loop is ~30 lines. Every commercial coding agent (Claude Code, Cursor, Warp, Amp) is this loop with better tools, better system prompts, better context management, and better UX. The loop itself is not the moat.</p>
 </blockquote>
@@ -266,7 +266,7 @@ View on GitHub
 <h2 id="context-management-the-real-problem">Context Management: The Real Problem</h2>
 <p>The minimal loop above has a fatal flaw: context grows unbounded. After 20 tool calls, you’re passing thousands of tokens back to the model on every request. After 100 tool calls, you hit the context window limit.</p>
 <p>Production agents address this with:</p>
-<div class="runnable-code-wrapper" data-runnable-id="runnable-9" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Context window management strategies</span></span>
+<div class="runnable-code-wrapper" data-runnable-id="runnable-8" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Context window management strategies</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Strategy 1: Conversation compaction — summarize old turns</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Claude Code uses this: when context > 80%, summarize the history</span></span>
@@ -297,7 +297,7 @@ View on GitHub
 <span class="line"></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Strategy 3: Selective file reading — don't load the whole codebase</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Read only what's relevant to the current task</span></span>
-<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Claude Code's "tool search" (ENABLE_TOOL_SEARCH) is this for tools</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-9" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-9" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-9" style="display:none"></pre></div>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Claude Code's "tool search" (ENABLE_TOOL_SEARCH) is this for tools</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-8" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-8" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-8" style="display:none"></pre></div>
 <h2 id="the-system-prompt-as-agent-configuration">The System Prompt as Agent Configuration</h2>
 <p>The system prompt is the agent’s identity, values, and skills. Claude Code’s system prompt (partially visible from source analysis) reportedly includes:</p>
 <ul>
