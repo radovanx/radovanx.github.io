@@ -68,7 +68,29 @@ View on GitHub
       prose-blockquote:text-muted prose-blockquote:leading-[1.6]
     " data-astro-cid-tknqs5hn> <h1 id="agent-design-patterns--four-architectures-that-actually-work">Agent Design Patterns — Four Architectures That Actually Work</h1>
 <p>Every reliable AI system uses one or more of these patterns. They share a meta-insight: <strong>move work out of the unreliable real-time LLM call and into reliable pre-computed infrastructure</strong>.</p>
-<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/system-architecture/800/400" alt="Architectural patterns for reliable AI systems" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #00E5FFdd, #38BDF888, #BD93F9cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(83% 83% at 73% 25%, #00E5FF, transparent), radial-gradient(73% 73% at 25% 29%, #38BDF8, transparent), radial-gradient(84% 84% at 79% 42%, #A78BFA, transparent), linear-gradient(214deg, #00E5FF, #BD93F9);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Architectural patterns for reliable AI systems</span></div><p></p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Unreliable["❌ Unreliable Real-Time"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        RAG["RAG\n(re-derive each time)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        STATIC["Static tool loading\n(all tools, all turns)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        STATELESS["Stateless sessions\n(re-derive context)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        DIY["DIY agent harness\n(your bugs)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Reliable["✅ Pre-Computed Infrastructure"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        WIKI["Knowledge compilation\n(persistent wiki)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        SEARCH["Dynamic tool search\n(3-5 relevant tools)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        MEMORY["Persistent memory\n(compound on prior work)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        MANAGED["Managed agents\n(platform handles loop)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    RAG -->|"Pattern 1"| WIKI</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    STATIC -->|"Pattern 2"| SEARCH</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    STATELESS -->|"Pattern 3"| MEMORY</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    DIY -->|"Pattern 4"| MANAGED</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style WIKI fill:#166534,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style SEARCH fill:#166534,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style MEMORY fill:#166534,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style MANAGED fill:#166534,color:#fff</span></span></code></pre>
 <h2 id="sources">Sources</h2>
 <ul>
 <li><strong><a href="https://platform.claude.com/docs/en/agent-sdk/tool-search">Claude Agent SDK — Tool Search</a></strong> — Pattern 2: Dynamic Tool Search implementation</li>
@@ -191,7 +213,7 @@ View on GitHub
 <table><thead><tr><th>Value</th><th>Behavior</th></tr></thead><tbody><tr><td><code>true</code> (default)</td><td>Always on — definitions never loaded upfront</td></tr><tr><td><code>auto</code></td><td>Activates when definitions exceed 10% of context</td></tr><tr><td><code>auto:N</code></td><td>Custom threshold (e.g., <code>auto:5</code> for 5%)</td></tr><tr><td><code>false</code></td><td>Off — all tools loaded every turn</td></tr></tbody></table>
 <p><strong>Optimization:</strong> Tool names and descriptions drive search quality. <code>search_slack_messages</code> surfaces better than <code>query_slack</code>. A system prompt listing available categories helps the agent know what to search for.</p>
 <p><strong>Limits:</strong> Max 10,000 tools. Returns 3-5 most relevant per search. Haiku models don’t support it.</p>
-<div class="runnable-code-wrapper" data-runnable-id="runnable-7" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// TypeScript: dynamic tool search vs. static loading</span></span>
+<div class="runnable-code-wrapper" data-runnable-id="runnable-13" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// TypeScript: dynamic tool search vs. static loading</span></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">import</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> Anthropic </span><span style="color:#D73A49;--shiki-dark:#F97583">from</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> "@anthropic-ai/sdk"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">;</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">const</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> client</span><span style="color:#D73A49;--shiki-dark:#F97583"> =</span><span style="color:#D73A49;--shiki-dark:#F97583"> new</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> Anthropic</span><span style="color:#24292E;--shiki-dark:#E1E4E8">();</span></span>
@@ -229,8 +251,8 @@ View on GitHub
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">});</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// "search_slack_messages" → found for "search Slack" queries (~300 tokens loaded)</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// "query_slack"           → might not surface — generic name loses semantic signal</span></span>
-<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Output: only slack search tools loaded; 50× fewer tokens than static approach</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-7" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-7" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-7" style="display:none"></pre></div>
-<div class="runnable-code-wrapper" data-runnable-id="runnable-8" data-runnable-lang="php"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">&#x3C;?</span><span style="color:#005CC5;--shiki-dark:#79B8FF">php</span></span>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Output: only slack search tools loaded; 50× fewer tokens than static approach</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-13" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-13" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-13" style="display:none"></pre></div>
+<div class="runnable-code-wrapper" data-runnable-id="runnable-14" data-runnable-lang="php"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">&#x3C;?</span><span style="color:#005CC5;--shiki-dark:#79B8FF">php</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// PHP: build a tool-search-aware catalog with prioritized descriptions</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Good tool names + descriptions are the "SEO" of dynamic tool search.</span></span>
 <span class="line"></span>
@@ -255,7 +277,7 @@ View on GitHub
 <span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">    "- Tasks: jira, linear</span><span style="color:#005CC5;--shiki-dark:#79B8FF">\n\n</span><span style="color:#032F62;--shiki-dark:#9ECBFF">Search for tools by category before using them."</span><span style="color:#24292E;--shiki-dark:#E1E4E8">;</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// When Agent SDK handles tool search, only 3-5 definitions are loaded per task</span></span>
-<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// versus loading all 50 definitions (~15K tokens) on every request.</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-8" type="button">Run PHP</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-8" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-8" style="display:none"></pre></div>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// versus loading all 50 definitions (~15K tokens) on every request.</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-14" type="button">Run PHP</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-14" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-14" style="display:none"></pre></div>
 <h2 id="pattern-3-persistent-memory-not-stateless-sessions">Pattern 3: Persistent Memory (Not Stateless Sessions)</h2>
 <p>Without persistent memory, agents re-derive context on every interaction. Users repeat themselves. The agent can’t learn preferences or build on previous work.</p>
 <p><strong>Architecture options:</strong></p>
@@ -326,11 +348,16 @@ View on GitHub
 <p><strong>Key insight (Matt Pocock):</strong> “Workflows are often unfairly maligned because they’re not as exciting and sexy as agents. You’ll often get better results from using a workflow than using an agent, as long as the task is clearly specified.”</p>
 </blockquote>
 <p>This matches Anthropic’s core recommendation: “Avoid agentic systems if simple single-call optimization suffices.”</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Task well-defined?</span></span>
-<span class="line"><span>  Yes → Workflow (predictable, debuggable, bounded error)</span></span>
-<span class="line"><span>  No  → Does it need improvisation?</span></span>
-<span class="line"><span>          Yes → Agent (LLM decides steps)</span></span>
-<span class="line"><span>          No  → Break into sub-tasks → Workflow</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q1{"Task well-defined?"}</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q1 -->|Yes| W["✅ Workflow\n(predictable, debuggable,\nbounded error)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q1 -->|No| Q2{"Needs\nimprovisation?"}</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q2 -->|Yes| A["🤖 Agent\n(LLM decides steps)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q2 -->|No| ST["Break into sub-tasks\n→ Workflow"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    ST --> W</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style W fill:#166534,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style A fill:#4f46e5,color:#fff</span></span></code></pre>
 <p>Workflows also enable parallelization: split input into N parts, process each independently, merge results. Pure workflow — no agent needed, dramatically more reliable.</p>
 <h2 id="anthropics-agent-design-taxonomy">Anthropic’s Agent Design Taxonomy</h2>
 <p><a href="https://www.anthropic.com/engineering/building-effective-agents">Building Effective Agents</a> identifies six workflow patterns:</p>

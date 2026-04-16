@@ -54,6 +54,7 @@ View on GitHub
     " data-astro-cid-tknqs5hn> <h1 id="building-coding-agents--the-minimal-loop">Building Coding Agents — The Minimal Loop</h1>
 <p>The core of Claude Code, Cursor, Warp, and Amp isn’t magic. Mihail Eric’s analysis demonstrates that the harness is ~200 lines of Python. The Amp team built a fully functional code-editing agent in under 400 lines.</p>
 <p>Both articles make the same point: <strong>the loop is trivial. The intelligence is the model.</strong></p>
+<p></p><div class="section-hero-image"><img src="https://www.anthropic.com/images/product/claude-code/claude-code-hero.png" alt="Claude Code — Anthropic&#x27;s agentic coding system in the terminal" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #4ADE80dd, #34D39988, #00E5FFcc);"></div><div class="section-hero-gradient" style="background: radial-gradient(75% 75% at 72% 54%, #4ADE80, transparent), radial-gradient(71% 71% at 62% 37%, #34D399, transparent), radial-gradient(54% 54% at 39% 23%, #22D3EE, transparent), linear-gradient(44deg, #4ADE80, #00E5FF);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Claude Code — Anthropic's agentic coding system in the terminal</span></div><p></p>
 <p>See <a href="/knowledge/wiki/agentic-loop-typescript/">agentic loop typescript</a> for the full TypeScript + PHP implementation with type-safe tool schemas.</p>
 <h2 id="sources">Sources</h2>
 <ul>
@@ -62,21 +63,18 @@ View on GitHub
 </ul>
 <h2 id="the-agentic-loop">The Agentic Loop</h2>
 <p>Every coding agent is a variation of this loop:</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>┌─────────────────────────────────────────────────┐</span></span>
-<span class="line"><span>│                  Agentic Loop                   │</span></span>
-<span class="line"><span>│                                                 │</span></span>
-<span class="line"><span>│  User message                                   │</span></span>
-<span class="line"><span>│       ↓                                         │</span></span>
-<span class="line"><span>│  Append to context ──────────────────────┐      │</span></span>
-<span class="line"><span>│       ↓                                  │      │</span></span>
-<span class="line"><span>│  Call LLM (model + system prompt         │      │</span></span>
-<span class="line"><span>│           + context + tools)             │      │</span></span>
-<span class="line"><span>│       ↓                                  │      │</span></span>
-<span class="line"><span>│  Response has tool calls?                │      │</span></span>
-<span class="line"><span>│  ├─ No → Return text to user             │      │</span></span>
-<span class="line"><span>│  └─ Yes → Execute tool calls             │      │</span></span>
-<span class="line"><span>│           → Append results to context ───┘      │</span></span>
-<span class="line"><span>└─────────────────────────────────────────────────┘</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    U["💬 User Message"] --> A["Append to context"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    A --> L["Call LLM\n(model + system prompt + context + tools)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    L --> D{stop_reason?}</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    D -->|end_turn| R["Return text to user ✅"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    D -->|tool_use| E["Execute tool calls\n(bash / read / write / search)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    E --> TR["Append tool results to context"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    TR --> A</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style L fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style R fill:#166534,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style E fill:#0891b2,color:#fff</span></span></code></pre>
 <p>The loop terminates when the model stops calling tools and returns a final text response. The minimal happy-path implementation is ~30 lines — see <a href="/knowledge/wiki/agentic-loop-typescript/">agentic loop typescript</a> for the full code.</p>
 <blockquote>
 <p><strong>Key insight:</strong> The loop is ~30 lines. Every commercial coding agent (Claude Code, Cursor, Warp, Amp) is this loop with better tools, better system prompts, better context management, and better UX. The loop itself is not the moat.</p>

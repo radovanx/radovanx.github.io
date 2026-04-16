@@ -56,6 +56,7 @@ View on GitHub
 <ul>
 <li><strong><a href="https://developer.mozilla.org/en-US/blog/mdn-front-end-deep-dive/">Under the Hood of MDN’s New Frontend (MDN Blog)</a></strong> — full architectural deep dive: React SPA problems, the Lit migration, Astro integration, lessons for content sites</li>
 </ul>
+<p></p><div class="section-hero-image"><img src="https://lit.dev/images/logo.svg" alt="Lit web components — MDN&#x27;s frontend architecture with islands of interactivity" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #FDA4AFdd, #F9A8D488, #C4B5FDcc);"></div><div class="section-hero-gradient" style="background: radial-gradient(56% 56% at 75% 21%, #FDA4AF, transparent), radial-gradient(65% 65% at 78% 50%, #F9A8D4, transparent), radial-gradient(56% 56% at 60% 45%, #D8B4FE, transparent), linear-gradient(76deg, #FDA4AF, #C4B5FD);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Lit web components — MDN's frontend architecture with islands of interactivity</span></div><p></p>
 <h2 id="the-problem-react-spas-on-content-sites">The Problem: React SPAs on Content Sites</h2>
 <p>MDN’s old React frontend (yari) accumulated deep technical debt:</p>
 <ul>
@@ -140,13 +141,14 @@ View on GitHub
 <p><strong>Incremental migration:</strong> Lit’s React integration lets you render Lit web components inside an existing React app. MDN ported piece-by-piece — no big-bang rewrite, no maintaining dual implementations.</p>
 <h2 id="astro-the-assembly-layer">Astro: The Assembly Layer</h2>
 <p>MDN moved to <a href="https://astro.build/">Astro</a> for SSR — assembling full HTML pages from components + content:</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Documentation Markdown</span></span>
-<span class="line"><span>      ↓</span></span>
-<span class="line"><span>Build tool → HTML + JSON metadata</span></span>
-<span class="line"><span>      ↓</span></span>
-<span class="line"><span>Astro SSR templates → Complete HTML with &#x3C;script> islands</span></span>
-<span class="line"><span>      ↓</span></span>
-<span class="line"><span>Cloud delivery → Static HTML + minimal JS (only for interactive islands)</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    MD["📄 Documentation\nMarkdown"] --> BT["Build Tool\n→ HTML + JSON metadata"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    BT --> AS["🚀 Astro SSR\ntemplates"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    AS --> OUT["Complete HTML\n+ &#x26;lt;script&#x26;gt; islands"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    OUT --> CD["☁️ Cloud Delivery\nStatic HTML +\nminimal JS only\nfor interactive islands"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style AS fill:#ff5d01,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style CD fill:#059669,color:#fff</span></span></code></pre>
 <p><strong>Why Astro fits content sites:</strong></p>
 <ul>
 <li>Static by default — no JavaScript unless a component needs it</li>

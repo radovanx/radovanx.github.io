@@ -216,6 +216,11 @@ View on GitHub
 <p><strong>Key insight (Matt Pocock):</strong> “You shouldn’t just think, ‘wow, this context window limit’s huge.’ That model will still probably have lost-in-the-middle issues. You’ll definitely get better results from using fewer tokens in the context.”</p>
 </blockquote>
 <p>In long contexts, the model’s attention is not uniformly distributed:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">xychart-beta</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    title "Attention Weight Across Context Window"</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    x-axis ["Start\n(system prompt)", "Early\nmessages", "Middle\n(long history)", "Late\nmessages", "End\n(recent)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    y-axis "Attention Weight" 0 --> 100</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    bar [90, 70, 25, 55, 85]</span></span></code></pre>
 
 
 

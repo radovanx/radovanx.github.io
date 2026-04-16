@@ -104,6 +104,26 @@ View on GitHub
 
 <table><thead><tr><th>Concept</th><th>What it is</th><th>Why it matters</th></tr></thead><tbody><tr><td><strong>Agent</strong></td><td>Model + system prompt + tools + MCP servers + skills</td><td>Defined once, reused across sessions. The “what.”</td></tr><tr><td><strong>Environment</strong></td><td>Cloud container with packages, network access, mounted files</td><td>Pre-configured runtime. Python, Node.js, Go pre-installed. The “where.”</td></tr><tr><td><strong>Session</strong></td><td>A running agent instance performing a specific task</td><td>Stateful — file system and conversation persist. The “when.”</td></tr><tr><td><strong>Events</strong></td><td>Messages between your app and the agent (SSE streaming)</td><td>User turns, tool results, status updates. The “how.”</td></tr></tbody></table>
 <h2 id="how-it-works">How It Works</h2>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Config["Configuration (one-time)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        AG["🤖 Agent\nmodel + system prompt\n+ tools + MCP"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        ENV["🖥️ Environment\npackages + network\n+ files"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Runtime["Runtime (per task)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        SES["▶️ Session\nagent + environment\n= running instance"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        EV["⚡ Events\nSSE stream:\ntext · tool_use · error"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    AG --> SES</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    ENV --> SES</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    SES &#x3C;-->|stream| EV</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    EV &#x3C;-->|user turns / results| APP["Your App"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style AG fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style ENV fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style SES fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style EV fill:#059669,color:#fff</span></span></code></pre>
 <ol>
 <li><strong>Define an Agent</strong> — model, system prompt, tools, MCP connections</li>
 <li><strong>Configure an Environment</strong> — packages, network rules, files</li>
