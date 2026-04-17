@@ -129,7 +129,7 @@ View on GitHub
 <p>The 200–400 line figure represents the <strong>happy path loop</strong> — no context management, no streaming, no safety. Production systems add 10–100× that.</p>
 <h2 id="context-management-the-real-problem">Context Management: The Real Problem</h2>
 <p>The minimal loop has a fatal flaw: context grows unbounded. After 20 tool calls, you’re passing thousands of tokens back on every request. After 100 tool calls, you hit the context window limit.</p>
-<div class="runnable-code-wrapper" data-runnable-id="runnable-1" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Three production strategies for managing context growth</span></span>
+<div class="runnable-code-wrapper" data-runnable-id="runnable-2" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Three production strategies for managing context growth</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// 1. Conversation compaction — summarize old turns</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Claude Code uses this: when context > 80%, summarize history</span></span>
@@ -156,7 +156,7 @@ View on GitHub
 <span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">`</span><span style="color:#24292E;--shiki-dark:#E1E4E8">;</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// 3. Selective file reading — don't load the whole codebase</span></span>
-<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Claude Code's ENABLE_TOOL_SEARCH does this for tools</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-1" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-1" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-1" style="display:none"></pre></div>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Claude Code's ENABLE_TOOL_SEARCH does this for tools</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-2" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-2" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-2" style="display:none"></pre></div>
 <h2 id="the-system-prompt-as-agent-configuration">The System Prompt as Agent Configuration</h2>
 <p>The system prompt is the agent’s identity, values, and skills. Claude Code’s system prompt reportedly includes:</p>
 <ul>
