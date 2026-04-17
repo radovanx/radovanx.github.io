@@ -115,15 +115,17 @@ View on GitHub
 </blockquote>
 <h2 id="the-spec-first-architecture">The Spec-First Architecture</h2>
 <p>Cavekit inserts a <strong>specification layer</strong> between natural language intent and implementation, solving the compounding error problem at its root: instead of a long chain of loosely-defined steps, every step traces to an explicit, numbered requirement.</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Natural Language</span></span>
-<span class="line"><span>       ↓  /ck:sketch</span></span>
-<span class="line"><span>   Domain Kits (R1, R2, R3…)</span></span>
-<span class="line"><span>       ↓  /ck:map</span></span>
-<span class="line"><span>   Tiered Build Site (dependency graph)</span></span>
-<span class="line"><span>       ↓  /ck:make</span></span>
-<span class="line"><span>   Parallel Build + Validation Gates</span></span>
-<span class="line"><span>       ↓  /ck:check</span></span>
-<span class="line"><span>   Gap Analysis (spec ↔ implementation)</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    NL["💬 Natural Language\nrequirement"] -->|/ck:sketch| DK["📋 Domain Kits\nR1, R2, R3… numbered requirements\n+ testable acceptance criteria"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    DK -->|/ck:map| BS["🗺️ Tiered Build Site\ndependency graph across 5 tiers"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    BS -->|/ck:make| PB["⚡ Parallel Build\n18 iterations + tier validation gates"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    PB -->|/ck:check| GA["✅ Gap Analysis\nevery criterion verified"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style NL fill:#6b7280,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style DK fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style BS fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style PB fill:#d97706,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style GA fill:#059669,color:#fff</span></span></code></pre>
 <h3 id="kits">Kits</h3>
 <p>Domain-specific requirement documents with:</p>
 <ul>

@@ -227,19 +227,18 @@ View on GitHub
 </blockquote>
 <h2 id="the-core-loop">The Core Loop</h2>
 <p>Every AI coding assistant shares the same fundamental architecture:</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>User input</span></span>
-<span class="line"><span>    ↓</span></span>
-<span class="line"><span>Build messages array (history + system prompt)</span></span>
-<span class="line"><span>    ↓</span></span>
-<span class="line"><span>Call LLM API with tools</span></span>
-<span class="line"><span>    ↓</span></span>
-<span class="line"><span>Response: end_turn?  →  Print output → Wait for next input</span></span>
-<span class="line"><span>    ↓ tool_use</span></span>
-<span class="line"><span>Execute tool calls</span></span>
-<span class="line"><span>    ↓</span></span>
-<span class="line"><span>Append tool results to messages</span></span>
-<span class="line"><span>    ↓</span></span>
-<span class="line"><span>Loop back to API call</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    U["💬 User input"] --> B["Build messages array\n(history + system prompt)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    B --> L["Call LLM API\n(model + tools)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    L --> D{stop_reason?}</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    D -->|end_turn| R["Print output ✅\nWait for next input"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    D -->|tool_use| E["Execute tool calls\n(bash / read / write / search)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    E --> A["Append tool results\nto messages"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    A --> L</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style L fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style R fill:#166534,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style E fill:#0891b2,color:#fff</span></span></code></pre>
 <p>The model drives the loop by deciding when to call tools vs. when to produce a final response. See <a href="/knowledge/wiki/agentic-loop-typescript/">agentic loop typescript</a> for the full TypeScript + PHP implementation.</p>
 <h2 id="what-makes-production-agents-bigger-than-200-lines">What Makes Production Agents Bigger Than 200 Lines</h2>
 
@@ -304,12 +303,19 @@ View on GitHub
 <p><strong>Key insight:</strong> The “magic” in Claude Code is not the loop — it’s the system prompt engineering and tool interface design. Anyone can build the loop in 200 lines. Building the system prompt that makes Claude behave correctly across 50,000 different codebases takes extensive iteration and production feedback.</p>
 </blockquote>
 <h2 id="real-world-workflow-developer-as-director">Real-World Workflow: Developer as Director</h2>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Developer: Define the feature → set the goal clearly</span></span>
-<span class="line"><span>Claude Code: Read existing code → understand context → propose approach</span></span>
-<span class="line"><span>Developer: Review proposal → approve or redirect</span></span>
-<span class="line"><span>Claude Code: Implement incrementally → run tests → fix issues</span></span>
-<span class="line"><span>Developer: Review output → catch edge cases → redirect as needed</span></span>
-<span class="line"><span>Claude Code: Final integration → run full test suite</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">sequenceDiagram</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    participant Dev as 👤 Developer</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    participant CC as 🤖 Claude Code</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Dev->>CC: Define feature goal clearly</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    CC->>CC: Read existing code → understand context</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    CC->>Dev: Propose implementation approach</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Dev->>CC: Review + approve or redirect</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    CC->>CC: Implement incrementally → run tests → fix issues</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    CC->>Dev: Output for review</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Dev->>CC: Catch edge cases → redirect as needed</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    CC->>CC: Final integration → full test suite</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    CC->>Dev: Done ✅</span></span></code></pre>
 <p>The developer is a director managing an agent — eliminating mechanical implementation work while applying architectural judgment at key decision points.</p>
 <h2 id="tool-design-patterns">Tool Design Patterns</h2>
 
