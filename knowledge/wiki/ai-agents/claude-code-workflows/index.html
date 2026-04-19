@@ -75,7 +75,7 @@ View on GitHub
 <h2 id="agentsmd--the-most-important-file">AGENTS.md — The Most Important File</h2>
 <p><code>AGENTS.md</code> (or <code>CLAUDE.md</code>) is read before every task. It’s the difference between Claude that knows your conventions and Claude that invents them.</p>
 <blockquote>
-<p><strong>Key insight:</strong> Use <code>AGENTS.md</code> instead of <code>CLAUDE.md</code> — it’s supported by Claude, Codex, Gemini, GitHub Copilot, and 25+ other AI tools. Your setup becomes tool-agnostic.</p>
+<p><strong>Key insight:</strong> Use <code>AGENTS.md</code> instead of <code>CLAUDE.md</code> — it’s supported by Claude, Codex, Gemini, GitHub Copilot, and 55+ other AI tools (<a href="https://agents.md/">agents.md</a>). Your setup becomes tool-agnostic.</p>
 </blockquote>
 <p><strong>Rules for effective AGENTS.md content:</strong></p>
 
@@ -182,7 +182,7 @@ View on GitHub
 
 
 
-<table><thead><tr><th>Situation</th><th>Action</th></tr></thead><tbody><tr><td>Starting a new task</td><td><code>/clear</code> — full context for the new task</td></tr><tr><td>Plan used >60% context</td><td>Plan anyway, then <strong>always clear before implementation</strong></td></tr><tr><td>Lost a plan</td><td>Plans saved in <code>~/.claude/plans/</code> — use <code>/resume</code></td></tr><tr><td>Implementation went wrong</td><td><code>/clear</code> → back to plan mode with what you learned</td></tr></tbody></table>
+<table><thead><tr><th>Situation</th><th>Action</th></tr></thead><tbody><tr><td>Starting a new task</td><td><code>/clear</code> — full context for the new task</td></tr><tr><td>Plan used >60% context</td><td>Plan anyway, then <strong>always clear before implementation</strong></td></tr><tr><td>Lost a plan</td><td>Sessions stored in <code>~/.claude/projects/</code> — use <code>/resume</code> to open session picker (<a href="https://code.claude.com/docs/en/common-workflows#resume-previous-conversations">docs</a>)</td></tr><tr><td>Implementation went wrong</td><td><code>/clear</code> → back to plan mode with what you learned</td></tr></tbody></table>
 <p><strong>Why clearing after planning matters:</strong> Each word in your planning conversation consumes context that the implementation needs. A 30-minute planning session at 60% context leaves only 40% for implementing — which degrades results significantly.</p>
 <h2 id="plugins--the-minimal-set">Plugins — The Minimal Set</h2>
 <p>More plugins ≠ better results. Claude Code’s author uses very few. Pick plugins that fill genuine gaps.</p>
