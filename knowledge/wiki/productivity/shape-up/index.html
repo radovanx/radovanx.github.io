@@ -52,6 +52,7 @@ View on GitHub
       prose-code:text-primary prose-code:bg-surface prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm
       prose-blockquote:text-muted prose-blockquote:leading-[1.6]
     " data-astro-cid-tknqs5hn> <h1 id="shape-up--fixed-time-variable-scope">Shape Up — Fixed Time, Variable Scope</h1>
+<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/shape-up-basecamp-cycles/800/300" alt="Shape Up — six-week cycles, betting tables, and scope-hammered software" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #00E5FFdd, #06B6D488, #0284C7cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(56% 56% at 59% 80%, #00E5FF, transparent), radial-gradient(60% 60% at 24% 73%, #06B6D4, transparent), radial-gradient(74% 74% at 47% 79%, #0EA5E9, transparent), linear-gradient(176deg, #00E5FF, #0284C7);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Shape Up — six-week cycles, betting tables, and scope-hammered software</span></div><p></p>
 <h2 id="sources">Sources</h2>
 <ul>
 <li><strong><a href="https://basecamp.com/shapeup">Shape Up</a></strong> (Ryan Singer, Basecamp) — the full methodology, available free online</li>
@@ -116,13 +117,16 @@ View on GitHub
 <span class="line"><span>- Dev: A, B, C        - Scope B: Message Drafts</span></span>
 <span class="line"><span>                       - Scope C: Member Settings</span></span></code></pre>
 <p><strong>The Hill Chart</strong> — a way to show progress without asking “are you done?”:</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>         🏔️ Hill</span></span>
-<span class="line"><span>    ↗ Figuring out | Executing ↘</span></span>
-<span class="line"><span>    </span></span>
-<span class="line"><span>[●    ] Scope A (uphill: still solving problems)</span></span>
-<span class="line"><span>[   ●] Scope B (downhill: known path, just doing it)</span></span>
-<span class="line"><span>[  ● ] Scope C (near top: approaching the downhill)</span></span></code></pre>
-<p>Every scope lives somewhere on the hill. Uphill = uncertainty. Downhill = known execution. A scope that stays uphill too long is a warning sign.</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    A["🟡 Scope A\nUphill — figuring out\nstill solving problems"] -->|"unknowns resolved"| P["🏔️ Peak\n(full understanding)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    P -->|"clear path forward"| C["🟢 Scope C\nDownhill — executing\nknown path, just doing"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    B["🔵 Scope B\nNear peak\napproaching the downhill"] -.->|"nearly there"| P</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style A fill:#d97706,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style B fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style P fill:#6b7280,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style C fill:#166534,color:#fff</span></span></code></pre>
+<p>Every scope lives somewhere on the hill. Uphill = uncertainty. Downhill = known execution. A scope that stays uphill too long is a warning sign — it means an unknown is blocking progress.</p>
 <p><strong>Scope hammering</strong> — “cutting scope isn’t lowering quality.” When a cycle is running out of time, the discipline is to hammer scope: identify what’s essential vs. nice-to-have, and cut the nice-to-have. ”~” marks nice-to-haves in scope maps.</p>
 <p><strong>Compare to baseline, not to plan.</strong> When deciding whether a feature is “done enough to ship,” compare to what users have today — not to the ideal you imagined. Users with an improvement are better off than users waiting for perfection.</p>
 <h2 id="what-shape-up-rejects">What Shape Up Rejects</h2>
