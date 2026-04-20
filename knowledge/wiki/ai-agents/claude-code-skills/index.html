@@ -477,7 +477,7 @@ View on GitHub
 <span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">-</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> Missing Raises for functions that can throw</span></span>
 <span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">-</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> Undocumented Silences (they exist, so document them)</span></span></code></pre>
 <p>The equivalent TypeScript docstring skill works the same way — plain Markdown, injected as a system prompt layer when invoked:</p>
-<div class="runnable-code-wrapper" data-runnable-id="runnable-4" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// TypeScript skill: contract-docstrings.md equivalent</span></span>
+<div class="runnable-code-wrapper" data-runnable-id="runnable-3" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// TypeScript skill: contract-docstrings.md equivalent</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Placed in .claude/commands/ts-contract-docstrings.md</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Invoke with: /ts-contract-docstrings $ARGUMENTS</span></span>
 <span class="line"></span>
@@ -499,7 +499,7 @@ View on GitHub
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">   * @remarks Silences: CacheExpiredError — stale entry re-fetched silently (debug log)</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">   * /</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">  async function processUser(userId: number): Promise&#x3C;User> { ... }</span></span>
-<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">*/</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-4" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-4" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-4" style="display:none"></pre></div>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">*/</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-3" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-3" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-3" style="display:none"></pre></div>
 <blockquote>
 <p><strong>Key insight:</strong> Skill files are the “system prompt” for a specific task — they override LLM defaults with team conventions. The simpler the file, the more reliably Claude follows it. One skill, one responsibility.</p>
 </blockquote>
