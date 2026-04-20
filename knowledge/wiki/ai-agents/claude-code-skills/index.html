@@ -326,6 +326,7 @@ View on GitHub
 <li><strong><a href="https://github.com/mattpocock/ai-engineer-workshop-2026-project/blob/main/ralph/prompt.md">ralph/prompt.md</a></strong> (Matt Pocock) — AFK autonomous agent task-selection pattern</li>
 </ul>
 <p>A <strong>skill</strong> is a Markdown file you write once. Drop it in <code>.claude/commands/</code> and it becomes a callable slash command — structured instructions injected verbatim into every session that uses it. Skills encode what would otherwise be re-typed: conventions, multi-step workflows, domain rules.</p>
+<p></p><div class="section-hero-image"><img src="https://opengraph.githubassets.com/1/honnibal/claude-skills" alt="honnibal/claude-skills — reusable Python code quality slash command skills for Claude Code" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #22D3EEdd, #0EA5E988, #6366F1cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(69% 69% at 31% 45%, #22D3EE, transparent), radial-gradient(80% 80% at 83% 75%, #0EA5E9, transparent), radial-gradient(66% 66% at 40% 30%, #3B82F6, transparent), radial-gradient(62% 62% at 73% 74%, #6366F1, transparent), linear-gradient(240deg, #22D3EE, #6366F1);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">honnibal/claude-skills — reusable Python code quality slash command skills for Claude Code</span></div><p></p>
 <h2 id="skills-vs-plugins-mcp-servers">Skills vs Plugins (MCP Servers)</h2>
 
 
@@ -414,6 +415,7 @@ View on GitHub
 <table><thead><tr><th>Skill</th><th>What it does</th></tr></thead><tbody><tr><td><code>/tighten-types</code></td><td><code>Any</code> → concrete types, <code>dict</code> → TypedDict/Pydantic, <code>@overload</code> for unions</td></tr><tr><td><code>/contract-docstrings</code></td><td>Document function contracts: Preconditions, Raises, Silences</td></tr><tr><td><code>/hypothesis-tests</code></td><td>Generate property-based tests: roundtrips, invariants, equivalence</td></tr><tr><td><code>/mutation-testing</code></td><td>Apply deliberate mutations; check if test suite catches them</td></tr><tr><td><code>/pre-mortem</code></td><td>Write realistic incident reports for bugs that haven’t happened yet</td></tr><tr><td><code>/stub-package</code></td><td>Signatures + docstrings only; bodies replaced with <code>...</code></td></tr><tr><td><code>/try-except</code></td><td>Audit over-broad try/except blocks for scope and mechanism</td></tr></tbody></table>
 <p>These encode a senior developer’s code review intuition as callable commands any team member can run.</p>
 <h3 id="shape-up-shaping--rjsshaping-skills">Shape Up Shaping — rjs/shaping-skills</h3>
+<p></p><div class="section-hero-image"><img src="https://opengraph.githubassets.com/1/rjs/shaping-skills" alt="rjs/shaping-skills — Shape Up methodology as callable Claude Code slash commands" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #BD93F9dd, #A78BFA88, #7C3AEDcc);"></div><div class="section-hero-gradient" style="background: radial-gradient(60% 60% at 64% 59%, #BD93F9, transparent), radial-gradient(51% 51% at 63% 56%, #A78BFA, transparent), radial-gradient(53% 53% at 81% 30%, #8B5CF6, transparent), linear-gradient(282deg, #BD93F9, #7C3AED);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">rjs/shaping-skills — Shape Up methodology as callable Claude Code slash commands</span></div><p></p>
 <p>Skills that implement the <a href="/knowledge/wiki/productivity/shape-up/">Shape Up methodology</a> inside Claude sessions:</p>
 <ul>
 <li><code>/framing-doc</code> — Turn transcripts into a structured problem framing (problem + why not alternatives)</li>
@@ -502,6 +504,14 @@ View on GitHub
 <p><strong>Key insight:</strong> Skill files are the “system prompt” for a specific task — they override LLM defaults with team conventions. The simpler the file, the more reliably Claude follows it. One skill, one responsibility.</p>
 </blockquote>
 <h2 id="security-why-skills-ship-as-mdtxt">Security: Why Skills Ship as .md.txt</h2>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    R["Raw .md skill file\n(external source)"] -->|"GitHub renders"| V["Visible text\n(what you see)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    R -->|"Model reads"| H["Hidden HTML comments\n&#x3C;!-- exfiltrate files -->"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    H -->|"⚠️ executed by agent"| X["🔓 Credential theft\nFile exfiltration"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    V -->|"ship as .md.txt"| S["✅ Plain text\nAll content visible"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style H fill:#dc2626,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style X fill:#7f1d1d,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style S fill:#166534,color:#fff</span></span></code></pre>
 <p>Markdown can contain invisible HTML comments (<code>&#x3C;!-- ... --></code>). GitHub renders formatted Markdown, hiding these. A malicious skill file could embed instructions invisible in the preview but executed by the model.</p>
 <blockquote>
 <p><strong>Key insight (honnibal):</strong> Skill files are maximum-privilege remote code execution. Claude Code has broad filesystem, shell, and git access. “A skill that says ‘helpful refactoring assistant’ in its visible text could contain a hidden HTML comment telling the model to exfiltrate files.”</p>

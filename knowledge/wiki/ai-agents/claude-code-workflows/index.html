@@ -72,6 +72,16 @@ View on GitHub
 <li><strong><a href="https://www.aihero.dev/use-the-grill-me-skill-k029d">Use The /grill-me Skill</a></strong> (Matt Pocock, AI Hero) — clarifying questions skill pattern before implementation</li>
 </ul>
 <p>The gap between mediocre and excellent Claude Code results isn’t the model — it’s the setup. Three practices account for most of the difference: a well-maintained <code>AGENTS.md</code>, consistent use of plan mode, and disciplined context management.</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    AM["📄 AGENTS.md\nProject conventions\n+ verification commands"] --> P["⏸ Plan Mode\nThink + draft approach\nbefore any code"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    P -->|"approve + clear context"| W["▶ Work Mode\nAutonomous implementation\nwith sub-agents"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    W -->|"verify"| V["✅ Verify\nlint · test · type-check"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    V -->|"something wrong"| P</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style AM fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style P fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style W fill:#059669,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style V fill:#0891b2,color:#fff</span></span></code></pre>
 <h2 id="agentsmd--the-most-important-file">AGENTS.md — The Most Important File</h2>
 <p><code>AGENTS.md</code> (or <code>CLAUDE.md</code>) is read before every task. It’s the difference between Claude that knows your conventions and Claude that invents them.</p>
 <blockquote>
@@ -257,6 +267,18 @@ View on GitHub
 <blockquote>
 <p>“Use sub-agents to implement all tasks in parallel”</p>
 </blockquote>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    M["🧠 Main Session\n(orchestrator)"] -->|"spawn"| S1["Sub-Agent 1\nMessenger handler\n(own context)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    M -->|"spawn"| S2["Sub-Agent 2\nMessage class\n(own context)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    M -->|"spawn"| S3["Sub-Agent 3\nFunctional test\n(own context)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    S1 -->|"done"| M</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    S2 -->|"done"| M</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    S3 -->|"done"| M</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style M fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style S1 fill:#059669,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style S2 fill:#059669,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style S3 fill:#059669,color:#fff</span></span></code></pre>
 <p>Sub-agent benefits:</p>
 <ul>
 <li>Each sub-agent has its own context (doesn’t fill the main task’s context)</li>
