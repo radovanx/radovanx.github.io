@@ -80,6 +80,17 @@ View on GitHub
 <p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/executor-advisor/800/400" alt="Multi-model delegation: executor and advisor working together" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #BD93F9dd, #A78BFA88, #7C3AEDcc);"></div><div class="section-hero-gradient" style="background: radial-gradient(70% 70% at 72% 25%, #BD93F9, transparent), radial-gradient(66% 66% at 42% 70%, #A78BFA, transparent), radial-gradient(62% 62% at 81% 21%, #8B5CF6, transparent), radial-gradient(63% 63% at 46% 23%, #7C3AED, transparent), linear-gradient(323deg, #BD93F9, #7C3AED);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Multi-model delegation: executor and advisor working together</span></div><p></p>
 <h2 id="how-it-works">How It Works</h2>
 <p>When the executor invokes the advisor tool, everything happens server-side inside one <code>/v1/messages</code> call:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">sequenceDiagram</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    participant Client as 🖥️ Your Client</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    participant Exec as ⚡ Executor (Sonnet/Haiku)</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    participant Adv as 🧠 Advisor (Opus)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Client->>Exec: /v1/messages (stream)</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Exec-->>Client: streaming tokens...</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Exec->>Adv: server_tool_use{name:"advisor"}&#x3C;br>full transcript passed server-side</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Note over Exec,Adv: stream pauses ~2–5s</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Adv-->>Exec: advisor_tool_result&#x3C;br>~400–700 tokens of advice</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Exec-->>Client: streaming resumes&#x3C;br>informed by advice</span></span></code></pre>
 <ol>
 <li>Executor emits a <code>server_tool_use</code> block (<code>name: "advisor"</code>, empty <code>input</code>)</li>
 <li>Anthropic runs a separate inference pass — advisor sees the full transcript (system prompt, all tools, all prior turns and results)</li>

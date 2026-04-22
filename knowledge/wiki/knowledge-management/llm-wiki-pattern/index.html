@@ -57,6 +57,26 @@ View on GitHub
 <p>Source: Andrej Karpathy, <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">“LLM Wiki”</a>, April 2026. The gist traces the lineage to Vannevar Bush’s <a href="https://en.wikipedia.org/wiki/Memex">Memex (1945)</a> — a hypothetical personal device for curated knowledge with “associative trails between documents.”</p>
 </blockquote>
 <p>This wiki you’re reading is a direct implementation.</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph TB</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Human["👤 Human Curator\n(bookmarks + URLs)"] -->|adds| Raw</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Raw["📁 Raw Sources — immutable truth"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        R1["Articles"] &#x26; R2["Docs"] &#x26; R3["Videos"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Wiki["📝 Wiki — LLM-compiled knowledge"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        W1["Concept Pages"] &#x26; W2["Synthesis Pages"] &#x26; W3["Entity Pages"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Schema["📋 CLAUDE.md\nconventions · ops · roles"] -->|guides| LLM["🤖 LLM\nsynthesizes + connects"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Raw -->|read by| LLM</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    LLM -->|writes| Wiki</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Wiki -->|"compounds each session"| Wiki</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style Raw fill:#1e3a5f,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style Wiki fill:#166534,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style Schema fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style LLM fill:#4f46e5,color:#fff</span></span></code></pre>
 <h2 id="sources">Sources</h2>
 <ul>
 <li><strong><a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">LLM Wiki Gist — Karpathy</a></strong> — the original pattern description</li>
@@ -147,6 +167,15 @@ View on GitHub
 
 <table><thead><tr><th>Operation</th><th>What it does</th></tr></thead><tbody><tr><td><strong>Ingest</strong></td><td>Process new sources: read, categorize, summarize, <strong>merge with existing knowledge</strong>, update cross-references</td></tr><tr><td><strong>Query</strong></td><td>Answer questions from wiki; good answers filed back as new pages</td></tr><tr><td><strong>Lint</strong></td><td>Health check: contradictions, stale claims, orphan pages, knowledge gaps</td></tr><tr><td><strong>Prune</strong></td><td>Remove outdated sources and cascade updates to wiki pages</td></tr><tr><td><strong>Archive</strong></td><td>Hide articles from main view without deleting</td></tr></tbody></table>
 <p>The <strong>merge</strong> step during ingest is crucial. A new source shouldn’t create a new page — it should update the existing page, flag contradictions, and create synthesis connections. A single source should fan out across 2-5 existing pages.</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    S["📄 New Source\ne.g. 'A2A Protocol post'"] -->|touches| P1["ai-agents/\nagent-interoperability"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    S --> P2["ai-agents/\nagent-design-patterns"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    S --> P3["ai-agents/\nclaude-managed-agents"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    P1 &#x26; P2 &#x26; P3 --> N["🔗 Cross-references\nstrengthened across network"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style S fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style N fill:#166534,color:#fff</span></span></code></pre>
 <p>See <a href="/knowledge/wiki/wiki-ingest-pipeline/">wiki ingest pipeline</a> for the full ingest pipeline code.</p>
 <h2 id="use-cases">Use Cases</h2>
 <p>From the <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">original gist</a>:</p>
