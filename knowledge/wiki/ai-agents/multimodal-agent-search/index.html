@@ -121,6 +121,35 @@ View on GitHub
 <h2 id="the-scale-problem">The Scale Problem</h2>
 <p>A standard 2,000-hour production archive contains over <strong>216 million frames</strong>. When processed through an ensemble of specialized models, this baseline explodes into <strong>billions of multi-layered data points</strong>. The metadata varies wildly — from discrete text labels to dense vector embeddings — and must be synchronized into a unified chronological map while maintaining <strong>sub-second query latency</strong>.</p>
 <p>Netflix’s answer is a three-stage decoupled pipeline:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Models["🤖 Specialized AI Models"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        CH["Character\nRecognition"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        SC["Scene\nDetection"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        DL["Dialogue\nAnalysis"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        EM["Embedding\nGeneration"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Stage1["Stage 1 — Transactional Persistence"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        CS["Apache Cassandra\n(write throughput)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Stage2["Stage 2 — Offline Fusion"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        KF["Apache Kafka →\nbatch jobs\n(temporal bucketing)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Stage3["Stage 3 — Real-Time Index"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        ES["Elasticsearch\n(nested docs · sub-second)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    CH &#x26; SC &#x26; DL &#x26; EM -->|raw annotations| CS</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    CS -->|stream| KF</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    KF -->|fused records| ES</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    ES -->|"query: 'Joey in kitchen'"| Result["✅ Search Result\n(&#x3C; 1 second)"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style CS fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style KF fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style ES fill:#059669,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style Result fill:#166534,color:#fff</span></span></code></pre>
 
 
 
@@ -159,7 +188,7 @@ View on GitHub
 <li><strong>Optimized Persistence</strong> — Enriched records written back as second-by-second multi-modal index</li>
 </ol>
 <p>This is the same principle as <a href="/knowledge/wiki/agent-design-patterns/">knowledge compilation</a> applied to perception: instead of reasoning across raw model outputs at query time (unreliable), <strong>pre-compute the intersections</strong> so queries just look up fused records (reliable).</p>
-<div class="runnable-code-wrapper" data-runnable-id="runnable-36" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">/**</span></span>
+<div class="runnable-code-wrapper" data-runnable-id="runnable-35" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">/**</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"> * Temporal Bucket Fusion — Netflix's pattern for synchronizing</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"> * multimodal AI model outputs into a unified search index.</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"> *</span></span>
@@ -209,8 +238,8 @@ View on GitHub
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">  };</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">  // "Joey" + "kitchen" at second 4 → one fused record</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">  // Queries can now find "Joey in the kitchen" without cross-referencing separate model outputs</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-36" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-36" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-36" style="display:none"></pre></div>
-<div class="runnable-code-wrapper" data-runnable-id="runnable-37" data-runnable-lang="php"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">&#x3C;?</span><span style="color:#005CC5;--shiki-dark:#79B8FF">php</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-35" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-35" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-35" style="display:none"></pre></div>
+<div class="runnable-code-wrapper" data-runnable-id="runnable-36" data-runnable-lang="php"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">&#x3C;?</span><span style="color:#005CC5;--shiki-dark:#79B8FF">php</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">/**</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"> * Temporal Bucket Fusion — PHP equivalent</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"> * Reference: Netflix Technology Blog, "Synchronizing the Senses" (April 2026)</span></span>
@@ -267,7 +296,7 @@ View on GitHub
 <span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">        sourceAnnotations</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">array_merge</span><span style="color:#24292E;--shiki-dark:#E1E4E8">($existing</span><span style="color:#D73A49;--shiki-dark:#F97583">-></span><span style="color:#24292E;--shiki-dark:#E1E4E8">sourceAnnotations, $incoming</span><span style="color:#D73A49;--shiki-dark:#F97583">-></span><span style="color:#24292E;--shiki-dark:#E1E4E8">sourceAnnotations),</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    );</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">    // "Joey" + "kitchen" at second 4 → one fused record</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-37" type="button">Run PHP</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-37" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-37" style="display:none"></pre></div>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-36" type="button">Run PHP</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-36" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-36" style="display:none"></pre></div>
 <h2 id="hybrid-search-symbolic--semantic">Hybrid Search: Symbolic + Semantic</h2>
 <p>The query engine combines text matching with vector search — neither alone is reliable enough:</p>
 <ul>

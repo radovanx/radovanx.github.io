@@ -76,27 +76,27 @@ View on GitHub
 <li><strong><a href="https://x.com/akseljoonas/status/2046543093856412100">Introducing ml-intern</a></strong> (Aksel Joonas Reedi, HuggingFace, April 2026) — open-source autonomous research loop; demonstrated results across scientific reasoning, healthcare, competitive math</li>
 </ul>
 <p>ml-intern is an open-source agent by HuggingFace that automates the full ML post-training research loop — from literature review to trained model — without human checkpoints. It embodies “how ML researchers work and think.”</p>
+<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/huggingface-ml-intern-research/800/350" alt="HuggingFace ml-intern — autonomous ML research agent running the full loop from papers to trained model" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #00E5FFdd, #06B6D488, #0284C7cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(73% 73% at 43% 31%, #00E5FF, transparent), radial-gradient(51% 51% at 35% 28%, #06B6D4, transparent), radial-gradient(78% 78% at 76% 32%, #0EA5E9, transparent), linear-gradient(148deg, #00E5FF, #0284C7);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">HuggingFace ml-intern — autonomous ML research agent running the full loop from papers to trained model</span></div><p></p>
 <blockquote>
 <p><strong>Key insight:</strong> ml-intern is the first public demonstration of an agent that runs an entire research loop autonomously: find papers → read citations → implement ideas → train models → evaluate → iterate. The bottleneck shifts from researcher time to GPU time.</p>
 </blockquote>
 <h2 id="what-it-does">What It Does</h2>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>User prompt</span></span>
-<span class="line"><span>     ↓</span></span>
-<span class="line"><span>Arxiv + hf.co/papers search</span></span>
-<span class="line"><span>     ↓</span></span>
-<span class="line"><span>Citation graph traversal (reads full papers)</span></span>
-<span class="line"><span>     ↓</span></span>
-<span class="line"><span>Dataset discovery (hf.co/datasets)</span></span>
-<span class="line"><span>     ↓</span></span>
-<span class="line"><span>Data quality inspection + reformatting</span></span>
-<span class="line"><span>     ↓</span></span>
-<span class="line"><span>Training job launch (HF Jobs or local GPUs)</span></span>
-<span class="line"><span>     ↓</span></span>
-<span class="line"><span>Run monitoring + eval reading</span></span>
-<span class="line"><span>     ↓</span></span>
-<span class="line"><span>Failure diagnosis + retraining</span></span>
-<span class="line"><span>     ↓</span></span>
-<span class="line"><span>Final model</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    UP["💬 User Prompt"] --> AR["arXiv + hf.co/papers\nsearch"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    AR --> CG["Citation graph traversal\n(reads full papers)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    CG --> DD["Dataset discovery\nhf.co/datasets"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    DD --> DQ["Data quality inspection\n+ reformatting"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    DQ --> TJ["Training job launch\n(HF Jobs or local GPUs)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    TJ --> RM["Run monitoring\n+ eval reading"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    RM --> FD{Failure?}</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    FD -->|Yes| RT["Failure diagnosis\n+ retraining"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    RT --> TJ</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    FD -->|No| FM["✅ Final model"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style UP fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style DQ fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style FM fill:#166534,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style RT fill:#dc2626,color:#fff</span></span></code></pre>
 <h2 id="demonstrated-results">Demonstrated Results</h2>
 <p>All results achieved fully autonomously, without human checkpoints:</p>
 <h3 id="scientific-reasoning-gpqa-diamond">Scientific Reasoning (GPQA Diamond)</h3>

@@ -70,7 +70,6 @@ View on GitHub
       prose-code:text-primary prose-code:bg-surface prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm
       prose-blockquote:text-muted prose-blockquote:leading-[1.6]
     " data-astro-cid-tknqs5hn> <h1 id="token-efficiency--overview">Token Efficiency — Overview</h1>
-<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/token-efficiency-cost/800/280" alt="Token efficiency — controlling LLM cost in production agent systems" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #00E5FFdd, #06B6D488, #0284C7cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(55% 55% at 49% 79%, #00E5FF, transparent), radial-gradient(56% 56% at 42% 16%, #06B6D4, transparent), radial-gradient(77% 77% at 70% 19%, #0EA5E9, transparent), linear-gradient(87deg, #00E5FF, #0284C7);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Token efficiency — controlling LLM cost in production agent systems</span></div><p></p>
 <p>LLM-powered coding agents consume tokens at scale — every tool call, every file read, every response has a cost. Output verbosity is the largest controllable cost factor. This topic is covered in two focused chapters:</p>
 <ul>
 <li>
@@ -85,6 +84,23 @@ View on GitHub
 <p>Output tokens cost 3–5× more than input tokens. Compressing responses is always the first lever. But brevity isn’t universally beneficial — complex reasoning needs token budget. Apply selectively.</p>
 </blockquote>
 <h2 id="the-four-levers">The Four Levers</h2>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Levers["Four Token Reduction Levers — stackable"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        L1["✂️ Output\nCaveman compression\n22–87% per response"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        L2["📄 Input\ncaveman-compress CLAUDE.md\n~45% per session"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        L3["🔌 Session Init\nRemove unused MCPs + CLIs\n200–400 tokens per server"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        L4["🔍 Tool Context\nAgent SDK tool search\n~90% of tool definitions"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        L5["📜 Conversation\nContext compaction\n40–60% of history"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    L1 &#x26; L2 &#x26; L3 &#x26; L4 &#x26; L5 --> R["🏆 70%+ total reduction\nstacked in production"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style L1 fill:#dc2626,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style L2 fill:#d97706,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style L3 fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style L4 fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style L5 fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style R fill:#166534,color:#fff</span></span></code></pre>
 
 
 

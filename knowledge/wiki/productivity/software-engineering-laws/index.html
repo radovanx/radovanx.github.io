@@ -133,6 +133,7 @@ View on GitHub
 <li><strong><a href="https://lawsofsoftwareengineering.com/">Laws of Software Engineering</a></strong> — curated collection of 56 principles organized by category and seniority level</li>
 </ul>
 <p>56 principles that shape software systems, teams, and decisions. Each has survived decades of engineering practice. Understanding them doesn’t prevent failure — it makes failure legible so you can navigate it.</p>
+<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/software-laws-engineering/800/350" alt="Laws of Software Engineering — 56 principles that survive decades of practice" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #86EFACdd, #6EE7B788, #2DD4BFcc);"></div><div class="section-hero-gradient" style="background: radial-gradient(56% 56% at 63% 55%, #86EFAC, transparent), radial-gradient(66% 66% at 84% 53%, #6EE7B7, transparent), radial-gradient(71% 71% at 19% 32%, #5EEAD4, transparent), radial-gradient(59% 59% at 42% 46%, #2DD4BF, transparent), linear-gradient(274deg, #86EFAC, #2DD4BF);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Laws of Software Engineering — 56 principles that survive decades of practice</span></div><p></p>
 <blockquote>
 <p><strong>Key insight:</strong> These laws aren’t guidelines to follow — they’re descriptions of how complex systems behave. Knowing Brooks’s Law doesn’t stop you from adding people to a late project; it tells you why you’re making things worse.</p>
 </blockquote>
@@ -420,6 +421,20 @@ View on GitHub
 <table><thead><tr><th>Law</th><th>Statement</th></tr></thead><tbody><tr><td><strong>Dunning-Kruger Effect</strong></td><td>Less knowledge → more confidence</td></tr><tr><td><strong>Sunk Cost Fallacy</strong></td><td>Don’t stay in a bad decision because of past investment</td></tr><tr><td><strong>Hype Cycle &#x26; Amara’s Law</strong></td><td>Overestimate short-term, underestimate long-term technology impact</td></tr><tr><td><strong>Lindy Effect</strong></td><td>Longer in use → more likely to continue being used</td></tr><tr><td><strong>First Principles Thinking</strong></td><td>Break complex problems into basics, build up from there</td></tr><tr><td><strong>Pareto Principle</strong></td><td>80% of problems come from 20% of causes</td></tr><tr><td><strong>Occam’s Razor</strong></td><td>Simplest explanation is usually correct</td></tr><tr><td><strong>Cunningham’s Law</strong></td><td>Best way to get a correct answer online: post the wrong answer</td></tr></tbody></table>
 <h2 id="applying-these-laws-in-practice">Applying These Laws in Practice</h2>
 <p>These laws cluster into a decision pattern:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    P["📋 Before Planning\nHofstadter + Ninety-Ninety\n→ Budget 2× your estimate"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    T["👥 Before Scaling Team\nBrooks + Price\n→ More people ≠ faster"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    D["🏗️ When Designing\nGall + Tesler\n→ Start simple, grow complexity"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    M["🔧 When Maintaining\nBroken Windows + Boy Scout\n→ Leave it better than found"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    G["📊 When Measuring\nGoodhart\n→ Stop measuring what you're gaming"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    P --> T --> D --> M --> G</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style P fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style T fill:#dc2626,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style D fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style M fill:#059669,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style G fill:#d97706,color:#fff</span></span></code></pre>
 <ol>
 <li><strong>Before planning:</strong> Hofstadter + Ninety-Ninety = always budget more time than you think</li>
 <li><strong>Before scaling the team:</strong> Brooks + Price = more people rarely solve a shipping problem</li>

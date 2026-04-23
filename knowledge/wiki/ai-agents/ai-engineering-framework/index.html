@@ -112,6 +112,7 @@ View on GitHub
 <li><strong><a href="https://github.com/chiphuyen/aie-book">AI Engineering (Chip Huyen, O’Reilly 2025)</a></strong> — framework for adapting foundation models to production; end-to-end process from evaluation to finetuning to feedback loops</li>
 </ul>
 <p>AI Engineering is the discipline of adapting <strong>foundation models</strong> (LLMs and large multimodal models) to solve real-world problems. It’s distinct from traditional ML engineering — and the distinction matters.</p>
+<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/ai-engineering-chip-huyen/800/350" alt="AI Engineering book by Chip Huyen — adapting foundation models to production systems" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #D4A574dd, #C4956A88, #A67750cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(69% 69% at 44% 23%, #D4A574, transparent), radial-gradient(58% 58% at 82% 40%, #C4956A, transparent), radial-gradient(78% 78% at 33% 44%, #B8865E, transparent), linear-gradient(236deg, #D4A574, #A67750);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">AI Engineering book by Chip Huyen — adapting foundation models to production systems</span></div><p></p>
 <blockquote>
 <p><strong>Key insight:</strong> Traditional ML engineering centers on training models from scratch on tabular data. AI Engineering centers on adapting pre-trained foundation models — prompt engineering, context construction, parameter-efficient finetuning. A real-world system often needs both.</p>
 </blockquote>
@@ -166,20 +167,16 @@ View on GitHub
 <li>Benchmark comparison (standardized but may not reflect your use case)</li>
 </ul>
 <p><strong>RAG or finetune?</strong></p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>                 ┌─────────────────────────────────┐</span></span>
-<span class="line"><span>                 │  Knowledge is static +           │</span></span>
-<span class="line"><span>                 │  doesn't fit in context window   │</span></span>
-<span class="line"><span>                 └──────────────┬──────────────────┘</span></span>
-<span class="line"><span>                                │ Yes → RAG</span></span>
-<span class="line"><span>                 ┌──────────────▼──────────────────┐</span></span>
-<span class="line"><span>                 │  Behavior/style needs to change  │</span></span>
-<span class="line"><span>                 │  (not just knowledge)            │</span></span>
-<span class="line"><span>                 └──────────────┬──────────────────┘</span></span>
-<span class="line"><span>                                │ Yes → Finetune</span></span>
-<span class="line"><span>                 ┌──────────────▼──────────────────┐</span></span>
-<span class="line"><span>                 │  Context + prompting sufficient  │</span></span>
-<span class="line"><span>                 └──────────────┬──────────────────┘</span></span>
-<span class="line"><span>                                │ Yes → Prompt engineering</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q1{"Knowledge is static\n+ doesn't fit in context?"}</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q1 -->|Yes| RAG["📚 RAG\n(retrieve at query time)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q1 -->|No| Q2{"Behavior/style\nneeds to change?"}</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q2 -->|Yes| FT["🔧 Finetune\n(PEFT, LoRA, full)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q2 -->|No| PE["✏️ Prompt Engineering\n(context + examples)"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style RAG fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style FT fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style PE fill:#059669,color:#fff</span></span></code></pre>
 <blockquote>
 <p><strong>Key insight:</strong> Finetune for behavior and style; RAG for knowledge retrieval. Most teams reach for finetuning too early — prompt engineering and RAG solve the majority of use cases with less complexity and cost.</p>
 </blockquote>
@@ -200,7 +197,7 @@ View on GitHub
 </ul>
 <h2 id="code-evaluation-pipeline">Code: Evaluation Pipeline</h2>
 <p>LLM-as-judge scales evaluation without human labeling. A cheap model (Haiku) judges a more capable model’s outputs — practical for automated quality gates in CI or feedback loops.</p>
-<div class="runnable-code-wrapper" data-runnable-id="runnable-10" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// TypeScript: LLM-as-judge evaluation — scalable alternative to human labeling</span></span>
+<div class="runnable-code-wrapper" data-runnable-id="runnable-9" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// TypeScript: LLM-as-judge evaluation — scalable alternative to human labeling</span></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">import</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> Anthropic </span><span style="color:#D73A49;--shiki-dark:#F97583">from</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> "@anthropic-ai/sdk"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">;</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">const</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> client</span><span style="color:#D73A49;--shiki-dark:#F97583"> =</span><span style="color:#D73A49;--shiki-dark:#F97583"> new</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> Anthropic</span><span style="color:#24292E;--shiki-dark:#E1E4E8">();</span></span>
@@ -248,8 +245,8 @@ View on GitHub
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">  );</span></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">  const</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> unique</span><span style="color:#D73A49;--shiki-dark:#F97583"> =</span><span style="color:#D73A49;--shiki-dark:#F97583"> new</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> Set</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(answers);</span></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">  return</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> unique.size </span><span style="color:#D73A49;--shiki-dark:#F97583">></span><span style="color:#005CC5;--shiki-dark:#79B8FF"> 1</span><span style="color:#24292E;--shiki-dark:#E1E4E8">; </span><span style="color:#6A737D;--shiki-dark:#6A737D">// true = inconsistent responses = likely hallucinating</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-10" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-10" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-10" style="display:none"></pre></div>
-<div class="runnable-code-wrapper" data-runnable-id="runnable-11" data-runnable-lang="php"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">&#x3C;?</span><span style="color:#005CC5;--shiki-dark:#79B8FF">php</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-9" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-9" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-9" style="display:none"></pre></div>
+<div class="runnable-code-wrapper" data-runnable-id="runnable-10" data-runnable-lang="php"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">&#x3C;?</span><span style="color:#005CC5;--shiki-dark:#79B8FF">php</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// PHP: LLM-as-judge evaluation</span></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">function</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> llmJudge</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(</span><span style="color:#D73A49;--shiki-dark:#F97583">string</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> $task, </span><span style="color:#D73A49;--shiki-dark:#F97583">string</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> $output, </span><span style="color:#D73A49;--shiki-dark:#F97583">?string</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> $groundTruth </span><span style="color:#D73A49;--shiki-dark:#F97583">=</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> null</span><span style="color:#24292E;--shiki-dark:#E1E4E8">)</span><span style="color:#D73A49;--shiki-dark:#F97583">:</span><span style="color:#D73A49;--shiki-dark:#F97583"> array</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">{</span></span>
@@ -280,22 +277,21 @@ View on GitHub
 <span class="line"></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">    return</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> json_decode</span><span style="color:#24292E;--shiki-dark:#E1E4E8">($response[</span><span style="color:#032F62;--shiki-dark:#9ECBFF">'content'</span><span style="color:#24292E;--shiki-dark:#E1E4E8">][</span><span style="color:#005CC5;--shiki-dark:#79B8FF">0</span><span style="color:#24292E;--shiki-dark:#E1E4E8">][</span><span style="color:#032F62;--shiki-dark:#9ECBFF">'text'</span><span style="color:#24292E;--shiki-dark:#E1E4E8">] </span><span style="color:#D73A49;--shiki-dark:#F97583">??</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> '{}'</span><span style="color:#24292E;--shiki-dark:#E1E4E8">, </span><span style="color:#005CC5;--shiki-dark:#79B8FF">true</span><span style="color:#24292E;--shiki-dark:#E1E4E8">) </span><span style="color:#D73A49;--shiki-dark:#F97583">??</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> [];</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">    // Output: ['score' => 4, 'pass' => true, 'reasoning' => 'Accurate, missing edge case.']</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-11" type="button">Run PHP</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-11" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-11" style="display:none"></pre></div>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-10" type="button">Run PHP</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-10" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-10" style="display:none"></pre></div>
 <h2 id="the-feedback-loop">The Feedback Loop</h2>
 <p>Production AI applications require continuous improvement loops:</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>User interaction</span></span>
-<span class="line"><span>      ↓</span></span>
-<span class="line"><span>Collect implicit signals (clicks, corrections, abandonment)</span></span>
-<span class="line"><span>      ↓</span></span>
-<span class="line"><span>Collect explicit signals (thumbs up/down, ratings)</span></span>
-<span class="line"><span>      ↓</span></span>
-<span class="line"><span>Curate training/evaluation examples</span></span>
-<span class="line"><span>      ↓</span></span>
-<span class="line"><span>Update model (prompt, RAG index, or finetune)</span></span>
-<span class="line"><span>      ↓</span></span>
-<span class="line"><span>A/B test improvement</span></span>
-<span class="line"><span>      ↓</span></span>
-<span class="line"><span>Deploy</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    U["👤 User Interaction"] --> IS["Collect implicit signals\n(clicks · corrections · abandonment)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    IS --> ES["Collect explicit signals\n(thumbs up/down · ratings)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    ES --> CE["Curate training &#x26;\nevaluation examples"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    CE --> UM["Update model\n(prompt · RAG index · finetune)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    UM --> AB["A/B test improvement"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    AB --> D["🚀 Deploy"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    D -->|"next cycle"| U</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style U fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style UM fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style D fill:#059669,color:#fff</span></span></code></pre>
 <p>The feedback loop is what separates “demo AI” from “production AI.” Without it, quality degrades as the world changes and user needs evolve.</p>
 <h2 id="what-ai-engineering-is-not">What AI Engineering is NOT</h2>
 <ul>
