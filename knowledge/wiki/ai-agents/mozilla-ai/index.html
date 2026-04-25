@@ -75,25 +75,23 @@ View on GitHub
 <li><strong><a href="https://www.mozilla.ai/">mozilla.ai</a></strong> — product overview: any-llm, any-agent, any-guardrail, mcpd, llamafile, encoderfile, Octonous, Lumigator, Blueprints</li>
 </ul>
 <p>Mozilla’s AI lab building trustworthy, transparent, controllable AI. Backed by Mozilla Foundation (not-for-profit). Community-led, independently auditable open-source foundation.</p>
+<p></p><div class="section-hero-image"><img src="https://opengraph.githubassets.com/1/mozilla-ai/any-agent" alt="mozilla-ai/any-agent — one interface to run, test, and compare LangGraph, CrewAI, AutoGen, and LlamaIndex" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #00E5FFdd, #38BDF888, #BD93F9cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(71% 71% at 45% 48%, #00E5FF, transparent), radial-gradient(52% 52% at 76% 49%, #38BDF8, transparent), radial-gradient(57% 57% at 81% 20%, #A78BFA, transparent), linear-gradient(236deg, #00E5FF, #BD93F9);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">mozilla-ai/any-agent — one interface to run, test, and compare LangGraph, CrewAI, AutoGen, and LlamaIndex</span></div><p></p>
 <blockquote>
 <p><strong>Key insight:</strong> Mozilla.ai’s core thesis is “choice-first” — any framework, any LLM, any guardrail — switching any layer with a single config change. The open-source stack is the answer to enterprise vendor lock-in.</p>
 </blockquote>
 <h2 id="the-open-tool-stack">The Open Tool Stack</h2>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>┌─────────────────────────────────────────┐</span></span>
-<span class="line"><span>│              Your Application           │</span></span>
-<span class="line"><span>├──────────────┬──────────────────────────┤</span></span>
-<span class="line"><span>│  any-agent   │ Run, test, compare agent │</span></span>
-<span class="line"><span>│              │ frameworks (one API)     │</span></span>
-<span class="line"><span>├──────────────┼──────────────────────────┤</span></span>
-<span class="line"><span>│  any-llm     │ Switch LLM providers     │</span></span>
-<span class="line"><span>│              │ with one config change   │</span></span>
-<span class="line"><span>├──────────────┼──────────────────────────┤</span></span>
-<span class="line"><span>│ any-guardrail│ Swap guardrail models    │</span></span>
-<span class="line"><span>│              │ with one config change   │</span></span>
-<span class="line"><span>├──────────────┼──────────────────────────┤</span></span>
-<span class="line"><span>│    mcpd      │ MCP server manager       │</span></span>
-<span class="line"><span>│              │ across environments      │</span></span>
-<span class="line"><span>└──────────────┴──────────────────────────┘</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    App["Your Application"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    App --> AA["any-agent\nRun, test, compare frameworks\n(LangGraph · CrewAI · AutoGen · LlamaIndex)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    App --> AL["any-llm\nSwitch providers with\none config change"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    App --> AG["any-guardrail\nSwap guardrail models\nwithout code changes"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    App --> MD["mcpd\nMCP server manager\nacross environments"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style App fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style AA fill:#059669,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style AL fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style AG fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style MD fill:#166534,color:#fff</span></span></code></pre>
 
 
 
