@@ -269,19 +269,27 @@ View on GitHub
 <span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">agents-cli</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> infra</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> cicd</span><span style="color:#6A737D;--shiki-dark:#6A737D">              # CI/CD + staging/prod infra</span></span>
 <span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">agents-cli</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> infra</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> datastore</span><span style="color:#6A737D;--shiki-dark:#6A737D">         # RAG agent datastore</span></span></code></pre>
 <h2 id="architecture-the-stack-it-builds-on">Architecture: The Stack It Builds On</h2>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>agents-cli scaffold &#x3C;name></span></span>
-<span class="line"><span>        ↓</span></span>
-<span class="line"><span>  ADK Agent Project</span></span>
-<span class="line"><span>  ├── agent.py          ← ADK Python agent (tools, callbacks, orchestration)</span></span>
-<span class="line"><span>  ├── evalsets/         ← evaluation scenarios</span></span>
-<span class="line"><span>  └── .github/          ← CI/CD pipeline (via agents-cli infra cicd)</span></span>
-<span class="line"><span>        ↓</span></span>
-<span class="line"><span>  agents-cli deploy</span></span>
-<span class="line"><span>        ↓</span></span>
-<span class="line"><span>  Google Cloud</span></span>
-<span class="line"><span>  ├── Agent Runtime     ← managed agent execution</span></span>
-<span class="line"><span>  ├── Cloud Run         ← serverless deployment</span></span>
-<span class="line"><span>  └── GKE               ← container orchestration</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    SC["agents-cli scaffold"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    AP["ADK Agent Project\nagent.py · evalsets/ · .github/"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    DP["agents-cli deploy"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    GC["Google Cloud"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    AR["Agent Runtime\n(managed execution)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    CR["Cloud Run\n(serverless)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    GK["GKE\n(containers)"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    SC --> AP --> DP --> GC</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    GC --> AR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    GC --> CR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    GC --> GK</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style SC fill:#4285f4,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style AP fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style DP fill:#4285f4,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style GC fill:#ea4335,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style AR fill:#34a853,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style CR fill:#34a853,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style GK fill:#34a853,color:#fff</span></span></code></pre>
 <p><strong>Local development</strong> only needs an AI Studio API key — no Google Cloud account required. Cloud features (deploy, publish, infra) require Google Cloud.</p>
 <h2 id="evaluation--first-class-citizen">Evaluation — First-Class Citizen</h2>
 <p><code>agents-cli eval run</code> is a full evaluation pipeline. Key concepts:</p>

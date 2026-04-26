@@ -61,6 +61,23 @@ View on GitHub
 <blockquote>
 <p><strong>Key insight:</strong> None of these three bugs were the same bug. They overlapped in time, affected different traffic slices, and individually looked like normal variation. Together they looked like systemic degradation. The lesson: independent changes can compound into correlation that masks root cause.</p>
 </blockquote>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">gantt</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    title Three Bugs, One Month — Claude Code April 2026</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    dateFormat YYYY-MM-DD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    axisFormat %b %d</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    section Bug 1 — Reasoning Effort</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    high→medium default (shipped)      :crit, b1, 2026-03-04, 2026-04-07</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    section Bug 2 — Caching Optimization</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    drops prior reasoning (shipped)    :crit, b2, 2026-03-26, 2026-04-10</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    section Bug 3 — Verbosity Constraint</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    ≤25 word limit (shipped)           :crit, b3, 2026-04-16, 2026-04-20</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    section Milestones</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    All 3 fixed (v2.1.116)             :milestone, m1, 2026-04-20, 1d</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Usage limits reset                 :milestone, m2, 2026-04-23, 1d</span></span></code></pre>
 <h2 id="bug-1--reasoning-effort-default-changed-march-4">Bug 1 — Reasoning Effort Default Changed (March 4)</h2>
 <p>Anthropic changed Claude Code’s default reasoning effort from <code>high</code> to <code>medium</code> after Opus 4.6 launched with occasional very long tail latencies in high mode — the UI appeared frozen.</p>
 <p><strong>The internal reasoning:</strong> In evals, <code>medium</code> effort achieved slightly lower intelligence with significantly less latency for most tasks, better usage limit headroom, and no long-tail latency spikes.</p>

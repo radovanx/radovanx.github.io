@@ -101,20 +101,40 @@ View on GitHub
 
 <table><thead><tr><th>Capability</th><th>Detail</th></tr></thead><tbody><tr><td><strong>Document chat</strong></td><td>PDFs, Word docs, CSV, codebases, online imports</td></tr><tr><td><strong>Any LLM</strong></td><td>Local (Ollama, LlamaCPP) or cloud (OpenAI, Azure, AWS, Mistral, Groq, and more)</td></tr><tr><td><strong>Privacy-first</strong></td><td>All defaults run locally; no account required for desktop</td></tr><tr><td><strong>Multi-modal</strong></td><td>Text and image/audio LLMs in one interface</td></tr><tr><td><strong>Multi-user</strong></td><td>Full tenant isolation, admin controls, whitelabeling (server/cloud)</td></tr><tr><td><strong>Developer API</strong></td><td>Built-in REST API for custom integrations and product embedding</td></tr><tr><td><strong>Open source</strong></td><td>MIT license, ~59K GitHub stars</td></tr></tbody></table>
 <h2 id="distribution">Distribution</h2>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Desktop (local, no account)</span></span>
-<span class="line"><span>├── One-click install</span></span>
-<span class="line"><span>├── Built-in LLM provider (any GGUF model)</span></span>
-<span class="line"><span>├── All data stored locally</span></span>
-<span class="line"><span>└── macOS / Windows / Linux</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>Self-Hosted (Docker, team)</span></span>
-<span class="line"><span>├── Multi-user with tenant isolation</span></span>
-<span class="line"><span>├── Admin controls (what users can see/do)</span></span>
-<span class="line"><span>├── Whitelabelable branding</span></span>
-<span class="line"><span>└── API access</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>Cloud</span></span>
-<span class="line"><span>└── Hosted version for teams who don't want to self-host</span></span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Mode</th><th>Setup</th><th>Multi-User</th><th>Data Location</th><th>Best For</th></tr></thead><tbody><tr><td><strong>Desktop</strong></td><td>One-click (no account)</td><td>No</td><td>100% local</td><td>Privacy-first, solo use</td></tr><tr><td><strong>Self-Hosted</strong></td><td>Docker</td><td>Yes — tenant isolation, admin controls, whitelabelable</td><td>Your server</td><td>Teams, enterprise</td></tr><tr><td><strong>Cloud</strong></td><td>None needed</td><td>Yes</td><td>Hosted</td><td>Teams who prefer zero-ops</td></tr></tbody></table>
 <h2 id="developer-api">Developer API</h2>
 <p>AnythingLLM exposes a REST API (docs at <code>http://localhost:3001/api/docs</code>) for embedding chat into products or automating document workflows:</p>
 <div class="runnable-code-wrapper" data-runnable-id="runnable-1" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// TypeScript: chat with an AnythingLLM workspace via REST API</span></span>
