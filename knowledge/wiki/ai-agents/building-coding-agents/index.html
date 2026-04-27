@@ -308,7 +308,7 @@ View on GitHub
 
 
 
-<table><thead><tr><th>Agent</th><th>Open?</th><th>Model lock-in</th><th>Notable</th></tr></thead><tbody><tr><td><strong>Claude Code</strong></td><td>No</td><td>Anthropic only</td><td>Battle-tested, 50k+ lines, official</td></tr><tr><td><strong><a href="https://github.com/anomalyco/opencode">opencode</a></strong> (anomalyco)</td><td>Yes, MIT</td><td>Multi-model</td><td>Open-source alternative with web UI</td></tr><tr><td><strong><a href="https://pi.dev/">Pi</a></strong></td><td>Yes, MIT</td><td>15+ providers</td><td>Minimal harness; no built-in features — extensible via TypeScript</td></tr><tr><td><strong>Cursor</strong></td><td>No</td><td>Multi-model</td><td>VSCode fork with inline AI</td></tr><tr><td><strong>Amp</strong></td><td>No</td><td>Multi-model</td><td>Sub-400-line origin, production-grade now</td></tr></tbody></table>
+<table><thead><tr><th>Agent</th><th>Open?</th><th>Model lock-in</th><th>Notable</th></tr></thead><tbody><tr><td><strong>Claude Code</strong></td><td>No</td><td>Anthropic only</td><td>Battle-tested, 512k+ lines (revealed by accidental source leak March 2026), official</td></tr><tr><td><strong><a href="https://github.com/anomalyco/opencode">opencode</a></strong> (anomalyco)</td><td>Yes, MIT</td><td>Multi-model</td><td>Open-source alternative with web UI</td></tr><tr><td><strong><a href="https://pi.dev/">Pi</a></strong></td><td>Yes, MIT</td><td>15+ providers</td><td>Minimal harness; no built-in features — extensible via TypeScript</td></tr><tr><td><strong>Cursor</strong></td><td>No</td><td>Multi-model</td><td>VSCode fork with inline AI</td></tr><tr><td><strong>Amp</strong></td><td>No</td><td>Multi-model</td><td>Sub-400-line origin, production-grade now</td></tr></tbody></table>
 <p><strong>opencode</strong> follows the same architectural insight: the loop is trivial, so build it in the open. Multi-model support means no Anthropic lock-in. Trade-off: less battle-tested than Claude Code, which has shipped across millions of different codebases.</p>
 <p>The open vs. closed pattern mirrors <a href="/knowledge/wiki/claude-managed-agents/">Deep Agents Deploy vs. Claude Managed Agents</a>: open alternatives argue against lock-in; closed systems argue for battle-tested reliability.</p>
 <blockquote>
@@ -475,7 +475,7 @@ View on GitHub
 <ul>
 <li><a href="/knowledge/wiki/agentic-loop-typescript/">agentic loop typescript</a> — full TS + PHP implementation, type-safe tool schemas (Matt Pocock), spec-driven workflow</li>
 <li><a href="/knowledge/wiki/compounding-errors/">compounding errors</a> — the compounding error problem: each loop iteration is another p^n multiplication</li>
-<li><a href="/knowledge/wiki/claude-code-architecture/">claude code architecture</a> — how the 200-line loop grows into 50k+ lines of production agent</li>
+<li><a href="/knowledge/wiki/claude-code-architecture/">claude code architecture</a> — how the 200-line loop grows into 512k+ lines of production agent (scale revealed by the March 2026 source leak)</li>
 <li><a href="/knowledge/wiki/compression-strategies/">compression strategies</a> — context management is a token problem; the loop’s context grows O(n) with tool calls</li>
 <li><a href="/knowledge/wiki/claude-managed-agents/">claude managed agents</a> — managed agents handle the loop infrastructure; developers configure instead of code</li>
 <li><a href="/knowledge/wiki/advisor-tool/">advisor tool</a> — executor/advisor pairing: Codex-as-companion is the open-source analog to the Advisor Tool pattern</li>

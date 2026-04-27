@@ -291,7 +291,7 @@ View on GitHub
 
 
 <table><thead><tr><th>Layer</th><th>Approx. Complexity</th></tr></thead><tbody><tr><td><strong>Core loop</strong></td><td>~200 lines</td></tr><tr><td><strong>System prompt</strong></td><td>~500–2000 tokens</td></tr><tr><td><strong>Tool schemas</strong> (Bash, Read, Write, Edit, Glob, Grep)</td><td>~50 lines/tool</td></tr><tr><td><strong>Streaming</strong></td><td>~200 lines</td></tr><tr><td><strong>Permissions</strong></td><td>~500 lines</td></tr><tr><td><strong>Context compaction</strong></td><td>~300 lines</td></tr><tr><td><strong>Prompt caching</strong></td><td>~100 lines</td></tr><tr><td><strong>Session persistence</strong></td><td>~200 lines</td></tr><tr><td><strong>Error handling</strong></td><td>~300 lines</td></tr><tr><td><strong>Multi-agent</strong></td><td>~400 lines</td></tr></tbody></table>
-<p>Claude Code is open-source (<code>npm i @anthropic-ai/claude-code</code>), so the actual source can be inspected.</p>
+<p>Claude Code is proprietary software distributed via npm (<code>npm i @anthropic-ai/claude-code</code>). Note: in March 2026, the full 512K-line TypeScript source was <a href="https://www.infoq.com/news/2026/04/claude-code-source-leak/">accidentally exposed</a> via a source map file in v2.1.88 — Anthropic called it a packaging error. This allowed community inspection of the architecture (<a href="https://venturebeat.com/technology/claude-codes-source-code-appears-to-have-leaked-heres-what-we-know/">VentureBeat</a>) but was not an intentional open-source release.</p>
 <h2 id="the-system-prompt-is-the-real-ip">The System Prompt Is the Real IP</h2>
 <p>The core loop is simple. What’s sophisticated is:</p>
 <ol>
