@@ -77,6 +77,7 @@ View on GitHub
 <li><strong><a href="https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/">Announcing the Agent2Agent Protocol</a></strong> (Google, 2025) — A2A launch and protocol details</li>
 </ul>
 <p>Six protocols. Each one solves a different layer of the agent integration problem. Most agents start with just MCP, then add protocols as requirements grow.</p>
+<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/agent-protocol-stack-mcp-a2a-ucp-agui/800/350" alt="Agent protocol stack — MCP, A2A, UCP, AP2, A2UI, AG-UI layered architecture for multi-agent systems" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #00E5FFdd, #38BDF888, #BD93F9cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(51% 51% at 85% 85%, #00E5FF, transparent), radial-gradient(53% 53% at 50% 78%, #38BDF8, transparent), radial-gradient(72% 72% at 25% 33%, #A78BFA, transparent), radial-gradient(72% 72% at 47% 37%, #BD93F9, transparent), linear-gradient(126deg, #00E5FF, #BD93F9);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Agent protocol stack — MCP, A2A, UCP, AP2, A2UI, AG-UI layered architecture for multi-agent systems</span></div><p></p>
 <blockquote>
 <p><strong>Key insight:</strong> The protocols are additive. You start with MCP for data access. When you need to delegate to other agents, add A2A. When you need to transact, add UCP and AP2. When you need to render dynamic UI, add A2UI. When you need streaming, add AG-UI. Each protocol has one job.</p>
 </blockquote>
@@ -281,15 +282,21 @@ View on GitHub
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">});</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-1" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-1" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-1" style="display:none"></pre></div>
 <h2 id="the-full-flow-together">The Full Flow Together</h2>
 <p>A single request through all 6 protocols:</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>"Check salmon inventory, get today's price, order 10 lbs, authorize payment, show dashboard"</span></span>
-<span class="line"><span>                                    │</span></span>
-<span class="line"><span>              ┌─────────────────────┼────────────────────────┐</span></span>
-<span class="line"><span>        MCP queries              A2A queries             UCP + AP2</span></span>
-<span class="line"><span>     inventory database      pricing/quality          place + authorize</span></span>
-<span class="line"><span>                                 agents                  order</span></span>
-<span class="line"><span>              └─────────────────────┼────────────────────────┘</span></span>
-<span class="line"><span>                              A2UI renders              AG-UI streams</span></span>
-<span class="line"><span>                         interactive dashboard      everything in real time</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    REQ["💬 'Check salmon inventory, get today's price,\norder 10 lbs, authorize payment, show dashboard'"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    REQ --> MCP["📦 MCP\nQuery inventory database\n+ recipe docs"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    REQ --> A2A["🤝 A2A\nDelegate to pricing agent\n+ quality agent"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    REQ --> UCP["🛒 UCP + AP2\nPlace order with supplier\n+ authorize payment"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    MCP &#x26; A2A &#x26; UCP --> A2UI["🖥️ A2UI\nCompose interactive\ndashboard from 18 primitives"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    A2UI --> AGUI["📡 AG-UI\nStream everything to\nfrontend in real time"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style MCP fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style A2A fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style UCP fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style A2UI fill:#059669,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style AGUI fill:#166534,color:#fff</span></span></code></pre>
 <h2 id="when-to-add-each-protocol">When to Add Each Protocol</h2>
 
 

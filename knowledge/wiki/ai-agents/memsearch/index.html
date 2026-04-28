@@ -77,6 +77,7 @@ View on GitHub
 <li><strong><a href="https://github.com/zilliztech/memsearch/tree/main/plugins/claude-code">memsearch/plugins/claude-code</a></strong> (Zilliz, 2026) — full plugin architecture: hooks, skill, lifecycle, progressive disclosure, install</li>
 </ul>
 <p>MemSearch is an automatic persistent memory plugin for Claude Code. No commands to learn, no manual saving — install the plugin and Claude remembers what you worked on across sessions. Built on Claude Code’s native Hooks, Skills, and CLI. Everything runs locally: shell scripts, a skill definition, and a Python CLI backed by ONNX embeddings (no API key required).</p>
+<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/memsearch-vector-semantic-memory-claude/800/350" alt="MemSearch — semantic vector search over Claude Code session transcripts for persistent cross-session memory" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #BD93F9dd, #A78BFA88, #7C3AEDcc);"></div><div class="section-hero-gradient" style="background: radial-gradient(71% 71% at 44% 80%, #BD93F9, transparent), radial-gradient(54% 54% at 22% 25%, #A78BFA, transparent), radial-gradient(51% 51% at 57% 69%, #8B5CF6, transparent), linear-gradient(306deg, #BD93F9, #7C3AED);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">MemSearch — semantic vector search over Claude Code session transcripts for persistent cross-session memory</span></div><p></p>
 <blockquote>
 <p><strong>Key insight:</strong> MemSearch uses semantic vector search over session transcripts — a fundamentally different approach from Auto Dream’s structured note consolidation. Auto Dream maintains curated memory files. MemSearch maintains a searchable index of raw session history. Both solve the same problem; they complement rather than replace each other.</p>
 </blockquote>
@@ -91,15 +92,29 @@ View on GitHub
 <span class="line"><span>Wednesday: "The /orders endpoint is slow"   →  ✅ "We already have Redis caching—let me add</span></span>
 <span class="line"><span>                                                /orders to it" (memory injected at session start)</span></span></code></pre>
 <h2 id="architecture">Architecture</h2>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>memsearch (Python library)</span></span>
-<span class="line"><span>  → Core: chunker, embeddings, vector store, scanner</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>memsearch CLI</span></span>
-<span class="line"><span>  → Commands: search · index · watch · expand · transcript · config</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>Claude Code Plugin</span></span>
-<span class="line"><span>  → Shell hooks: SessionStart · UserPromptSubmit · Stop · SessionEnd</span></span>
-<span class="line"><span>  → Skill: memory-recall (context: fork subagent)</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Plugin["Claude Code Plugin"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        H1["SessionStart\nhook"] &#x26; H2["UserPromptSubmit\nhook"] &#x26; H3["Stop\nhook (async)"] &#x26; H4["SessionEnd\nhook"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        SK["memory-recall\nskill (forked subagent)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph CLI["memsearch CLI"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        C1["search"] &#x26; C2["expand"] &#x26; C3["transcript"] &#x26; C4["watch (bg)"] &#x26; C5["index"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Lib["Python Library"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        L1["chunker"] &#x26; L2["ONNX embeddings\n(bge-m3, local)"] &#x26; L3["vector store"] &#x26; L4["scanner"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    H1 -->|start singleton| C4</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    H3 -->|summarize turn via Haiku| C5</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    H4 -->|stop singleton| C4</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    SK -->|"L1/L2/L3 retrieval"| C1 &#x26; C2 &#x26; C3</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    C1 &#x26; C2 &#x26; C3 &#x26; C4 &#x26; C5 --> Lib</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style Plugin fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style CLI fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style Lib fill:#059669,color:#fff</span></span></code></pre>
 <p>The plugin ties CLI commands to Claude Code’s hook lifecycle. A singleton <code>memsearch watch</code> process runs in the background, keeping the vector index in sync with markdown files as they change.</p>
 <h2 id="installation">Installation</h2>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># In Claude Code</span></span>
@@ -150,13 +165,21 @@ View on GitHub
 <p>The <code>Stop</code> hook runs asynchronously — it doesn’t block your session. It calls <code>claude -p --model haiku</code> with an external-observer system prompt, generating 2–6 third-person bullet points per conversation turn.</p>
 <h2 id="progressive-disclosure--three-layer-retrieval">Progressive Disclosure — Three-Layer Retrieval</h2>
 <p>When Claude senses a question needs historical context, it auto-invokes the <code>memory-recall</code> skill in a <strong>forked subagent</strong> (isolated context window — doesn’t pollute main conversation):</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>L1: Search   →   memsearch search   (find relevant chunks)</span></span>
-<span class="line"><span>     ↓</span></span>
-<span class="line"><span>L2: Expand   →   memsearch expand {chunk-id}   (get full markdown section)</span></span>
-<span class="line"><span>     ↓</span></span>
-<span class="line"><span>L3: Transcript  →  memsearch transcript {session.jsonl} --turn {id} --context 1</span></span>
-<span class="line"><span>     ↓</span></span>
-<span class="line"><span>Curated summary → main agent</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q["Question needs\nhistorical context"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    L1["🔎 L1: Search\nmemsearch search\nFind relevant chunks"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    L2["📄 L2: Expand\nmemsearch expand {chunk-id}\nFull markdown section + context"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    L3["📼 L3: Transcript\nmemsearch transcript --turn {id}\nVerbatim code, errors, tool output"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    SUM["✅ Curated summary\n→ main agent"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q --> L1 -->|"promising result?"| L2 -->|"need verbatim detail?"| L3 --> SUM</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    L1 -->|"enough context"| SUM</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    L2 -->|"enough context"| SUM</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style L1 fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style L2 fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style L3 fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style SUM fill:#059669,color:#fff</span></span></code></pre>
 <p><strong>L1</strong> finds relevant memory chunks. <strong>L2</strong> expands promising results to full sections with context. <strong>L3</strong> drills into the original JSONL transcript when Claude needs verbatim code snippets, error messages, or tool outputs. The main agent only sees the final curated summary.</p>
 <h3 id="example-l2-expand-output">Example L2 Expand Output</h3>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Source: .memsearch/memory/2026-02-10.md (lines 12-32)</span></span>

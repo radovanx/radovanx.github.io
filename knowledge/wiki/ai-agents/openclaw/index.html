@@ -71,6 +71,7 @@ View on GitHub
 <li><strong><a href="https://www.kdnuggets.com/7-practical-openclaw-use-cases-you-should-know">7 Practical OpenClaw Use Cases You Should Know</a></strong> (KDnuggets, April 2026) — 7 production use cases with showcase project links</li>
 </ul>
 <p>OpenClaw is an open-source agent system that connects messaging apps (Telegram, WhatsApp, Discord), tools, memory, automation, and multi-agent workflows into one system. The core shift: AI that doesn’t just answer questions but monitors, organizes, automates, and reports back through channels people already use.</p>
+<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/openclaw-multi-channel-agent-telegram-discord/800/350" alt="OpenClaw — multi-channel agent system connecting Telegram, WhatsApp, and Discord to AI workflows" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #4ADE80dd, #34D39988, #00E5FFcc);"></div><div class="section-hero-gradient" style="background: radial-gradient(72% 72% at 47% 18%, #4ADE80, transparent), radial-gradient(78% 78% at 17% 71%, #34D399, transparent), radial-gradient(54% 54% at 35% 26%, #22D3EE, transparent), radial-gradient(60% 60% at 43% 27%, #00E5FF, transparent), linear-gradient(155deg, #4ADE80, #00E5FF);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">OpenClaw — multi-channel agent system connecting Telegram, WhatsApp, and Discord to AI workflows</span></div><p></p>
 <blockquote>
 <p><strong>Key insight:</strong> OpenClaw’s distinctive value is its integration with existing messaging channels. Instead of a separate AI tool to open, tasks arrive in Telegram/WhatsApp and results return the same way. This makes it feel less like software and more like a capable assistant that lives in your inbox.</p>
 </blockquote>
@@ -106,15 +107,19 @@ View on GitHub
 <p>Lead organization, outreach drafting, CRM-style task tracking, meeting summarization, action item tracking. Routine business work automated through existing communication channels.</p>
 <p><strong>Project:</strong> <a href="https://github.com/openclaw/dench-claw">DenchClaw</a></p>
 <h2 id="architecture-pattern">Architecture Pattern</h2>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>You (Telegram/WhatsApp/Discord)</span></span>
-<span class="line"><span>          │</span></span>
-<span class="line"><span>    OpenClaw Core</span></span>
-<span class="line"><span>    ┌─────┴──────────────────────────────┐</span></span>
-<span class="line"><span>    │  Memory  │  Tools  │  Agents  │    │</span></span>
-<span class="line"><span>    │  Layer   │  APIs   │  (multi) │    │</span></span>
-<span class="line"><span>    └──────────┴─────────┴──────────┘    │</span></span>
-<span class="line"><span>          │</span></span>
-<span class="line"><span>    LLM Backend (any supported model)</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    U1["📱 Telegram"] &#x26; U2["💬 WhatsApp"] &#x26; U3["🎮 Discord"] -->|trigger / receive| CORE</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph CORE["OpenClaw Core"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        M["🧠 Memory Layer\n(persistent context)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        T["🔧 Tools / APIs\n(web services, databases)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        A["🤖 Agents\n(multi-agent coordination)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    CORE --> LLM["LLM Backend\n(any supported model)"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style CORE fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style LLM fill:#059669,color:#fff</span></span></code></pre>
 <p>The channel abstraction means the same agent workflow can be triggered from Telegram on mobile or Discord on desktop without workflow changes.</p>
 <h2 id="pi-integration">Pi Integration</h2>
 <p>Pi’s documentation explicitly calls out OpenClaw as a real-world integration showcasing Pi’s RPC mode — OpenClaw uses Pi as a programmable coding agent backend, triggered through its messaging interface. This is the “loop is commodity” principle in practice: OpenClaw provides the orchestration and channels; Pi provides the coding loop.</p>
