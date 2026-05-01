@@ -271,7 +271,7 @@ View on GitHub
 <p><strong>Session length: ~30 min → ~3 hours without hitting the context limit.</strong> (single source — needs verification)</p>
 <h2 id="think-in-code--the-paradigm-shift">“Think in Code” — The Paradigm Shift</h2>
 <p>The deeper principle isn’t just sandboxing output — it’s changing how the LLM approaches analysis:</p>
-<div class="runnable-code-wrapper" data-runnable-id="runnable-38" data-runnable-lang="javascript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Before: 47 × Read() calls = 700 KB in context</span></span>
+<div class="runnable-code-wrapper" data-runnable-id="runnable-39" data-runnable-lang="javascript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Before: 47 × Read() calls = 700 KB in context</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// After: 1 × ctx_execute() = 3.6 KB in context</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">ctx_execute</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"javascript"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">, </span><span style="color:#032F62;--shiki-dark:#9ECBFF">`</span></span>
@@ -281,7 +281,7 @@ View on GitHub
 <span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">    console.log(f + ': ' + lines + ' lines');</span></span>
 <span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">  });</span></span>
 <span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">`</span><span style="color:#24292E;--shiki-dark:#E1E4E8">);</span></span>
-<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Output: auth.ts: 47 lines, utils.ts: 82 lines, ...</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-38" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-38" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-38" style="display:none"></pre></div>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Output: auth.ts: 47 lines, utils.ts: 82 lines, ...</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-39" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-39" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-39" style="display:none"></pre></div>
 <p>One script replaces ten tool calls and saves 100× context. The LLM generates the analysis program; the sandbox executes it and returns only the result.</p>
 <h2 id="session-continuity-after-compaction">Session Continuity After Compaction</h2>
 <p>Every event is tracked in SQLite:</p>
