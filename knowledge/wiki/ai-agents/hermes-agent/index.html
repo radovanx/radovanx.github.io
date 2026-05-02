@@ -145,6 +145,7 @@ View on GitHub
 </ul>
 <p>This maps to the <a href="/knowledge/wiki/claude-code-auto-memory/">Claude Code Auto Memory</a> pattern but at agent infrastructure level — Hermes builds the memory/skill system in automatically rather than requiring explicit configuration.</p>
 <h2 id="platform-presence--omnichannel-agent">Platform Presence — Omnichannel Agent</h2>
+<p>Hermes reaches <a href="https://hermes-agent.nousresearch.com/docs/user-guide/messaging/">15+ platforms</a> from one gateway process. Key supported platforms:</p>
 
 
 
@@ -182,7 +183,27 @@ View on GitHub
 
 
 
-<table><thead><tr><th>Platform</th><th>Type</th></tr></thead><tbody><tr><td>Telegram</td><td>Messaging</td></tr><tr><td>Discord</td><td>Community</td></tr><tr><td>Slack</td><td>Work</td></tr><tr><td>WhatsApp</td><td>Messaging</td></tr><tr><td>Signal</td><td>Secure messaging</td></tr><tr><td>Email</td><td>Async</td></tr><tr><td>CLI</td><td>Terminal</td></tr></tbody></table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Platform</th><th>Type</th></tr></thead><tbody><tr><td>Telegram</td><td>Messaging</td></tr><tr><td>Discord</td><td>Community</td></tr><tr><td>Slack</td><td>Work</td></tr><tr><td>WhatsApp</td><td>Messaging</td></tr><tr><td>Signal</td><td>Secure messaging</td></tr><tr><td>Matrix / Mattermost</td><td>Open protocols</td></tr><tr><td>SMS</td><td>Mobile</td></tr><tr><td>DingTalk / Feishu / WeCom</td><td>Enterprise Asia</td></tr><tr><td>BlueBubbles (iMessage)</td><td>Apple ecosystem</td></tr><tr><td>Home Assistant</td><td>Home automation</td></tr><tr><td>Email</td><td>Async</td></tr><tr><td>CLI</td><td>Terminal</td></tr></tbody></table>
 <p>Start a conversation on Telegram, pick it up in Slack, continue in the terminal. The agent maintains continuity across channels because it lives on the server, not in the client.</p>
 <h2 id="delegation-and-parallelization">Delegation and Parallelization</h2>
 <p>Hermes delegates and parallelizes via <strong>isolated subagents</strong>: each gets its own conversation, terminal, and Python RPC script. The architecture delivers zero-context-cost pipelines — the orchestrating agent doesn’t need to hold the subagent’s full working context.</p>
