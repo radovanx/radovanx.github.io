@@ -72,6 +72,7 @@ View on GitHub
 <li><strong><a href="https://www.ui-skills.com/">ui-skills.com</a></strong> — curated directory of installable design engineering skills for Claude Code: accessibility, motion, interface quality</li>
 </ul>
 <p>UI Skills is a curated directory of Claude Code skills focused on <strong>design engineering</strong> — the overlap between front-end development and UI quality. While <a href="/knowledge/wiki/claude-code-skills/">Claude Directory</a> covers the full Claude Code ecosystem, UI Skills goes deep on one vertical: making interfaces feel polished, accessible, and intentional.</p>
+<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/ui-skills-design-engineering-claude/800/400" alt="UI Skills — curated design engineering skills for Claude Code: accessibility, motion performance, and interface quality" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #BD93F9dd, #A78BFA88, #7C3AEDcc);"></div><div class="section-hero-gradient" style="background: radial-gradient(50% 50% at 64% 54%, #BD93F9, transparent), radial-gradient(57% 57% at 17% 52%, #A78BFA, transparent), radial-gradient(79% 79% at 33% 59%, #8B5CF6, transparent), radial-gradient(82% 82% at 16% 42%, #7C3AED, transparent), linear-gradient(320deg, #BD93F9, #7C3AED);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">UI Skills — curated design engineering skills for Claude Code: accessibility, motion performance, and interface quality</span></div><p></p>
 <blockquote>
 <p><strong>Key insight:</strong> These skills encode what design engineering craft looks like in practice — not “make it look nice,” but specific techniques: WCAG compliance, layout thrashing prevention, typography scale enforcement, Disney animation principles applied to web.</p>
 </blockquote>
@@ -161,6 +162,7 @@ View on GitHub
 <h3 id="frontend-design-anthropics-official"><code>frontend-design</code> (Anthropic’s Official)</h3>
 <p>Anthropic’s own design skill — the most notable entry because it’s the model provider’s take on what good frontend looks like. Positioned explicitly as an antidote to generic AI aesthetics. Works across React, Vue, Svelte, and vanilla HTML/CSS.</p>
 <h3 id="emil-design-eng"><code>emil-design-eng</code></h3>
+<p></p><div class="section-hero-image"><img src="https://opengraph.githubassets.com/1/emilkowalski/sonner" alt="emilkowalski/sonner — production-grade toast notification library; philosophy behind the emil-design-eng skill" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #D4A574dd, #C4956A88, #A67750cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(71% 71% at 85% 34%, #D4A574, transparent), radial-gradient(85% 85% at 73% 75%, #C4956A, transparent), radial-gradient(61% 61% at 46% 43%, #B8865E, transparent), linear-gradient(111deg, #D4A574, #A67750);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">emilkowalski/sonner — production-grade toast notification library; philosophy behind the emil-design-eng skill</span></div><p></p>
 <p>Emil Kowalski is the creator of <a href="https://sonner.emilkowal.ski/">sonner</a> (toast library), <a href="https://vaul.emilkowal.ski/">vaul</a> (drawer), and other high-quality UI primitives. His skill encodes the philosophy behind those libraries: component-level polish, micro-interactions, production-ready motion. Installing it is like getting Emil’s code review philosophy as an always-available context file.</p>
 <h3 id="baseline-ui--the-quality-guardrail"><code>baseline-ui</code> — The Quality Guardrail</h3>
 <p>The most “infrastructure” of the design skills — it prevents regressions rather than generating new interfaces. Validates typography scale, animation durations, and component accessibility as you build. Think of it as a linter for design decisions.</p>
@@ -168,14 +170,19 @@ View on GitHub
 <p>Two complementary skills: <code>fixing-accessibility</code> fixes what’s broken; <code>wcag-audit-patterns</code> audits systematically against WCAG 2.2 (AA/AAA). Together they cover the full accessibility workflow: identify → fix → verify.</p>
 <h2 id="relationship-to-design-taste">Relationship to Design Taste</h2>
 <p>These skills are the practitioner implementation of what <a href="/knowledge/wiki/ai-design/taste-intentionality/">Taste as Intentionality</a> describes at the philosophy level. Pablo Stanley argues that design taste is “deliberate rejection of LLM defaults.” The UI Skills directory is a set of correction layers — each skill encodes a specific form of taste (accessibility taste, motion taste, typographic taste) as callable commands.</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>LLM default output</span></span>
-<span class="line"><span>       ↓</span></span>
-<span class="line"><span>+ baseline-ui (typography/animation guardrails)</span></span>
-<span class="line"><span>+ fixing-accessibility (WCAG correction layer)  </span></span>
-<span class="line"><span>+ emil-design-eng (craft and polish layer)</span></span>
-<span class="line"><span>+ 12-principles-of-animation (motion quality layer)</span></span>
-<span class="line"><span>       ↓</span></span>
-<span class="line"><span>Production-grade, intentional interface</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    A["🤖 LLM default output\n(generic AI aesthetics)"] --> B["+ baseline-ui\nTypography &#x26; animation guardrails"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    B --> C["+ fixing-accessibility\nWCAG correction layer"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    C --> D["+ emil-design-eng\nCraft &#x26; polish layer"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    D --> E["+ 12-principles-of-animation\nMotion quality layer"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    E --> F["✅ Production-grade\nIntentional interface"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style A fill:#dc2626,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style B fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style C fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style D fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style E fill:#059669,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style F fill:#166534,color:#fff</span></span></code></pre>
 <h2 id="cross-references">Cross-References</h2>
 <ul>
 <li><a href="/knowledge/wiki/ai-design/design-taste-for-ai/">design taste for ai</a> — the philosophy: design skills as correction layers on LLM defaults</li>

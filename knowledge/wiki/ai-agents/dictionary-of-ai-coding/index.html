@@ -66,6 +66,7 @@ View on GitHub
 <blockquote>
 <p><strong>Key insight:</strong> The dictionary’s real value is diagnostic precision. “The model hallucinated” is vague. “The model produced a faithfulness hallucination because I’m in the dumb zone” is actionable.</p>
 </blockquote>
+<p></p><div class="section-hero-image"><img src="https://opengraph.githubassets.com/1/mattpocock/dictionary-of-ai-coding" alt="Matt Pocock&#x27;s Dictionary of AI Coding — open-source vocabulary repo on GitHub" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #86EFACdd, #6EE7B788, #2DD4BFcc);"></div><div class="section-hero-gradient" style="background: radial-gradient(76% 76% at 41% 49%, #86EFAC, transparent), radial-gradient(74% 74% at 43% 26%, #6EE7B7, transparent), radial-gradient(78% 78% at 33% 17%, #5EEAD4, transparent), linear-gradient(113deg, #86EFAC, #2DD4BF);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Matt Pocock's Dictionary of AI Coding — open-source vocabulary repo on GitHub</span></div><p></p>
 <h2 id="the-harness--whats-not-the-model">The Harness — What’s Not the Model</h2>
 <p>The most important term the dictionary introduces is <strong>harness</strong>: everything around the model that turns it into an agent — tools, system prompt, context-window management, permissions, hooks.</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Claude.ai ──┐</span></span>
@@ -123,6 +124,12 @@ View on GitHub
 </ul>
 <p>This is the <strong>smart zone → dumb zone</strong> gradient. Same model, same harness. The session is the variable.</p>
 <p><strong>The fix:</strong> Compact or clear when the session bloats. Don’t push through the dumb zone.</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">xychart-beta</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    title "The Smart Zone / Dumb Zone Gradient"</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    x-axis ["Session start", "~10 turns", "~30 turns", "~50 turns", "Session bloated"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    y-axis "Attention quality (%)" 0 --> 100</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    bar [95, 82, 58, 35, 15]</span></span></code></pre>
+<p><em>Same model, same harness. The session length is the only variable.</em></p>
 <blockquote>
 <p>The smart zone / dumb zone terminology gives a name to what developers feel — “it felt sharp for the first hour then started making dumb mistakes” — and points to the mechanism: attention degradation, not model degradation.</p>
 </blockquote>
