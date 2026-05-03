@@ -305,6 +305,37 @@ View on GitHub
 <blockquote>
 <p><strong>Key insight:</strong> “Be as explicit as possible about what you are trying to build and why. Do not focus on the tech stack at this point.” The spec phase is intentionally tech-stack-agnostic — the <em>what</em> before the <em>how</em> prevents premature architectural decisions.</p>
 </blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Phase</th><th>Risk caught</th><th>If skipped →</th></tr></thead><tbody><tr><td><code>/speckit.specify</code></td><td>Wrong problem framed</td><td>Agent builds the right solution to the wrong problem</td></tr><tr><td><code>/speckit.clarify</code></td><td>Hidden assumptions exposed</td><td>Silent wrong guesses get baked into the architecture</td></tr><tr><td><code>/speckit.plan</code> + validate</td><td>Tech debt baked in early</td><td>Architectural choices locked before edge cases are known</td></tr><tr><td><code>/speckit.tasks</code> with <code>[P]</code></td><td>Sequential bottlenecks</td><td>Linear build when parallel was safe — wastes wall-clock time</td></tr></tbody></table>
 <p>The parallel execution markers (<code>[P]</code>) in <code>tasks.md</code> are a notable design choice: rather than sequential implementation, spec-kit scaffolds the agent to run independent tasks concurrently, collapsing wall-clock time on complex builds.</p>
 <h2 id="cross-references">Cross-References</h2>
 <ul>

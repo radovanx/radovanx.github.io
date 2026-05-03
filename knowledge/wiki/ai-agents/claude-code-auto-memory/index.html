@@ -67,7 +67,20 @@ View on GitHub
 <blockquote>
 <p><strong>Key insight:</strong> Auto-memory is not a feature you use — it’s a relationship that builds up. The value compound-interests over sessions just like a second brain compounding knowledge over time.</p>
 </blockquote>
-<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/auto-memory-directory/800/400" alt="Auto-memory stores persistent context as plain Markdown under ~/.claude/projects/ — organized by topic, not by time; inspectable with cat, diffable with git, committable with code" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #4ADE80dd, #34D39988, #00E5FFcc);"></div><div class="section-hero-gradient" style="background: radial-gradient(54% 54% at 83% 31%, #4ADE80, transparent), radial-gradient(78% 78% at 28% 29%, #34D399, transparent), radial-gradient(53% 53% at 54% 21%, #22D3EE, transparent), radial-gradient(77% 77% at 28% 36%, #00E5FF, transparent), linear-gradient(326deg, #4ADE80, #00E5FF);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Auto-memory stores persistent context as plain Markdown under ~/.claude/projects/ — organized by topic, not by time; inspectable with cat, diffable with git, committable with code</span></div><p></p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Root["~/.claude/projects/&#x26;lt;project&#x26;gt;/memory/"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Root --> Index["📄 MEMORY.md\n(index — one line per memory file)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Root --> User["👤 user-role.md\nWho am I talking to?"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Root --> Feedback["✍️ feedback-testing.md\nWhat to repeat / avoid?"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Root --> Project["🏗️ project-auth-rewrite.md\nIn-flight work + decisions"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Root --> Ref["🔗 ref-oncall-dashboard.md\nPointers to external systems"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style Root fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style Index fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style User fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style Feedback fill:#d97706,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style Project fill:#059669,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style Ref fill:#7c3aed,color:#fff</span></span></code></pre>
 <h2 id="what-it-is-and-isnt">What It Is (and Isn’t)</h2>
 
 
@@ -188,7 +201,6 @@ View on GitHub
 <blockquote>
 <p><strong>Key insight:</strong> Most of what you want an AI coding assistant to remember is small, structured, and explicit. A vector database is overkill. A directory of Markdown files is just right.</p>
 </blockquote>
-<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/files-vs-vectors/800/400" alt="File-based memory: every memory is a readable Markdown file, correctable in a text editor, shareable via git — unlike opaque vector embeddings" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #2DD4BFdd, #14B8A688, #A855F7cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(64% 64% at 44% 79%, #2DD4BF, transparent), radial-gradient(82% 82% at 16% 16%, #14B8A6, transparent), radial-gradient(51% 51% at 24% 61%, #8B5CF6, transparent), linear-gradient(1deg, #2DD4BF, #A855F7);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">File-based memory: every memory is a readable Markdown file, correctable in a text editor, shareable via git — unlike opaque vector embeddings</span></div><p></p>
 <h2 id="what-to-save-and-what-not-to">What to Save (and What Not To)</h2>
 <p>The hard part of a memory system isn’t storing — it’s knowing what deserves storage.</p>
 <p><strong>Save:</strong></p>
@@ -216,7 +228,18 @@ View on GitHub
 <p><strong>Why it happens:</strong> When Claude does something wrong, you push back → it writes a “don’t do X” rule. When Claude does something <em>right</em> on a judgment-heavy question, you move on → nothing is saved. Next week, Claude is equally likely to make either choice.</p>
 <p><strong>The fix:</strong> When Claude makes a good non-obvious call, say so explicitly. “Yeah, bundling this into one PR was right here — splitting would’ve just been churn.” Claude writes that as a feedback memory with the reasoning. The next time the same judgment call comes up, it has evidence for both directions.</p>
 <p>This is unnatural — we’re wired to correct, not to affirm. But it’s the practice that separates a memory system that works from one that just makes Claude more anxious.</p>
-<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/confirmation-trap-memory/800/400" alt="Confirmation trap: corrections accumulate as &#x22;avoid X&#x22; rules; affirmations go unrecorded — the fix is to confirm good calls explicitly so the positive rule base grows too" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #4ADE80dd, #34D39988, #00E5FFcc);"></div><div class="section-hero-gradient" style="background: radial-gradient(79% 79% at 55% 31%, #4ADE80, transparent), radial-gradient(80% 80% at 25% 49%, #34D399, transparent), radial-gradient(67% 67% at 22% 40%, #22D3EE, transparent), linear-gradient(42deg, #4ADE80, #00E5FF);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Confirmation trap: corrections accumulate as "avoid X" rules; affirmations go unrecorded — the fix is to confirm good calls explicitly so the positive rule base grows too</span></div><p></p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    A["❌ Wrong call\nby Claude"] -->|"you correct it"| B["Claude writes:\n'don't do X' rule"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    C["✅ Right call\n(non-obvious)"] -->|"you move on"| D["Nothing saved\n→ same probability next time"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    B -->|"accumulates"| E["⚠️ Caution-heavy memory\nClaude becomes anxious, not right"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    C2["✅ Right call\n(you affirm explicitly)"] -->|"'yeah, that was right'"| F["Claude writes:\n'prefer Y' rule"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    F -->|"accumulates"| G["✅ Balanced memory\nClaude chooses better"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style A fill:#dc2626,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style D fill:#7f1d1d,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style E fill:#991b1b,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style G fill:#166534,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style F fill:#14532d,color:#fff</span></span></code></pre>
 <h2 id="memory-compounds-over-time">Memory Compounds Over Time</h2>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Session 1  → Claude knows a few things about you</span></span>
 <span class="line"><span>Session 10 → Testing philosophy, deployment pipeline, 3 teammates, legacy system you can't touch</span></span>
