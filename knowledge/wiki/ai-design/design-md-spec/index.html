@@ -330,13 +330,18 @@ View on GitHub
 <p><strong>Key insight:</strong> DESIGN.md extends the AGENTS.md pattern to the design layer. Instead of agents guessing visual intent, they read a persistent, versioned specification. The same “context as file” insight that makes AGENTS.md powerful applies to design.</p>
 </blockquote>
 <h2 id="the-core-idea">The Core Idea</h2>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Without DESIGN.md:</span></span>
-<span class="line"><span>  Agent → "What does this blue mean? Is it a primary action or a link?"</span></span>
-<span class="line"><span>         → guesses → inconsistent results</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>With DESIGN.md:</span></span>
-<span class="line"><span>  Agent → reads DESIGN.md → "primary action color, WCAG AA compliant"</span></span>
-<span class="line"><span>         → consistent, validated implementation</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Without["❌ Without DESIGN.md"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        A1["Agent sees #2563EB"] --> B1["Guesses intent"] --> C1["Inconsistent\noutput"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph With["✅ With DESIGN.md"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        A2["Agent sees #2563EB"] --> B2["Reads DESIGN.md:\nprimary action · WCAG AA"] --> C2["Consistent,\nvalidated output"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style Without fill:#7f1d1d,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style With fill:#14532d,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style C1 fill:#dc2626,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style C2 fill:#16a34a,color:#fff</span></span></code></pre>
 <p>DESIGN.md lets teams:</p>
 <ul>
 <li><strong>Export/import design rules</strong> between projects</li>
@@ -369,7 +374,7 @@ View on GitHub
 <span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">-</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> Interactive targets: minimum 44×44px</span></span></code></pre>
 <h2 id="validating-wcag-compliance">Validating WCAG Compliance</h2>
 <p>The CLI validates WCAG AA (4.5:1 minimum contrast ratio for normal text). Here’s the same check in TypeScript and PHP — useful for CI pipelines or agents that implement DESIGN.md rules:</p>
-<div class="runnable-code-wrapper" data-runnable-id="runnable-2" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// TypeScript: WCAG 2.1 contrast ratio validator</span></span>
+<div class="runnable-code-wrapper" data-runnable-id="runnable-70" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// TypeScript: WCAG 2.1 contrast ratio validator</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Formula: https://www.w3.org/TR/WCAG21/#dfn-relative-luminance</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">function</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> hexToRgb</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(</span><span style="color:#E36209;--shiki-dark:#FFAB70">hex</span><span style="color:#D73A49;--shiki-dark:#F97583">:</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> string</span><span style="color:#24292E;--shiki-dark:#E1E4E8">)</span><span style="color:#D73A49;--shiki-dark:#F97583">:</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> [</span><span style="color:#005CC5;--shiki-dark:#79B8FF">number</span><span style="color:#24292E;--shiki-dark:#E1E4E8">, </span><span style="color:#005CC5;--shiki-dark:#79B8FF">number</span><span style="color:#24292E;--shiki-dark:#E1E4E8">, </span><span style="color:#005CC5;--shiki-dark:#79B8FF">number</span><span style="color:#24292E;--shiki-dark:#E1E4E8">] {</span></span>
@@ -401,8 +406,8 @@ View on GitHub
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Output:</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// primary:   5.17:1 — ✅ WCAG AA</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// secondary: 5.70:1 — ✅ WCAG AA</span></span>
-<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// muted:     2.54:1 — ❌ fails AA  (too light for body text; use #6B7280 or darker)</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-2" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-2" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-2" style="display:none"></pre></div>
-<div class="runnable-code-wrapper" data-runnable-id="runnable-3" data-runnable-lang="php"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">&#x3C;?</span><span style="color:#005CC5;--shiki-dark:#79B8FF">php</span></span>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// muted:     2.54:1 — ❌ fails AA  (too light for body text; use #6B7280 or darker)</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-70" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-70" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-70" style="display:none"></pre></div>
+<div class="runnable-code-wrapper" data-runnable-id="runnable-71" data-runnable-lang="php"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">&#x3C;?</span><span style="color:#005CC5;--shiki-dark:#79B8FF">php</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// PHP: WCAG contrast ratio validation</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">function</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> relativeLuminance</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(</span><span style="color:#D73A49;--shiki-dark:#F97583">int</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> $r, </span><span style="color:#D73A49;--shiki-dark:#F97583">int</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> $g, </span><span style="color:#D73A49;--shiki-dark:#F97583">int</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> $b)</span><span style="color:#D73A49;--shiki-dark:#F97583">:</span><span style="color:#D73A49;--shiki-dark:#F97583"> float</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
@@ -434,7 +439,7 @@ View on GitHub
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Output:</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// primary:     5.17:1 — ✅ WCAG AA</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// secondary:   5.70:1 — ✅ WCAG AA</span></span>
-<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// muted:       2.54:1 — ❌ fails AA</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-3" type="button">Run PHP</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-3" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-3" style="display:none"></pre></div>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// muted:       2.54:1 — ❌ fails AA</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-71" type="button">Run PHP</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-71" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-71" style="display:none"></pre></div>
 <h2 id="relationship-to-agentsmd-and-claudemd">Relationship to AGENTS.md and CLAUDE.md</h2>
 
 
