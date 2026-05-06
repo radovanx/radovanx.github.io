@@ -66,6 +66,7 @@ View on GitHub
 <li><strong><a href="https://swc.rs/">swc.rs</a></strong> — SWC compiler: benchmarks, integration list (Next.js, Deno, Vercel), plugin system</li>
 </ul>
 <p>The JavaScript build toolchain is being rewritten in Rust. The performance gap over Node.js tools (ESLint, Babel, Prettier) is not incremental — it’s 20-100x. Two projects lead: OXC (a full tool suite) and SWC (the compiler that Next.js, Deno, and Vercel already run on).</p>
+<p></p><div class="section-hero-image"><img src="https://opengraph.githubassets.com/1/web-infra-dev/oxc" alt="OXC — The JavaScript Oxidation Compiler; Rust-based suite replacing ESLint, Prettier, and Babel with 20-100x performance gains" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #4ADE80dd, #34D39988, #00E5FFcc);"></div><div class="section-hero-gradient" style="background: radial-gradient(84% 84% at 76% 52%, #4ADE80, transparent), radial-gradient(81% 81% at 29% 67%, #34D399, transparent), radial-gradient(72% 72% at 61% 73%, #22D3EE, transparent), radial-gradient(53% 53% at 15% 66%, #00E5FF, transparent), linear-gradient(303deg, #4ADE80, #00E5FF);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">OXC — The JavaScript Oxidation Compiler; Rust-based suite replacing ESLint, Prettier, and Babel with 20-100x performance gains</span></div><p></p>
 <h2 id="the-performance-gap">The Performance Gap</h2>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Parser benchmark — parsing typescript.js (M3 Max):</span></span>
 <span class="line"><span></span></span>
@@ -157,6 +158,7 @@ View on GitHub
 <li>Isolated Declarations DTS emit</li>
 <li>React Fast Refresh, styled-components transforms</li>
 </ul>
+<p></p><div class="section-hero-image"><img src="https://opengraph.githubassets.com/1/swc-project/swc" alt="SWC — Rust-based JavaScript compiler powering Next.js, Deno, Vercel, and Parcel in production" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #4ADE80dd, #34D39988, #00E5FFcc);"></div><div class="section-hero-gradient" style="background: radial-gradient(70% 70% at 59% 61%, #4ADE80, transparent), radial-gradient(61% 61% at 33% 77%, #34D399, transparent), radial-gradient(68% 68% at 47% 66%, #22D3EE, transparent), radial-gradient(84% 84% at 24% 17%, #00E5FF, transparent), linear-gradient(119deg, #4ADE80, #00E5FF);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">SWC — Rust-based JavaScript compiler powering Next.js, Deno, Vercel, and Parcel in production</span></div><p></p>
 <h2 id="swc--the-compiler-nextjs-chose">SWC — The Compiler Next.js Chose</h2>
 <p>SWC is the more established Rust JS compiler — the one that production infrastructure already uses:</p>
 
@@ -204,13 +206,13 @@ View on GitHub
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
 <p><strong>Jest speedup with @swc/jest:</strong></p>
-<div class="runnable-code-wrapper" data-runnable-id="runnable-97" data-runnable-lang="javascript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// jest.config.js</span></span>
+<div class="runnable-code-wrapper" data-runnable-id="runnable-79" data-runnable-lang="javascript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// jest.config.js</span></span>
 <span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">module</span><span style="color:#24292E;--shiki-dark:#E1E4E8">.</span><span style="color:#005CC5;--shiki-dark:#79B8FF">exports</span><span style="color:#D73A49;--shiki-dark:#F97583"> =</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">  transform: {</span></span>
 <span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">    "^.+</span><span style="color:#005CC5;--shiki-dark:#79B8FF">\\</span><span style="color:#032F62;--shiki-dark:#9ECBFF">.(t|j)sx?$"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: [</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"@swc/jest"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">],</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">  },</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">};</span></span>
-<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Result: typical 4-10x faster test runs vs. ts-jest</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-97" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-97" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-97" style="display:none"></pre></div>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Result: typical 4-10x faster test runs vs. ts-jest</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-79" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-79" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-79" style="display:none"></pre></div>
 <h2 id="oxc-vs-swc-vs-biome--decision-guide">OXC vs. SWC vs. Biome — Decision Guide</h2>
 
 
