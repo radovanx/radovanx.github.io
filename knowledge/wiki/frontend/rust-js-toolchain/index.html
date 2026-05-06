@@ -132,6 +132,24 @@ View on GitHub
 <li>True type-aware linting powered by <code>tsgo</code> (TypeScript’s new Go-based compiler)</li>
 <li>Supports existing ESLint JS plugins for migration path</li>
 </ul>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># Install Oxlint</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">npm</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> i</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -D</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> oxlint</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># Lint TypeScript/JavaScript source — no config required</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">npx</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> oxlint</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> src/</span></span>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># Output: finished in 8ms for 450 files — ESLint equivalent: 400ms+</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># CI: exit 1 on warnings (warnings become errors)</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">npx</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> oxlint</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --deny-warnings</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> src/</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// .oxlintrc.json — optional rule customization</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">  "rules"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">    "no-unused-vars"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"error"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">    "no-debugger"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"error"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">    "eqeqeq"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"warn"</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">  },</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">  "ignore_patterns"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: [</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"dist/"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">, </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"node_modules/"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
 <p><strong>oxc-transform handles:</strong></p>
 <ul>
 <li>TypeScript &#x26; JSX transpilation</li>
@@ -175,16 +193,16 @@ View on GitHub
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># Transpile entire directory</span></span>
 <span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">npx</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> swc</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> src/</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -d</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> dist/</span></span></code></pre>
 <p>SWC supports WebAssembly plugins — extend the compiler without forking:</p>
-<div class="runnable-code-wrapper" data-runnable-id="runnable-96" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// swc.config.json</span></span>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// .swcrc</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">{</span></span>
-<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">  "jsc"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
-<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">    "parser"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: { </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"syntax"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"typescript"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">, </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"tsx"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">true</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> },</span></span>
-<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">    "target"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"es2020"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">,</span></span>
-<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">    "experimental"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
-<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">      "plugins"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: [[</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"@swc/plugin-styled-components"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">, {}]]</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">  "jsc"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">    "parser"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: { </span><span style="color:#005CC5;--shiki-dark:#79B8FF">"syntax"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"typescript"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">, </span><span style="color:#005CC5;--shiki-dark:#79B8FF">"tsx"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">true</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> },</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">    "target"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"es2020"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">    "experimental"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">      "plugins"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: [[</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"@swc/plugin-styled-components"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">, {}]]</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    }</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-96" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-96" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-96" style="display:none"></pre></div>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
 <p><strong>Jest speedup with @swc/jest:</strong></p>
 <div class="runnable-code-wrapper" data-runnable-id="runnable-97" data-runnable-lang="javascript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// jest.config.js</span></span>
 <span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">module</span><span style="color:#24292E;--shiki-dark:#E1E4E8">.</span><span style="color:#005CC5;--shiki-dark:#79B8FF">exports</span><span style="color:#D73A49;--shiki-dark:#F97583"> =</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
