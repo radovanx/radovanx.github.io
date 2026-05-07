@@ -238,9 +238,7 @@ View on GitHub
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">disable-model-invocation: true</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">description: Tighten Python type annotations</span></span>
 <span class="line"><span style="color:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold">---</span></span></code></pre>
-<blockquote>
-<p><strong>Key insight:</strong> <code>disable-model-invocation: true</code> makes skills opt-in at invocation time. You control when a skill fires; the model never invokes it on your behalf. This matters most for skills that produce large outputs (like <code>/pre-mortem</code> generating <code>PRE-MORTEM.md</code>) — you don’t want those running mid-refactor.</p>
-</blockquote>
+<p><code>disable-model-invocation: true</code> makes skills opt-in at invocation time — you control when a skill fires, the model never invokes it on your behalf. This matters most for skills that produce large outputs (like <code>/pre-mortem</code> generating <code>PRE-MORTEM.md</code>) — you don’t want those running mid-refactor.</p>
 <h3 id="grill-me--clarifying-product-requirements">/grill-me — Clarifying Product Requirements</h3>
 <p>Matt Pocock’s <code>/grill-me</code> skill is a flexible instruction file that turns Claude into a requirements interviewer. Instead of guessing what a vague brief means, Claude systematically asks clarifying questions:</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># Install by placing SKILL.md in .claude/skills/grill-me/</span></span>
@@ -454,15 +452,14 @@ View on GitHub
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
 <h3 id="afk-agent-task-selection--matt-pocock--ralph">AFK Agent Task Selection — Matt Pocock / ralph</h3>
+<p></p><div class="section-hero-image"><img src="https://opengraph.githubassets.com/1/mattpocock/ai-engineer-workshop-2026-project" alt="mattpocock/ai-engineer-workshop-2026-project — ralph AFK autonomous coding agent: Docker-sandboxed loop, issues/*.md task queue, stream-JSON output with clean termination signal" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #BD93F9dd, #C084FC88, #C4956Acc);"></div><div class="section-hero-gradient" style="background: radial-gradient(58% 58% at 80% 63%, #BD93F9, transparent), radial-gradient(75% 75% at 32% 50%, #C084FC, transparent), radial-gradient(79% 79% at 47% 18%, #D4A574, transparent), radial-gradient(70% 70% at 27% 48%, #C4956A, transparent), linear-gradient(172deg, #BD93F9, #C4956A);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">mattpocock/ai-engineer-workshop-2026-project — ralph AFK autonomous coding agent: Docker-sandboxed loop, issues/*.md task queue, stream-JSON output with clean termination signal</span></div><p></p>
 <p><code>ralph/prompt.md</code> is a system prompt for an autonomous agent that works through a task queue unattended. Its task priority order:</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>1. Critical bugfixes</span></span>
 <span class="line"><span>2. Dev infrastructure (tests, types, dev scripts)</span></span>
 <span class="line"><span>3. Tracer bullets — thin end-to-end slices of features</span></span>
 <span class="line"><span>4. Polish and quick wins</span></span>
 <span class="line"><span>5. Refactors</span></span></code></pre>
-<blockquote>
-<p><strong>Key insight:</strong> “Tracer bullets” — a tiny end-to-end feature slice through all system layers — validate architecture before investing in the full build. This is <a href="/knowledge/wiki/productivity/shape-up/">breadboarding</a> applied to execution order.</p>
-</blockquote>
+<p>“Tracer bullets” — a tiny end-to-end feature slice through all system layers — validate architecture before investing in the full build. This is <a href="/knowledge/wiki/productivity/shape-up/">breadboarding</a> applied to execution order.</p>
 <p>Before committing, feedback loops always run: <code>npm run test</code> + <code>npm run typecheck</code>. Commit messages include decisions made, files changed, and blockers for the next iteration.</p>
 <p><strong>The actual loop — <code>ralph/afk.sh</code>:</strong></p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">#!/bin/bash</span></span>
@@ -515,9 +512,7 @@ View on GitHub
 <span class="line"><span style="color:#24292E;--shiki-light-font-weight:bold;--shiki-dark:#E1E4E8;--shiki-dark-font-weight:bold">**@returns**</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> — what is guaranteed on success</span></span>
 <span class="line"><span style="color:#24292E;--shiki-light-font-weight:bold;--shiki-dark:#E1E4E8;--shiki-dark-font-weight:bold">**@throws**</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> — every exception class + triggering condition</span></span>
 <span class="line"><span style="color:#24292E;--shiki-light-font-weight:bold;--shiki-dark:#E1E4E8;--shiki-dark-font-weight:bold">**@remarks Silences:**</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> — errors caught internally (document what and why)</span></span></code></pre>
-<blockquote>
-<p><strong>Key insight:</strong> Skill files are the “system prompt” for a specific task — they override LLM defaults with team conventions. The simpler the file, the more reliably Claude follows it. One skill, one responsibility.</p>
-</blockquote>
+<p>Skill files are the “system prompt” for a specific task — they override LLM defaults with team conventions. The simpler the file, the more reliably Claude follows it. One skill, one responsibility.</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart LR</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    F[".claude/commands/\nwrite-pr-description.md\n(plain Markdown)"] -->|"user types"| S["/write-pr-description\nslash command"]</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    S -->|"injected verbatim\ninto session context"| I["Instructions +\nallowed-tools applied"]</span></span>
