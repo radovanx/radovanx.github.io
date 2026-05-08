@@ -108,6 +108,15 @@ View on GitHub
 <p><strong>Key insight:</strong> Switching from HSL to OKLCH is a single-line change that makes every generated color palette perceptually consistent — the color equivalent of <code>font-variant-numeric: tabular-nums</code>.</p>
 </blockquote>
 <h2 id="interruptible-vs-non-interruptible-animations">Interruptible vs Non-Interruptible Animations</h2>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph CSS["✅ CSS transition — interruptible"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        T1["hover: scale(1.05)\ntransition 250ms"] -->|"mouse leaves at 100ms"| T2["interpolates back\nfrom current position\n(smooth)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph KF["❌ CSS keyframe — locked"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        K1["hover: @keyframes\n600ms timeline"] -->|"mouse leaves at 100ms"| K2["plays to 100%\nthen snaps back\n(jarring)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style T2 fill:#166534,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style K2 fill:#dc2626,color:#fff</span></span></code></pre>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="css"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">/* GOOD: CSS transitions interpolate toward the latest state.</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">   Hovering off mid-animation smoothly reverses. Feels responsive. */</span></span>
 <span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">.button-good</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
