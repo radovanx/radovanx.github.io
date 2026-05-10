@@ -218,6 +218,7 @@ View on GitHub
 <h2 id="sources">Sources</h2>
 <ul>
 <li><strong><a href="https://github.com/PrismML-Eng/Bonsai-demo">github.com/PrismML-Eng/Bonsai-demo</a></strong> — official demo repo: model families, backend status, benchmarks, GGUF/MLX format availability</li>
+<li><strong><a href="https://prismml.com/news/bonsai-8b">PrismML — Announcing 1-bit Bonsai</a></strong> — official announcement: 1.15 GB model size, 14× smaller than FP16 peers, performance benchmarks</li>
 </ul>
 <p>Bonsai is a family of language models from PrismML Engineering that push quantization to its extreme: <strong>genuine 1-bit weights</strong> (Q1_0 format) and <strong>1.58-bit ternary weights</strong> (Q2_0 format). Both families run locally on Mac, Linux, Windows, and CPU with backends already merged into upstream llama.cpp.</p>
 <p></p><div class="section-hero-image"><img src="https://github.com/PrismML-Eng/Bonsai-demo/raw/main/assets/bonsai-logo.svg" alt="Bonsai 1-bit LLM — genuinely 1-bit quantized language model running locally via llama.cpp" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #2DD4BFdd, #14B8A688, #A855F7cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(66% 66% at 37% 68%, #2DD4BF, transparent), radial-gradient(51% 51% at 70% 35%, #14B8A6, transparent), radial-gradient(76% 76% at 36% 73%, #8B5CF6, transparent), radial-gradient(60% 60% at 34% 49%, #A855F7, transparent), linear-gradient(207deg, #2DD4BF, #A855F7);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Bonsai 1-bit LLM — genuinely 1-bit quantized language model running locally via llama.cpp</span></div><p></p>
@@ -338,8 +339,8 @@ View on GitHub
 <span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">huggingface-cli</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> download</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> prism-ml/Ternary-Bonsai-8B-gguf</span></span></code></pre>
 <h2 id="why-extreme-quantization-matters">Why Extreme Quantization Matters</h2>
 <p>Standard LLM quantization (4-bit, 8-bit) trades precision for size. 1-bit takes a different approach:</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Standard 8B model at 4-bit:  ~4.5 GB VRAM</span></span>
-<span class="line"><span>Bonsai 8B at 1-bit:          ~1 GB VRAM</span></span>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Standard 8B model at 4-bit:    ~4.5 GB VRAM</span></span>
+<span class="line"><span>Bonsai 8B at 1-bit:            ~1.15 GB  (PrismML: "only 1.15 GB — roughly 14× smaller than FP16 peers")</span></span>
 <span class="line"><span>Ternary-Bonsai 8B at 1.58-bit: ~1.6 GB VRAM</span></span></code></pre>
 <p>At 1-bit, weights are just signs (+1/-1) — matrix multiplication becomes population count operations on integers. The practical result: an 8B model that fits in the RAM of an older MacBook or a Raspberry Pi 5.</p>
 <p>The trade-off is quality degradation versus FP16 models. Bonsai’s whitepapers document where the quality floor is — the models are designed for tasks where speed and local privacy matter more than absolute benchmark scores.</p>
@@ -379,7 +380,7 @@ View on GitHub
 
 
 
-<table><thead><tr><th></th><th>Bonsai (1-bit)</th><th>Llama 3.2 (3B, 4-bit)</th><th>Phi-4 Mini (4-bit)</th></tr></thead><tbody><tr><td><strong>VRAM (8B param model)</strong></td><td>~1 GB</td><td>~2 GB (3B model)</td><td>~2.5 GB</td></tr><tr><td><strong>CPU inference</strong></td><td>Very fast (integer ops)</td><td>Moderate</td><td>Moderate</td></tr><tr><td><strong>Quality ceiling</strong></td><td>Lower (extreme quant)</td><td>Higher</td><td>Higher</td></tr><tr><td><strong>Use case</strong></td><td>Edge devices, privacy, speed</td><td>Balanced local use</td><td>Reasoning at small scale</td></tr></tbody></table>
+<table><thead><tr><th></th><th>Bonsai (1-bit)</th><th>Llama 3.2 (3B, 4-bit)</th><th>Phi-4 Mini (4-bit)</th></tr></thead><tbody><tr><td><strong>VRAM (8B param model)</strong></td><td>~1.15 GB</td><td>~2 GB (3B model)</td><td>~2.5 GB</td></tr><tr><td><strong>CPU inference</strong></td><td>Very fast (integer ops)</td><td>Moderate</td><td>Moderate</td></tr><tr><td><strong>Quality ceiling</strong></td><td>Lower (extreme quant)</td><td>Higher</td><td>Higher</td></tr><tr><td><strong>Use case</strong></td><td>Edge devices, privacy, speed</td><td>Balanced local use</td><td>Reasoning at small scale</td></tr></tbody></table>
 <h2 id="cross-references">Cross-References</h2>
 <ul>
 <li><a href="/knowledge/wiki/anythingllm/">anythingllm</a> — AnythingLLM can use local GGUF models including Bonsai via its built-in LLM provider; extreme quantization enables models that fit in AnythingLLM’s local-first architecture on lower-end hardware</li>
