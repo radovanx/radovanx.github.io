@@ -116,6 +116,7 @@ View on GitHub
 <li><strong><a href="https://github.com/open-spaced-repetition/ts-fsrs">ts-fsrs (GitHub)</a></strong> — TypeScript FSRS v6 implementation; API design and algorithm details</li>
 <li><strong><a href="https://arxiv.org/abs/2402.12201">A Stochastic Shortest Path Algorithm for Optimizing Spaced Repetition Scheduling</a></strong> (Jarrett Ye, ACM SIGKDD 2024) — academic foundation for FSRS</li>
 </ul>
+<p></p><div class="section-hero-image"><img src="https://opengraph.githubassets.com/f4ff3f7e3048d99740093a5d9d4727fd18d76d0d2382493e98f41426ac1820f9/open-spaced-repetition/ts-fsrs" alt="ts-fsrs — TypeScript FSRS v6 spaced repetition scheduler; the adaptive algorithm powering the wiki&#x27;s /learn/ page with personalized review intervals" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #BD93F9dd, #C084FC88, #C4956Acc);"></div><div class="section-hero-gradient" style="background: radial-gradient(82% 82% at 37% 24%, #BD93F9, transparent), radial-gradient(54% 54% at 75% 54%, #C084FC, transparent), radial-gradient(69% 69% at 79% 25%, #D4A574, transparent), linear-gradient(292deg, #BD93F9, #C4956A);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">ts-fsrs — TypeScript FSRS v6 spaced repetition scheduler; the adaptive algorithm powering the wiki's /learn/ page with personalized review intervals</span></div><p></p>
 <h2 id="the-fsrs-algorithm">The FSRS Algorithm</h2>
 <p>FSRS models memory through three variables:</p>
 
@@ -148,6 +149,17 @@ View on GitHub
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>next_interval = S × ln(target_retention) / ln(0.9)</span></span></code></pre>
 <p>Where <code>target_retention</code> is typically 0.9 (90%). The algorithm extends the interval as stability grows, personalizing to your memory profile.</p>
 <p>FSRS is parameterized — it adapts to your memory curve. High natural retention → longer intervals. Anki’s SM-2 treats everyone identically; FSRS adapts.</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">stateDiagram-v2</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    direction LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    [*] --> New</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    New --> Learning : first study</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Learning --> Review : graduated\n(Good / Easy sustained)</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Learning --> Learning : Again / Hard</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Review --> Review : recalled\n(Hard / Good / Easy)\nstability grows → interval extends</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Review --> Relearning : forgotten\n(Again)</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Relearning --> Review : relearned\n(Good / Easy)</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Relearning --> Relearning : still forgotten\n(Again)</span></span></code></pre>
+<p><em>Each card progresses New → Learning → Review. Forgetting sends it to Relearning, not back to New — prior stability is preserved.</em></p>
 <h2 id="ts-fsrs--typescript-implementation">ts-fsrs — TypeScript Implementation</h2>
 <p><a href="https://github.com/open-spaced-repetition/ts-fsrs">ts-fsrs</a> (MIT) implements FSRS v6 for TypeScript/JavaScript. Supports ES modules, CommonJS, UMD — runs in browsers, Node.js, and bundlers.</p>
 <div class="runnable-code-wrapper" data-runnable-id="runnable-112" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">import</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> { createEmptyCard, fsrs, Rating, </span><span style="color:#D73A49;--shiki-dark:#F97583">type</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> Card } </span><span style="color:#D73A49;--shiki-dark:#F97583">from</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> 'ts-fsrs'</span></span>

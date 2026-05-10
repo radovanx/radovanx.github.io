@@ -121,12 +121,21 @@ View on GitHub
 <h2 id="the-forgetting-curve">The Forgetting Curve</h2>
 <p>Hermann Ebbinghaus (1885) measured how quickly memory decays without review. The curve is steep: without reinforcement, you forget ~70% of new material within 24 hours. A <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4492928/">2015 PMC replication</a> confirmed this holds across domains, languages, and subjects.</p>
 <p><strong>Each review resets and extends the forgetting curve.</strong> The optimal review is just <em>before</em> the memory fades — too early wastes time, too late means relearning.</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Day 0  ████████████ learn</span></span>
-<span class="line"><span>Day 1  ███████ 60% retained → review</span></span>
-<span class="line"><span>Day 3  ████████ 70% retained → review</span></span>
-<span class="line"><span>Day 7  ████████████ full recall → review</span></span>
-<span class="line"><span>Day 21 ████████████ full recall → review</span></span>
-<span class="line"><span>Day 60 ████████████ full recall → review</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    L["📖 Learn\nDay 0\n100% retained"] -->|"decays to ~60%\n1 day later"| R1["📝 Review 1\nDay 1"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    R1 -->|"interval extends\n~75% at Day 3"| R2["📝 Review 2\nDay 3"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    R2 -->|"interval extends\n~80% at Day 7"| R3["📝 Review 3\nDay 7"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    R3 -->|"interval extends\n~88% at Day 21"| R4["📝 Review 4\nDay 21"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    R4 -->|"interval extends\n~90% at Day 60"| R5["📝 Review 5\nDay 60+"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    R5 -->|"stability grows\nintervals → months/years"| M["🧠 Permanent\nMemory"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style L fill:#dc2626,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style R1 fill:#d97706,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style R2 fill:#059669,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style R3 fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style R4 fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style R5 fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style M fill:#166534,color:#fff</span></span></code></pre>
 <p>After enough repetitions, intervals stretch to months or years — the material is effectively permanent.</p>
 <blockquote>
 <p><strong>Key insight:</strong> The spacing effect is one of the most replicated findings in cognitive psychology (120+ years). Yet it is systematically neglected in education, where cramming before exams is the norm.</p>
