@@ -176,9 +176,20 @@ View on GitHub
 <li><strong><a href="/knowledge/wiki/design-code-examples/">design code examples</a></strong> — Working CSS/HTML: OKLCH color, interruptible animations, concentric border-radius, staggered entry</li>
 </ul>
 <h2 id="design-skills--the-delivery-mechanism">Design Skills — The Delivery Mechanism</h2>
-<p>Design skills are Markdown files that inject taste into AI coding agents:</p>
+<p>Design skills are Markdown files that inject taste into AI coding agents. Each layer adds a specific correction on top of LLM defaults:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    G["🤖 LLM Default Output\nInter · heavy shadows · pill buttons\nno motion · uniform border-radius"] --> S1["+ make-interfaces-feel-better\nconcentric radius · tabular-nums\ninterruptible transitions"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    S1 --> S2["+ baseline-ui\ntypography scale guardrails\nanimation duration · WCAG contrast"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    S2 --> S3["+ impeccable / DESIGN.md\npersistent brand context\ncolor semantics · spacing system"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    S3 --> R["✅ Crafted Output\nLinear / Stripe aesthetic\nfingerprinted · intentional"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style G fill:#dc2626,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style S1 fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style S2 fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style S3 fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style R fill:#166534,color:#fff</span></span></code></pre>
 <ul>
-<li><strong><a href="https://github.com/jakubkrehel/make-interfaces-feel-better">make-interfaces-feel-better</a></strong> (721+ stars): <code>npx skills add jakubkrehel/make-interfaces-feel-better</code></li>
+<li><strong><a href="https://github.com/jakubkrehel/make-interfaces-feel-better">make-interfaces-feel-better</a></strong> (774+ stars): <code>npx skills add jakubkrehel/make-interfaces-feel-better</code></li>
 <li><strong>Taste Skill</strong> (Leonxlnx): full design system with variance/motion/density controls</li>
 <li><strong>Minimalist UI</strong>: editorial style inspired by Notion/Linear</li>
 </ul>
