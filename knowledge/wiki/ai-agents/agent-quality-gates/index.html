@@ -848,6 +848,20 @@ View on GitHub
 
 
 <table><thead><tr><th>Layer</th><th>Component</th><th>Job</th></tr></thead><tbody><tr><td><strong>Process</strong></td><td>Skills</td><td>Senior-engineer workflows: spec, plan, build, verify, review, ship</td></tr><tr><td><strong>Rulebook</strong></td><td>AGENTS.md</td><td>Rolling context: project conventions, known constraints, session history</td></tr><tr><td><strong>Enforcement</strong></td><td>Hooks</td><td>Deterministic: lint, format, TDD guard — cannot be argued with</td></tr><tr><td><strong>Actions</strong></td><td>Tools</td><td>What the agent can do: file edits, bash commands, browser, web search</td></tr><tr><td><strong>Memory</strong></td><td>Session log</td><td>Durable state: what was tried, what worked, what the plan was</td></tr></tbody></table>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph TB</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    P["📋 Process — Skills\nSpec → Plan → Build → Verify → Review → Ship\n(Negotiable workflow — hard to skip, not impossible)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    R["📖 Rulebook — AGENTS.md\nProject conventions, known constraints\n(Context the agent reads)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    E["🔒 Enforcement — Hooks\nLint, format, TDD guard\n(Cannot be argued with — exit code 2)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    A["⚡ Actions — Tools\nFile edits, bash commands, browser, web search\n(What the agent can actually do)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    M["🧠 Memory — Session Log\nWhat was tried, what worked, what the plan was\n(Durable state across restarts)"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    P --> R --> E --> A --> M</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style P fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style R fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style E fill:#dc2626,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style A fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style M fill:#059669,color:#fff</span></span></code></pre>
 <p>Skills occupy the process layer — distinct from hooks (which enforce mechanically) and from AGENTS.md (which provides context). An agent can rationalize its way around AGENTS.md prose. It cannot talk itself out of a hook. Skills sit in between: workflows the agent follows, with checkpoints that produce evidence — harder to skip than prose instructions, more flexible than hard enforcement.</p>
 <blockquote>
 <p><strong>Key insight:</strong> Skills matter most for <em>long-running</em> agents. A 10-minute session can survive skipping the spec. A 30-hour session that skipped the spec produces a debugging archaeology project at the end — when no one remembers the original intent and the test failures don’t map to any traceable requirement.</p>
