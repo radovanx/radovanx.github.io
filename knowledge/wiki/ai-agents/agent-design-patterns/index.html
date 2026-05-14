@@ -458,7 +458,28 @@ View on GitHub
 <span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">saveMemory</span><span style="color:#24292E;--shiki-dark:#E1E4E8">($memoryPath, $memory);</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Next session loads these facts into the system prompt — no re-derivation needed</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-23" type="button">Run PHP</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-23" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-23" style="display:none"></pre></div>
 <h2 id="pattern-4-managed-agent-infrastructure-not-diy-harnesses">Pattern 4: Managed Agent Infrastructure (Not DIY Harnesses)</h2>
-<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/managed-agent-infrastructure-cloud/800/400" alt="Managed agent infrastructure — cloud-hosted containers with built-in session persistence, sandboxing, and event streaming replace DIY agent harness code" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #D4A574dd, #C4956A88, #A67750cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(56% 56% at 51% 49%, #D4A574, transparent), radial-gradient(65% 65% at 55% 33%, #C4956A, transparent), radial-gradient(67% 67% at 55% 24%, #B8865E, transparent), linear-gradient(275deg, #D4A574, #A67750);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Managed agent infrastructure — cloud-hosted containers with built-in session persistence, sandboxing, and event streaming replace DIY agent harness code</span></div><p></p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph DIY["❌ DIY Harness — Your Bugs"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        D1["Your agent loop code"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        D2["Your orchestration failures"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        D3["Rate limits, session leaks,\nunhandled edge cases"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        D1 --> D2 --> D3</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Managed["✅ Managed Infrastructure — Platform Handles It"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        A["Agent\n(model + system prompt + tools)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        E["Environment\n(isolated cloud container)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        S["Session\n(running instance)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        EV["Events\n(messages, tool calls, results)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        A --> S</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        E --> S</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        S --> EV</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style D2 fill:#dc2626,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style D3 fill:#991b1b,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style A fill:#166534,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style E fill:#166534,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style S fill:#166534,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style EV fill:#166534,color:#fff</span></span></code></pre>
 <p>Anthropic’s <strong><a href="/knowledge/wiki/claude-managed-agents/">Managed Agents</a></strong> (beta, 2026) represent a new architectural pattern: instead of building your own agent loop, you use managed cloud infrastructure that handles orchestration, sandboxing, and session persistence.</p>
 <p><strong>Core abstractions:</strong></p>
 <ul>
