@@ -85,7 +85,7 @@ View on GitHub
 </ul>
 <p>Reliability is not a model problem — it is a <strong>systems architecture problem</strong>. See <a href="/knowledge/wiki/compounding-errors/">compounding errors</a> for benchmarks, hallucination analysis, and mitigation approaches.</p>
 <h2 id="the-paradox">The Paradox</h2>
-<p>Anthropic’s <a href="/knowledge/wiki/ai-security/glasswing-project/">Project Glasswing</a> finds security vulnerabilities that escaped 27 years of human review. The same technology can’t reliably do multi-step math.</p>
+<p>Anthropic’s <a href="/knowledge/wiki/ai-security/glasswing-project/">Project Glasswing</a> finds security vulnerabilities that escaped 27 years of human review — including a <a href="https://www.anthropic.com/glasswing">27-year-old OpenBSD flaw</a> that allowed remote crash via a simple connection. The same technology can’t reliably do multi-step math.</p>
 <p><strong>Resolution:</strong> AI excels at <strong>pattern matching at scale</strong> but fails at <strong>sequential reasoning</strong>. Design for breadth, not depth.</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph LR</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Strengths["✅ AI Excels: Breadth &#x26; Pattern Matching"]</span></span>
