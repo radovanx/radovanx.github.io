@@ -115,6 +115,24 @@ View on GitHub
 <li><strong><a href="https://plannotator.ai/">plannotator.ai</a></strong> — product page: plan review, code review, annotation model, integration list, installation</li>
 </ul>
 <p>Plannotator is an open-source, locally-running plugin that intercepts your agent’s plan step and lets you annotate it before execution. It also wraps your agent’s uncommitted changes in a PR-style diff viewer. <strong>Plans never leave your machine.</strong></p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    USE["Use your agent normally"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    PROP["Agent proposes a plan"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    INT["🔍 Plannotator intercepts\n(automatic — no extra steps)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    REV["Review workspace opens\n← Annotate · Delete · Replace →"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    APP{Approve?}</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    RUN["✅ Agent runs the approved plan"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    REV2["Agent revises + re-proposes"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    USE --> PROP --> INT --> REV --> APP</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    APP -->|"Yes"| RUN</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    APP -->|"No / with annotations"| REV2</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    REV2 --> INT</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style INT fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style REV fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style RUN fill:#166534,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style APP fill:#d97706,color:#fff</span></span></code></pre>
 <blockquote>
 <p><strong>Key insight:</strong> Plannotator converts the bottleneck of “squinting at terminal text” into a structured review workspace — the same workflow used for human PRs, applied to agent plans and code output. You own the specification before the agent runs.</p>
 </blockquote>
@@ -192,15 +210,36 @@ View on GitHub
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">/plannotator-review</span><span style="color:#6A737D;--shiki-dark:#6A737D">          # local uncommitted changes</span></span>
 <span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">/plannotator-review</span><span style="color:#D73A49;--shiki-dark:#F97583"> &#x3C;</span><span style="color:#032F62;--shiki-dark:#9ECBFF">pr-ur</span><span style="color:#24292E;--shiki-dark:#E1E4E8">l</span><span style="color:#D73A49;--shiki-dark:#F97583">></span><span style="color:#6A737D;--shiki-dark:#6A737D"> # GitHub or GitLab PR by URL</span></span></code></pre>
 <h2 id="how-it-works">How It Works</h2>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>1. Use your agent normally</span></span>
-<span class="line"><span>   ↓</span></span>
-<span class="line"><span>2. Agent proposes a plan</span></span>
-<span class="line"><span>   ↓ (Plannotator intercepts automatically)</span></span>
-<span class="line"><span>3. Review workspace opens — annotate inline, mark deletions, add replacements</span></span>
-<span class="line"><span>   ↓</span></span>
-<span class="line"><span>4. Approve or deny with structured feedback</span></span>
-<span class="line"><span>   ↓</span></span>
-<span class="line"><span>5. Agent revises based on your annotations and re-proposes</span></span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Step</th><th>What happens</th></tr></thead><tbody><tr><td><strong>1</strong></td><td>Use your agent normally</td></tr><tr><td><strong>2</strong></td><td>Agent proposes a plan</td></tr><tr><td><strong>3</strong></td><td>Plannotator intercepts — review workspace opens automatically</td></tr><tr><td><strong>4</strong></td><td>Annotate inline, mark deletions, write replacements</td></tr><tr><td><strong>5</strong></td><td>Approve → agent runs. Deny → agent revises and re-proposes</td></tr></tbody></table>
 <h2 id="integrations">Integrations</h2>
 
 

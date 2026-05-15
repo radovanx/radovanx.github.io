@@ -62,7 +62,20 @@ View on GitHub
 <li><strong><a href="https://lightpanda.io/">lightpanda.io</a></strong> — product page: benchmarks, architecture rationale, API, cloud offer, community quotes</li>
 </ul>
 <p>Lightpanda is a headless browser built from scratch in Zig — not a wrapper around Chrome or WebKit. It runs JavaScript but skips graphical rendering entirely, making it purpose-built for automation, crawling, and AI agents.</p>
-<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/lightpanda-browser-zig/800/400" alt="Lightpanda vs Chrome performance benchmark — 9x faster, 16x less memory" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #4ADE80dd, #34D39988, #00E5FFcc);"></div><div class="section-hero-gradient" style="background: radial-gradient(74% 74% at 46% 27%, #4ADE80, transparent), radial-gradient(61% 61% at 47% 83%, #34D399, transparent), radial-gradient(82% 82% at 81% 75%, #22D3EE, transparent), radial-gradient(78% 78% at 43% 20%, #00E5FF, transparent), linear-gradient(139deg, #4ADE80, #00E5FF);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Lightpanda vs Chrome performance benchmark — 9x faster, 16x less memory</span></div><p></p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Chrome["Chrome — 933 real web pages · AWS EC2 m5.large"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        C1["⏱ 46 seconds"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        C2["💾 2 GB RAM peak"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph LP["⚡ Lightpanda — same workload"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        L1["⏱ 5 seconds\n9× faster"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        L2["💾 123 MB RAM\n16× less memory"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Chrome -.->|"benchmark comparison"| LP</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style L1 fill:#166534,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style L2 fill:#166534,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style C1 fill:#7f1d1d,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style C2 fill:#7f1d1d,color:#fff</span></span></code></pre>
 <blockquote>
 <p><strong>Key insight:</strong> Lightpanda exposes a CDP (Chrome DevTools Protocol) compatible API, so existing Puppeteer and Playwright scripts work without changes — just replace the connection endpoint. Drop-in replacement, not a rewrite.</p>
 </blockquote>
@@ -165,15 +178,18 @@ View on GitHub
 <p>The cloud offer provides Chrome as a fallback option (“Lightpanda innovation, Chrome reliability”) for edge cases where Lightpanda’s coverage gaps matter.</p>
 <h2 id="ecosystem-position">Ecosystem Position</h2>
 <p>Lightpanda sits at the web access layer of the agent stack — below the agent orchestration layer, above the raw network:</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Agent (Claude Code / AutoGPT / custom)</span></span>
-<span class="line"><span>  ↓</span></span>
-<span class="line"><span>Tool call: browse(url)</span></span>
-<span class="line"><span>  ↓</span></span>
-<span class="line"><span>Lightpanda (headless, fast, isolated)</span></span>
-<span class="line"><span>  ↓</span></span>
-<span class="line"><span>Web page (JS executed, DOM available)</span></span>
-<span class="line"><span>  ↓</span></span>
-<span class="line"><span>Content returned to agent</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    AGT["🤖 Agent\nClaude Code · AutoGPT · Custom"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    TC["Tool call: browse(url)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    LP["⚡ Lightpanda\nHeadless · JS executed · Isolated\nno render overhead"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    WP["🌐 Web Page\nDOM available"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    OUT["Content returned to agent"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    AGT --> TC --> LP --> WP --> OUT</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style AGT fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style LP fill:#166534,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style WP fill:#0891b2,color:#fff</span></span></code></pre>
 <p>Compared to alternatives:</p>
 <ul>
 <li><strong>Playwright/Puppeteer + Chrome</strong> — slower, higher memory, same API</li>

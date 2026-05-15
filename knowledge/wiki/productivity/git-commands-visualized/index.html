@@ -60,13 +60,42 @@ View on GitHub
 <blockquote>
 <p><strong>Key insight:</strong> Every Git operation is just graph manipulation. A branch is a pointer. A commit is a node. When you understand the graph, the commands follow naturally.</p>
 </blockquote>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Operations["Git Graph Operations"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        M["merge\ncombine histories"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        RB["rebase\nlinear replay"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        RS["reset\nmove HEAD"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        RV["revert\nsafe undo commit"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        CP["cherry-pick\ncopy one commit"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Use["When to use"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        M1["Shared branch\nwant explicit record"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        RB1["Local branch\nwant clean history"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        RS1["Unpushed\nredo commits"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        RV1["Already pushed\nauditable undo"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        CP1["Grab one fix\nwithout full merge"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    M --> M1</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    RB --> RB1</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    RS --> RS1</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    RV --> RV1</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    CP --> CP1</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style M fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style RB fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style RS fill:#dc2626,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style RV fill:#059669,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style CP fill:#0891b2,color:#fff</span></span></code></pre>
 <h2 id="merge--two-flavors">Merge — Two Flavors</h2>
 <h3 id="fast-forward-merge---ff">Fast-Forward Merge (<code>--ff</code>)</h3>
 <p>When the current branch has no extra commits compared to the branch being merged, Git can just <strong>move the pointer forward</strong> — no merge commit needed.</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Before:           After:</span></span>
-<span class="line"><span>main → A          main → A → B → C</span></span>
-<span class="line"><span>dev  → A → B → C   dev  → A → B → C</span></span>
-<span class="line"><span>                  (main just moves up)</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">gitGraph</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    commit id: "A"</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    branch dev</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    checkout dev</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    commit id: "B"</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    commit id: "C"</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    checkout main</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    merge dev</span></span></code></pre>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> checkout</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> main</span></span>
 <span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> merge</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> dev</span><span style="color:#6A737D;--shiki-dark:#6A737D">  # fast-forward if possible</span></span></code></pre>
 <h3 id="no-fast-forward-merge---no-ff">No-Fast-Forward Merge (<code>--no-ff</code>)</h3>
@@ -81,9 +110,14 @@ View on GitHub
 <span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> commit</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -m</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> "Merge dev into main"</span></span></code></pre>
 <h2 id="rebase--linear-history">Rebase — Linear History</h2>
 <p>Rebase <strong>copies</strong> your branch’s commits on top of another branch, creating new commits with different hashes:</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Before:              After git rebase main:</span></span>
-<span class="line"><span>main → A → B         main → A → B</span></span>
-<span class="line"><span>dev  → A → C → D     dev  → A → B → C' → D'</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">gitGraph</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    commit id: "A"</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    branch dev</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    checkout main</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    commit id: "B"</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    checkout dev</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    commit id: "C'"</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    commit id: "D'"</span></span></code></pre>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> checkout</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> dev</span></span>
 <span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> rebase</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> main</span></span></code></pre>
 <ul>
