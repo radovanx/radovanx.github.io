@@ -371,12 +371,61 @@ View on GitHub
 <p><strong>Intelligence density</strong> (negative log of error rate ÷ model size): PrismML’s design principle. Optimize for how much intelligence fits per byte, not just raw capability or raw size.</p>
 <p>The 1-bit Bonsai family achieves “over 10× the intelligence density of full-precision equivalents.” Ternary Bonsai sits slightly lower but with better absolute capability.</p>
 <h2 id="why-extreme-quantization-matters">Why Extreme Quantization Matters</h2>
-<p>Standard LLM quantization (4-bit, 8-bit) trades precision for size. 1-bit takes a different approach:</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Standard 8B model at 4-bit:    ~4.5 GB VRAM</span></span>
-<span class="line"><span>Bonsai 8B at 1-bit:            ~1.15 GB  (PrismML: "only 1.15 GB — roughly 14× smaller than FP16 peers")</span></span>
-<span class="line"><span>Ternary-Bonsai 8B at 1.58-bit: ~1.6 GB VRAM</span></span></code></pre>
-<p>At 1-bit, weights are just signs (+1/-1) — matrix multiplication becomes population count operations on integers. The practical result: an 8B model that fits in the RAM of an older MacBook or a Raspberry Pi 5.</p>
-<p>The trade-off is quality degradation versus FP16 models. Bonsai’s whitepapers document where the quality floor is — the models are designed for tasks where speed and local privacy matter more than absolute benchmark scores.</p>
+<p>Standard LLM quantization (4-bit, 8-bit) trades precision for size. 1-bit takes it to the extreme — weights become binary signs (+1/−1), so matrix multiplication becomes population-count operations on integers:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    A["FP16\n~16 GB"] -->|"8-bit"| B["INT8\n~8 GB"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    B -->|"4-bit"| C["Q4_K_M\n~4.5 GB"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    C -->|"1.58-bit"| D["Ternary-Bonsai\n~1.6 GB"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    D -->|"1-bit"| E["Bonsai\n~1.15 GB"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style A fill:#dc2626,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style B fill:#d97706,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style C fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style D fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style E fill:#166534,color:#fff</span></span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Quantization</th><th>8B footprint</th><th>vs FP16</th><th>CPU speed</th></tr></thead><tbody><tr><td>FP16</td><td>~16 GB</td><td>1× (baseline)</td><td>Very slow</td></tr><tr><td>INT8</td><td>~8 GB</td><td>2× smaller</td><td>Slow</td></tr><tr><td>4-bit (Q4_K_M)</td><td>~4.5 GB</td><td>3.5× smaller</td><td>Moderate</td></tr><tr><td><strong>1.58-bit Ternary-Bonsai</strong></td><td>~1.6 GB</td><td>10× smaller</td><td>Fast</td></tr><tr><td><strong>1-bit Bonsai</strong></td><td><strong>~1.15 GB</strong></td><td><strong>14× smaller</strong></td><td><strong>Very fast</strong></td></tr></tbody></table>
+<p>The practical result: an 8B model that fits in the RAM of an older MacBook or a Raspberry Pi 5. The trade-off is quality degradation versus FP16 — Bonsai’s whitepapers document where the quality floor is, and the models are designed for tasks where speed and local privacy matter more than absolute benchmark scores.</p>
 <h2 id="positioning-vs-other-local-llms">Positioning vs. Other Local LLMs</h2>
 
 
