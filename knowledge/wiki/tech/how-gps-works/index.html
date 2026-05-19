@@ -55,6 +55,8 @@ View on GitHub
 <h2 id="sources">Sources</h2>
 <ul>
 <li><strong><a href="https://perthirtysix.com/how-the-heck-does-gps-work">How The Heck Does GPS Work?</a></strong> (Shri Khalpada, perthirtysix.com, April 2026) — Interactive explanation of GPS: from the basic time-to-distance conversion through trilateration, clock error correction, and the special + general relativity corrections that make GPS usable.</li>
+<li><strong><a href="https://www.astronomy.ohio-state.edu/pogge.1/Ast162/Unit5/gps.html">Real-World Relativity: The GPS Navigation System</a></strong> (Prof. Richard Pogge, Ohio State University) — Authoritative academic source confirming the relativistic corrections: −7.2 μs/day (special), +45.9 μs/day (general), net +38.7 μs/day, and the 10.22999999543 MHz pre-adjusted clock frequency.</li>
+<li><strong><a href="https://en.wikipedia.org/wiki/Error_analysis_for_the_Global_Positioning_System">Error Analysis for the Global Positioning System</a></strong> (Wikipedia / cited primary sources) — Confirms GPS timing error budget, clock accuracies, and constellation architecture.</li>
 </ul>
 <p>GPS is a translation tool: it converts <strong>time into distance</strong>. One nanosecond of signal travel time equals 0.3 meters. Everything else is about making that measurement precise enough to be useful.</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>c = 299,792,458 m/s</span></span>
@@ -145,7 +147,7 @@ View on GitHub
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    GPS["🇺🇸 GPS\n31 satellites\n(USA)"]</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    GLO["🇷🇺 GLONASS\n24 satellites\n(Russia)"]</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    GAL["🇪🇺 Galileo\n30 satellites\n(EU)"]</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    BEI["🇨🇳 BeiDou\n45 satellites\n(China)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    BEI["🇨🇳 BeiDou\n~50 satellites\n(China)"]</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    GPS -->|"combined = GNSS"| PHONE["📱 Your phone"]</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    GLO --> PHONE</span></span>
@@ -157,6 +159,7 @@ View on GitHub
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style GAL fill:#1d4ed8,color:#fff</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style BEI fill:#dc2626,color:#fff</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style PHONE fill:#059669,color:#fff</span></span></code></pre>
+<p><em>(BeiDou count as of early 2026, following BDS-3 expansion; GPS 31, GLONASS 24, Galileo 30 confirmed operational.)</em></p>
 <p><strong>Geometric Dilution of Precision (GDOP):</strong> Satellite geometry matters. If satellites cluster on one side of the sky, their rings intersect at shallow angles — creating a wide uncertainty zone. GPS chips select satellite combinations to minimize GDOP (maximize angular spread).</p>
 <p><strong>Multipath error:</strong> In cities, signals bounce off buildings before reaching your phone — the receiver thinks you’re farther away because the signal took a longer path. The hardest remaining problem in GPS.</p>
 <h2 id="by-the-numbers">By the Numbers</h2>
