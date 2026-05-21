@@ -243,11 +243,18 @@ View on GitHub
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// const yieldToMain = () => new Promise(r => setTimeout(r, 0));</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-101" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-101" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-101" style="display:none"></pre></div>
 <h2 id="pairing-with-chrome-devtools-for-agents">Pairing with Chrome DevTools for Agents</h2>
 <p>Chrome DevTools for Agents + Modern Web Guidance = a closed loop:</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Chrome DevTools (MCP)          Modern Web Guidance (skills)</span></span>
-<span class="line"><span>─────────────────────          ────────────────────────────</span></span>
-<span class="line"><span>Real-time perf audit    →      Skills apply the fix</span></span>
-<span class="line"><span>Accessibility tree      →      Skills add missing ARIA</span></span>
-<span class="line"><span>Console log capture     →      Skills debug the root cause</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    DT["🔍 Chrome DevTools MCP\n────────────────────\nReal-time perf audit\nAccessibility tree\nConsole log capture"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    AG["🤖 AI Agent"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    SK["📚 Modern Web Guidance\n────────────────────\nApplies the fix\nAdds missing ARIA\nDebugs root cause"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    DT -->|"live browser diagnostics"| AG</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    SK -->|"authoritative patterns"| AG</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    AG -->|"correct code output"| DT</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style DT fill:#1a73e8,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style AG fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style SK fill:#166534,color:#fff</span></span></code></pre>
 <p>The DevTools MCP provides diagnostic data; the skills bundle provides the correct fix pattern. Together they make the agent self-diagnosing on real browser state, not guessing from training data.</p>
 <h2 id="why-this-matters">Why This Matters</h2>
 <p>Three problems with agents writing frontend code without this:</p>
