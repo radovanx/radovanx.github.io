@@ -83,6 +83,16 @@ View on GitHub
 <blockquote>
 <p><strong>Security:</strong> The proxy can spawn local processes and connect to any MCP server — <strong>never expose it to untrusted networks</strong>.</p>
 </blockquote>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    DEV["🧑‍💻 Developer"] -->|"browser"| UI["MCPI Client UI\nlocalhost:6274"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    UI &#x3C;-->|"JSON-RPC"| PROXY["MCPP Proxy Server\nlocalhost:6277"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    PROXY &#x3C;-->|"MCP protocol\nstdio · SSE · HTTP"| SRV["Your MCP Server\nnpx node build/index.js"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    SRV --> CAP["Tools · Resources\nPrompts · Notifications"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style UI fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style PROXY fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style SRV fill:#065f46,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style CAP fill:#374151,color:#fff</span></span></code></pre>
 <h2 id="ui-mode--feature-overview">UI Mode — Feature Overview</h2>
 
 

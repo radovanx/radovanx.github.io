@@ -206,6 +206,18 @@ View on GitHub
 <table><thead><tr><th></th><th>Parametric</th><th>Contextual</th></tr></thead><tbody><tr><td><strong>Source</strong></td><td>Trained into model weights</td><td>In the context window right now</td></tr><tr><td><strong>Frozen?</strong></td><td>Yes — at training cutoff</td><td>No — changes each session</td></tr><tr><td><strong>Common in</strong></td><td>Standard libraries, popular frameworks</td><td>Your codebase, internal SDK, session history</td></tr><tr><td><strong>Failure mode</strong></td><td>Fabrication for rare/recent topics</td><td>Faithfulness drift in long sessions</td></tr><tr><td><strong>Fix</strong></td><td>Load docs as context</td><td>Clear / compact session</td></tr></tbody></table>
 <h2 id="handoffs--moving-context-between-sessions">Handoffs — Moving Context Between Sessions</h2>
 <p>When a task is too large for one session, you need a handoff vocabulary:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q{"Session limit near\nor task too large?"}</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q -->|"Start fresh, no transfer"| CLEAR["🗑️ Clear\nNo context carried forward"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q -->|"Task continues elsewhere"| Q2{"Return path\nneeded?"}</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q2 -->|"No — pass baton only"| HAND["📤 Handoff\nSession A writes artifact\nSession B reads it — no return"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q2 -->|"Yes — stay in session"| COMPACT["🗜️ Compaction\nIn-memory summary\nSame session, lossy"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    HAND --> ART["📄 Handoff Artifact\n↓\nSpec (multi-session)\n↓ Tickets (one-session each)"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style CLEAR fill:#374151,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style HAND fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style COMPACT fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style ART fill:#065f46,color:#fff</span></span></code></pre>
 
 
 

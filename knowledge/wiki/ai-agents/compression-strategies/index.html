@@ -391,8 +391,42 @@ View on GitHub
 
 <table><thead><tr><th>Source</th><th>Token cost</th><th>Fix</th></tr></thead><tbody><tr><td><strong>MCP server schemas</strong></td><td>200–400 tokens/server, every session</td><td>Remove unused MCPs; replace with CLIs</td></tr><tr><td><strong>CLAUDE.md verbosity</strong></td><td>Loaded on every session</td><td>Apply caveman-compress (~45% reduction)</td></tr><tr><td><strong>Installed skills</strong></td><td>Full SKILL.md loaded when invoked</td><td>Remove rarely-used skills</td></tr><tr><td><strong>Memory/context files</strong></td><td>Accumulate over time</td><td>Audit and prune weekly</td></tr></tbody></table>
 <p><strong>The MCP vs CLI tradeoff:</strong></p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>MCP server → schema always in context window (persistent overhead)</span></span>
-<span class="line"><span>CLI tool   → no schema; you pay 0 tokens until you invoke it</span></span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>MCP server</th><th>Approx. token cost</th><th>CLI replacement</th><th>Cost when unused</th></tr></thead><tbody><tr><td>GitHub MCP</td><td>~300 tokens/session</td><td><code>gh</code> CLI</td><td>0 — loaded on demand</td></tr><tr><td>Filesystem MCP</td><td>~200 tokens/session</td><td>Built-in Read/Write tools</td><td>0</td></tr><tr><td>Web search MCP</td><td>~150 tokens/session</td><td><code>curl</code> / WebFetch</td><td>0</td></tr><tr><td>Slack MCP</td><td>~250 tokens/session</td><td><code>curl</code> to Slack API</td><td>0</td></tr></tbody></table>
 <p>Replace GitHub MCP with <code>gh</code> CLI, filesystem MCP with built-in file tools, web search MCP with <code>curl</code> or WebFetch. Each swap removes hundreds of tokens from every session start.</p>
 <p><strong>Settings.json levers:</strong></p>
 <ul>
