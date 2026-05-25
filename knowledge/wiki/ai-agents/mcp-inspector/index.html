@@ -243,14 +243,23 @@ View on GitHub
 <p>Settings persist across sessions and can be set via query params:</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>http://localhost:6274/?MCP_SERVER_REQUEST_TIMEOUT=10000&#x26;MCP_REQUEST_TIMEOUT_RESET_ON_PROGRESS=false</span></span></code></pre>
 <h2 id="development-workflow">Development Workflow</h2>
-<p>The recommended iterative loop:</p>
-<ol>
-<li>Launch Inspector with your server — verify basic connectivity</li>
-<li>Check capability negotiation (what tools/resources/prompts does it expose?)</li>
-<li>Test affected features after each server change (rebuild → reconnect → test)</li>
-<li>Test edge cases: invalid inputs, missing args, concurrent operations</li>
-<li>Monitor notifications pane for server-side logging</li>
-</ol>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    LAUNCH["🚀 Launch Inspector\nnpx @modelcontextprotocol/inspector\nnode build/index.js"] --> CONN["Verify connectivity\n← server appears in UI?"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    CONN --> CAP["Check capability negotiation\ntools · resources · prompts exposed?"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    CAP --> TEST["Test affected features\nform inputs → inspect results"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    TEST --> OK{Passes?}</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    OK -->|"Yes"| EDGE["Test edge cases\ninvalid inputs · missing args\nconcurrent operations"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    OK -->|"No — fix server"| REBUILD["Rebuild server\nnpm run build"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    REBUILD --> RECONN["Reconnect Inspector"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    RECONN --> TEST</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    EDGE --> NOTIF["Monitor Notifications pane\nserver-side logs + errors"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    NOTIF --> SHIP["✅ Server ready"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style LAUNCH fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style OK fill:#d97706,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style REBUILD fill:#dc2626,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style RECONN fill:#b91c1c,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style SHIP fill:#166534,color:#fff</span></span></code></pre>
 <h2 id="cross-references">Cross-References</h2>
 <ul>
 <li><a href="/knowledge/wiki/mcp-ecosystem/">mcp ecosystem</a> — broader MCP ecosystem: WordPress, WooCommerce, Chrome DevTools; MCP Inspector is the development toolchain for building any of these servers</li>
