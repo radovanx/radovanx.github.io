@@ -120,7 +120,20 @@ View on GitHub
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>graphify-out/cache/      # mtime-based, invalid after git clone — always gitignore</span></span>
 <span class="line"><span>graphify-out/manifest.json  # local token tracking, not useful to share</span></span>
 <span class="line"><span>graphify-out/cost.json</span></span></code></pre>
-<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/graphify-output-files/800/400" alt="Graphify output: graph.html for interactive exploration, GRAPH_REPORT.md for god-node orientation, graph.json for persistent hop-by-hop queries" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #00E5FFdd, #38BDF888, #BD93F9cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(70% 70% at 61% 38%, #00E5FF, transparent), radial-gradient(63% 63% at 67% 54%, #38BDF8, transparent), radial-gradient(81% 81% at 76% 52%, #A78BFA, transparent), linear-gradient(306deg, #00E5FF, #BD93F9);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Graphify output: graph.html for interactive exploration, GRAPH_REPORT.md for god-node orientation, graph.json for persistent hop-by-hop queries</span></div><p></p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    G["/graphify ."] --> H["graph.html\n🖱️ Interactive — click nodes\nfilter communities, search"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    G --> R["GRAPH_REPORT.md\n📋 God nodes · Communities\nSurprising connections"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    G --> J["graph.json\n🔍 Persistent — query weeks\nlater, hop-by-hop"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    G --> C["cache/\n⚡ SHA256 per file\nOnly re-processes changes"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    R -->|"always-on hook\nfires before Glob/Grep"| HOOK["Claude reads orientation\nbefore every search"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    J -->|"/graphify query\n/graphify path\n/graphify explain"| CMD["Precise navigation\nwithout re-reading files"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style G fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style R fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style J fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style HOOK fill:#059669,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style CMD fill:#059669,color:#fff</span></span></code></pre>
 <h2 id="language-support">Language Support</h2>
 <p>25 languages via tree-sitter AST (deterministic, no LLM):
 Python, JS, TS, Go, Rust, Java, C, C++, Ruby, C#, Kotlin, Scala, PHP, Swift, Lua, Zig, PowerShell, Elixir, Objective-C, Julia, Verilog, SystemVerilog, Vue, Svelte, Dart.</p>
@@ -153,7 +166,17 @@ Python, JS, TS, Go, Rust, Java, C, C++, Ruby, C#, Kotlin, Scala, PHP, Swift, Lua
 
 <table><thead><tr><th>Mode</th><th>What happens</th></tr></thead><tbody><tr><td><strong>Always-on hook</strong></td><td>Before every <code>Glob</code>/<code>Grep</code> call, Claude reads <code>GRAPH_REPORT.md</code> for the high-level orientation — god nodes, community structure, surprising connections</td></tr><tr><td><strong><code>/graphify query</code></strong></td><td>Traverse <code>graph.json</code> hop-by-hop for a specific question</td></tr><tr><td><strong><code>/graphify path</code></strong></td><td>Trace the exact path between two nodes</td></tr><tr><td><strong><code>/graphify explain</code></strong></td><td>Surface edge-level detail: relation type, confidence score, source location</td></tr></tbody></table>
 <p>The hook gives Claude <strong>a map</strong>. The <code>/graphify</code> commands let it <strong>navigate the map precisely</strong>.</p>
-<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/always-on-graph-map/800/400" alt="Always-on hook: reads GRAPH_REPORT.md before every Glob and Grep call — god nodes, community structure, surprising connections — a codebase orientation before every search" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #00E5FFdd, #38BDF888, #BD93F9cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(83% 83% at 54% 38%, #00E5FF, transparent), radial-gradient(66% 66% at 65% 46%, #38BDF8, transparent), radial-gradient(55% 55% at 40% 20%, #A78BFA, transparent), linear-gradient(244deg, #00E5FF, #BD93F9);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Always-on hook: reads GRAPH_REPORT.md before every Glob and Grep call — god nodes, community structure, surprising connections — a codebase orientation before every search</span></div><p></p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">sequenceDiagram</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    participant C as Claude Code</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    participant H as PreToolUse Hook</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    participant R as GRAPH_REPORT.md</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    participant F as Files</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    C->>H: Glob/Grep about to fire</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    H->>R: Read god nodes + community map</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    R-->>C: "Auth module is god node (42 edges);\nPaymentService in Commerce community"</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    C->>F: Now searches with structural context</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    note over C,F: 71.5× fewer tokens — guided search, not blind grep</span></span></code></pre>
 <p><strong>Install always-on in Claude Code:</strong></p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">graphify</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> claude</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> install</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># Writes CLAUDE.md section + installs PreToolUse hook in settings.json</span></span>
@@ -198,7 +221,15 @@ Python, JS, TS, Go, Rust, Java, C, C++, Ruby, C#, Kotlin, Scala, PHP, Swift, Lua
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># Auto-rebuild after code changes (no LLM calls needed)</span></span>
 <span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">graphify</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> hook</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> install</span><span style="color:#6A737D;--shiki-dark:#6A737D">  # installs post-commit hook</span></span></code></pre>
 <p>For doc/paper changes, whoever edits the files runs <code>/graphify --update</code> to refresh semantic nodes.</p>
-<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/team-graph-commit/800/400" alt="Team knowledge graph: commit graphify-out/ to git once; every teammate pulls and gets the full codebase map immediately at session start" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #00E5FFdd, #38BDF888, #BD93F9cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(66% 66% at 44% 63%, #00E5FF, transparent), radial-gradient(56% 56% at 84% 22%, #38BDF8, transparent), radial-gradient(57% 57% at 60% 64%, #A78BFA, transparent), radial-gradient(63% 63% at 35% 82%, #BD93F9, transparent), linear-gradient(197deg, #00E5FF, #BD93F9);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Team knowledge graph: commit graphify-out/ to git once; every teammate pulls and gets the full codebase map immediately at session start</span></div><p></p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    A["Person A\n/graphify .\ngit add graphify-out/\ngit commit + push"] --> R["Remote\ngit repository\ngraphify-out/ committed"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    R --> B["Person B\ngit pull\n→ GRAPH_REPORT.md ready"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    R --> C["Person C\ngit pull\n→ GRAPH_REPORT.md ready"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    B &#x26; C -->|"session start"| D["Assistant reads\ngraph immediately\n(no re-build needed)"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style A fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style R fill:#374151,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style D fill:#059669,color:#fff</span></span></code></pre>
 <h2 id="cross-references">Cross-References</h2>
 <ul>
 <li><a href="/knowledge/wiki/knowledge-management/llm-wiki-pattern/">llm wiki pattern</a> — Graphify applies the same principle to codebases: compile raw sources into a navigable graph rather than searching raw files every time</li>
