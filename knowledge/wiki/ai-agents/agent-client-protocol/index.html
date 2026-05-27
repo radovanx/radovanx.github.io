@@ -128,7 +128,7 @@ View on GitHub
 <ul>
 <li><strong><a href="https://agentclientprotocol.com/get-started/introduction">agentclientprotocol.com/get-started/introduction</a></strong> — full protocol introduction: rationale, local vs remote scenarios, JSON-RPC over stdio, relationship to MCP and LSP</li>
 </ul>
-<p>The Agent Client Protocol (ACP) is an open standard that decouples AI coding agents from specific editors — the same way the Language Server Protocol (LSP) decoupled language intelligence from specific IDEs. Any editor that speaks ACP gains access to the full ecosystem of ACP-compatible agents without custom integrations per agent.</p>
+<p>The Agent Client Protocol (ACP) is an open standard, created by <strong>Zed Industries</strong> and released in August 2025, that decouples AI coding agents from specific editors — the same way the Language Server Protocol (LSP) decoupled language intelligence from specific IDEs. Any editor that speaks ACP gains access to the full ecosystem of ACP-compatible agents without custom integrations per agent.</p>
 <blockquote>
 <p><strong>Key insight:</strong> Before LSP, every IDE had to build its own Go, Python, and TypeScript intelligence. After LSP, one server served every editor. ACP does the same for coding agents: one agent implementation, every compatible editor.</p>
 </blockquote>
@@ -269,9 +269,11 @@ View on GitHub
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style OTHER fill:#065f46,color:#fff</span></span></code></pre>
 <h2 id="current-state">Current State</h2>
 <ul>
-<li><strong>Early-stage open standard</strong> — specification actively developed on agentclientprotocol.com</li>
+<li><strong>v1 stable</strong> — ACP protocol version 1 is stable; SDKs available in TypeScript, Python, Rust, Java, and Kotlin (<a href="https://agentclientprotocol.com/get-started/introduction">agentclientprotocol.com</a>, <a href="https://github.com/agentclientprotocol/agent-client-protocol">GitHub</a>)</li>
+<li><strong>Adopted by</strong>: JetBrains IDEs (late 2025), Google, GitHub Copilot, Zed (creator); community integrations for Neovim, Emacs, and VS Code</li>
+<li><strong>ACP Registry</strong>: launched January 2026 — reduces friction in discovering and wiring up new agents</li>
 <li><strong>Local scenario</strong>: stable — JSON-RPC over stdio is well-defined</li>
-<li><strong>Remote scenario</strong>: work in progress — actively collaborating with agentic platforms for cloud deployment requirements</li>
+<li><strong>Remote scenario</strong>: on the roadmap — remote transports (HTTP/WebSocket) specified but not yet in v1 production release</li>
 <li><strong>Community</strong>: RFDs (Request for Discussion) process, publication updates, and branding documentation available on the site</li>
 </ul>
 <h2 id="cross-references">Cross-References</h2>

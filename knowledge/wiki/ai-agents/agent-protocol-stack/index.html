@@ -417,11 +417,11 @@ View on GitHub
 
 <table><thead><tr><th>You need to…</th><th>Add</th></tr></thead><tbody><tr><td>Connect to databases, APIs, files</td><td>MCP</td></tr><tr><td>Delegate to remote specialist agents</td><td>A2A</td></tr><tr><td>Transact with suppliers or marketplaces</td><td>UCP</td></tr><tr><td>Add authorization + audit trail to payments</td><td>AP2</td></tr><tr><td>Render dynamic, interactive UI</td><td>A2UI</td></tr><tr><td>Stream agent events to a frontend</td><td>AG-UI</td></tr><tr><td>Standardize editor-to-agent invocation</td><td>ACP</td></tr></tbody></table>
 <h2 id="acp--the-editor-layer">ACP — The Editor Layer</h2>
-<p>ACP (Agent Client Protocol) adds a seventh layer: standardizing how code editors/IDEs invoke and communicate with coding agents. Where MCP connects agents to data, and A2A connects agents to other agents, ACP connects editors to agents.</p>
+<p>ACP (Agent Client Protocol), created by <strong>Zed Industries</strong> (released August 2025, v1 stable), adds a seventh layer: standardizing how code editors/IDEs invoke and communicate with coding agents. Where MCP connects agents to data, and A2A connects agents to other agents, ACP connects editors to agents. Adopted by JetBrains, Google, GitHub Copilot, and Zed; community integrations for Neovim, Emacs, and VS Code.</p>
 <blockquote>
 <p><strong>“LSP did for language servers what ACP does for coding agents.”</strong> — Before LSP, every IDE built its own Go, Python, and TypeScript intelligence. ACP applies the same decoupling to agent invocation.</p>
 </blockquote>
-<p>ACP local scenario: agents run as editor sub-processes communicating via JSON-RPC over stdio — the same transport pattern as LSP. Remote scenario (HTTP/WebSocket) is work in progress. See <a href="/knowledge/wiki/agent-client-protocol/">agent client protocol</a> for the full breakdown.</p>
+<p>ACP local scenario: agents run as editor sub-processes communicating via JSON-RPC over stdio — the same transport pattern as LSP. Remote transports (HTTP/WebSocket) are on the roadmap; v1 stable covers local stdio only. See <a href="/knowledge/wiki/agent-client-protocol/">agent client protocol</a> for the full breakdown.</p>
 <h2 id="cross-references">Cross-References</h2>
 <ul>
 <li><a href="/knowledge/wiki/agent-client-protocol/">agent client protocol</a> — full ACP entity page: LSP analogy, local vs remote scenarios, relationship to MCP and A2A</li>
