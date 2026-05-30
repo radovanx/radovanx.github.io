@@ -637,6 +637,9 @@ View on GitHub
 <table><thead><tr><th>Metric</th><th>Value</th></tr></thead><tbody><tr><td>P95 scrape latency</td><td>3.4s across millions of pages</td></tr><tr><td>Web coverage</td><td>96% (including JS-heavy SPAs)</td></tr><tr><td>GitHub stars</td><td>126.2K</td></tr><tr><td>Customers</td><td>80,000+ companies</td></tr><tr><td>Benchmark vs Puppeteer</td><td>Significantly faster (see firecrawl.dev/compare)</td></tr></tbody></table>
 <p><strong>No proxy headaches</strong> — handles JS rendering, smart waits, anti-bot bypass, and media parsing internally.</p>
 <h2 id="advanced-features">Advanced Features</h2>
+<blockquote>
+<p><strong>Key insight:</strong> The <code>/monitor</code> endpoint flips the scraping model from pull to push — agents don’t poll; the page calls them. Combined with the agent onboarding <code>SKILL.md</code>, Firecrawl is the only web data layer that configures itself for the agent using it.</p>
+</blockquote>
 <p><strong>JavaScript rendering &#x26; smart wait</strong> — Firecrawl intelligently waits for content to load, not just for the HTML to arrive. Handles SPAs, lazy-loaded content, and infinite scroll.</p>
 <p><strong>Media parsing</strong> — PDFs, DOCX, and other document formats extracted to clean text alongside web pages.</p>
 <p><strong>Actions (Interact mode)</strong> — Programmatic browser control: click, type, scroll, wait for selectors, press keyboard shortcuts. The same page scrape → interact → scrape workflow that browser automation tools provide, but via API.</p>

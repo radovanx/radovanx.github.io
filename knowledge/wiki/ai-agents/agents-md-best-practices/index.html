@@ -115,6 +115,7 @@ View on GitHub
 <blockquote>
 <p><strong>Key insight:</strong> Frontier LLMs can follow ~150–200 instructions with reasonable consistency. Every token in your AGENTS.md gets loaded on every request regardless of relevance. The ideal AGENTS.md is as small as possible.</p>
 </blockquote>
+<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/agents-md-instruction-budget/800/400" alt="AGENTS.md instruction discipline — minimal root file with progressive disclosure tree preventing context bloat in AI agent workflows" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #D4A574dd, #C4956A88, #A67750cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(74% 74% at 61% 37%, #D4A574, transparent), radial-gradient(77% 77% at 57% 66%, #C4956A, transparent), radial-gradient(81% 81% at 37% 83%, #B8865E, transparent), radial-gradient(81% 81% at 76% 24%, #A67750, transparent), linear-gradient(243deg, #D4A574, #A67750);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">AGENTS.md instruction discipline — minimal root file with progressive disclosure tree preventing context bloat in AI agent workflows</span></div><p></p>
 <h2 id="the-instruction-budget">The Instruction Budget</h2>
 
 
@@ -177,6 +178,7 @@ View on GitHub
 <li>Agent navigates the hierarchy efficiently — it knows how to follow a reference chain</li>
 </ul>
 <p>You can link to external docs too (Prisma docs, Next.js docs). The agent will fetch and read them.</p>
+<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/progressive-disclosure-docs-tree/800/400" alt="Progressive disclosure documentation tree — TypeScript, testing, and build rules loaded only when relevant; root AGENTS.md stays minimal" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #22D3EEdd, #0EA5E988, #6366F1cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(85% 85% at 71% 39%, #22D3EE, transparent), radial-gradient(83% 83% at 75% 62%, #0EA5E9, transparent), radial-gradient(84% 84% at 17% 71%, #3B82F6, transparent), radial-gradient(60% 60% at 80% 75%, #6366F1, transparent), linear-gradient(266deg, #22D3EE, #6366F1);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Progressive disclosure documentation tree — TypeScript, testing, and build rules loaded only when relevant; root AGENTS.md stays minimal</span></div><p></p>
 <h2 id="stale-documentation-is-poison">Stale Documentation Is Poison</h2>
 <p>For human developers, stale docs are annoying — humans are skeptical of bad docs. For AI agents reading documentation on every request, <strong>stale information actively poisons the context</strong>.</p>
 
@@ -202,6 +204,9 @@ View on GitHub
 
 <table><thead><tr><th>Dangerous</th><th>Safe</th></tr></thead><tbody><tr><td><code>src/auth/handlers.ts</code> — file paths change constantly</td><td>”authentication logic” — capabilities are more stable</td></tr><tr><td><code>org.users_table</code> — schema migrations happen</td><td>”user identity management” — domain concepts drift slowly</td></tr><tr><td><code>run npm test:unit</code> — scripts rename</td><td>”run the unit test suite” — intent is stable</td></tr></tbody></table>
 <p>Describe <strong>capabilities and concepts</strong>, not <strong>paths and commands</strong>. Let the agent discover structure just-in-time during planning.</p>
+<blockquote>
+<p><strong>Key insight:</strong> For human developers, stale docs are annoying — humans are skeptical of wrong instructions and mentally filter them. For AI agents, stale documentation is actively authoritative: the agent follows it confidently into the wrong directory, the wrong command, the renamed schema. The human’s healthy skepticism doesn’t exist in the agent loop.</p>
+</blockquote>
 <h2 id="monorepo-structure">Monorepo Structure</h2>
 <p>Place AGENTS.md files at the right scope level. They merge from root → package:</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>.                           ← Root AGENTS.md</span></span>

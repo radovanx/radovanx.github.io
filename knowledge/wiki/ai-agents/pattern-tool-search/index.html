@@ -169,6 +169,7 @@ View on GitHub
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style SC fill:#dc2626,color:#fff</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style DU fill:#166534,color:#fff</span></span></code></pre>
+<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/dynamic-tool-search-catalog/800/400" alt="Dynamic tool search — agent fetches 3-5 relevant tool definitions on demand instead of loading all 50 definitions on every request" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #2DD4BFdd, #14B8A688, #A855F7cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(53% 53% at 62% 33%, #2DD4BF, transparent), radial-gradient(58% 58% at 49% 30%, #14B8A6, transparent), radial-gradient(52% 52% at 32% 80%, #8B5CF6, transparent), radial-gradient(55% 55% at 25% 38%, #A855F7, transparent), linear-gradient(127deg, #2DD4BF, #A855F7);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Dynamic tool search — agent fetches 3-5 relevant tool definitions on demand instead of loading all 50 definitions on every request</span></div><p></p>
 <h2 id="claude-agent-sdk--enable_tool_search">Claude Agent SDK — <code>ENABLE_TOOL_SEARCH</code></h2>
 
 
@@ -197,6 +198,9 @@ View on GitHub
 
 <table><thead><tr><th>Value</th><th>Behavior</th></tr></thead><tbody><tr><td><code>true</code> (default)</td><td>Always on — definitions never loaded upfront</td></tr><tr><td><code>auto</code></td><td>Activates when definitions exceed 10% of context</td></tr><tr><td><code>auto:N</code></td><td>Custom threshold (e.g., <code>auto:5</code> for 5%)</td></tr><tr><td><code>false</code></td><td>Off — all tools loaded every turn</td></tr></tbody></table>
 <p><strong>Optimization:</strong> Tool names and descriptions drive search quality. <code>search_slack_messages</code> surfaces better than <code>query_slack</code>. A system prompt listing available categories helps the agent know what to search for.</p>
+<blockquote>
+<p><strong>Key insight:</strong> Tool names are the “SEO” of dynamic tool search — the agent runs a semantic search over names and descriptions before ever seeing the full schema. A vague name like <code>query_slack</code> ranks below a descriptive name like <code>search_slack_messages_by_keyword_channel_or_date</code>. Rename tools for discoverability the same way you’d name a public API endpoint.</p>
+</blockquote>
 <h2 id="typescript--tool-catalog-with-dynamic-search">TypeScript — Tool Catalog with Dynamic Search</h2>
 <div class="runnable-code-wrapper" data-runnable-id="runnable-79" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">import</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> Anthropic </span><span style="color:#D73A49;--shiki-dark:#F97583">from</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> "@anthropic-ai/sdk"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">;</span></span>
 <span class="line"></span>
