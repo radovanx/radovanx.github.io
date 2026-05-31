@@ -61,6 +61,7 @@ View on GitHub
 <ul>
 <li><strong><a href="https://claude.com/blog/how-coderabbit-used-claude-to-build-an-agent-orchestration-system">How CodeRabbit used Claude to build an agent orchestration system</a></strong> — (claude.com, May 2026) David Loker (VP AI) on the internal knowledge gap, multi-model orchestration, eval harness for plan quality, and the PRD-as-shared-artifact pattern</li>
 </ul>
+<p></p><div class="section-hero-image"><img src="https://opengraph.githubassets.com/1/coderabbitai/coderabbit-docs" alt="coderabbitai/coderabbit-docs — CodeRabbit&#x27;s official documentation repository; the platform reviewing 2M pull requests per week" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #4ADE80dd, #34D39988, #00E5FFcc);"></div><div class="section-hero-gradient" style="background: radial-gradient(71% 71% at 25% 26%, #4ADE80, transparent), radial-gradient(54% 54% at 21% 30%, #34D399, transparent), radial-gradient(64% 64% at 32% 76%, #22D3EE, transparent), radial-gradient(68% 68% at 54% 39%, #00E5FF, transparent), linear-gradient(285deg, #4ADE80, #00E5FF);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">coderabbitai/coderabbit-docs — CodeRabbit's official documentation repository; the platform reviewing 2M pull requests per week</span></div><p></p>
 <p>CodeRabbit is an AI code review platform (founded 2023) reviewing 2M pull requests per week across 15,000+ customers. After seeing a clear pattern in AI-generated code — compiled, passed tests, but didn’t solve the actual problem — the team built an <strong>agent orchestration layer that runs before Claude Code</strong>, not instead of it.</p>
 <blockquote>
 <p><strong>Key insight:</strong> Planning quality determines output quality. As code generation gets cheaper, moving in the wrong direction gets proportionally more expensive. The planning investment pays at the end, not the beginning.</p>
@@ -77,23 +78,31 @@ View on GitHub
 <p>“In AI workflows, late validation can be very expensive.”</p>
 <h2 id="the-orchestration-layer">The Orchestration Layer</h2>
 <p>The response: insert a planning system in front of code generation. It coordinates multiple Claude models to analyze requirements and surface assumptions before producing a structured execution plan.</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Developer request</span></span>
-<span class="line"><span>       ↓</span></span>
-<span class="line"><span>┌─────────────────────────────────────────────────────┐</span></span>
-<span class="line"><span>│  Planning Orchestration Layer                       │</span></span>
-<span class="line"><span>│  • Identifies implicit assumptions                  │</span></span>
-<span class="line"><span>│  • Makes gaps explicit                              │</span></span>
-<span class="line"><span>│  • Produces collaborative PRD                       │</span></span>
-<span class="line"><span>│  • Validated by stakeholders before code            │</span></span>
-<span class="line"><span>└─────────────────────────────────────────────────────┘</span></span>
-<span class="line"><span>       ↓</span></span>
-<span class="line"><span>     PRD (collaborative product requirements document)</span></span>
-<span class="line"><span>       ↓</span></span>
-<span class="line"><span>  Claude Code Plan Mode</span></span>
-<span class="line"><span>       ↓</span></span>
-<span class="line"><span>  Implementation plan</span></span>
-<span class="line"><span>       ↓</span></span>
-<span class="line"><span>  Code generation</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    A["💬 Developer Request"] --> B</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph ORCH["Planning Orchestration Layer (runs before Claude Code)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        B["Identify Implicit Assumptions\n(Opus — full context)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        B --> C["Make Gaps Explicit\n(surface missing requirements)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        C --> D["Produce Collaborative PRD\n(Sonnet — structured artifact)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    D --> E["✅ Stakeholder Review\n(human validates before code)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    E --> F["📋 PRD\n(shared product requirements doc)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    F --> G["Claude Code Plan Mode\n(Haiku — narrow scope)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    G --> H["Implementation Plan"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    H --> I["🖥️ Code Generation"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style A fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style ORCH fill:#1e1b4b,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style B fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style C fill:#6d28d9,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style D fill:#5b21b6,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style E fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style F fill:#065f46,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style G fill:#1e40af,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style H fill:#1d4ed8,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style I fill:#166534,color:#fff</span></span></code></pre>
 <p>“This planning system is not meant to replace Claude Code’s Plan Mode. It’s higher-level orchestration that happens <em>before</em> Claude Code, to point it in a really narrow and right direction where everything that needs to be explicit is made explicit.”</p>
 <p>The PRD output does three jobs:</p>
 <ol>
@@ -102,6 +111,7 @@ View on GitHub
 <li><strong>Onboarding asset</strong> — new engineers see the original intent, not just the output</li>
 </ol>
 <h2 id="multi-model-routing-by-task-complexity">Multi-Model Routing by Task Complexity</h2>
+<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/coderabbit-orchestration/800/350" alt="Orchestration architecture — three-tier model routing maps task complexity to model capability" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #00E5FFdd, #06B6D488, #0284C7cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(82% 82% at 67% 52%, #00E5FF, transparent), radial-gradient(60% 60% at 34% 84%, #06B6D4, transparent), radial-gradient(50% 50% at 42% 21%, #0EA5E9, transparent), radial-gradient(53% 53% at 18% 24%, #0284C7, transparent), linear-gradient(190deg, #00E5FF, #0284C7);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Orchestration architecture — three-tier model routing maps task complexity to model capability</span></div><p></p>
 <p>CodeRabbit doesn’t use one model for everything. Each tier maps to task complexity:</p>
 
 
@@ -269,21 +279,25 @@ View on GitHub
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-39" type="button">Run PHP</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-39" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-39" style="display:none"></pre></div>
 <h2 id="building-an-eval-harness-for-plan-quality">Building an Eval Harness for Plan Quality</h2>
 <p>CodeRabbit had a mature eval system for code review but nothing for <strong>planning output</strong>. Building planning evals became its own project.</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Phase 1: Hand-tuned examples + manual inspection</span></span>
-<span class="line"><span>             ↓</span></span>
-<span class="line"><span>Phase 2: Library of LLM judges scoring specific plan quality dimensions</span></span>
-<span class="line"><span>             ↓</span></span>
-<span class="line"><span>Phase 3: Downstream measurement — does the generated code work?</span></span>
-<span class="line"><span>         Does it have extra scope? How many tokens did it take?</span></span>
-<span class="line"><span>             ↓</span></span>
-<span class="line"><span>Phase 4: Controlled comparison — same task with/without planning step</span></span>
-<span class="line"><span>         (isolates the value of planning itself)</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    P1["Phase 1\nHand-tuned examples\n+ manual inspection"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    P2["Phase 2\nLLM judges score\nplan quality dimensions"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    P3["Phase 3\nDownstream measurement\ncode works? scope? tokens?"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    P4["Phase 4\nControlled comparison\nwith vs. without planning"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    P1 --> P2 --> P3 --> P4</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style P1 fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style P2 fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style P3 fill:#065f46,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style P4 fill:#7c3aed,color:#fff</span></span></code></pre>
 <p><strong>The granularity problem:</strong> Plans that were too granular went stale when the codebase shifted. Plans that were too high-level left room for agent assumptions — the exact problem planning was meant to solve.</p>
 <p>“We didn’t realize what the right level of detail was going to be. Finding the working level of abstraction took iteration, which is what the eval harness made possible.”</p>
 <blockquote>
 <p><strong>Key insight:</strong> The eval harness is what makes “planning quality” a measurable property rather than a feeling. Without measurement, you can’t iterate toward the right abstraction level.</p>
 </blockquote>
 <h2 id="best-practices-from-the-coderabbit-team">Best Practices from the CodeRabbit Team</h2>
+<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/coderabbit-prd/800/300" alt="Planning artifacts — the PRD as quality gate, shared artifact, and onboarding asset" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #00E5FFdd, #06B6D488, #0284C7cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(75% 75% at 43% 85%, #00E5FF, transparent), radial-gradient(64% 64% at 24% 72%, #06B6D4, transparent), radial-gradient(75% 75% at 57% 27%, #0EA5E9, transparent), radial-gradient(82% 82% at 43% 63%, #0284C7, transparent), linear-gradient(59deg, #00E5FF, #0284C7);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Planning artifacts — the PRD as quality gate, shared artifact, and onboarding asset</span></div><p></p>
 <p>These apply to any team building plan-before-code workflows:</p>
 <ol>
 <li>

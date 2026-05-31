@@ -244,6 +244,23 @@ View on GitHub
 </blockquote>
 <p><strong>Safety note:</strong> Generated skills should be reviewed like code dependencies before deployment. A meta-skill’s output becomes your agent’s behavior.</p>
 <h2 id="assembling-a-skilltoolset">Assembling a SkillToolset</h2>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph ST["SkillToolset"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        S1["seo-skill\n(Inline — Pattern 1)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        S2["blog-writer\n(File-based — Pattern 2)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        S3["content-researcher\n(External — Pattern 3)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        S4["skill-creator\n(Factory — Pattern 4)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    AGENT["🤖 Agent"] -->|"list_skills() → L1"| ST</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    AGENT -->|"load_skill(name) → L2"| ST</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    AGENT -->|"load_skill_resource → L3"| ST</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style AGENT fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style S1 fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style S2 fill:#065f46,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style S3 fill:#1e40af,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style S4 fill:#7c3aed,color:#fff</span></span></code></pre>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># Wire all four patterns into one agent</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">skill_toolset </span><span style="color:#D73A49;--shiki-dark:#F97583">=</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> SkillToolset(</span></span>
 <span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    skills</span><span style="color:#D73A49;--shiki-dark:#F97583">=</span><span style="color:#24292E;--shiki-dark:#E1E4E8">[seo_skill, blog_writer_skill, content_researcher_skill, skill_creator]</span></span>
@@ -425,6 +442,7 @@ View on GitHub
 <table><thead><tr><th>System</th><th>Focus</th><th>Primary use</th></tr></thead><tbody><tr><td>ADK SkillToolset</td><td>Progressive disclosure — loading context on demand</td><td>Token efficiency for multi-skill agents</td></tr><tr><td>Agent Skills (Osmani)</td><td>Engineering discipline — spec, TDD, security, review</td><td>Quality gates for coding agents</td></tr></tbody></table>
 <p>A well-designed agent can use both: ADK’s SkillToolset for efficient capability loading, plus Agent Skills for engineering process enforcement.</p>
 <h2 id="skills-as-cli-documentation--googleagents-cli">Skills as CLI Documentation — google/agents-cli</h2>
+<p></p><div class="section-hero-image"><img src="https://opengraph.githubassets.com/1/google/agents-cli" alt="google/agents-cli — ships ADK skills to Claude Code, Gemini CLI, and Codex for progressive-disclosure CLI documentation" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #00E5FFdd, #38BDF888, #BD93F9cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(76% 76% at 31% 39%, #00E5FF, transparent), radial-gradient(79% 79% at 57% 48%, #38BDF8, transparent), radial-gradient(59% 59% at 25% 70%, #A78BFA, transparent), linear-gradient(95deg, #00E5FF, #BD93F9);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">google/agents-cli — ships ADK skills to Claude Code, Gemini CLI, and Codex for progressive-disclosure CLI documentation</span></div><p></p>
 <p><a href="/knowledge/wiki/google-agents-cli/">Google’s agents-cli</a> demonstrates a novel application of this pattern: using ADK skills to teach coding agents how to use a CLI tool. Instead of writing traditional docs, <code>agents-cli</code> ships seven skills:</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">npx</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> skills</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> add</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> google/agents-cli</span></span></code></pre>
 <p>Now Claude Code, Gemini CLI, or Codex knows how to scaffold, evaluate, and deploy ADK agents — because the CLI’s own documentation is encoded as progressive-disclosure skills. Ask your coding agent to build an ADK agent; it loads <code>google-agents-cli-adk-code</code> (L2) only when it needs those instructions.</p>
