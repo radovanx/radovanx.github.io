@@ -80,7 +80,7 @@ View on GitHub
 <blockquote>
 <p><strong>Key insight:</strong> Raycast shifts the mental model from “open an app, do a thing, close the app” to “describe what you want to do and let the keyboard navigate you there.” Every action is a keystroke away, no mouse required.</p>
 </blockquote>
-<p></p><div class="section-hero-image"><img src="https://www.raycast.com/og.png" alt="Raycast — keyboard-first productivity launcher with extensible commands, clipboard history, and AI" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #00E5FFdd, #38BDF888, #BD93F9cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(53% 53% at 64% 61%, #00E5FF, transparent), radial-gradient(70% 70% at 18% 35%, #38BDF8, transparent), radial-gradient(60% 60% at 26% 53%, #A78BFA, transparent), radial-gradient(70% 70% at 76% 66%, #BD93F9, transparent), linear-gradient(168deg, #00E5FF, #BD93F9);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Raycast — keyboard-first productivity launcher with extensible commands, clipboard history, and AI</span></div><p></p>
+<p></p><div class="section-hero-image"><img src="https://www.raycast.com/opengraph-image-pwu6ef.png?7385e23163a01717" alt="Raycast — keyboard-first productivity launcher with extensible commands, clipboard history, and AI" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #00E5FFdd, #38BDF888, #BD93F9cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(53% 53% at 64% 61%, #00E5FF, transparent), radial-gradient(70% 70% at 18% 35%, #38BDF8, transparent), radial-gradient(60% 60% at 26% 53%, #A78BFA, transparent), radial-gradient(70% 70% at 76% 66%, #BD93F9, transparent), linear-gradient(168deg, #00E5FF, #BD93F9);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Raycast — keyboard-first productivity launcher with extensible commands, clipboard history, and AI</span></div><p></p>
 <h2 id="core-features">Core Features</h2>
 
 
@@ -139,18 +139,51 @@ View on GitHub
 <span class="line"><span>CleanShot  → trigger screen captures</span></span></code></pre>
 <p>Plus thousands more in the store — browse by category (Productivity, Engineering, Design, Writing).</p>
 <h2 id="ai-integration">AI Integration</h2>
-<p>Raycast’s AI layer lives at the OS level, not inside a single app:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    S["⌘ Shortcut\n(any screen)"] --> R["Raycast\nLauncher"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    R --> QA["⚡ Quick AI\nweb-aware Q&#x26;A"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    R --> AC["💬 AI Chat\ncoding · writing · analysis"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    R --> CM["🤖 AI Commands\ncustom prompt automation"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    R --> EX["🔌 Extensions\n1,000+ integrations"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style R fill:#ff6363,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style QA fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style AC fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style CM fill:#059669,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style EX fill:#d97706,color:#fff</span></span></code></pre>
+<p>Raycast’s AI layer lives at the OS level — not inside a single app. Unlike an IDE AI plugin, it activates the moment you press your shortcut, regardless of what’s on screen.</p>
 <ul>
 <li><strong>Quick AI</strong> — answer any question from the launcher (web-aware)</li>
 <li><strong>AI Chat</strong> — always-on conversational assistant for coding, writing, and analysis</li>
 <li><strong>AI Commands</strong> — create custom commands that automate repetitive prompts</li>
 </ul>
-<p>Unlike an IDE AI plugin, Raycast AI is available the moment you press your shortcut, regardless of what’s on screen.</p>
 <h2 id="performance-design-philosophy">Performance Design Philosophy</h2>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>99.8% crash-free rate (single source — raycast.com self-reported)</span></span>
-<span class="line"><span>Millisecond response time — &#x3C;100ms to open</span></span>
-<span class="line"><span>Keyboard-first — every action has a keyboard shortcut</span></span>
-<span class="line"><span>Native — no Electron, pure macOS performance</span></span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Property</th><th>Value</th></tr></thead><tbody><tr><td><strong>Crash-free rate</strong></td><td>99.8% (single source — raycast.com self-reported)</td></tr><tr><td><strong>Response time</strong></td><td>&#x3C;100ms to open</td></tr><tr><td><strong>Input model</strong></td><td>Keyboard-first — every action has a shortcut</td></tr><tr><td><strong>Runtime</strong></td><td>Native macOS — no Electron</td></tr></tbody></table>
 <blockquote>
 <p>“Fast. Think in milliseconds. Ergonomic. Keyboard first.”</p>
 </blockquote>

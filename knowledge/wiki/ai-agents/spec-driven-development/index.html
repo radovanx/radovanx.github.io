@@ -194,10 +194,18 @@ View on GitHub
 <table><thead><tr><th>Command</th><th>When</th><th>What it produces</th></tr></thead><tbody><tr><td><code>/speckit.constitution</code></td><td>Once per project</td><td><code>.specify/memory/constitution.md</code> — governing principles</td></tr><tr><td><code>/speckit.specify</code></td><td>Each new feature</td><td><code>spec.md</code> — user stories, requirements</td></tr><tr><td><code>/speckit.clarify</code></td><td>Before planning</td><td>Q&#x26;A session recorded in spec Clarifications section</td></tr><tr><td><code>/speckit.plan</code></td><td>After spec is solid</td><td><code>plan.md</code>, <code>data-model.md</code>, <code>research.md</code>, <code>contracts/</code></td></tr><tr><td><code>/speckit.tasks</code></td><td>After plan validated</td><td><code>tasks.md</code> with dependency order and parallel markers</td></tr><tr><td><code>/speckit.implement</code></td><td>Final step</td><td>Working code + tests</td></tr><tr><td><code>/speckit.analyze</code></td><td>Optional pre-implement</td><td>Cross-artifact consistency check</td></tr><tr><td><code>/speckit.checklist</code></td><td>Optional</td><td>Quality checklist: “unit tests for English”</td></tr></tbody></table>
 <h2 id="extensions-and-presets">Extensions and Presets</h2>
 <p>Spec Kit uses a layered customization system. Resolution order (highest priority first):</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Project-local overrides (.specify/templates/overrides/)</span></span>
-<span class="line"><span>  ↑ Presets (.specify/presets/templates/)</span></span>
-<span class="line"><span>  ↑ Extensions (.specify/extensions/templates/)</span></span>
-<span class="line"><span>  ↑ Spec Kit core defaults (.specify/templates/)</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    L1["📁 Project-local overrides\n.specify/templates/overrides/"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    L2["🎨 Presets\n.specify/presets/templates/"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    L3["🔌 Extensions\n.specify/extensions/templates/"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    L4["⚙️ Spec Kit core defaults\n.specify/templates/"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    L1 -->|"overrides"| L2 -->|"overrides"| L3 -->|"overrides"| L4</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style L1 fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style L2 fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style L3 fill:#059669,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style L4 fill:#6b7280,color:#fff</span></span></code></pre>
 <p><strong>Extensions</strong> add new commands/templates — new capabilities:</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">specify</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> extension</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> search</span></span>
 <span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">specify</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> extension</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> add</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> spec-kit-security-review</span><span style="color:#6A737D;--shiki-dark:#6A737D">   # adversarial spec review</span></span>

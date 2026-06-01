@@ -64,6 +64,7 @@ View on GitHub
 <li><strong><a href="https://opentui.com/docs/bindings/react">opentui.com/docs/bindings/react</a></strong> — full React bindings API: components, hooks, JSX config, plugins</li>
 </ul>
 <p>OpenTUI is a terminal UI framework written in Zig with a C ABI that exposes TypeScript bindings. It powers <a href="https://opencode.ai">OpenCode</a> in production today and will also power <a href="https://terminal.shop">terminal.shop</a>. The core is native Zig; TypeScript (and any C-ABI-compatible language) sits on top.</p>
+<p></p><div class="section-hero-image"><img src="https://rdl.ink/render/https%3A%2F%2Fopentui.com%2F" alt="OpenTUI — native Zig terminal UI framework with React and Solid.js bindings; powers OpenCode in production" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #D4A574dd, #C4956A88, #A67750cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(60% 60% at 23% 77%, #D4A574, transparent), radial-gradient(84% 84% at 82% 46%, #C4956A, transparent), radial-gradient(81% 81% at 26% 16%, #B8865E, transparent), linear-gradient(99deg, #D4A574, #A67750);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">OpenTUI — native Zig terminal UI framework with React and Solid.js bindings; powers OpenCode in production</span></div><p></p>
 <blockquote>
 <p><strong>Key insight:</strong> OpenTUI is not a polyfill or wrapper around existing TUI libraries. It’s a native, correctness-first core that happens to expose a TypeScript API — and its React integration means you can build terminal UIs with the same component model as web UIs.</p>
 </blockquote>
@@ -78,15 +79,20 @@ View on GitHub
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">const</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> renderer</span><span style="color:#D73A49;--shiki-dark:#F97583"> =</span><span style="color:#D73A49;--shiki-dark:#F97583"> await</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> createCliRenderer</span><span style="color:#24292E;--shiki-dark:#E1E4E8">()</span></span>
 <span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">createRoot</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(renderer).</span><span style="color:#6F42C1;--shiki-dark:#B392F0">render</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(&#x3C;</span><span style="color:#005CC5;--shiki-dark:#79B8FF">App</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> />)</span></span></code></pre>
 <h2 id="architecture">Architecture</h2>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>┌─────────────────────────────────────┐</span></span>
-<span class="line"><span>│  Your App (TypeScript / React / Solid) │</span></span>
-<span class="line"><span>├─────────────────────────────────────┤</span></span>
-<span class="line"><span>│  @opentui/react or @opentui/core      │</span></span>
-<span class="line"><span>│  TypeScript bindings                  │</span></span>
-<span class="line"><span>├─────────────────────────────────────┤</span></span>
-<span class="line"><span>│  Zig native core — C ABI              │</span></span>
-<span class="line"><span>│  (OpenCode uses this in production)   │</span></span>
-<span class="line"><span>└─────────────────────────────────────┘</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    APP["🖥️ Your App\nTypeScript · React · Solid.js"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    BIND["@opentui/react or @opentui/core\nTypeScript bindings"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    CORE["Zig native core — C ABI\n(OpenCode uses this in production)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    FFI["Other FFI languages\nPython · Rust · Go"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    APP --> BIND</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    BIND --> CORE</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    FFI --> CORE</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style APP fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style BIND fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style CORE fill:#166534,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style FFI fill:#6b7280,color:#fff</span></span></code></pre>
 <p>The C ABI means OpenTUI can be used from any language that supports FFI — Python, Rust, Go — not just TypeScript.</p>
 <h2 id="features">Features</h2>
 
