@@ -136,7 +136,25 @@ View on GitHub
 <blockquote>
 <p><strong>Key insight:</strong> The three-layer split creates a clear contract: humans own curation, the schema owns structure, and the LLM owns synthesis. No layer crosses its boundary.</p>
 </blockquote>
-<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/wiki-three-layers/800/400" alt="Three-layer wiki architecture: raw/ (immutable sources) → wiki/ (LLM synthesis) → CLAUDE.md (schema and conventions); each layer has a clear owner" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #22D3EEdd, #0EA5E988, #6366F1cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(81% 81% at 21% 17%, #22D3EE, transparent), radial-gradient(55% 55% at 72% 49%, #0EA5E9, transparent), radial-gradient(83% 83% at 41% 81%, #3B82F6, transparent), linear-gradient(74deg, #22D3EE, #6366F1);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Three-layer wiki architecture: raw/ (immutable sources) → wiki/ (LLM synthesis) → CLAUDE.md (schema and conventions); each layer has a clear owner</span></div><p></p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph HUM["👤 Human Curator\n(owns: what to read)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        RAW["raw/\nimmutable sources\narticles · docs · videos"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph LLM_LAYER["🤖 LLM\n(owns: synthesis)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        WIKI["wiki/\ncompiled knowledge\nconcepts · synthesis · entities"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph SCHEMA["📋 CLAUDE.md\n(owns: structure)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        CONV["conventions\noperations\nroles + workflows"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    RAW -->|"reads"| LLM_LAYER</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    SCHEMA -->|"guides"| LLM_LAYER</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    LLM_LAYER -->|"writes + compounds"| WIKI</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style HUM fill:#1e3a5f,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style LLM_LAYER fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style SCHEMA fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style WIKI fill:#166534,color:#fff</span></span></code></pre>
 <h2 id="operations">Operations</h2>
 
 
@@ -189,7 +207,42 @@ View on GitHub
 <li><strong>Specialized domains</strong> — competitive analysis, due diligence, trip planning, course notes</li>
 </ul>
 <p>Common thread: domains where <strong>knowledge compounds over time</strong>.</p>
-<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/wiki-use-cases/800/400" alt="LLM wiki use cases: personal knowledge, deep research, book reading, business intelligence — common thread is compounding knowledge value over time" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #86EFACdd, #6EE7B788, #2DD4BFcc);"></div><div class="section-hero-gradient" style="background: radial-gradient(59% 59% at 20% 17%, #86EFAC, transparent), radial-gradient(82% 82% at 79% 76%, #6EE7B7, transparent), radial-gradient(79% 79% at 79% 27%, #5EEAD4, transparent), linear-gradient(319deg, #86EFAC, #2DD4BF);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">LLM wiki use cases: personal knowledge, deep research, book reading, business intelligence — common thread is compounding knowledge value over time</span></div><p></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Domain</th><th>Compounds over</th><th>Example</th></tr></thead><tbody><tr><td><strong>Personal knowledge</strong></td><td>Years</td><td>Goals, health, psychology, self-improvement</td></tr><tr><td><strong>Deep research</strong></td><td>Weeks/months</td><td>Investment thesis, competitive analysis, due diligence</td></tr><tr><td><strong>Book reading</strong></td><td>Per book</td><td>Themes, character connections, ideas across texts</td></tr><tr><td><strong>Business/team</strong></td><td>Ongoing</td><td>Slack archives, meeting notes, decision history</td></tr><tr><td><strong>Specialized</strong></td><td>Project duration</td><td>Trip planning, course notes, regulatory analysis</td></tr></tbody></table>
 <h2 id="a-durable-practice">A Durable Practice</h2>
 <p>Martin Fowler’s framing: “Our craft done well, works for agents.” A well-structured wiki — with clear cross-references, consistent schemas, explicit contradiction flags, and source provenance — is as legible to an AI agent as to a human reader.</p>
 <p>The pattern migrated to code generation: <a href="https://github.com/addyosmani/agent-skills">Agent Skills’</a> <strong>Source-Driven Development</strong> enforces “ground every framework decision in official documentation — verify, cite sources, flag what’s unverified.” Same mechanism, same rationale, different scope — the wiki compiles knowledge for topics, source-driven development compiles knowledge for APIs.</p>

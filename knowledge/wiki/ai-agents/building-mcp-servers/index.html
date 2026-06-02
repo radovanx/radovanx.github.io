@@ -78,11 +78,25 @@ View on GitHub
 <p><strong>Key insight (Jeremiah Lowin, FastMCP):</strong> “MCP Servers are products for agents, not APIs for humans.”</p>
 </blockquote>
 <h2 id="the-usb-for-ai-analogy">The USB for AI Analogy</h2>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Before MCP                    After MCP</span></span>
-<span class="line"><span>──────────────                ──────────────────────────</span></span>
-<span class="line"><span>Custom integrations   →       Standard protocol</span></span>
-<span class="line"><span>Fragile connections   →       Secure, typed APIs</span></span>
-<span class="line"><span>One-off scripts       →       Reusable servers</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    B1["❌ Custom integration\ncode per API"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    B2["❌ Fragile, one-off\nconnections"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    B3["❌ One-off scripts\nper tool"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    A1["✅ Standard protocol\nfor all APIs"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    A2["✅ Secure, typed,\nauto-discoverable"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    A3["✅ Build once — works\nin Claude, VS Code, Cursor"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    B1 -->|"MCP"| A1</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    B2 -->|"MCP"| A2</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    B3 -->|"MCP"| A3</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style B1 fill:#7f1d1d,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style B2 fill:#7f1d1d,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style B3 fill:#7f1d1d,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style A1 fill:#064e3b,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style A2 fill:#064e3b,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style A3 fill:#064e3b,color:#fff</span></span></code></pre>
 <p>MCP is to AI what USB is to hardware: build once, plug into any compatible client. Claude, VS Code, ChatGPT Desktop, Cursor — they all use the same server you wrote.</p>
 <blockquote>
 <p><strong>Real-world impact:</strong> Grafana Labs (Nov 2025) connected AI to their observability stack. During an incident, AI found the root cause in <strong>8 minutes</strong> vs. <strong>28 minutes</strong> for the human-only team — 3.5× faster. The root cause was AI-generated code (an unbounded SQL join). AI tools found the bug they introduced. (<a href="https://grafana.com/blog/2025/11/17/a-tale-of-two-incident-responses-how-our-ai-assist-helped-us-find-the-cause-3-5x-faster/">Grafana Labs blog</a>)</p>
@@ -94,7 +108,7 @@ View on GitHub
 <p><strong>Why Go for MCP servers:</strong> single binary (<code>go build</code> → one file, no <code>node_modules</code>), sub-millisecond startup (MCP servers launch per-session), goroutines handle concurrent tool calls cleanly, and LLMs write clean idiomatic Go.</p>
 <h2 id="minimal-mcp-server">Minimal MCP Server</h2>
 <p>An MCP tool is a function with a name, a description, and typed arguments. The SDK handles JSON-RPC, transport, and capability negotiation — you write the tool logic.</p>
-<div class="runnable-code-wrapper" data-runnable-id="runnable-33" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// TypeScript: minimal MCP server — one tool, stdio transport</span></span>
+<div class="runnable-code-wrapper" data-runnable-id="runnable-30" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// TypeScript: minimal MCP server — one tool, stdio transport</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// npm install @modelcontextprotocol/sdk zod</span></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">import</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> { McpServer } </span><span style="color:#D73A49;--shiki-dark:#F97583">from</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> "@modelcontextprotocol/sdk/server/mcp.js"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">;</span></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">import</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> { StdioServerTransport } </span><span style="color:#D73A49;--shiki-dark:#F97583">from</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> "@modelcontextprotocol/sdk/server/stdio.js"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">;</span></span>
@@ -115,7 +129,7 @@ View on GitHub
 <span class="line"></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// stdio transport: run this binary; the AI host spawns it per session</span></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">await</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> server.</span><span style="color:#6F42C1;--shiki-dark:#B392F0">connect</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(</span><span style="color:#D73A49;--shiki-dark:#F97583">new</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> StdioServerTransport</span><span style="color:#24292E;--shiki-dark:#E1E4E8">());</span></span>
-<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Usage: node server.js (or pipe into any MCP-compatible client)</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-33" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-33" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-33" style="display:none"></pre></div>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Usage: node server.js (or pipe into any MCP-compatible client)</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-30" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-30" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-30" style="display:none"></pre></div>
 <p>The same server in Go — single binary, no runtime to manage:</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="go"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Go: same weather tool — compile to a single binary with `go build`</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// go get github.com/mark3labs/mcp-go</span></span>
