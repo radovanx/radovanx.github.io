@@ -297,6 +297,23 @@ View on GitHub
 <li><strong>Cisco Foundry Security Spec</strong> — open-sourced; lets other defenders build evaluation systems similar to Cisco’s own</li>
 <li><strong>ExploitBench and ExploitGym</strong> — Anthropic supported development of both benchmarks</li>
 </ul>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    S1["Phase 1: Pattern Scanning\nPre-compiled vulnerability signatures\n(buffer overflows, UAF, TOCTOU, injection)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    S2["Phase 2: Autonomous Reasoning\nMythos explores candidates\nbuilds proof-of-concept exploit chains"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    CONF{"Confidence\n> 0.85?"}</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    SHA["SHA-3 Commitment\nPublish hash at discovery time\n(proves timing + integrity)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    DISC["Responsible Disclosure\n90-day window to maintainer\n+ 45-day extension if in progress"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    REJ["Rejected\nLogged — no public disclosure"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    S1 --> S2 --> CONF</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    CONF -->|Yes| SHA --> DISC</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    CONF -->|No| REJ</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style S1 fill:#1e3a5f,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style S2 fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style SHA fill:#065f46,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style DISC fill:#166534,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style REJ fill:#7f1d1d,color:#fff</span></span></code></pre>
 <h2 id="bruce-schneiers-analysis-april-2026">Bruce Schneier’s Analysis (April 2026)</h2>
 <p>Bruce Schneier (Harvard Kennedy School, <em>Schneier on Security</em>) offered a characteristically nuanced read:</p>
 <p><strong>On the PR framing:</strong> Schneier characterized the announcement as “very much a PR play by Anthropic, with many reporters uncritically repeating Anthropic’s talking points.” The $100M in <em>usage credits</em> (not cash) and the careful deployment restrictions are a controlled demonstration of capability, not full transparency.</p>
@@ -324,7 +341,7 @@ View on GitHub
 </blockquote>
 <h2 id="how-mythos-finds-vulnerabilities">How Mythos Finds Vulnerabilities</h2>
 <p>The technical approach combines pattern-based scanning with autonomous reasoning:</p>
-<div class="runnable-code-wrapper" data-runnable-id="runnable-12" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Pseudocode: Mythos vulnerability scanning pipeline</span></span>
+<div class="runnable-code-wrapper" data-runnable-id="runnable-116" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Pseudocode: Mythos vulnerability scanning pipeline</span></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">interface</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> VulnerabilityReport</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
 <span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">  cve_id</span><span style="color:#D73A49;--shiki-dark:#F97583">:</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> string</span><span style="color:#D73A49;--shiki-dark:#F97583"> |</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> null</span><span style="color:#24292E;--shiki-dark:#E1E4E8">;        </span><span style="color:#6A737D;--shiki-dark:#6A737D">// assigned after verification</span></span>
 <span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">  severity</span><span style="color:#D73A49;--shiki-dark:#F97583">:</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> "critical"</span><span style="color:#D73A49;--shiki-dark:#F97583"> |</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> "high"</span><span style="color:#D73A49;--shiki-dark:#F97583"> |</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> "medium"</span><span style="color:#D73A49;--shiki-dark:#F97583"> |</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> "low"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">;</span></span>
@@ -356,9 +373,9 @@ View on GitHub
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">    const</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> commitment</span><span style="color:#D73A49;--shiki-dark:#F97583"> =</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> sha3</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(</span><span style="color:#005CC5;--shiki-dark:#79B8FF">JSON</span><span style="color:#24292E;--shiki-dark:#E1E4E8">.</span><span style="color:#6F42C1;--shiki-dark:#B392F0">stringify</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(analysis));</span></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">    await</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> responsibleDisclosure</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(analysis, commitment); </span><span style="color:#6A737D;--shiki-dark:#6A737D">// 90+45 day window</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-12" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-12" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-12" style="display:none"></pre></div>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-116" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-116" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-116" style="display:none"></pre></div>
 <p>The validation and responsible disclosure logic — the human-in-the-loop gate that prevents AI findings from going public unverified:</p>
-<div class="runnable-code-wrapper" data-runnable-id="runnable-13" data-runnable-lang="php"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">&#x3C;?</span><span style="color:#005CC5;--shiki-dark:#79B8FF">php</span></span>
+<div class="runnable-code-wrapper" data-runnable-id="runnable-117" data-runnable-lang="php"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">&#x3C;?</span><span style="color:#005CC5;--shiki-dark:#79B8FF">php</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Pseudocode: Vulnerability report validation before disclosure</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// AI findings ALWAYS require human verification before action</span></span>
 <span class="line"></span>
@@ -392,7 +409,7 @@ View on GitHub
 <span class="line"></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">        return</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> true</span><span style="color:#24292E;--shiki-dark:#E1E4E8">;</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-13" type="button">Run PHP</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-13" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-13" style="display:none"></pre></div>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-117" type="button">Run PHP</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-117" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-117" style="display:none"></pre></div>
 <blockquote>
 <p><strong>Key insight:</strong> The two-phase approach mirrors the <a href="/knowledge/wiki/knowledge-management/llm-wiki-pattern/">wiki pattern</a>: Phase 1 uses pre-compiled knowledge (vulnerability signatures), Phase 2 uses autonomous reasoning for novel discoveries. Pre-compilation handles the predictable; frontier AI handles the unprecedented.</p>
 </blockquote>

@@ -68,15 +68,70 @@ View on GitHub
 <p>The JavaScript build toolchain is being rewritten in Rust. The performance gap over Node.js tools (ESLint, Babel, Prettier) is not incremental — it’s 20-100x. Two projects lead: OXC (a full tool suite) and SWC (the compiler that Next.js, Deno, and Vercel already run on).</p>
 <p></p><div class="section-hero-image"><img src="https://opengraph.githubassets.com/1/web-infra-dev/oxc" alt="OXC — The JavaScript Oxidation Compiler; Rust-based suite replacing ESLint, Prettier, and Babel with 20-100x performance gains" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #4ADE80dd, #34D39988, #00E5FFcc);"></div><div class="section-hero-gradient" style="background: radial-gradient(84% 84% at 76% 52%, #4ADE80, transparent), radial-gradient(81% 81% at 29% 67%, #34D399, transparent), radial-gradient(72% 72% at 61% 73%, #22D3EE, transparent), radial-gradient(53% 53% at 15% 66%, #00E5FF, transparent), linear-gradient(303deg, #4ADE80, #00E5FF);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">OXC — The JavaScript Oxidation Compiler; Rust-based suite replacing ESLint, Prettier, and Babel with 20-100x performance gains</span></div><p></p>
 <h2 id="the-performance-gap">The Performance Gap</h2>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Parser benchmark — parsing typescript.js (M3 Max):</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>OXC    ████ 26.3ms</span></span>
-<span class="line"><span>SWC    ████████████████ 84.1ms</span></span>
-<span class="line"><span>Biome  ████████████████████████████ 130.1ms</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>Vs. ESLint (linting): OXC is 50-100x faster</span></span>
-<span class="line"><span>Vs. Babel (compilation): SWC is 20x faster (single core), 70x on 4 cores</span></span>
-<span class="line"><span>Vs. Prettier (formatting): OXC Oxfmt is 30x faster</span></span></code></pre>
+<p><strong>Parser benchmark — parsing <code>typescript.js</code> on M3 Max:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Tool</th><th>Parse time</th><th>Relative</th></tr></thead><tbody><tr><td><strong>OXC</strong></td><td>26.3 ms</td><td>3.2× faster than SWC</td></tr><tr><td><strong>SWC</strong></td><td>84.1 ms</td><td>1.5× faster than Biome</td></tr><tr><td><strong>Biome</strong></td><td>130.1 ms</td><td>baseline</td></tr></tbody></table>
+<p><strong>Toolchain-wide speedups vs. Node.js tools:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Operation</th><th>Node.js baseline</th><th>Rust replacement</th><th>Speedup</th></tr></thead><tbody><tr><td><strong>Linting</strong></td><td>ESLint</td><td>OXC Oxlint</td><td><strong>50–100×</strong></td></tr><tr><td><strong>Compilation</strong></td><td>Babel</td><td>SWC</td><td><strong>20–70×</strong> (single → 4 cores)</td></tr><tr><td><strong>Formatting</strong></td><td>Prettier</td><td>OXC Oxfmt</td><td><strong>30×</strong></td></tr><tr><td><strong>Module resolution</strong></td><td>enhanced-resolve</td><td>oxc-resolver</td><td><strong>28×</strong></td></tr></tbody></table>
 <h2 id="oxc--the-full-suite">OXC — The Full Suite</h2>
 <p>OXC (JavaScript Oxidation Compiler) is a collection of Rust tools covering every step of the JS toolchain:</p>
 
@@ -206,14 +261,14 @@ View on GitHub
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
 <p><strong>Jest speedup with @swc/jest:</strong></p>
-<div class="runnable-code-wrapper" data-runnable-id="runnable-38" data-runnable-lang="javascript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// jest.config.js</span></span>
+<div class="runnable-code-wrapper" data-runnable-id="runnable-140" data-runnable-lang="javascript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// jest.config.js</span></span>
 <span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">module</span><span style="color:#24292E;--shiki-dark:#E1E4E8">.</span><span style="color:#005CC5;--shiki-dark:#79B8FF">exports</span><span style="color:#D73A49;--shiki-dark:#F97583"> =</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">  transform: {</span></span>
 <span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">    "^.+</span><span style="color:#005CC5;--shiki-dark:#79B8FF">\\</span><span style="color:#032F62;--shiki-dark:#9ECBFF">.(t|j)sx?$"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"@swc/jest"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">,</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">  },</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">};</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Result: typical 4-10x faster test runs vs. ts-jest</span></span>
-<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// With custom options: ["@swc/jest", { jsc: { target: "es2020" } }]</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-38" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-38" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-38" style="display:none"></pre></div>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// With custom options: ["@swc/jest", { jsc: { target: "es2020" } }]</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-140" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-140" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-140" style="display:none"></pre></div>
 <h2 id="oxc-vs-swc-vs-biome--decision-guide">OXC vs. SWC vs. Biome — Decision Guide</h2>
 
 
