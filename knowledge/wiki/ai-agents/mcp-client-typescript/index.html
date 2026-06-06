@@ -288,6 +288,9 @@ View on GitHub
 <span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">proc_close</span><span style="color:#24292E;--shiki-dark:#E1E4E8">($proc);</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Usage: php client.php path/to/server.py</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-75" type="button">Run PHP</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-75" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-75" style="display:none"></pre></div>
 <h2 id="mcp-content-type-handling">MCP Content Type Handling</h2>
+<blockquote>
+<p><strong>Key insight:</strong> Both clients above use the same content-block mapping: <code>result.content</code> returns typed blocks (<code>TextContent</code>, <code>ImageContent</code>, <code>EmbeddedResource</code>), not plain strings. The mapping step serializes each block to a string Claude can read.</p>
+</blockquote>
 <p>MCP tool results return content blocks, not raw strings. Map them to strings before sending to Claude:</p>
 <div class="runnable-code-wrapper" data-runnable-id="runnable-76" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// TypeScript: extract text from MCP content blocks</span></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">const</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> text</span><span style="color:#D73A49;--shiki-dark:#F97583"> =</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> result.content</span></span>
