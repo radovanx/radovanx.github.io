@@ -413,6 +413,9 @@ View on GitHub
 
 <table><thead><tr><th>Factor</th><th>Local wins</th><th>Cloud wins</th></tr></thead><tbody><tr><td><strong>Privacy</strong></td><td>Sensitive data, proprietary code</td><td>Non-sensitive tasks</td></tr><tr><td><strong>Cost at scale</strong></td><td>High volume, repetitive tasks</td><td>Bursty, irregular usage</td></tr><tr><td><strong>Capability</strong></td><td>Tuned narrow tasks</td><td>General frontier capability</td></tr><tr><td><strong>Latency</strong></td><td>Sub-100ms required</td><td>Latency-tolerant</td></tr><tr><td><strong>Setup cost</strong></td><td>Willing to invest in infra</td><td>Zero-ops required</td></tr><tr><td><strong>Offline</strong></td><td>Air-gapped or field deployments</td><td>Always-connected environments</td></tr></tbody></table>
 <p>The emerging pattern: <strong>hybrid local+cloud</strong> with Manifest routing. Local models handle the 80% of requests that are simple; cloud handles the 20% that require frontier capability. The 70% cost reduction figure assumes this split.</p>
+<blockquote>
+<p><strong>Key insight:</strong> The local vs. cloud decision is now a <em>routing</em> problem, not a binary choice. Manifest classifies each request in under 2ms and sends it to the cheapest model that meets the quality bar — without changing any agent code. Add it as a drop-in API endpoint and the 70% cost reduction is automatic.</p>
+</blockquote>
 <h2 id="cross-references">Cross-References</h2>
 <ul>
 <li><a href="/knowledge/wiki/gemma-4/">gemma 4</a> — full Gemma 4 architecture, E4B/E2B audio models, quantization options</li>
