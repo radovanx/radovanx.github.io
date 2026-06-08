@@ -634,6 +634,9 @@ View on GitHub
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># 2. stdio_client.__aexit__ — terminates the server subprocess</span></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">await</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> stack.aclose()</span></span></code></pre>
 <p><strong>Tool schema bridge for Python:</strong></p>
+<blockquote>
+<p><strong>Key insight:</strong> The field name mismatch between MCP (<code>inputSchema</code>, camelCase) and the Claude API (<code>input_schema</code>, snake_case) is the #1 Python integration gotcha — the API silently ignores tools with a missing <code>input_schema</code>, making it look like the model simply chose not to call any tools.</p>
+</blockquote>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># MCP server → Claude API field mapping</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">available_tools </span><span style="color:#D73A49;--shiki-dark:#F97583">=</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> [</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    {</span></span>
