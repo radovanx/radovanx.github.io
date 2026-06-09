@@ -256,6 +256,15 @@ View on GitHub
 <p>Pick by: task fit, cost at projected volume, latency, context window, structured output support (JSON mode, tool use), and data residency. Benchmarks lie — models are trained on them. Verify on your own eval set.</p>
 <h2 id="post-training-how-models-become-useful">Post-Training: How Models Become Useful</h2>
 <p>Pretraining gives a strong next-token predictor. Post-training makes it follow instructions and behave helpfully.</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    PT["🔢 Pretrained Model\nnext-token predictor"] --> SFT["📋 SFT\nprompt → ideal response\nteaches instruction-following"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    SFT --> PF["⚖️ Preference Finetuning\nprompt + chosen + rejected\nteaches human preferences"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    PF --> PROD["🚀 Production Model\nfollows instructions\nrefuses harmful requests"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style PT fill:#334155,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style SFT fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style PF fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style PROD fill:#166534,color:#fff</span></span></code></pre>
 <p><strong>Supervised finetuning (SFT)</strong> — train on <code>(prompt, ideal response)</code> pairs. Teaches instruction-following and style adoption. Failures: model ignores instructions or drifts back to completion behavior.</p>
 <p><strong>Preference finetuning</strong> — train on <code>(prompt, chosen, rejected)</code> triples. Teaches what humans prefer, not just what to say.</p>
 
