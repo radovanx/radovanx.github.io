@@ -328,7 +328,11 @@ View on GitHub
 
 
 
-<table><thead><tr><th>Model</th><th>Notes</th></tr></thead><tbody><tr><td><strong>Voyage AI voyage-3-large</strong></td><td>Outperforms OpenAI by 14% on RTEB (29 retrieval datasets); strong default</td></tr><tr><td><strong>OpenAI text-embedding-3-large</strong></td><td>3072 dims, Matryoshka truncation, $0.13/M tokens</td></tr><tr><td><strong>Cohere embed-v4</strong></td><td>Multimodal: text + images</td></tr><tr><td><strong>Gemini Embedding 2</strong></td><td>Multimodal (text/images/video/audio), $0.15/M tokens</td></tr><tr><td><strong>BGE-M3</strong></td><td>Self-hosted; strong open-weights option</td></tr></tbody></table>
+
+
+
+
+<table><thead><tr><th>Model</th><th>Notes</th></tr></thead><tbody><tr><td><strong>Voyage AI voyage-4-large</strong></td><td>Outperforms OpenAI text-embedding-3-large by 14% on RTEB (29 retrieval datasets, NDCG@10); strong default (<a href="https://blog.voyageai.com/2026/01/15/voyage-4/">Voyage AI blog</a>)</td></tr><tr><td><strong>Voyage AI voyage-3-large</strong></td><td>Outperforms OpenAI text-embedding-3-large by ~9.74% on RTEB; prior-gen strong option (<a href="https://blog.voyageai.com/2025/01/07/voyage-3-large/">Voyage AI blog</a>)</td></tr><tr><td><strong>OpenAI text-embedding-3-large</strong></td><td>3072 dims, Matryoshka truncation, $0.13/M tokens</td></tr><tr><td><strong>Cohere embed-v4</strong></td><td>Multimodal: text + images</td></tr><tr><td><strong>Gemini Embedding 2</strong></td><td>Multimodal (text/images/video/audio), $0.15/M tokens</td></tr><tr><td><strong>BGE-M3</strong></td><td>Self-hosted; strong open-weights option</td></tr></tbody></table>
 <p>Embeddings from different models are not compatible — switching means re-indexing. Pick once, validate, commit.</p>
 <h2 id="vector-stores">Vector Stores</h2>
 
