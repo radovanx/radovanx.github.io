@@ -185,9 +185,7 @@ View on GitHub
 
 
 <table><thead><tr><th>Layer</th><th>What lives here</th><th>When you go deeper</th></tr></thead><tbody><tr><td><strong>Application layer</strong></td><td>Your code: prompts, RAG, agents, UI, business logic</td><td>Always</td></tr><tr><td><strong>Model development layer</strong></td><td>Finetuning, model merging, distillation, dataset engineering</td><td>When prompting + RAG plateau and you need a behavior the model won’t give consistently</td></tr><tr><td><strong>Infrastructure layer</strong></td><td>GPUs, inference servers (vLLM, TGI), vector DBs, gateways, observability</td><td>When cost, data residency, or hardware constraints make rented inference impractical</td></tr></tbody></table>
-<blockquote>
-<p><strong>Key insight:</strong> You go to layer 2 when prompt engineering and RAG have plateaued. You go to layer 3 when you get pushed there by constraints — most teams that reach layer 3 didn’t plan to. Start in layer 1. The art is knowing when you actually need to go down a layer.</p>
-</blockquote>
+<p>Start in layer 1. Move to layer 2 when prompting and RAG plateau. Most teams that reach layer 3 didn’t plan to — constraints drove them there.</p>
 <h2 id="the-core-decision-framework">The Core Decision Framework</h2>
 <p>The key questions AI Engineering must answer:</p>
 <p><strong>Should I build this?</strong></p>
