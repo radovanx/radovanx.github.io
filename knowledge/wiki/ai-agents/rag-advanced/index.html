@@ -417,6 +417,20 @@ View on GitHub
 <table><thead><tr><th>Type</th><th>Options</th><th>When</th></tr></thead><tbody><tr><td><strong>Libraries</strong></td><td>FAISS (fastest, no metadata), Chroma (embedded), DiskANN</td><td>Prototype or single-node, small-medium corpus</td></tr><tr><td><strong>Databases</strong></td><td>Pinecone, Weaviate, Qdrant, Milvus, pgvector, AlloyDB AI</td><td>Multi-writer, need metadata filtering, HA, multi-tenancy</td></tr></tbody></table>
 <h2 id="query-transformations">Query Transformations</h2>
 <p>A question as written is rarely the best retrieval query.</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q["❓ Original query\n'killing a process on server X'"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q --> RW["✏️ Rewrite\nLLM rewrites to search query\n'terminate job / kill PID server X'\nFixes: poor phrasing"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q --> MQ["🔀 Multiple queries\nGenerate N variants, fuse results\nFixes: narrow / ambiguous"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q --> SB["⬆️ Step-back\nGenerate more general question first\n'How to manage processes on Linux?'\nFixes: overly specific"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q --> HY["🧪 HyDE\nGenerate hypothetical answer → embed it\nFixes: vocabulary mismatch"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q --> DC["✂️ Decompose\nSplit into sub-questions\n'What is process X?' + 'How to kill?'\nFixes: multi-hop"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    RW &#x26; MQ &#x26; SB &#x26; HY &#x26; DC -->|"retrieve + RRF fuse"| OUT["📄 Ranked context → LLM"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style Q fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style HY fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style OUT fill:#166534,color:#fff</span></span></code></pre>
 
 
 
