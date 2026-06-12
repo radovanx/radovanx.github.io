@@ -103,7 +103,17 @@ View on GitHub
 </blockquote>
 <h2 id="architecture">Architecture</h2>
 <p>The wire protocol is dead simple: JSON-RPC over <strong>stdio</strong> (local) or <strong>SSE</strong> (remote). Your AI host on one side, your MCP server on the other — a small program you write in any language.</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>AI Host (Claude, VS Code, …) ←→ JSON-RPC ←→ MCP Server ←→ Your systems</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    H["🤖 AI Host\nClaude · VS Code\nCursor · ChatGPT Desktop"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    M["📡 MCP Server\nyour code\n(TS · Go · Python)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    S["🗄️ Your Systems\nDatabase · REST API\nFiles · CLI tools"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    H &#x3C;-->|"JSON-RPC\nstdio (local)\nSSE (remote)"| M</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    M &#x3C;-->|"native calls"| S</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style H fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style M fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style S fill:#166534,color:#fff</span></span></code></pre>
 <p>Official SDKs: TypeScript (<code>@modelcontextprotocol/sdk</code>), Python (<code>mcp</code>), Go (<code>mcp-go</code>), plus Rust, Java, C#.</p>
 <p><strong>Why Go for MCP servers:</strong> single binary (<code>go build</code> → one file, no <code>node_modules</code>), sub-millisecond startup (MCP servers launch per-session), goroutines handle concurrent tool calls cleanly, and LLMs write clean idiomatic Go.</p>
 <h2 id="minimal-mcp-server">Minimal MCP Server</h2>
@@ -231,11 +241,18 @@ View on GitHub
 </ol>
 <h2 id="security--the-lethal-trifecta">Security — The Lethal Trifecta</h2>
 <p>Simon Willison identified the lethal trifecta (<a href="https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/">Jun 2025</a>): when all three are present, trivial data theft becomes possible:</p>
-<ol>
-<li>Access to private data (the whole point of MCP)</li>
-<li>Exposure to untrusted content (any attacker-controlled text)</li>
-<li>External communication ability (any exfiltration path)</li>
-</ol>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    A["🔑 1. Private Data Access\n(the whole point of MCP)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    B["📨 2. Untrusted Content Exposure\n(any attacker-controlled text)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    C["📡 3. External Comms Ability\n(any exfiltration path)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    D["💥 Trivial Data Theft\nno malware · no stolen creds\njust natural language instructions"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    A &#x26; B &#x26; C --> D</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style A fill:#7f1d1d,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style B fill:#7f1d1d,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style C fill:#7f1d1d,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style D fill:#dc2626,color:#fff</span></span></code></pre>
 <blockquote>
 <p><strong>Real breach (May 2025):</strong> <a href="https://invariantlabs.ai/blog/mcp-github-vulnerability">Invariant Labs disclosed an attack</a> against the official GitHub MCP server. Attack chain: attacker files a malicious public issue with instructions hidden in markdown → developer asks AI to “check the open issues” → AI reads issue and gets prompt-injected → AI calls legitimate tools to exfiltrate private repo data back into a public issue. No malware, no stolen credentials — just natural language instructions in plain sight.</p>
 </blockquote>

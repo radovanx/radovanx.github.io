@@ -104,6 +104,7 @@ View on GitHub
 <li><strong><a href="https://www.linkedin.com/posts/vitalyfriedman_the-six-layers-of-ai-experience">Vitaly Friedman on Six Layers of AI Experience</a></strong> — secondary: Vitaly Friedman amplifying Emily Campbell’s model</li>
 </ul>
 <p>UX is people. You don’t need a psychology degree — but the principles that govern human perception, memory, and decision-making directly determine whether an interface succeeds or fails. This applies doubly to AI products, where new failure modes like automation bias and delegation creep layer on top of classical UX psychology.</p>
+<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/ux-cognition-principles/800/400" alt="Psychology for UX — NN/g&#x27;s 10-domain cognitive framework underpins every design decision that matters" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #BD93F9dd, #C084FC88, #C4956Acc);"></div><div class="section-hero-gradient" style="background: radial-gradient(78% 78% at 36% 22%, #BD93F9, transparent), radial-gradient(77% 77% at 71% 75%, #C084FC, transparent), radial-gradient(76% 76% at 59% 47%, #D4A574, transparent), linear-gradient(74deg, #BD93F9, #C4956A);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Psychology for UX — NN/g's 10-domain cognitive framework underpins every design decision that matters</span></div><p></p>
 <blockquote>
 <p><strong>Key insight:</strong> Don Norman (NN/g principal) calls himself a “cognitive designer” because regardless of the type of product, what matters is designing systems for how people actually think — not who we wish they were.</p>
 </blockquote>
@@ -135,16 +136,23 @@ View on GitHub
 <p><strong>Design implication:</strong> Don’t rely on subtle visual cues to communicate important status changes. Make critical information appear in the user’s focus path, not the periphery.</p>
 <h3 id="2-gestalt-principles--how-we-perceive-groups">2. Gestalt Principles — How We Perceive Groups</h3>
 <p>People impose structure on what they see. These six heuristics determine what gets grouped together:</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>┌────────────────────────────────────────────┐</span></span>
-<span class="line"><span>│  Common Region  │  Items sharing a border  │</span></span>
-<span class="line"><span>│                 │  are perceived as a group │</span></span>
-<span class="line"><span>├─────────────────┼──────────────────────────┤</span></span>
-<span class="line"><span>│  Proximity      │  Close items = one group  │</span></span>
-<span class="line"><span>│  Similarity     │  Alike items = one group  │</span></span>
-<span class="line"><span>│  Closure        │  Gaps get filled in       │</span></span>
-<span class="line"><span>│  Continuity     │  Follow the smoothest     │</span></span>
-<span class="line"><span>│  Figure/Ground  │  One object, one backdrop │</span></span>
-<span class="line"><span>└─────────────────┴──────────────────────────┘</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    CR["📦 Common Region\nItems inside a border → one group\nCards, panels, containers"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    PR["⬛⬛ Proximity\nClose items → one group\nNavigation clusters, form fields"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    SIM["🔵🔵🔵 Similarity\nAlike items → one group\nRepeating icons, matched colors"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    CLO["⬤ - - ⬤ Closure\nGaps get filled in\nLogos with missing pieces"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    CON["——→ Continuity\nEye follows smoothest path\nProgress bars, carousels"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    FG["● on ░░ Figure/Ground\nOne object pops, rest recedes\nModals, tooltips, overlays"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    CR &#x26; PR &#x26; SIM &#x26; CLO &#x26; CON &#x26; FG --> OUT["🧠 Perceived structure\nbefore reading a word"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style CR fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style PR fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style SIM fill:#059669,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style CLO fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style CON fill:#d97706,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style FG fill:#374151,color:#d1d5db</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style OUT fill:#166534,color:#fff</span></span></code></pre>
 <p><strong>Design implication:</strong> Card containers, visual grouping, whitespace, and alignment communicate structure before a word is read.</p>
 <h3 id="3-memory--working-memory-is-tiny">3. Memory — Working Memory Is Tiny</h3>
 <p>Humans hold a limited number of chunks in working memory at once. <a href="https://psychclassics.yorku.ca/Miller/">Miller (1956)</a> proposed 7±2 items; <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4486516/">Cowan (2001)</a> refined this to ~4±1 chunks when controlling for implicit re-chunking. For UX purposes: assume 4–5 meaningful items before cognitive overload. Recognition beats recall — users remember something they see, but struggle to retrieve it from nothing.</p>
@@ -208,6 +216,7 @@ View on GitHub
 <span class="line"><span>   where D = distance, W = target width</span></span></code></pre>
 <p><strong>Design implication:</strong> Primary actions should be large and near the user’s current position. Don’t put destructive actions next to common ones.</p>
 <hr>
+<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/ai-bias-ux-design/800/400" alt="AI-specific cognitive biases — new failure modes that layer on top of classical UX psychology in AI-powered products" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #86EFACdd, #6EE7B788, #2DD4BFcc);"></div><div class="section-hero-gradient" style="background: radial-gradient(85% 85% at 74% 72%, #86EFAC, transparent), radial-gradient(73% 73% at 47% 85%, #6EE7B7, transparent), radial-gradient(59% 59% at 83% 42%, #5EEAD4, transparent), linear-gradient(257deg, #86EFAC, #2DD4BF);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">AI-specific cognitive biases — new failure modes that layer on top of classical UX psychology in AI-powered products</span></div><p></p>
 <h2 id="ai-specific-cognitive-biases">AI-Specific Cognitive Biases</h2>
 <p>The Decision Lab’s bias catalog includes entries that didn’t exist ten years ago — specific to how humans misperceive and misuse AI systems:</p>
 
