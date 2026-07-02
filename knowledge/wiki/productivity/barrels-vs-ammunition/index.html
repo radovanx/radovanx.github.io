@@ -317,12 +317,49 @@ View on GitHub
 <p>Martin Fowler and Kent Beck’s <a href="https://www.youtube.com/watch?v=CZs8J1ZD0CE">Pragmatic Summit 2026</a> framing independently validates the barrel/ammunition distinction through a different lens. They describe engineers becoming “managers of multiple agents” — the same transformation Rabois describes, but from a craft perspective.</p>
 <p>Their key observation: the industrial revolution transformed craftsmen into managers of machinery, and AI similarly transforms engineers from individual coders into orchestrators of agent fleets. Crucially, <strong>not all engineers make this transition successfully.</strong> Those who keep maximizing personal coding output (ammunition behavior) lose relative to those who learn to direct agents toward outcomes (barrel behavior).</p>
 <p>Fowler identified two competing outcomes: (1) downsizing — same output with fewer humans, and (2) amplification — same team size with dramatically higher throughput. The evidence suggests both happen — in different organizations based on their barrel density. High barrel-density teams amplify; ammunition-heavy teams downsize.</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph History["🏭 Industrial Revolution (1800s)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        C1["Craftsman\n(solo artisan)"] -->|"factory automation"| FM["Factory Manager\n(directs machinery)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Now["🤖 AI Era (2020s)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        C2["Developer\n(solo coder)"] -->|"AI agents"| AM["Agent Manager\n(directs agent fleets)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    History -->|"same transformation\n200 years later"| Now</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style C1 fill:#6b7280,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style FM fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style C2 fill:#6b7280,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style AM fill:#059669,color:#fff</span></span></code></pre>
 <blockquote>
 <p><strong>Key insight:</strong> Rabois identifies the pattern from a hiring/investment lens; Fowler &#x26; Beck validate it from a craft/history lens. The “engineer as agent manager” is the technical form of the barrel: ownership + direction + judgment, now applied to agent fleets.</p>
 </blockquote>
 <h2 id="customer-feedback-contrarianism">Customer Feedback Contrarianism</h2>
-<p>For <strong>consumer products</strong>: direct customer feedback is actively harmful. Customers describe the product they already know — not the product you could build. Product intuition beats customer research when the innovation space is genuinely novel.</p>
-<p>For <strong>B2B/enterprise</strong>: customer feedback remains valuable. Customers have existing workflows and real operational pain — hearing it directly produces actionable improvements.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Product type</th><th>Use customer feedback?</th><th>Why</th></tr></thead><tbody><tr><td><strong>Consumer (novel)</strong></td><td>No — trust product intuition</td><td>Customers describe what exists, not what’s possible</td></tr><tr><td><strong>B2B / enterprise</strong></td><td>Yes — actively seek it</td><td>Real operational pain produces actionable improvements</td></tr><tr><td><strong>Existing products</strong></td><td>Yes — structured research</td><td>Improving known things → feedback reliably narrows the gap</td></tr></tbody></table>
 <p>The distinction is whether you’re building something that exists (improve it) or something that doesn’t yet (invent it). Steve Jobs famously rejected customer research for truly new products; Apple runs structured research for existing product improvements.</p>
 <h2 id="identifying-barrels">Identifying Barrels</h2>
 <p>Rabois’ interview question for every senior candidate: describe a project where you took ownership end-to-end and shipped it. The answer reveals whether someone has barrel experience or ammunition experience. Technical depth matters less than ownership history.</p>
