@@ -188,7 +188,7 @@ View on GitHub
 <li><strong>Optimized Persistence</strong> — Enriched records written back as second-by-second multi-modal index</li>
 </ol>
 <p>This is the same principle as <a href="/knowledge/wiki/agent-design-patterns/">knowledge compilation</a> applied to perception: instead of reasoning across raw model outputs at query time (unreliable), <strong>pre-compute the intersections</strong> so queries just look up fused records (reliable).</p>
-<div class="runnable-code-wrapper" data-runnable-id="runnable-116" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">/**</span></span>
+<div class="runnable-code-wrapper" data-runnable-id="runnable-102" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">/**</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"> * Temporal Bucket Fusion — Netflix's pattern for synchronizing</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"> * multimodal AI model outputs into a unified search index.</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"> *</span></span>
@@ -238,8 +238,8 @@ View on GitHub
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">  };</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">  // "Joey" + "kitchen" at second 4 → one fused record</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">  // Queries can now find "Joey in the kitchen" without cross-referencing separate model outputs</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-116" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-116" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-116" style="display:none"></pre></div>
-<div class="runnable-code-wrapper" data-runnable-id="runnable-117" data-runnable-lang="php"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">&#x3C;?</span><span style="color:#005CC5;--shiki-dark:#79B8FF">php</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-102" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-102" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-102" style="display:none"></pre></div>
+<div class="runnable-code-wrapper" data-runnable-id="runnable-103" data-runnable-lang="php"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">&#x3C;?</span><span style="color:#005CC5;--shiki-dark:#79B8FF">php</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">/**</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"> * Temporal Bucket Fusion — PHP equivalent</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"> * Reference: Netflix Technology Blog, "Synchronizing the Senses" (April 2026)</span></span>
@@ -296,18 +296,74 @@ View on GitHub
 <span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">        sourceAnnotations</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">array_merge</span><span style="color:#24292E;--shiki-dark:#E1E4E8">($existing</span><span style="color:#D73A49;--shiki-dark:#F97583">-></span><span style="color:#24292E;--shiki-dark:#E1E4E8">sourceAnnotations, $incoming</span><span style="color:#D73A49;--shiki-dark:#F97583">-></span><span style="color:#24292E;--shiki-dark:#E1E4E8">sourceAnnotations),</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    );</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">    // "Joey" + "kitchen" at second 4 → one fused record</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-117" type="button">Run PHP</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-117" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-117" style="display:none"></pre></div>
-<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/netflix-multimodal-video/800/400" alt="Netflix multimodal video search — temporal bucket fusion: specialized models (character, scene, dialogue, embedding) synchronized into a unified chronological index enabling sub-second queries across 216M+ frames" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #D4A574dd, #C4956A88, #A67750cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(82% 82% at 75% 24%, #D4A574, transparent), radial-gradient(51% 51% at 53% 34%, #C4956A, transparent), radial-gradient(75% 75% at 48% 20%, #B8865E, transparent), radial-gradient(59% 59% at 28% 80%, #A67750, transparent), linear-gradient(66deg, #D4A574, #A67750);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Netflix multimodal video search — temporal bucket fusion: specialized models (character, scene, dialogue, embedding) synchronized into a unified chronological index enabling sub-second queries across 216M+ frames</span></div><p></p>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-103" type="button">Run PHP</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-103" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-103" style="display:none"></pre></div>
 <h2 id="hybrid-search-symbolic--semantic">Hybrid Search: Symbolic + Semantic</h2>
 <p>The query engine combines text matching with vector search — neither alone is reliable enough:</p>
-<ul>
-<li><strong>Exact vs. Approximate Vector Search</strong> — Toggle between exact k-NN (uncompromising precision) and ANN via <a href="https://en.wikipedia.org/wiki/Hierarchical_navigable_small_world">HNSW</a> (speed at massive scale)</li>
-<li><strong>Dynamic Similarity Metrics</strong> — Cosine similarity and Euclidean distance, swappable per model</li>
-<li><strong>Phrase Matching with Slop</strong> — <code>match-phrase</code> queries with configurable proximity tolerance. “Friends don’t lie” finds the correct Stranger Things scene even if the user’s memory slightly deviates</li>
-<li><strong>N-Gram Search-as-You-Type</strong> — Edge N-gram tokenizers index dialogue substrings for frame-accurate results as editors type</li>
-<li><strong>Levenshtein Fuzzy Matching</strong> — Accounts for transcription anomalies and phonetic misspellings</li>
-<li><strong>Result Curation</strong> — Post-processing reconstructs original time boundaries using <strong>union</strong> (full span) or <strong>intersection</strong> (exact overlap) logic</li>
-</ul>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q["🔍 Query\n'Joey in the kitchen'"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Symbolic["Symbolic — exact &#x26; fuzzy"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        PM["Phrase Matching + Slop\n'Friends don't lie' → Stranger Things"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        NG["N-Gram Search-as-You-Type\nedge n-grams on dialogue substrings"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        LV["Levenshtein Fuzzy\ncovers transcription anomalies"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Semantic["Semantic — vector"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        KNN["Exact k-NN\nuncompromising precision"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        ANN["ANN via HNSW\nspeed at 216M+ frame scale"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        CS["Cosine / Euclidean\nswappable per model"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Curation["Result Curation"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        UN["Union — full time span"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        IN["Intersection — exact overlap"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q --> Symbolic &#x26; Semantic</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Symbolic &#x26; Semantic --> Curation</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Curation --> R["✅ Ranked Results\n&#x3C; 1s latency"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style Q fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style R fill:#059669,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style Symbolic fill:#1e293b,color:#94a3b8</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style Semantic fill:#1e293b,color:#94a3b8</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style Curation fill:#1e293b,color:#94a3b8</span></span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Technique</th><th>Catches</th><th>Misses</th></tr></thead><tbody><tr><td>Exact k-NN</td><td>Uncompromising precision</td><td>Slow at 216M+ frame scale</td></tr><tr><td>ANN (HNSW)</td><td>Near-instant at scale</td><td>Approximate — can miss edge cases</td></tr><tr><td>Phrase matching + slop</td><td>Exact names, specific quotes</td><td>Semantic variation</td></tr><tr><td>N-gram search</td><td>Frame-accurate as-you-type</td><td>Only surface tokens, not meaning</td></tr><tr><td>Levenshtein fuzzy</td><td>Transcription errors, phonetics</td><td>High-confidence exact match speed</td></tr></tbody></table>
 <p>Symbolic text matching catches what vector search misses (exact names, specific phrases), and vector search catches what text matching misses (semantic similarity, visual context). The combination is more reliable than either alone.</p>
 <h2 id="future-from-search-engine-to-creative-partner">Future: From Search Engine to Creative Partner</h2>
 <p>Netflix’s roadmap points to three reliability evolutions:</p>

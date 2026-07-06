@@ -136,12 +136,32 @@ View on GitHub
 <p><strong>Key insight:</strong> The session model is stateful by default — file system and conversation persist. This eliminates custom state management that plagues DIY agent harnesses.</p>
 </blockquote>
 <h2 id="built-in-tools">Built-in Tools</h2>
-<ul>
-<li><strong>Bash</strong> — shell commands in the container</li>
-<li><strong>File operations</strong> — read, write, edit, glob, grep</li>
-<li><strong>Web search and fetch</strong> — browse the web, retrieve content</li>
-<li><strong>MCP servers</strong> — connect to external tool providers (Slack, databases, APIs)</li>
-</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Tool</th><th>Capability</th></tr></thead><tbody><tr><td><strong>Bash</strong></td><td>Shell commands in the container</td></tr><tr><td><strong>File operations</strong></td><td>Read, write, edit, glob, grep</td></tr><tr><td><strong>Web search and fetch</strong></td><td>Browse the web, retrieve content</td></tr><tr><td><strong>MCP servers</strong></td><td>Connect to external tool providers (Slack, databases, APIs)</td></tr></tbody></table>
 <h2 id="why-this-matters-for-agent-reliability">Why This Matters for Agent Reliability</h2>
 <p>This is <strong>Pattern 4</strong> in the <a href="/knowledge/wiki/ai-agent-reliability/">AI Agent Reliability</a> framework: <strong>Managed Agent Infrastructure</strong>. Instead of each developer building their own agent loop (and introducing their own bugs), Anthropic provides a battle-tested harness with:</p>
 <ul>
@@ -155,11 +175,32 @@ View on GitHub
 </blockquote>
 <h2 id="research-preview-features">Research Preview Features</h2>
 <p>Three capabilities in early access:</p>
-<ul>
-<li><strong>Outcomes</strong> — define success criteria for agent sessions</li>
-<li><strong>Multi-agent</strong> — orchestrate multiple agents collaborating</li>
-<li><strong>Memory</strong> — persistent agent memory across sessions</li>
-</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Feature</th><th>What it does</th><th>Why it matters</th></tr></thead><tbody><tr><td><strong>Outcomes</strong></td><td>Define success criteria for agent sessions</td><td>Agents can self-evaluate without human inspection of every run</td></tr><tr><td><strong>Multi-agent</strong></td><td>Orchestrate multiple agents collaborating</td><td>Parallel execution of independent sub-tasks; specialist agents per domain</td></tr><tr><td><strong>Memory</strong></td><td>Persistent agent memory across sessions</td><td>Eliminates re-derivation overhead; agents accumulate domain knowledge over time</td></tr></tbody></table>
 <h2 id="this-wiki-as-case-study">This Wiki as Case Study</h2>
 <p>This knowledge wiki uses managed agents indirectly through Claude Code cloud triggers — scheduled sessions that run the daily ingest and weekly recompile operations. The trigger creates a session, the agent reads CLAUDE.md, processes the inbox, and pushes changes. The infrastructure handles sandboxing, tool execution, and git operations.</p>
 <h2 id="cross-references">Cross-References</h2>
