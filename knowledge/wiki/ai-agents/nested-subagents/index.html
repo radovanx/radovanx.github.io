@@ -55,6 +55,7 @@ View on GitHub
 <h2 id="sources">Sources</h2>
 <ul>
 <li><strong><a href="https://claudefa.st/blog/guide/agents/nested-subagents">claudefa.st — Claude Code Nested Subagents: 5 Levels Deep</a></strong> — shipped in v2.1.172; context management mechanics, workflow patterns, token cost analysis, comparison with Codex</li>
+<li><strong><a href="https://chatforest.com/builders-log/claude-code-nested-sub-agents-depth-5-token-math-builder-guide/">ChatForest — Claude Code v2.1.172: Nested Sub-Agents Are Here</a></strong> — second source confirming release date, 5-level cap, 7× token cost baseline, and community reaction</li>
 </ul>
 <p>Shipped in <strong>Claude Code v2.1.172</strong> (June 9, 2026) by Boris Cherny: subagents can now spawn their own subagents, up to <strong>five levels deep</strong>. Previously, subagents were leaf nodes — they did their work and returned a result. Now any subagent can call the Agent tool itself, and that chain can recurse down five levels.</p>
 <blockquote>
@@ -71,19 +72,19 @@ View on GitHub
 <p>Each child does dirty work in its throwaway window and returns one clean verdict. The parent’s context stays lean. The main thread sees four clean verdicts instead of raw log dumps.</p>
 <p><strong>Mental model:</strong> push noisy tool-calling as far from the main conversation as possible so only distilled signal flows upward. Important decisions happen early, in a high-signal context window that was never polluted.</p>
 <h2 id="what-shipped-in-v21172">What Shipped in v2.1.172</h2>
-<p>The plumbing was laid down weeks earlier:</p>
+<p>The plumbing was laid down weeks earlier (sub-version details from <a href="https://claudefa.st/blog/guide/agents/nested-subagents">claudefa.st — single source, needs second verification</a>):</p>
 <ul>
-<li><strong>v2.1.139</strong> — added <code>x-claude-code-agent-id</code> and <code>x-claude-code-parent-agent-id</code> headers to every API request a subagent makes; <code>agent_id</code> + <code>parent_agent_id</code> OTEL span attributes</li>
-<li><strong>v2.1.145</strong> — extended lineage tracking to <code>claude_code.tool</code> spans; fixed trace parenting so a background subagent’s spans nest under the dispatching Agent tool span</li>
-<li><strong>v2.1.172</strong> — turned on the actual recursion; fixed a bug where a background subagent stayed stuck as “active” after a nested agent it spawned was stopped</li>
+<li><strong>v2.1.139</strong> — added <code>x-claude-code-agent-id</code> and <code>x-claude-code-parent-agent-id</code> headers to every API request a subagent makes; <code>agent_id</code> + <code>parent_agent_id</code> OTEL span attributes (single source — needs verification)</li>
+<li><strong>v2.1.145</strong> — extended lineage tracking to <code>claude_code.tool</code> spans; fixed trace parenting so a background subagent’s spans nest under the dispatching Agent tool span (single source — needs verification)</li>
+<li><strong>v2.1.172</strong> — turned on the actual recursion; fixed a bug where a background subagent stayed stuck as “active” after a nested agent it spawned was stopped (<a href="https://claudefa.st/blog/guide/agents/nested-subagents">claudefa.st</a>, <a href="https://chatforest.com/builders-log/claude-code-nested-sub-agents-depth-5-token-math-builder-guide/">chatforest.com</a>)</li>
 </ul>
 <p>If you run OpenTelemetry, you already have the observability to watch a nested run as a proper tree.</p>
 <h2 id="the-docs-contradiction">The Docs Contradiction</h2>
-<p>As of July 2026, the official Claude Code docs still say in three separate places:</p>
+<p>Shortly after v2.1.172 shipped, the official Claude Code docs said in three separate places:</p>
 <blockquote>
 <p>“Subagents cannot spawn other subagents.”</p>
 </blockquote>
-<p>All three are stale. The shipped binary contradicts the published docs — normal for a same-week release. Trust the changelog and test it yourself; the docs will catch up. If a subagent doesn’t nest when you expect it to, don’t rely on documentation to explain why.</p>
+<p>All three were stale. The shipped binary contradicted the published docs. As of July 2026, the official docs have been partially updated — the subagents page now includes a “Spawn nested subagents” section — but older sections with the outdated restriction remain (<a href="https://github.com/anthropics/claude-code/issues/70450">confirmed via GitHub issue #70450</a> and <a href="https://ofox.ai/blog/claude-code-nested-subagents-2026/">ofox.ai, July 2026</a>). Trust the changelog and test it yourself. If a subagent doesn’t nest when you expect it to, check the version, not just the docs.</p>
 <h2 id="mechanics">Mechanics</h2>
 <p>Three properties define nested subagent behavior:</p>
 
@@ -176,11 +177,11 @@ View on GitHub
 <p><strong>Key insight:</strong> The shape matches orchestration patterns you already know — the one new degree of freedom is that workers can now recurse. <a href="/knowledge/wiki/claude-code-agent-teams/">Agent Teams</a> go <em>wide</em> (peer coordination); nested subagents go <em>deep</em> (hierarchical isolation). Different tools for different problems.</p>
 </blockquote>
 <h2 id="token-costs-and-when-not-to-nest">Token Costs and When Not To Nest</h2>
-<p>Subagent-heavy workflows already run roughly <strong>7× the tokens</strong> of a single-threaded session. Add layers, and each layer can fan out again — <strong>cost grows geometrically, not linearly</strong>.</p>
+<p>Subagent-heavy workflows already run roughly <strong>7× the tokens</strong> of a single-threaded session (<a href="https://code.claude.com/docs/en/costs">Anthropic cost docs</a>, <a href="https://chatforest.com/builders-log/claude-code-nested-sub-agents-depth-5-token-math-builder-guide/">chatforest.com</a>). Add layers, and each layer can fan out again — <strong>cost grows geometrically, not linearly</strong>.</p>
 <blockquote>
-<p>One developer summed up the risk: “one token here costs 20k on the main thread.”</p>
+<p>One developer summed up the risk: “one token here costs 20k on the main thread.” (<a href="https://claudefa.st/blog/guide/agents/nested-subagents">claudefa.st</a>)</p>
 </blockquote>
-<p>Early community reaction: ~64% positive, ~35% negative. The negatives: token cost multiplication, rate-limit pressure, quality uncertainty four or five levels down (furthest from original intent).</p>
+<p>Early community reaction: ~64% positive, ~35% negative (<a href="https://claudefa.st/blog/guide/agents/nested-subagents">claudefa.st</a>). The negatives: token cost multiplication, rate-limit pressure, quality uncertainty four or five levels down (furthest from original intent).</p>
 <p><strong>When nesting helps:</strong></p>
 <ul>
 <li>Task has multiple noisy investigation steps that would pollute the parent’s context</li>
