@@ -386,6 +386,32 @@ View on GitHub
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="color:#22863A;--shiki-dark:#85E89D">button</span><span style="color:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
 <h2 id="4-silent-dynamic-updates">4. Silent Dynamic Updates</h2>
 <p>When content updates dynamically (toast notification appears, form error shows, filter results change), screen readers don’t automatically announce the change unless you tell them to.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th><code>aria-live</code> value</th><th>Timing</th><th>Use for</th></tr></thead><tbody><tr><td><code>polite</code></td><td>Waits for user to finish speaking</td><td>Form errors, filter counts, status messages</td></tr><tr><td><code>assertive</code></td><td>Interrupts immediately</td><td>Critical errors, security warnings, blocking issues</td></tr><tr><td><code>off</code> (default)</td><td>Never announces</td><td>Decorative regions, not relevant to task</td></tr></tbody></table>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// ❌ Error message renders but screen reader doesn't know</span></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">function</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> FormField</span><span style="color:#24292E;--shiki-dark:#E1E4E8">({ </span><span style="color:#E36209;--shiki-dark:#FFAB70">error</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> }) {</span></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">  return</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> (</span></span>
