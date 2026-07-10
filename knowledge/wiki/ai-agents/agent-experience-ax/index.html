@@ -111,6 +111,7 @@ View on GitHub
 <ul>
 <li><strong><a href="https://evilmartians.com/events/matt-biilmann-netlify">Matt Biilmann of Netlify: agent experience is the new developer experience</a></strong> — full podcast transcript: origin of the term “AX,” the four pillars, walled gardens, code review future, 17M → 3B developers (Evil Martians Dev Propulsion Labs, 2026)</li>
 </ul>
+<p></p><div class="section-hero-image"><img src="https://evilmartians.com/social-cards/events/matt-biilmann-netlify.jpg" alt="Matt Biilmann (Netlify CEO) on Agent Experience as the new Developer Experience — the four pillars of AX: access, context, tools, and orchestration (Evil Martians Dev Propulsion Labs, 2026)" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #86EFACdd, #6EE7B788, #2DD4BFcc);"></div><div class="section-hero-gradient" style="background: radial-gradient(75% 75% at 35% 37%, #86EFAC, transparent), radial-gradient(83% 83% at 83% 31%, #6EE7B7, transparent), radial-gradient(73% 73% at 36% 67%, #5EEAD4, transparent), linear-gradient(68deg, #86EFAC, #2DD4BF);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Matt Biilmann (Netlify CEO) on Agent Experience as the new Developer Experience — the four pillars of AX: access, context, tools, and orchestration (Evil Martians Dev Propulsion Labs, 2026)</span></div><p></p>
 <p>Matt Biilmann, CEO of Netlify, coined the term <strong>Agent Experience (AX)</strong> in late 2022 and made it Netlify’s product North Star in January 2025 — the successor to Developer Experience (DX) for the agent era.</p>
 <blockquote>
 <p><strong>Key insight:</strong> Developer Experience was our North Star for 10 years. Agent Experience will be the North Star for the next decade. Any product that isn’t great for agents to use will become irrelevant — because between the user and the product there is now an agent, and if the agent stumbles, the human is poorly served.</p>
@@ -161,6 +162,22 @@ View on GitHub
 <p><strong>Linear</strong> nailed this early: one click from a Linear ticket → kick off any coding agent. Their Netlify Agent Runners integration extends this pattern.</p>
 <p><strong>Anti-pattern (Asana):</strong> built vendor-specific agents inside the product. People who’ve invested in their own Claude Code stack don’t want random vendor agents — they want their own agent to reach into the product. Walled gardens break this.</p>
 <h2 id="walled-gardens-will-not-survive">Walled Gardens Will Not Survive</h2>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Closed["❌ Walled Garden"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        direction TB</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        D["User data\n(locked in)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        VA["Vendor agent\n(only option)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        D &#x3C;--> VA</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Open["✅ Open Ecosystem"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        direction TB</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        D2["User data\n(portable)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        CA["Claude Code"] &#x26; CO["Codex"] &#x26; GA["Gemini CLI"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        D2 &#x3C;--> CA &#x26; CO &#x26; GA</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Closed -->|"user extracts data → questions why they paid"| Open</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style Closed fill:#7f1d1d,color:#fca5a5</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style Open fill:#064e3b,color:#6ee7b7</span></span></code></pre>
 <p>SaaS companies are tempted to wall off data and control which agents can touch it, treating this as better monetization. Biilmann’s counter: <strong>people will start pulling their data out so their own agents can work with it. Once data lives outside the product, they’ll question why they’re putting it in the product at all.</strong></p>
 <p>The open ecosystem beats the walled garden in the agent era just as it beat the walled garden in the developer tool era.</p>
 <h2 id="code-review-is-a-transitional-state">Code Review Is a Transitional State</h2>
@@ -170,6 +187,27 @@ View on GitHub
 </blockquote>
 <p>The tooling for this isn’t production-ready in 2026, but Biilmann expects real production cases within a year. When that happens, teams who’ve adopted the flywheel will experience a sharp acceleration.</p>
 <h2 id="17-million--3-billion-developers">17 Million → 3 Billion Developers</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Era</th><th>Audience</th><th>Gatekeeping</th></tr></thead><tbody><tr><td>Pre-AX (before 2025)</td><td>~17M professional JS developers</td><td>Writing code required</td></tr><tr><td>Post-AX (2025+)</td><td>~3B technical users</td><td>English + intent is enough</td></tr></tbody></table>
 <p>Until end of 2024, Netlify’s realistic audience: ~17 million professional JavaScript developers (Biilmann’s framing; likely based on <a href="https://www.slashdata.co/free-industry-reports/24th-edition---state-of-the-developer-nation">SlashData Q1 2022 data</a> showing ~17.5M JS developers — <a href="https://www.slashdata.co/post/javascript-has-28-million-users-what-this-reveals-about-the-future-of-global-tech-teams">Q1 2025 SlashData data</a> shows this has grown to ~28M). The AX bet expands this to ~3 billion — anyone technical enough to use spreadsheets. A chiropractor built his clinic website himself on Netlify. He would never have been a developer before.</p>
 <p><strong>The printing press analogy:</strong> Reading and writing went from the specialized profession of scribes to a baseline expectation. <em>Computer literacy used to mean knowing how to use a computer; now it’s going to include being able to build software.</em></p>
 <p>Specialists will still exist. The binary of “developer or not” will dissolve.</p>
