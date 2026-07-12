@@ -213,7 +213,19 @@ View on GitHub
 
 
 <table><thead><tr><th>Scenario</th><th>n-dx approach</th></tr></thead><tbody><tr><td><strong>Codebase onboarding</strong></td><td>sourcevision maps file inventory, import graph, zones on first run — new contributors get oriented in minutes</td></tr><tr><td><strong>Vibe-coded cleanup</strong></td><td>Detects patterns/anti-patterns across zones, generates prioritized cleanup backlog, executes fixes autonomously</td></tr><tr><td><strong>Spec-driven development</strong></td><td>PRD drives execution — every task traceable back to spec</td></tr><tr><td><strong>Ongoing change management</strong></td><td><code>ndx self-heal N</code> keeps plan current without manual tracking</td></tr></tbody></table>
-<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/n-dx-web-dashboard/800/400" alt="n-dx web dashboard — ndx start launches zone maps, task tree, and epic progress at localhost:3117; visualizes the living PRD and codebase topology produced by sourcevision" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #FDA4AFdd, #F9A8D488, #C4B5FDcc);"></div><div class="section-hero-gradient" style="background: radial-gradient(76% 76% at 40% 59%, #FDA4AF, transparent), radial-gradient(58% 58% at 19% 67%, #F9A8D4, transparent), radial-gradient(69% 69% at 47% 56%, #D8B4FE, transparent), linear-gradient(215deg, #FDA4AF, #C4B5FD);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">n-dx web dashboard — ndx start launches zone maps, task tree, and epic progress at localhost:3117; visualizes the living PRD and codebase topology produced by sourcevision</span></div><p></p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Dashboard["ndx start → localhost:3117"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        ZM["🗺️ Zone Maps\nfile topology\nclustered by import graph"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        TT["🌳 Task Tree\nepics → features → tasks\nwith status indicators"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        EP["📊 Epic Progress\ntask completion\nper spec item"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    SV["sourcevision\nanalyze . output"] --> ZM &#x26; TT &#x26; EP</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style ZM fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style TT fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style EP fill:#166534,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style SV fill:#d97706,color:#fff</span></span></code></pre>
 <h2 id="comparison">Comparison</h2>
 
 
