@@ -110,6 +110,9 @@ View on GitHub
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">    // vs RAG: re-derives the same connections on every query</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-114" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-114" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-114" style="display:none"></pre></div>
+<blockquote>
+<p><strong>Key insight:</strong> The <code>ingest()</code> method returns <strong>a list of pages updated</strong> — not a single page. One source fans out across multiple wiki articles, enriching the network rather than creating a 1:1 bookmark.</p>
+</blockquote>
 <h2 id="php--cms-backed-wiki-compilation">PHP — CMS-Backed Wiki Compilation</h2>
 <div class="runnable-code-wrapper" data-runnable-id="runnable-115" data-runnable-lang="php"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">&#x3C;?</span><span style="color:#005CC5;--shiki-dark:#79B8FF">php</span></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">class</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> KnowledgeBase</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
