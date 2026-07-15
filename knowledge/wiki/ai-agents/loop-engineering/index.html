@@ -227,12 +227,21 @@ View on GitHub
 <p>Model and effort level choices are among the biggest token levers. Route simpler stages to cheaper models.</p>
 <h2 id="getting-started">Getting Started</h2>
 <p>Pick one task where you’re the bottleneck and ask which piece you could hand off:</p>
-<ol>
-<li><strong>Can you write the verification check?</strong> → Turn-based with a SKILL.md</li>
-<li><strong>Is the goal clear and measurable?</strong> → Goal-based with <code>/goal</code></li>
-<li><strong>Does the work arrive on a schedule?</strong> → Time-based with <code>/loop</code> or <code>/schedule</code></li>
-<li><strong>Is the work recurring and well-defined?</strong> → Proactive with all primitives</li>
-</ol>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q1["Can you write\nthe verification check?"] -->|"Yes"| TB["Turn-based\n+ SKILL.md"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q1 -->|"Not yet"| Q2["Is the goal clear\nand measurable?"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q2 -->|"Yes"| GB["Goal-based\n/goal"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q2 -->|"Not yet"| Q3["Does work arrive\non a schedule?"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q3 -->|"Yes"| TM["Time-based\n/loop or /schedule"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Q3 -->|"Recurring\n&#x26; well-defined"| PR["Proactive\nAll primitives"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style TB fill:#1e3a5f,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style GB fill:#0e7490,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style TM fill:#166534,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style PR fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style Q1 fill:#334155,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style Q2 fill:#334155,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style Q3 fill:#334155,color:#fff</span></span></code></pre>
 <p>Run the loop, observe where it stalls or over-reaches, and iterate on the system.</p>
 <h2 id="cross-references">Cross-References</h2>
 <ul>
