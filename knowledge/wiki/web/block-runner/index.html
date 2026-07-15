@@ -275,6 +275,7 @@ View on GitHub
 
 
 <table><thead><tr><th>Model + complexity</th><th>Raw model</th><th>+ Block Runner</th></tr></thead><tbody><tr><td>Opus 4.8 High — Simple</td><td>35%</td><td>93%</td></tr><tr><td>GPT-5.5 High — Simple</td><td>54%</td><td>95%</td></tr><tr><td>Opus 4.8 High — Complex</td><td>73%</td><td><strong>99%</strong></td></tr><tr><td>GPT-5.5 High — Complex</td><td>35%</td><td>94%</td></tr></tbody></table>
+<p><em>(single source — specific per-model scores from <a href="https://www.accelerateplugin.com/block-runner/">accelerateplugin.com</a>; the <a href="https://github.com/humanmade/block-runner">public repository README</a> confirms aggregate ranges of 35–73% raw and 93–99% with Block Runner, but per-model/complexity breakdowns require running <code>npm run bench</code> locally)</em></p>
 <p>Block Runner turns model-specific raw output into consistently near-perfect block trees regardless of the underlying model.</p>
 <h2 id="two-modes">Two Modes</h2>
 <h3 id="converter--html--native-blocks">Converter — HTML → native blocks</h3>
