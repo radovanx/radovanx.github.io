@@ -213,6 +213,38 @@ View on GitHub
 </blockquote>
 <h2 id="minimal-eval-harness">Minimal Eval Harness</h2>
 <p>The probabilistic mindset translates directly to code: each test case has a <strong>numeric scorer</strong> (0.0–1.0), not a boolean assertion. Aggregate scores become a pass rate.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Task type</th><th>Scorer strategy</th><th>Example</th></tr></thead><tbody><tr><td><strong>Model upgrade regression</strong></td><td>Exact-match or embedding-similarity</td><td>”Does output contain all required fields?”</td></tr><tr><td><strong>Safety</strong></td><td>Pattern-match against toxicity list</td><td>`regex /\b(toxic</td></tr><tr><td><strong>Quality</strong></td><td>LLM-as-judge</td><td>Second Claude call scores 0–1 on rubric</td></tr><tr><td><strong>Format</strong></td><td>Schema validation</td><td><code>JSON.parse</code> succeeds → 1, fails → 0</td></tr></tbody></table>
+<p>The harness stays identical across all four — only the <code>score</code> function changes.</p>
 <div class="runnable-code-wrapper" data-runnable-id="runnable-23" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// TypeScript: minimal eval harness — numeric scoring, aggregated pass rate</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// npm install @anthropic-ai/sdk</span></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">import</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> Anthropic </span><span style="color:#D73A49;--shiki-dark:#F97583">from</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> "@anthropic-ai/sdk"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">;</span></span>
