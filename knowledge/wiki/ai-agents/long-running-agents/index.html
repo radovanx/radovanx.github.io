@@ -285,7 +285,7 @@ View on GitHub
 
 <table><thead><tr><th>Role</th><th>Responsibility</th><th>Key property</th></tr></thead><tbody><tr><td><strong>Planner</strong></td><td>Continuously explores codebase, emits tasks, spawns sub-planners recursively</td><td>Never writes code</td></tr><tr><td><strong>Worker</strong></td><td>Focused executor — no big-picture awareness, no inter-worker coordination</td><td>No global state</td></tr><tr><td><strong>Judge</strong></td><td>Decides when an iteration is done, when to restart</td><td>Separate from worker to prevent self-grading bias</td></tr></tbody></table>
 <p>Cursor’s finding (<a href="https://cursor.com/blog/scaling-agents">Scaling Long-Running Autonomous Coding</a>): <strong>“A surprising amount of the system’s behavior comes down to how we prompt the agents”</strong> — more than the harness or the model.</p>
-<p>Different models fill different roles. In Cursor’s testing, GPT models outperformed Opus for extended autonomous work because Opus tended to stop early and take shortcuts. Same task, different role, different optimal model.</p>
+<p>Different models fill different roles. In Cursor’s testing, GPT-5.2 outperformed Claude Opus 4.5 for extended autonomous work because Opus tended to stop early and take shortcuts (<a href="https://cursor.com/blog/scaling-agents">Cursor blog</a>; <a href="https://simonwillison.net/2026/jan/19/scaling-long-running-autonomous-coding/">Simon Willison’s writeup</a>). Same task, different role, different optimal model.</p>
 <h2 id="google-agent-platform-cloud-next-26">Google: Agent Platform (Cloud Next ‘26)</h2>
 <p>Google’s productized version at platform scale:</p>
 
