@@ -336,23 +336,24 @@ View on GitHub
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">Pattern name for AI prompting: "annual-toggle paywall with savings badge and pro-highlight"</span></span></code></pre>
 <p>This kind of research — “look at 87 real implementations, extract the consensus” — takes 15 minutes with Mobbin and produces prompt vocabulary that no amount of design-system documentation provides.</p>
 <h2 id="pattern-research-workflow">Pattern Research Workflow</h2>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>1. Define the pattern you're designing</span></span>
-<span class="line"><span>   → "User onboarding for a B2C finance app"</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>2. Search Mobbin with multiple filters</span></span>
-<span class="line"><span>   → "Onboarding" + "Finance" category + filter to 4+ stars</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>3. Look for consensus across 10-20 examples</span></span>
-<span class="line"><span>   → What do most apps have in common? What varies?</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>4. Note the outliers</span></span>
-<span class="line"><span>   → Which apps break from consensus, and does it work?</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>5. Extract vocabulary for spec writing</span></span>
-<span class="line"><span>   → Name the patterns you observed ("stepped progress + skip option")</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>6. Write a DESIGN.md section with your findings</span></span>
-<span class="line"><span>   → Reference by pattern name in all AI prompts and design reviews</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    S1["1️⃣ Define the pattern\ne.g. 'Finance app onboarding'"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    S2["2️⃣ Search Mobbin\nOnboarding + Finance + 4★ filter"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    S3["3️⃣ Find consensus\nacross 10–20 examples"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    S4["4️⃣ Note the outliers\nwhat breaks consensus, and why?"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    S5["5️⃣ Extract vocabulary\n'stepped progress + skip option'"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    S6["6️⃣ Write DESIGN.md section\nprecise pattern names for AI prompts"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    AI["🤖 AI-generated UI\nwith evidence-based patterns"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    S1 --> S2 --> S3 --> S4 --> S5 --> S6 --> AI</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style S1 fill:#334155,color:#d1d5db</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style S2 fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style S3 fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style S4 fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style S5 fill:#059669,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style S6 fill:#166534,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style AI fill:#d97706,color:#fff</span></span></code></pre>
 <blockquote>
 <p><strong>Key insight:</strong> Mobbin’s value compounds when you use it as research, not inspiration. Saving 5 screenshots to a Pinterest board is inspiration. Asking “across 20 checkout flows, when do apps ask for address vs. payment first?” is research that produces design decisions with evidence behind them.</p>
 </blockquote>
