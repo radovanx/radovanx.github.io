@@ -249,6 +249,20 @@ View on GitHub
 <span class="line"><span>Believed after:   +20% (faster)</span></span>
 <span class="line"><span></span></span>
 <span class="line"><span>Perception gap:   ~40 percentage points</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Believed["💭 What developers believed"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        B1["Before: +24%\n(predicted speedup)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        B2["After: +20%\n(felt speedup)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Measured["📊 What RCT measured"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        R["Actual: −19%\n(slower)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    B1 -.->|"43-point gap"| R</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    B2 -.->|"39-point gap"| R</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style B1 fill:#166534,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style B2 fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style R fill:#dc2626,color:#fff</span></span></code></pre>
 <blockquote>
 <p><strong>Key insight:</strong> The gap between what developers felt and what actually happened was enormous. Even after experiencing the slowdown firsthand, they believed AI had sped them up. METR called this a “substantial and persistent gap between perceived and actual performance.”</p>
 </blockquote>
