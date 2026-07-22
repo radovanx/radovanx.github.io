@@ -330,6 +330,24 @@ View on GitHub
 <blockquote>
 <p><strong>Key insight:</strong> “Be as explicit as possible about what you are trying to build and why. Do not focus on the tech stack at this point.” The spec phase is intentionally tech-stack-agnostic — the <em>what</em> before the <em>how</em> prevents premature architectural decisions.</p>
 </blockquote>
+<p>Each phase is a checkpoint that catches assumption drift before it compounds into expensive rework:</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    SP["🔍 /speckit.specify\nwhat to build\n(no tech stack)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    CL["❓ /speckit.clarify\nfill gaps before\nany decisions"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    PL["📐 /speckit.plan\ntech + architecture\n+ validation"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    TK["📋 /speckit.tasks\ndeps + [P] parallel\nmarkers"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    IMPL["🚀 /speckit.implement\nordered execution"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    SP -->|"wrong problem → caught here"| CL</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    CL -->|"hidden assumptions → caught here"| PL</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    PL -->|"tech debt → caught here"| TK</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    TK -->|"sequential bottlenecks → caught here"| IMPL</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style SP fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style CL fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style PL fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style TK fill:#059669,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style IMPL fill:#166534,color:#fff</span></span></code></pre>
 
 
 

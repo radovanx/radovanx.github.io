@@ -155,6 +155,15 @@ View on GitHub
 <h2 id="supported-clients">Supported Clients</h2>
 <p>Claude Desktop, Claude Code, ChatGPT, VS Code, Goose, Postman, MCPJam — see the full <a href="https://apps.extensions.modelcontextprotocol.io/api/">clients page</a> for current support status.</p>
 <h2 id="building-an-mcp-app">Building an MCP App</h2>
+<p>Three artifacts work together: a <strong>Server</strong> registers the tool and resource, a <strong>View</strong> is the interactive HTML app, and a <strong>Bundle</strong> combines them into a single self-contained file.</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    S["📋 1. Server\nregisterAppTool()\nregisterAppResource()\n— declares ui:// link"] -->|"serves bundle at\nui:// resource"| B["📦 3. Bundle\ndist/mcp-app.html\nself-contained file"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    B -->|"loaded by host\ninto sandboxed iframe"| V["🎨 2. View\nApp class\n+ postMessage bridge"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    V -->|"callServerTool()\ncalls back to server"| S</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style S fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style V fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style B fill:#7c3aed,color:#fff</span></span></code></pre>
 <h3 id="1-server--register-tool--ui-resource">1. Server — Register Tool + UI Resource</h3>
 <div class="runnable-code-wrapper" data-runnable-id="runnable-93" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">import</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> { McpServer } </span><span style="color:#D73A49;--shiki-dark:#F97583">from</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> '@modelcontextprotocol/sdk/server/mcp.js'</span><span style="color:#24292E;--shiki-dark:#E1E4E8">;</span></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">import</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> { registerAppTool, registerAppResource, RESOURCE_MIME_TYPE }</span></span>
