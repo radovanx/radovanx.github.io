@@ -542,12 +542,33 @@ View on GitHub
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style T1 fill:#1f2937,color:#9ca3af</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style E1 fill:#1f2937,color:#9ca3af</span></span></code></pre>
 <h2 id="chapters">Chapters</h2>
-<h3 id="agent-security-sandboxing--security-sandboxing"><a href="/knowledge/wiki/agent-security-sandboxing/">agent security sandboxing</a> — Security Sandboxing</h3>
-<p>Simon Willison’s <strong>lethal trifecta</strong> — private data + untrusted content + network access — and the practical sandboxing solutions that break it. Covers YOLO mode risk, network isolation, macOS <code>sandbox-exec</code>, container isolation, and the OWASP Agentic Top 10. The key mitigation: remove any one leg of the trifecta and the attack collapses.</p>
-<h3 id="agent-tdd-verification--tdd-as-ai-verification"><a href="/knowledge/wiki/agent-tdd-verification/">agent tdd verification</a> — TDD as AI Verification</h3>
-<p>Kent Beck’s argument that TDD is <em>more</em> relevant with AI, not less. Red-Green-Refactor as an AI quality gate (TypeScript + PHP examples), Martin Fowler on greenfield vs. complex codebase performance, and Nolan Lawson’s multi-model parallel code review skill (Claude + Codex + Cursor Bugbot → collate → final report). Includes the Builder Mindset section.</p>
-<h3 id="agent-skills-quality--engineering-quality-gates"><a href="/knowledge/wiki/agent-skills-quality/">agent skills quality</a> — Engineering Quality Gates</h3>
-<p>Max Brodeur-Urbas’s anti-slop principle (5 tight agents beat 50 loose ones), Ivan Kristianto’s 6 production gates (ESLint, Stylelint, Prettier, design system, tsc, tests), Addy Osmani’s Agent Skills framework (24 workflows, 7 slash commands, anti-rationalization tables), and the 5-layer agent harness architecture. Source-Driven Development and the skills ecosystem.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Chapter</th><th>What it covers</th><th>Key sources</th></tr></thead><tbody><tr><td><strong><a href="/knowledge/wiki/agent-security-sandboxing/">agent security sandboxing</a></strong></td><td>Lethal trifecta (private data + untrusted content + network), YOLO mode risk, network isolation, macOS <code>sandbox-exec</code>, container isolation, OWASP Agentic Top 10. Remove one leg → attack collapses.</td><td>Simon Willison (Oct 2025)</td></tr><tr><td><strong><a href="/knowledge/wiki/agent-tdd-verification/">agent tdd verification</a></strong></td><td>Red-Green-Refactor as AI quality gate (TS + PHP examples), Fowler on greenfield vs. complex codebases, Nolan Lawson’s multi-model parallel review: Claude + Codex + Cursor Bugbot → collate → final report. Builder Mindset.</td><td>Beck, Fowler, Nolan Lawson</td></tr><tr><td><strong><a href="/knowledge/wiki/agent-skills-quality/">agent skills quality</a></strong></td><td>Anti-slop: 5 tight agents beat 50 loose ones. Ivan Kristianto’s 6 production gates (ESLint, Stylelint, Prettier, design system, tsc, tests). Addy Osmani’s 24 workflows, 7 slash commands, anti-rationalization tables. 5-layer harness architecture. Source-Driven Development.</td><td>Addy Osmani, Ivan Kristianto, Max Brodeur-Urbas</td></tr></tbody></table>
+<p></p><div class="section-hero-image"><img src="https://opengraph.githubassets.com/1/addyosmani/agent-skills" alt="addyosmani/agent-skills — 24 engineering workflows across 6 phases (/spec→/plan→/build→/test→/review→/verify); the most comprehensive public quality gate framework; ★~79K GitHub stars by July 2026" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #BD93F9dd, #A78BFA88, #7C3AEDcc);"></div><div class="section-hero-gradient" style="background: radial-gradient(59% 59% at 62% 35%, #BD93F9, transparent), radial-gradient(79% 79% at 83% 71%, #A78BFA, transparent), radial-gradient(60% 60% at 59% 81%, #8B5CF6, transparent), linear-gradient(226deg, #BD93F9, #7C3AED);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">addyosmani/agent-skills — 24 engineering workflows across 6 phases (/spec→/plan→/build→/test→/review→/verify); the most comprehensive public quality gate framework; ★~79K GitHub stars by July 2026</span></div><p></p>
 <blockquote>
 <p><strong>Key insight:</strong> Architecture patterns (knowledge compilation, tool search, sandboxing) reduce infrastructure-level failure. Engineering quality gates (Agent Skills) reduce process-level failure. Both are necessary.</p>
 </blockquote>
