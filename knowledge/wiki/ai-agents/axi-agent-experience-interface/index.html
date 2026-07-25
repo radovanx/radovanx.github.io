@@ -60,6 +60,7 @@ View on GitHub
 <blockquote>
 <p><strong>Key insight:</strong> The uncompressed <code>chrome-devtools-mcp</code> condition averages <strong>185K input tokens per task</strong> vs. <strong>79K for AXI</strong> — a 2.3× overhead that compounds across every turn. AXI achieves 100% task success at the lowest cost and fewest turns, leading all seven conditions tested. (<a href="https://github.com/kunchenguid/axi/blob/main/bench-browser/published-results/report.md">browser benchmark</a>)</p>
 </blockquote>
+<p></p><div class="section-hero-image"><img src="https://opengraph.githubassets.com/1/kunchenguid/axi" alt="kunchenguid/axi — empirical research framework for agent-ergonomic CLI design; 490 browser automation runs and 425 GitHub API runs demonstrate AXI achieves 100% task success at lowest cost and fewest turns across all conditions tested" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #D4A574dd, #C4956A88, #A67750cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(83% 83% at 81% 16%, #D4A574, transparent), radial-gradient(76% 76% at 83% 79%, #C4956A, transparent), radial-gradient(71% 71% at 84% 21%, #B8865E, transparent), linear-gradient(91deg, #D4A574, #A67750);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">kunchenguid/axi — empirical research framework for agent-ergonomic CLI design; 490 browser automation runs and 425 GitHub API runs demonstrate AXI achieves 100% task success at lowest cost and fewest turns across all conditions tested</span></div><p></p>
 <h2 id="the-problem-two-dominant-paradigms-both-flawed">The Problem: Two Dominant Paradigms, Both Flawed</h2>
 
 
@@ -159,6 +160,27 @@ View on GitHub
 
 
 <table><thead><tr><th>#</th><th>Principle</th><th>What it means</th></tr></thead><tbody><tr><td>7</td><td><strong>Ambient context</strong></td><td>Install a session hook or skill; every conversation starts with relevant state already visible</td></tr><tr><td>8</td><td><strong>Content first</strong></td><td>No-args shows live data, not help text</td></tr><tr><td>9</td><td><strong>Contextual disclosure</strong></td><td>Append concrete <code>help[]</code> next-step suggestions after every output</td></tr><tr><td>10</td><td><strong>Consistent help</strong></td><td>Concise <code>--help</code> per subcommand when hints are insufficient</td></tr></tbody></table>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Efficiency["Efficiency — Principles 1–6"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        direction TB</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        E1["TOON output\n~40% token savings"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        E2["Minimal schemas\n3-4 fields not 10+"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        E3["Truncation + --full flag"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        E4["Pre-computed aggregates\neliminate round trips"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        E5["Explicit empty states\nnot silent output"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        E6["Structured errors + exit codes"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Disc["Discoverability — Principles 7–10"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        direction TB</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        D1["Ambient context\nsession hook on start"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        D2["Content first\nno-args = live data"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        D3["Contextual next-step hints\nafter every output"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        D4["Consistent --help\nper subcommand"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Efficiency &#x26; Disc --> OUT["✅ 100% task success\nLowest cost · Fewest turns"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style OUT fill:#166534,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style Efficiency fill:#1e3a5f,color:#d1d5db</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style Disc fill:#1e3a5f,color:#d1d5db</span></span></code></pre>
 <h2 id="toon-format-principle-1">TOON Format (Principle 1)</h2>
 <p>TOON (Token-Optimized Object Notation) omits braces, quotes, and commas — unambiguous to LLMs but ~40% smaller than JSON:</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Conventional JSON:</span></span>
@@ -291,6 +313,7 @@ View on GitHub
 <p>MCP conditions use 137K–176K avg input tokens vs. 46K for gh-axi — a 3–4× overhead. (<a href="https://github.com/kunchenguid/axi/blob/main/bench-github/published-results/STUDY.md">source</a>)</p>
 <h2 id="the-axi-catalog">The AXI Catalog</h2>
 <p>Official reference implementations (maintained by the AXI project):</p>
+<p></p><div class="section-hero-image"><img src="https://opengraph.githubassets.com/1/kunchenguid/gh-axi" alt="kunchenguid/gh-axi — AXI reference implementation for GitHub: issues, PRs, CI runs, releases; 46K avg input tokens vs 137-176K for GitHub MCP conditions; 100% success at $0.050/task vs 82-87% for MCP" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #FDA4AFdd, #F9A8D488, #C4B5FDcc);"></div><div class="section-hero-gradient" style="background: radial-gradient(53% 53% at 69% 62%, #FDA4AF, transparent), radial-gradient(57% 57% at 66% 50%, #F9A8D4, transparent), radial-gradient(71% 71% at 20% 42%, #D8B4FE, transparent), linear-gradient(251deg, #FDA4AF, #C4B5FD);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">kunchenguid/gh-axi — AXI reference implementation for GitHub: issues, PRs, CI runs, releases; 46K avg input tokens vs 137-176K for GitHub MCP conditions; 100% success at $0.050/task vs 82-87% for MCP</span></div><p></p>
 
 
 
