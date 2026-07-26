@@ -94,7 +94,7 @@ View on GitHub
 <blockquote>
 <p><strong>Real breach (May 2025):</strong> <a href="https://invariantlabs.ai/blog/mcp-github-vulnerability">Invariant Labs disclosed an attack</a> against the official GitHub MCP server. Attack chain: attacker files a malicious public issue with instructions hidden in markdown → developer asks AI to “check the open issues” → AI reads issue and gets prompt-injected → AI calls legitimate tools to exfiltrate private repo data back into a public issue. No malware, no stolen credentials — just natural language instructions in plain sight.</p>
 </blockquote>
-<p><a href="https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/">OWASP Agentic Top 10 (2026)</a> categories hit: ASI01 Goal Hijack, ASI02 Tool Misuse, ASI03 Privilege Abuse.</p>
+<p><a href="https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/">OWASP Agentic Top 10 (2026)</a> categories hit: ASI01 Goal Hijack, ASI02 Tool Misuse, ASI03 Identity &#x26; Privilege Abuse.</p>
 <h2 id="security-checklist">Security Checklist</h2>
 <p>Three guardrails for every MCP server: (1) validate every argument — treat LLM input as untrusted, (2) allow-list, not deny-list — explicit boundaries on what tools can touch, (3) fail closed — anything ambiguous gets blocked. Never run your MCP server as root.</p>
 
