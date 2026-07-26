@@ -143,6 +143,11 @@ View on GitHub
 <blockquote>
 <p><strong>Real-world impact:</strong> Grafana Labs (Jan 2026) published a case study after connecting AI to their observability stack. During an incident, AI found the root cause in <strong>8 minutes</strong> vs. <strong>28 minutes</strong> for the human-only team — 3.5× faster. The root cause was AI-generated code (an unbounded SQL join). AI tools found the bug they introduced. (<a href="https://grafana.com/blog/a-tale-of-two-incident-responses-how-our-ai-assist-helped-us-find-the-cause-3-5x-faster/">Grafana Labs blog</a>)</p>
 </blockquote>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">xychart-beta</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    title "Time to Root Cause — AI+MCP vs Human On-Call (Grafana Labs, 2026)"</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    x-axis ["Human On-Call", "AI via MCP"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    y-axis "Minutes" 0 --> 32</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    bar [28, 8]</span></span></code></pre>
 <h2 id="architecture">Architecture</h2>
 <p>The wire protocol is dead simple: JSON-RPC over <strong>stdio</strong> (local) or <strong>SSE</strong> (remote). Your AI host on one side, your MCP server on the other — a small program you write in any language.</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">flowchart LR</span></span>
