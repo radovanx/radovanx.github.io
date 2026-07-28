@@ -82,9 +82,55 @@ View on GitHub
 
 <table><thead><tr><th>Decision</th><th>Category</th></tr></thead><tbody><tr><td><strong>Anchored Scrolling</strong></td><td>Scroll behavior, spatial orientation</td></tr><tr><td><strong>Adaptive Text Color</strong></td><td>Color, accessibility, contrast</td></tr></tbody></table>
 <p>Each entry is a focused pattern — not an essay, but a named decision with enough context to implement or avoid it.</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    DTASTE["🎨 design-taste-for-ai\nPablo Stanley\nWhy generic fails\nintentionality over defaults"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    DT["🔬 detail.design\n'Where craft lives'\nNamed micro-decisions\nscroll · color · motion"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    DMD["⚙️ design-micro-details\nJakub Krehel\n16 CSS/UX techniques\nconcentric radius · tabular nums"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    IMP["🛡️ impeccable\n23 commands\nAnti-pattern catalog\nwhat NOT to build"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    DTASTE -->|"philosophical\nfoundation"| DT</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    DT -->|"named patterns\nto implement"| DMD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    DT -->|"patterns to\nguard against"| IMP</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    DMD &#x3C;-.->|"complementary\ncatalogs"| DT</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style DTASTE fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style DT fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style DMD fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style IMP fill:#059669,color:#fff</span></span></code></pre>
 <h2 id="why-it-matters-for-ai-assisted-design">Why It Matters for AI-Assisted Design</h2>
 <p>AI coding agents (Claude Code, Cursor, Copilot) tend toward generic defaults. Detail.design is a counter-weight: a curated vocabulary of <strong>what non-generic looks like</strong>, pattern by pattern. A design engineer can reference it when prompting agents to implement specific interaction patterns, or use it to identify what “craft” means on a given axis.</p>
 <p>This complements the <a href="/knowledge/wiki/design-micro-details/">design micro details</a> chapter (Jakub Krehel’s 16 techniques) and <a href="/knowledge/wiki/design-taste-for-ai/">design taste for ai</a> (Pablo Stanley on intentionality over defaults): all three are resources for naming and implementing design decisions that LLMs won’t choose automatically.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Resource</th><th>What it answers</th><th>When to reach for it</th></tr></thead><tbody><tr><td><strong>detail.design</strong></td><td>”What is a named micro-decision?”</td><td>Prompting agents: <em>“implement anchored scrolling”</em></td></tr><tr><td><strong><a href="/knowledge/wiki/design-micro-details/">design micro details</a></strong></td><td>“How do I implement this technique?”</td><td>Building: copy-paste CSS/JS starting point</td></tr><tr><td><strong><a href="/knowledge/wiki/design-taste-for-ai/">design taste for ai</a></strong></td><td>“Why does generic feel wrong?”</td><td>Framing: when AI defaults aren’t good enough</td></tr><tr><td><strong><a href="/knowledge/wiki/impeccable/">impeccable</a></strong></td><td>“What patterns should I avoid?”</td><td>Review: checking AI output against failure modes</td></tr></tbody></table>
 <h2 id="cross-references">Cross-References</h2>
 <ul>
 <li><a href="/knowledge/wiki/design-micro-details/">design micro details</a> — the most closely related chapter: 16 specific CSS/UX techniques for interface polish; both resources catalogue small named decisions</li>
