@@ -115,7 +115,7 @@ View on GitHub
 
 <table><thead><tr><th>Search type</th><th>Question pattern</th><th>RAG works?</th><th>Graph works?</th></tr></thead><tbody><tr><td><strong>Local</strong></td><td>”What happened with supplier X in March?”</td><td>✅ Yes</td><td>✅ Yes</td></tr><tr><td><strong>Global</strong></td><td>”What are the main risk patterns across all suppliers?”</td><td>❌ Fails</td><td>✅ Yes</td></tr></tbody></table>
 <p>RAG answers local questions well — find information about a specific entity. It fails on global questions — patterns across an entire dataset.</p>
-<p><strong>Results from Microsoft’s ChatP&#x26;ID paper</strong> (GraphRAG applied to industrial engineering diagrams):</p>
+<p><strong>Results from TU Delft’s ChatP&#x26;ID paper</strong> (GraphRAG applied to industrial engineering P&#x26;ID diagrams — Alimin &#x26; Schweidtmann, Chemical Engineering, Delft University of Technology):</p>
 
 
 
@@ -155,18 +155,18 @@ View on GitHub
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style V fill:#7c3aed,color:#fff</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style ANS fill:#059669,color:#fff</span></span></code></pre>
 <h3 id="storm--research-as-a-graph">STORM — Research as a Graph</h3>
-<p><a href="https://github.com/stanford-oval/storm">Stanford STORM</a> builds knowledge from scratch through a structured graph of research steps before writing a single word:</p>
+<p><a href="https://github.com/stanford-oval/storm">Stanford STORM</a> is an LLM-powered knowledge curation system that builds full-length articles with citations from scratch via a structured two-stage pipeline: a pre-writing stage (perspective-guided question-asking + internet research) and a writing stage.</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Research → Source Collection → Outline → Writing → Verification → Revision</span></span></code></pre>
-<p>Each step is informed by relationships discovered in the previous one. The shared insight: complex tasks need a <strong>system of connected steps</strong>, not a single model call.</p>
+<p>The shared insight with Graph Engineering: complex tasks need a <strong>system of connected steps</strong>, not a single model call.</p>
 <h3 id="scaling-laws-for-knowledge-graphs">Scaling Laws for Knowledge Graphs</h3>
-<p>Stanford compared 26 open-source models on knowledge graph engineering tasks (<a href="https://arxiv.org/abs/2505.16276">arxiv.org/abs/2505.16276</a>). The conclusion:</p>
+<p>Leipzig University researchers compared 26 open-source models on knowledge graph engineering tasks via the LLM-KG-Bench framework (<a href="https://arxiv.org/abs/2505.16276">arxiv.org/abs/2505.16276</a>). The conclusion:</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Larger model + bad graph  → worse results</span></span>
 <span class="line"><span>Smaller model + good graph → better results</span></span></code></pre>
 <blockquote>
 <p><strong>Key insight:</strong> The right graph beats the bigger model. Every time. This is the same conclusion Microsoft reached with GraphRAG and Anthropic reached with Claude Code — the system around the model determines the output more than the model itself.</p>
 </blockquote>
 <h2 id="mit-relational-memory">MIT: Relational Memory</h2>
-<p>MIT Press research (<a href="https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00476">Transactions of the Association for Computational Linguistics</a>) shows what happens when you connect a language model to relational memory — a knowledge graph of relationships rather than text chunks:</p>
+<p>DeepMind research published in <a href="https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00476">Transactions of the Association for Computational Linguistics</a> (Liu, Yogatama &#x26; Blunsom, 2022) shows what happens when you connect a language model to relational memory — a knowledge graph of relationships rather than text chunks:</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph TD</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    TXT["Text Context"] --> REL["Retrieve Relevant Relations\nfrom Knowledge Graph"]</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    REL --> MEM["Relational Memory"]</span></span>

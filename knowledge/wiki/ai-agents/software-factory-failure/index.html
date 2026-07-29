@@ -168,7 +168,7 @@ View on GitHub
 <p><strong>Key insight:</strong> No amount of loop engineering or harness engineering can solve what is fundamentally a model-training limitation. Models don’t have a fast oracle for maintainability — and until they do, the code review step is yours to keep.</p>
 </blockquote>
 <h2 id="the-software-factory-past-and-present">The Software Factory, Past and Present</h2>
-<p>The term “software factory” traces to a NATO conference in 1968 — the same conference that coined “software engineering.” In 2022, before agentic coding, a typical factory looks like this:</p>
+<p>The term “software engineering” was coined at the 1968 NATO Software Engineering Conference in Garmisch, Germany. The related term “software factory” emerged separately — trademarked by Systems Development Corporation (SDC) in 1974 and widely adopted by Japanese companies (Hitachi, NEC, Fujitsu) in the 1970s–1980s as a label for industrialized software development facilities. In 2022, before agentic coding, a typical factory looks like this:</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph LR</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    VISION["Product Vision\n(PM, Engineering, Leadership)"] --> TRACKER["Issue Tracker\n(Linear, Jira)"]</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    TRACKER --> BUILD["Engineer Builds\n(hours → days)"]</span></span>
@@ -260,9 +260,9 @@ View on GitHub
 </blockquote>
 <p>Newer benchmarks are moving in the right direction:</p>
 <ul>
-<li><strong>SWE-Marathon</strong> (Abundant AI): ~400-hour tasks with compound reward channels</li>
-<li><strong>DeepSWE</strong> (Datacurve): tasks on repos not in the training set (solves contamination)</li>
-<li><strong>Frontier Code</strong> (Cognition): multi-PR tasks with a judge model checking code-quality rules, and mutation testing to penalize models that make tests useless</li>
+<li><strong>SWE-Marathon</strong> (Abundant AI): 20 project-scale tasks with expert-human effort estimates of 40–400 hours, evaluated via a multi-layer verification suite (<a href="https://arxiv.org/abs/2606.07682">arXiv:2606.07682</a>)</li>
+<li><strong>DeepSWE</strong> (Datacurve): 113 hand-crafted tasks on original repos in 5 languages — contamination-resistant by design (solves the git-log cheating problem)</li>
+<li><strong>FrontierCode</strong> (Cognition): multi-PR tasks with a judge model checking code-quality rules, and mutation testing to penalize models that make tests useless</li>
 </ul>
 <p>But they’re not there yet. <strong>The ceiling is whatever the model was trained to care about — and good design is the thing we still don’t know how to reward.</strong></p>
 <h2 id="the-4-phase-solution-context-engineering">The 4-Phase Solution: Context Engineering</h2>
@@ -333,7 +333,7 @@ View on GitHub
 <span class="line"><span>+   ├── resource-client.test.ts # NEW — covers request/response mapping</span></span>
 <span class="line"><span>~   └── resource-route.ts       # MODIFIED — wires create action into UI</span></span></code></pre>
 <p><strong>Types and method signatures</strong> for the key new functions:</p>
-<div class="runnable-code-wrapper" data-runnable-id="runnable-151" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">interface</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> Item</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<div class="runnable-code-wrapper" data-runnable-id="runnable-214" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">interface</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> Item</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
 <span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">  id</span><span style="color:#D73A49;--shiki-dark:#F97583">:</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> ItemId</span><span style="color:#24292E;--shiki-dark:#E1E4E8">;</span></span>
 <span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">  parentId</span><span style="color:#D73A49;--shiki-dark:#F97583">:</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> ItemId</span><span style="color:#D73A49;--shiki-dark:#F97583"> |</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> null</span><span style="color:#24292E;--shiki-dark:#E1E4E8">;</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span>
@@ -343,7 +343,7 @@ View on GitHub
 <span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">  direction</span><span style="color:#D73A49;--shiki-dark:#F97583">:</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> 'up'</span><span style="color:#D73A49;--shiki-dark:#F97583"> |</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> 'down'</span><span style="color:#24292E;--shiki-dark:#E1E4E8">;</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">resolveTarget</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(items: Item[], cursor: Cursor): ItemId </span><span style="color:#D73A49;--shiki-dark:#F97583">|</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> null</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-151" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-151" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-151" style="display:none"></pre></div>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">resolveTarget</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(items: Item[], cursor: Cursor): ItemId </span><span style="color:#D73A49;--shiki-dark:#F97583">|</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> null</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-214" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-214" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-214" style="display:none"></pre></div>
 <blockquote>
 <p>None of these take long to produce (the model drafts them, you argue with it), and every one of them is a decision you’d otherwise make implicitly during code review — at the most expensive possible time to change your mind.</p>
 </blockquote>
