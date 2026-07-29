@@ -60,6 +60,17 @@ View on GitHub
 <blockquote>
 <p><strong>Key insight:</strong> The single most important tip from the creator of Claude Code: give Claude a way to verify its work. With that feedback loop, Claude 2–3× its own quality. Everything else is multiplier.</p>
 </blockquote>
+<p></p><div class="section-hero-image"><img src="https://howborisusesclaudecode.com/og.png" alt="Boris Cherny&#x27;s Claude Code tips — 127+ tips from the creator of Claude Code at Anthropic" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #00E5FFdd, #06B6D488, #0284C7cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(59% 59% at 67% 39%, #00E5FF, transparent), radial-gradient(79% 79% at 24% 60%, #06B6D4, transparent), radial-gradient(61% 61% at 64% 31%, #0EA5E9, transparent), linear-gradient(59deg, #00E5FF, #0284C7);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Boris Cherny's Claude Code tips — 127+ tips from the creator of Claude Code at Anthropic</span></div><p></p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    PLAN["🗺️ Plan Mode\nShift+Tab × 2\nIterate until solid"] -->|"solid plan"| EXEC["⚡ Execute\n5 parallel worktrees\nAuto-accept + hooks"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    EXEC --> VERIFY["✅ Verify\nChrome MCP or\nbrowser subagent"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    VERIFY -->|"2–3× quality\nimprovement"| SHIP["🚀 Ship"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    VERIFY -->|"needs changes"| PLAN</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style PLAN fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style EXEC fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style VERIFY fill:#d97706,color:#1e1e1e</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style SHIP fill:#059669,color:#fff</span></span></code></pre>
 <h2 id="the-thirteen-original-tips-january-2026">The Thirteen Original Tips (January 2026)</h2>
 <h3 id="1-run-5-claude-instances-in-parallel">1. Run 5 Claude Instances in Parallel</h3>
 <p>Boris runs 5 instances of Claude Code simultaneously using <strong>5 separate git checkouts</strong> of the same repo. Each tab is numbered 1–5. System notifications alert when any Claude needs input.</p>
@@ -337,6 +348,15 @@ Risky operations (deleting files, force-pushing) → still flagged.</p>
 
 
 <table><thead><tr><th>Pattern</th><th>When to use</th></tr></thead><tbody><tr><td><strong><code>/rewind</code></strong> + re-prompt</td><td>When Claude goes down a wrong path; drops the failed attempt from context</td></tr><tr><td><strong><code>/compact &#x3C;hint></code></strong></td><td>Lossy summary; stays in session; steer with a hint about what mattered</td></tr><tr><td><strong><code>/clear</code></strong> + written brief</td><td>Genuinely new task; you write exactly what matters; clean start</td></tr><tr><td><strong>Auto-compact threshold</strong></td><td><code>CLAUDE_CODE_AUTO_COMPACT_WINDOW=400000</code> — compact before context rot (~300–400k tokens)</td></tr><tr><td><strong><code>/btw</code></strong></td><td>Side question without interrupting the current task</td></tr></tbody></table>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    WRONG["Claude went\ndown wrong path?"] -->|"Yes"| REWIND["/rewind + re-prompt\nDrop failed attempt entirely"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    WRONG -->|"No — context full?"| FULL{"Same task\nor new task?"}</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    FULL -->|"Same task"| COMPACT["/compact hint\nLossy summary · stays in session"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    FULL -->|"New task"| CLEAR["/clear + written brief\nYou define what matters"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style REWIND fill:#dc2626,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style COMPACT fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style CLEAR fill:#4f46e5,color:#fff</span></span></code></pre>
 <blockquote>
 <p>“The single habit that signals good context management is /rewind, not correction. Don’t add a failed attempt and a correction to your context — rewind and start fresh with what you learned.”</p>
 </blockquote>
