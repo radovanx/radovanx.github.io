@@ -64,12 +64,28 @@ View on GitHub
 </blockquote>
 <h2 id="the-core-principle--context-management-not-parallelism">The Core Principle — Context Management, Not Parallelism</h2>
 <p>Before v2.1.172, a subagent doing fifteen web searches or a wide codebase scan would fill its own window with noise. Now it can offload that work to a child subagent and return only the distilled result.</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Main conversation (clean)</span></span>
-<span class="line"><span>  └─ Subagent L1: "investigate this incident" (focused)</span></span>
-<span class="line"><span>       ├─ Subagent L2: check DB metrics       (noisy — 50 log reads)</span></span>
-<span class="line"><span>       ├─ Subagent L2: check cache hit rates   (noisy — 30 Redis checks)</span></span>
-<span class="line"><span>       └─ Subagent L2: check third-party API   (noisy — 15 web fetches)</span></span>
-<span class="line"><span>            └─ Subagent L3: grep server logs cross-ref codebase (very noisy)</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    M["💬 Main conversation\n(clean — sees only verdicts)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    L1["L1: Investigate incident\n(focused)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    L2A["L2: Check DB metrics\n(noisy — 50 log reads)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    L2B["L2: Check cache hit rates\n(noisy — 30 Redis checks)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    L2C["L2: Check third-party API\n(noisy — 15 web fetches)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    L3["L3: Grep server logs\ncross-ref codebase\n(very noisy)"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    M --> L1</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    L1 --> L2A</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    L1 --> L2B</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    L1 --> L2C</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    L2C --> L3</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    classDef clean fill:#166534,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    classDef focused fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    classDef noisy fill:#d97706,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    classDef vnoisy fill:#dc2626,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    class M clean</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    class L1 focused</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    class L2A,L2B,L2C noisy</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    class L3 vnoisy</span></span></code></pre>
 <p>Each child does dirty work in its throwaway window and returns one clean verdict. The parent’s context stays lean. The main thread sees four clean verdicts instead of raw log dumps.</p>
 <p><strong>Mental model:</strong> push noisy tool-calling as far from the main conversation as possible so only distilled signal flows upward. Important decisions happen early, in a high-signal context window that was never polluted.</p>
 <h2 id="what-shipped-in-v21172">What Shipped in v2.1.172</h2>
@@ -179,7 +195,7 @@ View on GitHub
 </blockquote>
 <h2 id="implementing-the-pattern-sdk-level">Implementing the Pattern (SDK Level)</h2>
 <p>Claude Code’s Agent tool handles nested spawning automatically. The underlying mechanics — distilled signal flowing upward, noisy tool calls staying in child contexts — are the same pattern you implement manually with the Anthropic SDK:</p>
-<div class="runnable-code-wrapper" data-runnable-id="runnable-131" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// TypeScript: nested orchestrator using the Anthropic SDK</span></span>
+<div class="runnable-code-wrapper" data-runnable-id="runnable-133" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// TypeScript: nested orchestrator using the Anthropic SDK</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Root fans out to child investigators — only clean verdicts return upward</span></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">import</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> Anthropic </span><span style="color:#D73A49;--shiki-dark:#F97583">from</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> "@anthropic-ai/sdk"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">;</span></span>
 <span class="line"></span>
@@ -216,8 +232,8 @@ View on GitHub
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">  // CONFIRMED — DB query plans show full scans after index drop. | DB query plans degraded...</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">  // INCONCLUSIVE — Cache metrics show moderate increase, not definitive. | Cache...</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">  // REFUTED — Third-party API latency unchanged from baseline. | Third-party...</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-131" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-131" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-131" style="display:none"></pre></div>
-<div class="runnable-code-wrapper" data-runnable-id="runnable-132" data-runnable-lang="php"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">&#x3C;?</span><span style="color:#005CC5;--shiki-dark:#79B8FF">php</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-133" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-133" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-133" style="display:none"></pre></div>
+<div class="runnable-code-wrapper" data-runnable-id="runnable-134" data-runnable-lang="php"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">&#x3C;?</span><span style="color:#005CC5;--shiki-dark:#79B8FF">php</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// PHP: same nested orchestrator — curl_multi for concurrent fan-out</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Child results return as distilled verdicts; root never sees raw investigation data</span></span>
 <span class="line"></span>
@@ -274,7 +290,7 @@ View on GitHub
 <span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">    curl_multi_close</span><span style="color:#24292E;--shiki-dark:#E1E4E8">($multi);</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">investigateIncident</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(</span><span style="color:#032F62;--shiki-dark:#9ECBFF">'checkout latency spike after Tuesday deploy'</span><span style="color:#24292E;--shiki-dark:#E1E4E8">, </span><span style="color:#005CC5;--shiki-dark:#79B8FF">getenv</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(</span><span style="color:#032F62;--shiki-dark:#9ECBFF">'ANTHROPIC_API_KEY'</span><span style="color:#24292E;--shiki-dark:#E1E4E8">));</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-132" type="button">Run PHP</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-132" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-132" style="display:none"></pre></div>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">investigateIncident</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(</span><span style="color:#032F62;--shiki-dark:#9ECBFF">'checkout latency spike after Tuesday deploy'</span><span style="color:#24292E;--shiki-dark:#E1E4E8">, </span><span style="color:#005CC5;--shiki-dark:#79B8FF">getenv</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(</span><span style="color:#032F62;--shiki-dark:#9ECBFF">'ANTHROPIC_API_KEY'</span><span style="color:#24292E;--shiki-dark:#E1E4E8">));</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-134" type="button">Run PHP</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-134" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-134" style="display:none"></pre></div>
 <blockquote>
 <p><strong>Key insight:</strong> This SDK-level pattern is what Claude Code’s Agent tool automates at each nesting level — a fresh context per child, results collapsed upward before the parent sees them. The 5-level depth cap is the hard limit on how many times this recursion can repeat.</p>
 </blockquote>
@@ -306,6 +322,29 @@ View on GitHub
 <li>You haven’t scoped the children — imprecision compounds faster than tokens do</li>
 </ul>
 <h2 id="nesting-vs-agent-teams">Nesting vs. Agent Teams</h2>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Nested["Nested Subagents — go deep"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        N0["Root\n(clean)"] --> N1A["L1 Worker\n(focused)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        N1A --> N2A["L2 Worker\n(noisy)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        N1A --> N2B["L2 Worker\n(noisy)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        N2A --> N3["L3 Worker\n(very noisy)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph Teams["Agent Teams — go wide"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        T1["Agent A"] &#x3C;--> T2["Agent B"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        T2 &#x3C;--> T3["Agent C"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        T1 &#x3C;--> T3</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    classDef clean fill:#166534,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    classDef focused fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    classDef noisy fill:#d97706,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    classDef vnoisy fill:#dc2626,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    classDef team fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    class N0 clean</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    class N1A focused</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    class N2A,N2B noisy</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    class N3 vnoisy</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    class T1,T2,T3 team</span></span></code></pre>
 
 
 

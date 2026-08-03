@@ -300,6 +300,21 @@ View on GitHub
 <li>How to handle dangerous operations (destructive commands, force push)</li>
 <li>Best practices for code quality, security, commit hygiene</li>
 </ul>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    subgraph SP["System Prompt — runs on every request"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        ID["🧠 Identity + Values\nPersona, behavior rules"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        TOOLS["🔧 Tool Guidance\nHow to use bash / read / write"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        GATE["⚠️ Safety Gates\nDangerous ops, force push, rollback"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">        STYLE["✨ Code Quality\nCommit hygiene, best practices"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    SP -->|"loaded on every LLM call"| LLM["LLM\n(model)"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style ID fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style TOOLS fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style GATE fill:#dc2626,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style STYLE fill:#166534,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style LLM fill:#334155,color:#fff</span></span></code></pre>
 <blockquote>
 <p><strong>Key insight:</strong> The system prompt is where commercial tools differentiate. The loop is commodity; the prompt is craft. This is why Caveman (compressing CLAUDE.md by 45%) has real impact — the system prompt runs on every request.</p>
 </blockquote>
