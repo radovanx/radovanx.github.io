@@ -147,7 +147,7 @@ A dedicated Transformer operates on the sequence of compressed row vectors. Foll
 <p>A major obstacle in tabular ML: high-quality real datasets are scarce and often proprietary. TabFM is trained entirely on <strong>hundreds of millions of synthetic datasets</strong> generated using Structural Causal Models (SCMs) with a wide variety of random functions.</p>
 <p>Synthetic data is the only viable option for pre-training at this scale — it can be generated arbitrarily large and diverse, capturing the distribution variety of real-world tabular data.</p>
 <h2 id="performance">Performance</h2>
-<p>Evaluated on <strong>TabArena</strong> — a living benchmark with Elo scores from head-to-head win rates across 38 classification and 13 regression datasets (700–150,000 samples).</p>
+<p>Evaluated on <strong>TabArena</strong> (<a href="https://arxiv.org/abs/2506.16791">arXiv:2506.16791</a>) — a living benchmark with Elo scores from head-to-head win rates across 38 classification and 13 regression datasets (700–150,000 samples).</p>
 
 
 
@@ -181,7 +181,7 @@ A dedicated Transformer operates on the sequence of compressed row vectors. Foll
 <p>The <code>AI.PREDICT</code> SQL command runs TabFM inference on any table — classification or regression — without training a model, configuring hyperparameters, or any ML expertise.</p>
 <h2 id="links">Links</h2>
 <ul>
-<li><strong>HuggingFace:</strong> <a href="https://huggingface.co/google/tabfm">google/tabfm</a></li>
+<li><strong>HuggingFace:</strong> <a href="https://huggingface.co/google/tabfm-1.0.0-pytorch">google/tabfm-1.0.0-pytorch</a> (PyTorch weights) · <a href="https://huggingface.co/google/tabfm-1.0.0-jax">google/tabfm-1.0.0-jax</a> (JAX/Flax weights)</li>
 <li><strong>GitHub:</strong> TabFM implementation and benchmark results</li>
 <li><strong>Companion model:</strong> <a href="https://research.google/blog/a-decoder-only-foundation-model-for-time-series-forecasting/">TimesFM</a> — Google’s zero-shot time-series forecasting model (the same paradigm applied to sequences)</li>
 </ul>
