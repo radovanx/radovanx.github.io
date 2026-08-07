@@ -312,6 +312,23 @@ View on GitHub
 <p>The skill sits between the planning chain (<code>/grill-me → /to-prd → /prd-to-issues → /tdd</code>) and the execution phase (ralph loop). Issues marked <code>AFK</code> are ready for the ralph loop. Issues marked <code>HITL</code> need a human in the loop to implement or decide.</p>
 <h2 id="afk-agent-task-selection--matt-pocock--ralph">AFK Agent Task Selection — Matt Pocock / ralph</h2>
 <p></p><div class="section-hero-image"><img src="https://opengraph.githubassets.com/1/mattpocock/ai-engineer-workshop-2026-project" alt="mattpocock/ai-engineer-workshop-2026-project — ralph AFK autonomous coding agent: Docker-sandboxed loop, issues/*.md task queue, stream-JSON output" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #22D3EEdd, #0EA5E988, #6366F1cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(59% 59% at 54% 29%, #22D3EE, transparent), radial-gradient(73% 73% at 75% 37%, #0EA5E9, transparent), radial-gradient(85% 85% at 29% 23%, #3B82F6, transparent), linear-gradient(286deg, #22D3EE, #6366F1);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">mattpocock/ai-engineer-workshop-2026-project — ralph AFK autonomous coding agent: Docker-sandboxed loop, issues/*.md task queue, stream-JSON output</span></div><p></p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    ISSUES["📁 issues/*.md\nTask queue"] --> PICK["Pick highest-priority\nAFK task"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    COMMITS["🔖 Last 5 git commits\n(what's done)"] --> PICK</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    PROMPT["📄 ralph/prompt.md\nSystem prompt"] --> PICK</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    PICK --> DOCKER["🐳 docker sandbox run claude\n--dangerously-skip-permissions"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    DOCKER -->|"stream-json"| WORK["TDD: red → green → refactor\nnpm test + typecheck → commit"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    WORK --> DONE{"&#x3C;promise>NO MORE\nTASKS&#x3C;/promise>?"}</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    DONE -->|"no → next iteration"| PICK</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    DONE -->|"yes → clean exit"| END["✅ Done\ngit log -10 to review"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style ISSUES fill:#374151,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style COMMITS fill:#374151,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style PROMPT fill:#374151,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style DOCKER fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style WORK fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style DONE fill:#d97706,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style END fill:#059669,color:#fff</span></span></code></pre>
 <p><code>ralph/prompt.md</code> is a system prompt for an autonomous agent that works through a task queue unattended. Its task priority order:</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>1. Critical bugfixes</span></span>
 <span class="line"><span>2. Dev infrastructure (tests, types, dev scripts)</span></span>

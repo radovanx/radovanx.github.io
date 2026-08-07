@@ -180,6 +180,22 @@ View on GitHub
 <p>Tests, types, and lint are the <strong>backpressure</strong> that let the agent self-correct without you in the loop. Every minute tightening backpressure saves review time downstream. If your tests, types, and lint don’t break when something is wrong, the agent doesn’t know it’s wrong.</p>
 <h2 id="phase-4-refactor-pass-afk">Phase 4: Refactor Pass (AFK)</h2>
 <p>LLMs cheat on refactoring. Even with red-green-refactor in the loop, the “refactor” step shrinks to “rename a variable.” The deeper work — extracting a composable, collapsing duplication across all four slices, killing dead branches — never happens.</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph TD</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    MERGE["🔀 Merged branch\n(all 4 slices)"] --> FIND["Find one offender\nduplication · long file\nprimitive obsession · dead code"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    FIND --> FIX["Fix it"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    FIX --> TEST["Run tests\n(must stay green)"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    TEST -->|"green ✅"| COMMIT["Commit"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    COMMIT --> MORE{"More\noffenders?"}</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    MORE -->|"yes"| FIND</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    MORE -->|"no"| LINT["Add lint rule\nban the pattern"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    TEST -->|"red ❌"| FIX</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style MERGE fill:#374151,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style FIND fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style FIX fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style TEST fill:#d97706,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style COMMIT fill:#059669,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style LINT fill:#dc2626,color:#fff</span></span></code></pre>
 <p>Run a dedicated <code>/simplify</code> pass over the merged branch:</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>run on the current branch. tests must stay green throughout.</span></span>
 <span class="line"><span>for each of: duplication, long files, primitive obsession,</span></span>
@@ -192,6 +208,16 @@ View on GitHub
 </blockquote>
 <h2 id="phase-5-agentic-qa-afk">Phase 5: Agentic QA (AFK)</h2>
 <p>Tests prove the unit works. They don’t prove the user can complete the wizard. For that, drive a real browser.</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    QA["🤖 QA Agent"] -->|"reads accessibility tree"| AB["agent-browser\n@e1 · @e2 · @e3 refs"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    AB -->|"click · type · navigate"| APP["Booking Wizard\nlocalhost:3000/book"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    APP -->|"page snapshot + screenshots"| AB</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    AB -->|"pass/fail per test path"| REPORT["📄 qa/booking-wizard.md\nsteps · expected · actual\nscreenshots"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style QA fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style AB fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style APP fill:#374151,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style REPORT fill:#059669,color:#fff</span></span></code></pre>
 <p><strong>agent-browser</strong> is a Rust CLI that exposes the browser’s accessibility tree as a snapshot with stable element refs (<code>@e1</code>, <code>@e2</code>, …). The agent reads the snapshot, picks a ref, and clicks — no CSS selectors, no Playwright API to learn.</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>you are a QA engineer. the booking wizard is at localhost:3000/book.</span></span>
 <span class="line"><span></span></span>
