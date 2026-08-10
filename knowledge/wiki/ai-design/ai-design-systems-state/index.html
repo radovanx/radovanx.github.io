@@ -63,6 +63,7 @@ View on GitHub
 <ul>
 <li><strong><a href="https://state-of-ai-in-design-systems.netlify.app/">state-of-ai-in-design-systems.netlify.app</a></strong> (Kaelig Deloumeau-Prigent, July 2026) — field study of 20 open-source design systems and 6 platforms; data gathered 26–28 July 2026</li>
 </ul>
+<p></p><div class="section-hero-image"><img src="https://state-of-ai-in-design-systems.netlify.app/og-image-9d6f8a50.png" alt="State of AI in Design Systems — field study of 20 open-source design systems and 6 platforms, July 2026" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #00E5FFdd, #06B6D488, #0284C7cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(82% 82% at 62% 59%, #00E5FF, transparent), radial-gradient(82% 82% at 78% 56%, #06B6D4, transparent), radial-gradient(57% 57% at 48% 78%, #0EA5E9, transparent), linear-gradient(97deg, #00E5FF, #0284C7);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">State of AI in Design Systems — field study of 20 open-source design systems and 6 platforms, July 2026</span></div><p></p>
 <p>A comprehensive field study of how the 20 largest open-source design systems are making themselves readable and usable by AI agents. The verdict: MCP servers and agent skills are now standard equipment; the frontier is discovery manifests, DESIGN.md context files, and Figma Code Connect (still rare).</p>
 <blockquote>
 <p><strong>Key insight:</strong> The question has shifted from “should we have an MCP server?” to “what do we put in it?” — 19 of 20 systems now ship one. The design system that hasn’t built AI affordances is the exception, not the rule.</p>
@@ -159,6 +160,7 @@ View on GitHub
 <p>Ships agent plugin marketplaces for 5 separate agents (<code>.claude-plugin</code>, <code>.codex-plugin</code>, <code>.cursor-plugin</code>, <code>.grok-plugin</code>, <code>.agents</code>) (single source — plugin file names need verification). One of the most comprehensive multi-agent distribution models in any design system.</p>
 <h4 id="nuxt-ui">Nuxt UI</h4>
 <p>Ships a live AI assistant with a real <code>applyTheme</code> MCP tool call (not just docs retrieval) and a <code>skills/index.json</code> discovery manifest at <code>/.well-known/skills/</code>. Also ships API-catalog, MCP server-card.json, Link headers, sitemap.md, and markdown content negotiation — the most complete agent discovery surface in the survey.</p>
+<p></p><div class="section-hero-image"><img src="https://opengraph.githubassets.com/1/ant-design/ant-design" alt="Ant Design — MCP + llms.txt family + design.md + six maintainer skills symlinked across .agents/, .claude/, .cursor/" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #BD93F9dd, #C084FC88, #C4956Acc);"></div><div class="section-hero-gradient" style="background: radial-gradient(64% 64% at 34% 67%, #BD93F9, transparent), radial-gradient(81% 81% at 51% 70%, #C084FC, transparent), radial-gradient(81% 81% at 36% 75%, #D4A574, transparent), radial-gradient(78% 78% at 22% 25%, #C4956A, transparent), linear-gradient(349deg, #BD93F9, #C4956A);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Ant Design — MCP + llms.txt family + design.md + six maintainer skills symlinked across .agents/, .claude/, .cursor/</span></div><p></p>
 <h4 id="ant-design">Ant Design</h4>
 <p>Ships the <code>design.md</code> format (<a href="https://blog.google/innovation-and-ai/models-and-research/google-labs/stitch-design-md/">Google Stitch’s open-source spec</a> for agent design rules, Apache 2.0, open-sourced April 2026), a 291-line CLAUDE.md with AGENTS.md symlinked to it, six maintainer skills in <code>.agents/skills/</code> (also symlinked to <code>.claude/skills</code> and <code>.cursor/skills</code>), and an official <code>antd</code> CLI skill.</p>
 <h4 id="patternfly">PatternFly</h4>
@@ -175,6 +177,15 @@ View on GitHub
 </ul>
 <h3 id="3-agent-skills-are-the-interface-layer">3. Agent Skills are the Interface Layer</h3>
 <p>18 of 20 systems ship skills. The pattern: skills are the action surface for consumers (build with daisyUI, migrate from v3 to S2, apply the Carbon theme), not just for contributors. PatternFly’s 32 consumer skills is the benchmark.</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    A["MCP server\n19 of 20\ntable stakes"] --> B["Agent skills\n18 of 20\naction layer"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    A --> C["llms.txt\n14 of 20\ncontext layer"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    B --> D["Discovery manifest\n3 of 20\nfrontier"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    C --> D</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style A fill:#166534,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style B fill:#7c3aed,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style C fill:#0891b2,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style D fill:#d97706,color:#fff</span></span></code></pre>
 <h3 id="4-discovery-manifests-are-the-next-frontier">4. Discovery Manifests are the Next Frontier</h3>
 <p>Nuxt UI, Adobe React Spectrum, and Nord all ship <code>/.well-known/skills/</code> discovery manifests. This is the design-system layer of the broader agent discovery ecosystem (ACP Registry, llms.txt, MCP server-card.json). Design systems that ship this allow agents to discover and install their skills without human lookup.</p>
 <h3 id="5-figma-code-connect-remains-rare">5. Figma Code Connect Remains Rare</h3>
