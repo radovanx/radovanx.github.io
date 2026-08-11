@@ -401,7 +401,34 @@ View on GitHub
 <p>You don’t have too many PRs. You have too many bad PRs.</p>
 </blockquote>
 <p>A great PR is a joy to review — you scroll through every file, the code is clean, it follows all your hard-won opinions about how software should be built. A PR that needs 20% rework is both an intellectual and emotional burden.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Approach</th><th>Velocity</th><th>PR rework rate</th><th>Code quality over time</th></tr></thead><tbody><tr><td><strong>Oneshot (no front-loading)</strong></td><td>Reckless 10–100×</td><td>~50%</td><td>Degrades — “Claude spaghetti”</td></tr><tr><td><strong>4-phase front-loading</strong></td><td>Safe 2–3×</td><td>~10–15%</td><td>Maintained — reviewable, changeable</td></tr></tbody></table>
 <p>AI oneshot PRs trend closer to 50% rework without the 4-phase front-loading. With it, you move 2–3× faster safely — not 10–100× recklessly.</p>
+<blockquote>
+<p><strong>Key insight:</strong> The bottleneck was never code generation — it was always code comprehension. Front-loading context engineering moves the expensive human judgment to <em>before</em> the agent writes a line, not after it writes 2,000 of them.</p>
+</blockquote>
 <blockquote>
 <p>It is possible you are too busy trying to move 10-100x faster when you could embrace the constraints and move 2-3x faster, safely.</p>
 </blockquote>
