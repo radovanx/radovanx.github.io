@@ -181,6 +181,18 @@ View on GitHub
 <p>This complements the <code>Agent Skills</code> framework: <code>/review</code> (OWASP + 5-axis) handles structural discipline; the multi-model skill handles breadth and blind-spot coverage.</p>
 <h2 id="the-builder-mindset">The Builder Mindset</h2>
 <p>Building reliable AI systems against these failure statistics requires a specific disposition: the willingness to keep building despite hard limits. <a href="/knowledge/wiki/productivity/self-belief-strategic-optimism/">self belief strategic optimism</a> frames this as “strategic optimism” — conviction that architectural patterns (not raw model capability) will eventually yield reliable systems.</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">graph LR</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    STATS["📊 Failure Reality\np^n compounding error\nagent reliability limits"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    DISP["🔨 Builder Mindset\nStrategic optimism\nArchitecture over raw capability"]</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    PATT["✅ Practices That Stick\nTDD · spec-before-code\nmulti-model review"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    STATS -->|"requires"| DISP</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    DISP -->|"discovers"| PATT</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    PATT -->|"validates"| DISP</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style STATS fill:#7f1d1d,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style DISP fill:#4f46e5,color:#fff</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    style PATT fill:#064e3b,color:#fff</span></span></code></pre>
 <p>Fowler and Beck’s disruption cycles framework reinforces this: every major shift (microprocessor, internet, OO, Agile) followed the same pattern — initial hype, snake oil, organizational confusion, and eventually the practices that stuck. The AI shift is no different, except “there is no argument about how important” it is.</p>
 <blockquote>
 <p><strong>Key insight (Fowler &#x26; Beck, Pragmatic Summit 2026):</strong> TDD, spec-before-code, and multi-model review aren’t just process discipline — they’re the early crystallization of the “practices that stuck” from the AI disruption wave. Building them into your workflow now is how you get ahead of the churn, not just survive it.</p>
