@@ -96,6 +96,9 @@ View on GitHub
 <p><a href="https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/">OWASP Agentic Top 10 (2026)</a> categories hit: ASI01 Goal Hijack, ASI02 Tool Misuse, ASI03 Identity &#x26; Privilege Abuse.</p>
 <h2 id="security-checklist">Security Checklist</h2>
 <p>Three guardrails for every MCP server: (1) validate every argument — treat LLM input as untrusted, (2) allow-list, not deny-list — explicit boundaries on what tools can touch, (3) fail closed — anything ambiguous gets blocked. Never run your MCP server as root.</p>
+<blockquote>
+<p><strong>Key insight:</strong> Treat LLM tool arguments exactly like you’d treat user form input in a web app — validate, sanitize, and enforce boundaries before any business logic runs. The LLM is not a trusted caller.</p>
+</blockquote>
 
 
 

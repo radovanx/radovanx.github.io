@@ -117,6 +117,7 @@ View on GitHub
 <blockquote>
 <p><strong>Key insight:</strong> Individual incidents look like one-off bugs. Across a portfolio, five structural patterns repeat. Carrying these as “types” in your head converts reactive triage into predictive pattern matching.</p>
 </blockquote>
+<p></p><div class="section-hero-image"><img src="https://picsum.photos/seed/wordpress-upgrade/800/400" alt="WordPress maintenance and upgrade operations — production portfolio management, plugin compatibility, and major version migration strategies" class="section-hero-photo"><div class="section-hero-blur"></div><div class="section-hero-wash" style="background: linear-gradient(135deg, #00E5FFdd, #38BDF888, #BD93F9cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(73% 73% at 47% 75%, #00E5FF, transparent), radial-gradient(65% 65% at 44% 56%, #38BDF8, transparent), radial-gradient(58% 58% at 84% 71%, #A78BFA, transparent), linear-gradient(110deg, #00E5FF, #BD93F9);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">WordPress maintenance and upgrade operations — production portfolio management, plugin compatibility, and major version migration strategies</span></div><p></p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">graph</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> LR</span></span>
 <span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    P1</span><span style="color:#D73A49;--shiki-dark:#F97583">[</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"Pattern 1\nEditor-adjacent UI\n(5.0 Gutenberg)"</span><span style="color:#D73A49;--shiki-dark:#F97583">]</span></span>
 <span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    P2</span><span style="color:#D73A49;--shiki-dark:#F97583">[</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"Pattern 2\nJS library major bump\n(5.6 jQuery 3.x)"</span><span style="color:#D73A49;--shiki-dark:#F97583">]</span></span>
@@ -141,7 +142,9 @@ View on GitHub
 <li>Inventory editor-adjacent plugin dependencies before applying the upgrade — this makes migration scope visible up front</li>
 <li>Migrate to Gutenberg-aware forks or replacement plugins in a planned window</li>
 </ol>
-<p><strong>The structural rule:</strong> The flagship feature of a major release maximizes impact on the surrounding ecosystem. Any future “new editor” or “new admin UI” major will repeat this same structure.</p>
+<blockquote>
+<p><strong>Key insight:</strong> The flagship feature of a major release maximizes impact on the surrounding ecosystem. Any future “new editor” or “new admin UI” major will repeat this same structure.</p>
+</blockquote>
 <h2 id="pattern-2--wholesale-js-library-bump-triggers-cascading-breakage-56-jquery-3x">Pattern 2 — Wholesale JS Library Bump Triggers Cascading Breakage (5.6 jQuery 3.x)</h2>
 <p><strong>Symptom:</strong> Front-end JS goes dark. Sliders, modals, form validation, and other jQuery plugins stop working silently. The “dynamic parts” of the site break across themes and plugins.</p>
 <p><strong>Cause:</strong> jQuery 3.x removed APIs deprecated for years: <code>$.live()</code>, parts of <code>$.bind()</code> semantics, parts of the <code>$.ajax</code> Promise interface. Code depending on them fails <strong>silently at runtime</strong> — no parse error, no console error on load.</p>
@@ -151,7 +154,9 @@ View on GitHub
 <li>Open browser DevTools Console while clicking through staging — <code>jquery-migrate</code> logs exactly which deprecated APIs are still in use</li>
 <li>Refactor the logged usages in a prioritized queue</li>
 </ol>
-<p><strong>The diagnostic signal that catches this:</strong> “The front-end isn’t visible from an admin check.” Staging verification must explicitly include: “Do the critical front-end pages render correctly and are interactive elements functional?”</p>
+<blockquote>
+<p><strong>Key insight:</strong> “The front-end isn’t visible from an admin check.” Staging verification must explicitly include: “Do the critical front-end pages render correctly and are interactive elements functional?”</p>
+</blockquote>
 <h2 id="pattern-3--raised-php-minimum-trips-syntax-errors-in-old-plugins">Pattern 3 — Raised PHP Minimum Trips Syntax Errors in Old Plugins</h2>
 <p><strong>Symptom:</strong> After the upgrade, specific plugins show as deactivated in the admin, or the site shows a white screen with <code>Fatal error: Cannot use ... in write context</code>.</p>
 <p><strong>Cause:</strong> Each PHP major version tightens syntax and the type system:</p>
@@ -165,7 +170,9 @@ View on GitHub
 <span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">wp</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> plugin</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> list</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --format=json</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># Clean JSON output = no parse errors; PHP warnings/deprecations often corrupt the JSON</span></span></code></pre>
 <p>Also: plugins with old “Tested up to” values deserve replacement evaluation before the major upgrade.</p>
-<p><strong>The painful in-between state:</strong> The PHP version may satisfy WordPress’s minimum while the plugin still targets the previous PHP version. The site breaks even though “WordPress’s PHP requirement is met.”</p>
+<blockquote>
+<p><strong>Key insight:</strong> The PHP version may satisfy WordPress’s minimum while the plugin still targets the previous PHP version — the site breaks even though “WordPress’s PHP requirement is met.”</p>
+</blockquote>
 <h2 id="pattern-4--theme-structure-changes-invalidate-child-theme-customizations-60-fse">Pattern 4 — Theme Structure Changes Invalidate Child-Theme Customizations (6.0 FSE)</h2>
 <p><strong>Symptom:</strong> Classic Theme customizations don’t break on the 6.x upgrade itself — but when you switch to a Block Theme, the <code>template-parts/*.php</code> overrides the child theme provided stop working.</p>
 <p><strong>Cause:</strong> Block Themes have a fundamentally different file structure from Classic Themes:</p>
@@ -179,7 +186,9 @@ View on GitHub
 <li><strong>Stay on Classic Theme</strong> — no migration required; Classic Themes continue to work in 6.x</li>
 <li><strong>Migrate to Block Theme</strong> — requires redesigning the child theme entirely as a separate project</li>
 </ol>
-<p><strong>The operational decision that matters:</strong> “Should we migrate the client’s theme?” and “Should we upgrade WordPress?” become <strong>separate decisions</strong> that can be staggered in time.</p>
+<blockquote>
+<p><strong>Key insight:</strong> “Should we migrate the client’s theme?” and “Should we upgrade WordPress?” become <strong>separate decisions</strong> that can be staggered in time — treating them as one creates unnecessary coupling.</p>
+</blockquote>
 <h2 id="pattern-5--silent-rest-api--auth-changes-break-external-integrations">Pattern 5 — Silent REST API / Auth Changes Break External Integrations</h2>
 <p><strong>Symptom:</strong> Everything looks normal immediately after the upgrade. Days or weeks later: “The API integration where an external CRM POSTs into WordPress has stopped working.” Auto-posting and auto-updates from core business systems fail silently.</p>
 <p><strong>Cause:</strong> Small items buried in the “Developer Notes” section of official release notes:</p>
@@ -197,7 +206,9 @@ View on GitHub
 <li>Leave staging running for a full week (the “one-week soak”) and watch for silent failures</li>
 <li>For sites with external integrations, add “every integration’s auth path, tested end-to-end” to the major-upgrade checklist</li>
 </ol>
-<p><strong>The structural rule:</strong> This pattern is the slowest to discover. It only surfaces with time and real traffic, not an immediate admin click-through.</p>
+<blockquote>
+<p><strong>Key insight:</strong> This pattern is the slowest to discover — it only surfaces with time and real traffic, not an immediate admin click-through. The one-week soak on staging is the only reliable signal.</p>
+</blockquote>
 <h2 id="the-five-structural-axes">The Five Structural Axes</h2>
 
 
