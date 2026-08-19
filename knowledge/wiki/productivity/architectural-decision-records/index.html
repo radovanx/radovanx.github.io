@@ -184,7 +184,7 @@ View on GitHub
 <span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    style ADR fill</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">064e3b</span><span style="color:#24292E;--shiki-dark:#E1E4E8">,</span><span style="color:#E36209;--shiki-dark:#FFAB70">color</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">fff</span></span>
 <span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    style READ fill</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">064e3b</span><span style="color:#24292E;--shiki-dark:#E1E4E8">,</span><span style="color:#E36209;--shiki-dark:#FFAB70">color</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">fff</span></span>
 <span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    style CONTEXT fill</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">064e3b</span><span style="color:#24292E;--shiki-dark:#E1E4E8">,</span><span style="color:#E36209;--shiki-dark:#FFAB70">color</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">fff</span></span></code></pre>
-<p>Michael Keeling’s IEEE Software essay <em>Love Unrequited: The Story of Architecture, Agile, and How Architecture Decision Records Brought Them Together</em> (2022) argues that ADRs are the fix for the Agile-architecture tension: Agile discourages big-upfront design, but without <em>some</em> record, teams lose the why behind every structural choice.</p>
+<p>Michael Keeling’s IEEE Software essay <strong><a href="https://ieeexplore.ieee.org/document/9801811/">Love Unrequited: The Story of Architecture, Agile, and How Architecture Decision Records Brought Them Together</a></strong> (Vol. 39, Issue 4, 2022; DOI: 10.1109/MS.2022.3151786) argues that ADRs are the fix for the Agile-architecture tension: Agile discourages big-upfront design, but without <em>some</em> record, teams lose the why behind every structural choice.</p>
 <h2 id="adrs-in-practice-the-github-adr-organization">ADRs in Practice: The GitHub adr Organization</h2>
 <p>The <a href="https://github.com/adr">github.com/adr</a> organization maintains tooling, templates, and examples. Their stated goals:</p>
 <ol>
@@ -194,9 +194,9 @@ View on GitHub
 </ol>
 <p><strong>External recognition:</strong></p>
 <ul>
-<li>The <strong>Azure Well-Architected Framework</strong> recommends ADRs as a best practice</li>
-<li><strong>AWS Prescriptive Guidance</strong> recommends ADRs for streamlining technical decision-making</li>
-<li><strong>Open Practice Library</strong> lists ADRs as a formal practice</li>
+<li>The <strong><a href="https://learn.microsoft.com/en-us/azure/well-architected/architect-role/architecture-decision-record">Azure Well-Architected Framework</a></strong> has a dedicated “Maintain an architecture decision record” page listing ADRs as a core architect deliverable</li>
+<li><strong><a href="https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/introduction.html">AWS Prescriptive Guidance</a></strong> has a full guide “Using architectural decision records to streamline decision-making during development”</li>
+<li><strong><a href="https://openpracticelibrary.com/practice/architectural-decision-records-adr/">Open Practice Library</a></strong> lists ADRs as a formal catalogued practice</li>
 </ul>
 <h2 id="integrating-adrs-with-ai-assisted-development">Integrating ADRs with AI-Assisted Development</h2>
 <p>ADRs become especially valuable in AI-assisted coding workflows. When an agent generates code without decision context, it optimizes locally — it will happily “fix” a pattern that exists for a reason documented only in ADR-017.</p>
