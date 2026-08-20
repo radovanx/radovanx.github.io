@@ -117,10 +117,10 @@ View on GitHub
 <h2 id="turn-based-loops">Turn-Based Loops</h2>
 <p>Every prompt you send starts a manual loop. Claude gathers context, acts, checks its work, repeats if needed, and responds. You direct each turn.</p>
 <p><strong>Improve the verification step with a SKILL.md</strong> so Claude can check more of its own work end-to-end:</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">---</span></span>
-<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">name</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">verify-frontend-change</span></span>
-<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">description</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">Verify any UI change end-to-end before declaring it done.</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">---</span></span>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold">---</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">name: verify-frontend-change</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">description: Verify any UI change end-to-end before declaring it done.</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold">---</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold"># Verifying frontend changes</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">Never report a UI change as complete based on a successful edit alone.</span></span>
