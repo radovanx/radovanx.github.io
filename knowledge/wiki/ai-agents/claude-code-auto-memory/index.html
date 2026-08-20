@@ -123,42 +123,42 @@ View on GitHub
 <span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    style R fill</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">7c3aed</span><span style="color:#24292E;--shiki-dark:#E1E4E8">,</span><span style="color:#E36209;--shiki-dark:#FFAB70">color</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">fff</span></span></code></pre>
 <h3 id="user-memories--who-am-i-talking-to">User Memories — “Who am I talking to?”</h3>
 <p>Facts about you: role, expertise, goals, mental model. Shape how Claude explains things and what shortcuts it takes.</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold">---</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">name: user_role</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">description: User's primary role and expertise level</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">type: user</span></span>
-<span class="line"><span style="color:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold">---</span></span>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">---</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">name</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">user_role</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">description</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">User's primary role and expertise level</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">type</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">user</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">---</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">User is a senior backend engineer with 8 years of Go experience. Currently learning React.</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">Frame frontend explanations in terms of backend analogues when possible.</span></span></code></pre>
 <p><strong>Payoff:</strong> Claude stops explaining what a <code>func</code> is and starts comparing JSX to Go templates.</p>
 <h3 id="feedback-memories--what-should-i-repeat-or-avoid">Feedback Memories — “What should I repeat or avoid?”</h3>
 <p>Rules derived from corrections and confirmations. When you say “don’t do X,” Claude writes it with the why — so it can handle edge cases instead of blindly following the rule.</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold">---</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">name: feedback_testing_approach</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">description: User prefers integration tests over mocks for database code</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">type: feedback</span></span>
-<span class="line"><span style="color:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold">---</span></span>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">---</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">name</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">feedback_testing_approach</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">description</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">User prefers integration tests over mocks for database code</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">type</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">feedback</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">---</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">Integration tests must hit a real database, not mocks.</span></span>
 <span class="line"><span style="color:#24292E;--shiki-light-font-weight:bold;--shiki-dark:#E1E4E8;--shiki-dark-font-weight:bold">**Why:**</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> Prior incident where mock/prod divergence masked a broken migration.</span></span>
 <span class="line"><span style="color:#24292E;--shiki-light-font-weight:bold;--shiki-dark:#E1E4E8;--shiki-dark-font-weight:bold">**How to apply:**</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> Any test that touches database code should use the test database container, not a mocked ORM.</span></span></code></pre>
 <p>The structure matters: rule → why → how to apply. Without the why, Claude can’t generalize to edge cases.</p>
 <h3 id="project-memories--whats-happening-in-this-project-right-now">Project Memories — “What’s happening in this project right now?”</h3>
 <p>In-flight work, deadlines, architectural decisions, active migrations. These <strong>decay fast</strong> — update them as the project moves.</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold">---</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">name: project_auth_rewrite</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">description: Ongoing auth middleware rewrite driven by compliance</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">type: project</span></span>
-<span class="line"><span style="color:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold">---</span></span>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">---</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">name</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">project_auth_rewrite</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">description</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">Ongoing auth middleware rewrite driven by compliance</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">type</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">project</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">---</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">Auth middleware is being rewritten between 2026-04-01 and 2026-05-15.</span></span>
 <span class="line"><span style="color:#24292E;--shiki-light-font-weight:bold;--shiki-dark:#E1E4E8;--shiki-dark-font-weight:bold">**Why:**</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> Legal flagged old middleware for non-compliant session token storage.</span></span>
 <span class="line"><span style="color:#24292E;--shiki-light-font-weight:bold;--shiki-dark:#E1E4E8;--shiki-dark-font-weight:bold">**How to apply:**</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> Scope decisions favor compliance over ergonomics. Don't suggest optimizations that touch token storage.</span></span></code></pre>
 <h3 id="reference-memories--where-do-i-look-for-x">Reference Memories — “Where do I look for X?”</h3>
 <p>Pointers to external systems — dashboards, wikis, Linear, Slack channels. Claude uses these to direct you (or itself) to authoritative sources.</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold">---</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">name: ref_oncall_dashboard</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">description: Grafana dashboard for API latency, watched by oncall</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">type: reference</span></span>
-<span class="line"><span style="color:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold">---</span></span>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">---</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">name</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">ref_oncall_dashboard</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">description</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">Grafana dashboard for API latency, watched by oncall</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">type</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">reference</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">---</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">grafana.internal/d/api-latency — check when editing request-path code. This is what will page someone if it regresses.</span></span></code></pre>
 <h2 id="why-files-beat-a-vector-database">Why Files Beat a Vector Database</h2>
 <p>The file-based design looks primitive compared to embedding-based memory systems. It’s the opposite — it’s the result of watching vector approaches fail at this problem:</p>

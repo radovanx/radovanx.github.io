@@ -123,11 +123,11 @@ View on GitHub
 <p>These encode a senior developer’s code review intuition as callable commands any team member can run.</p>
 <h3 id="disable-model-invocation-true"><code>disable-model-invocation: true</code></h3>
 <p>All honnibal skills ship with this frontmatter option set. It prevents Claude from invoking the skill automatically as part of its own reasoning — the skill only fires when you explicitly call it.</p>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold">---</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">allowed-tools: Read, Bash</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">disable-model-invocation: true</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">description: Tighten Python type annotations</span></span>
-<span class="line"><span style="color:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold">---</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">---</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">allowed-tools</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">Read, Bash</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">disable-model-invocation</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">true</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">description</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">Tighten Python type annotations</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">---</span></span></code></pre>
 <p>Without this, a skill loaded into the session can be triggered by the model itself mid-task, polluting the context with unintended skill output. This matters most for skills that produce large outputs (like <code>/pre-mortem</code> generating <code>PRE-MORTEM.md</code>) — you don’t want those running mid-refactor.</p>
 <blockquote>
 <p><strong>Key insight:</strong> <code>disable-model-invocation: true</code> makes skills opt-in at invocation time — you control when a skill fires, the model never invokes it on your behalf.</p>
