@@ -454,13 +454,35 @@ View on GitHub
 </blockquote>
 <p>Key distinction: <strong>specs</strong> are task-specific artifacts. <strong>Memory banks</strong> (or “context documents”) are codebase-wide — product principles, tech stack constraints, architecture notes. Every SDD tool conflates these to some degree.</p>
 <h3 id="critical-limitations-böckelers-observations">Critical Limitations (Böckeler’s Observations)</h3>
-<p><strong>Problem sizing mismatch.</strong> Single-workflow tools scale poorly. A one-line bug fix through Kiro became 4 user stories with 16 acceptance criteria. A 3–5 point story through spec-kit generated so many markdown files that “implementing the feature with plain AI-assisted coding would have taken less time.”</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Limitation</th><th>Evidence</th></tr></thead><tbody><tr><td><strong>Problem sizing mismatch</strong> — single-workflow tools have no profiles for different task sizes</td><td>1-line bug fix → 4 user stories + 16 acceptance criteria (Kiro); 3–5pt story → so many markdown files that plain AI-assisted coding would have been faster (spec-kit)</td></tr><tr><td><strong>Markdown review fatigue</strong> — artifact tree (spec.md, plan.md, tasks.md, data-model.md, research.md, contracts/) is verbose; files repeat each other and echo existing code</td><td>“I’d rather review code than all these markdown files”</td></tr><tr><td><strong>False sense of control</strong> — agents ignore instructions despite elaborate templates and checklists</td><td>spec-kit’s research step found existing classes in the codebase; agent regenerated them as duplicates — large context windows don’t guarantee the model uses all the content</td></tr><tr><td><strong>Functional/technical spec separation is hard</strong> — keeping specs purely functional (no tech stack) is unclear in practice</td><td>Inconsistent tutorials; the industry has a poor track record writing pure requirements (cf. user stories in practice)</td></tr></tbody></table>
 <blockquote>
 <p><strong>Key insight:</strong> An effective SDD tool needs at minimum 2–3 different workflow profiles for different problem sizes (bug fix / feature / greenfield). Current tools assume every change warrants a full spec cycle.</p>
 </blockquote>
-<p><strong>Markdown review fatigue.</strong> Spec-kit’s artifact tree (spec.md, plan.md, tasks.md, data-model.md, research.md, contracts/) is repetitive and verbose. Files repeat each other and echo the existing code. Böckeler: “I’d rather review code than all these markdown files.”</p>
-<p><strong>False sense of control.</strong> Despite elaborate templates and checklists, agents frequently ignore instructions. Example: spec-kit’s research step found existing classes in the codebase, but the agent ignored those notes and regenerated them — creating duplicates. Large context windows don’t guarantee the model uses all the content.</p>
-<p><strong>Functional vs. technical spec separation is hard.</strong> Most SDD documentation aspires to keep specs purely functional (no tech stack). In practice, the boundary is unclear; tutorials are inconsistent; the industry has a poor track record writing pure requirements (cf. user stories in practice).</p>
 <h3 id="the-mdd-parallel--verschlimmbesserung">The MDD Parallel — “Verschlimmbesserung”</h3>
 <p>Böckeler draws a direct historical parallel to <strong>Model-Driven Development (MDD)</strong>: custom UML / textual DSLs played the role of specs, code generators produced code. MDD never succeeded for business applications — awkward abstraction level, too much overhead, tight coupling between spec language and generator.</p>
 <p>LLMs remove some constraints (no custom parser, natural language specs). But they add <strong>non-determinism</strong>: generating the same spec twice produces different code. Böckeler’s concern:</p>
