@@ -94,7 +94,7 @@ View on GitHub
 
 <table><thead><tr><th>Property</th><th>Value</th></tr></thead><tbody><tr><td><strong>Token cost</strong></td><td>Depends on task scope</td></tr><tr><td><strong>Debuggability</strong></td><td>Low — fails silently without explicit error handling</td></tr><tr><td><strong>Use when</strong></td><td>Mature, well-validated workflow in production</td></tr></tbody></table>
 <blockquote>
-<p><strong>Anthropic guidance:</strong> Mistakes in headless operation compound without correction. Prefer reversible actions, request minimal permissions, and fail loudly on unexpected inputs rather than proceeding with bad state. <strong>Headless is the last pattern you adopt, not the first.</strong></p>
+<p><strong>Anthropic guidance (<a href="https://www.anthropic.com/engineering/claude-code-auto-mode">Claude Code auto mode</a>):</strong> Mistakes in headless operation compound without correction. Prefer reversible actions, request minimal permissions, and fail loudly on unexpected inputs rather than proceeding with bad state. <strong>Headless is the last pattern you adopt, not the first.</strong></p>
 </blockquote>
 <h2 id="the-maturity-ladder">The Maturity Ladder</h2>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">graph</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> LR</span></span>
