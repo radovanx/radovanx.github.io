@@ -363,7 +363,37 @@ View on GitHub
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Sunny: 0.457</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Cloudy: 0.283</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Rainy: 0.261</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-264" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-264" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-264" style="display:none"></pre></div>
-<p>All three implementations converge to the same stationary distribution — <code>π ≈ [0.457, 0.283, 0.261]</code> — regardless of the starting state. Python uses linear-algebra eigendecomposition; TypeScript and PHP use iterative power iteration (no equivalent to <code>numpy.linalg.eig</code>).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Language</th><th>Method</th><th>Key call</th><th>Approach</th></tr></thead><tbody><tr><td><strong>Python</strong></td><td>Eigendecomposition</td><td><code>np.linalg.eig(P.T)</code></td><td>Exact in one call — finds all eigenvalues simultaneously</td></tr><tr><td><strong>TypeScript</strong></td><td>Power iteration</td><td>Loop: <code>next[j] += pi[k] * P[k][j]</code></td><td>Iterative — no linear-algebra library needed in JS</td></tr><tr><td><strong>PHP</strong></td><td>Power iteration</td><td><code>array_fill</code> + nested loops</td><td>Same iterative strategy as TypeScript</td></tr></tbody></table>
+<p>All three converge to the same stationary distribution — <code>π ≈ [0.457, 0.283, 0.261]</code> — regardless of starting state. The algorithm choice (eigendecomposition vs power iteration) is a language-ecosystem constraint, not a numerical one.</p>
 <p><strong>PHP implementation</strong> — power iteration via <code>array_fill</code> and nested loops:</p>
 <div class="runnable-code-wrapper" data-runnable-id="runnable-265" data-runnable-lang="php"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">&#x3C;?</span><span style="color:#005CC5;--shiki-dark:#79B8FF">php</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// PHP: Markov chain stationary distribution via power iteration</span></span>
