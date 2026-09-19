@@ -144,7 +144,7 @@ View on GitHub
 <ul>
 <li><strong><a href="https://starlog.is/articles/ai-agents/untrivial-ai-agent-orchestrator">Agent Orchestrator: Git Worktrees Are the Secret to Running 23 AI Coding Agents in Parallel</a></strong> (Starlog, September 2026) — deep architectural analysis of Untrivial’s Agent Orchestrator: worktree isolation, tmux lifecycle management, feedback injection, SQLite CDC layer</li>
 </ul>
-<p>Agent Orchestrator (by <a href="https://github.com/untrivial/agent-orchestrator">Untrivial</a>, 8.6K stars) is a <strong>process supervisor for terminal-based AI coding agents</strong> — Claude Code, Aider, Cursor CLI, Codex — that uses git worktrees to give each agent its own isolated workspace. Not a multi-agent reasoning framework; infrastructure for running multiple single-purpose agents without conflicts.</p>
+<p>Agent Orchestrator (by <a href="https://github.com/Untrivial-ai/agent-orchestrator">Untrivial</a>, ~11.9K stars as of September 2026) is a <strong>process supervisor for terminal-based AI coding agents</strong> — Claude Code, Aider, Cursor CLI, Codex — that uses git worktrees to give each agent its own isolated workspace. Not a multi-agent reasoning framework; infrastructure for running multiple single-purpose agents without conflicts.</p>
 <blockquote>
 <p><strong>Key insight:</strong> Git worktrees solve the branch-switching coordination problem at the OS level. Each agent works in its own directory on its own branch — no checkout conflicts, no accidentally running in the wrong branch context. The orchestrator needs zero knowledge of agent internals; it just wraps any CLI that reads stdin and writes stdout.</p>
 </blockquote>
