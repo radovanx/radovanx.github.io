@@ -145,42 +145,60 @@ View on GitHub
 <li><strong><a href="https://starlog.is/articles/ai-agents/untrivial-ai-agent-orchestrator">Agent Orchestrator: Git Worktrees Are the Secret to Running 23 AI Coding Agents in Parallel</a></strong> (Starlog, September 2026) — deep architectural analysis of Untrivial’s Agent Orchestrator: worktree isolation, tmux lifecycle management, feedback injection, SQLite CDC layer</li>
 </ul>
 <p>Agent Orchestrator (by <a href="https://github.com/Untrivial-ai/agent-orchestrator">Untrivial</a>, ~11.9K stars as of September 2026) is a <strong>process supervisor for terminal-based AI coding agents</strong> — Claude Code, Aider, Cursor CLI, Codex — that uses git worktrees to give each agent its own isolated workspace. Not a multi-agent reasoning framework; infrastructure for running multiple single-purpose agents without conflicts.</p>
+<p></p><div class="section-hero-image"><img src="https://opengraph.githubassets.com/1/Untrivial-ai/agent-orchestrator" alt="Untrivial Agent Orchestrator — Git worktrees as isolated sandboxes for 23 parallel AI coding agents; Go daemon + Electron UI + SQLite CDC layer" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #86EFACdd, #6EE7B788, #2DD4BFcc);"></div><div class="section-hero-gradient" style="background: radial-gradient(63% 63% at 82% 79%, #86EFAC, transparent), radial-gradient(82% 82% at 60% 56%, #6EE7B7, transparent), radial-gradient(81% 81% at 55% 48%, #5EEAD4, transparent), radial-gradient(68% 68% at 36% 51%, #2DD4BF, transparent), linear-gradient(114deg, #86EFAC, #2DD4BF);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Untrivial Agent Orchestrator — Git worktrees as isolated sandboxes for 23 parallel AI coding agents; Go daemon + Electron UI + SQLite CDC layer</span></div><p></p>
 <blockquote>
 <p><strong>Key insight:</strong> Git worktrees solve the branch-switching coordination problem at the OS level. Each agent works in its own directory on its own branch — no checkout conflicts, no accidentally running in the wrong branch context. The orchestrator needs zero knowledge of agent internals; it just wraps any CLI that reads stdin and writes stdout.</p>
 </blockquote>
 <h2 id="the-problem-it-solves">The Problem It Solves</h2>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Developer workflow without Agent Orchestrator:</span></span>
-<span class="line"><span>1. Start Agent A on feature branch</span></span>
-<span class="line"><span>2. Wait for A to finish</span></span>
-<span class="line"><span>3. Stash/commit A's work</span></span>
-<span class="line"><span>4. Switch to bug-fix branch</span></span>
-<span class="line"><span>5. Start Agent B</span></span>
-<span class="line"><span>6. Wait... repeat</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>Agent Orchestrator workflow:</span></span>
-<span class="line"><span>1. Spin up 23 agents in parallel</span></span>
-<span class="line"><span>2. Each gets its own worktree + branch</span></span>
-<span class="line"><span>3. Watch the Electron UI while they work</span></span>
-<span class="line"><span>4. Agents self-correct via CI feedback loop</span></span></code></pre>
-<p>Without the orchestrator, five straightforward bug fixes that could run in parallel get serialized — spending more time on git housekeeping than actual development.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Without Agent Orchestrator</th><th>With Agent Orchestrator</th></tr></thead><tbody><tr><td>Start Agent A, wait for it to finish</td><td>Spin up 23 agents simultaneously</td></tr><tr><td>Stash/commit A’s work</td><td>Each gets its own worktree + branch</td></tr><tr><td>Switch branch, start Agent B</td><td>Watch the Electron UI while they work</td></tr><tr><td>Wait… repeat for every fix</td><td>Agents self-correct via CI feedback loop</td></tr></tbody></table>
+<p>Five straightforward bug fixes that could run in parallel get serialized without the orchestrator — spending more time on git housekeeping than actual development.</p>
 <h2 id="architecture">Architecture</h2>
-<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Electron UI (React/TypeScript)</span></span>
-<span class="line"><span>        │ HTTP/WebSocket</span></span>
-<span class="line"><span>        ▼</span></span>
-<span class="line"><span>Go Daemon (HTTP/WebSocket Server)</span></span>
-<span class="line"><span>   │</span></span>
-<span class="line"><span>   ├── Session Manager</span></span>
-<span class="line"><span>   │     └── Git Worktree Creator → .worktrees/{session-id}/</span></span>
-<span class="line"><span>   │</span></span>
-<span class="line"><span>   ├── Tmux/PTY Spawner</span></span>
-<span class="line"><span>   │</span></span>
-<span class="line"><span>   ├── 23 Agent Wrappers (Claude Code, Aider, Cursor, ...)</span></span>
-<span class="line"><span>   │</span></span>
-<span class="line"><span>   ├── GitHub/GitLab API Poller</span></span>
-<span class="line"><span>   │   └── CI Status + PR comments → injects back into agent stdin</span></span>
-<span class="line"><span>   │</span></span>
-<span class="line"><span>   └── SQLite DB + CDC Layer</span></span>
-<span class="line"><span>         └── broadcasts deltas to UI via WebSocket</span></span></code></pre>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">graph</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> TD</span></span>
+<span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    UI</span><span style="color:#D73A49;--shiki-dark:#F97583">[</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"🖥️ Electron UI\n(React/TypeScript)"</span><span style="color:#D73A49;--shiki-dark:#F97583">]</span><span style="color:#D73A49;--shiki-dark:#F97583"> -->|</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"HTTP/WebSocket"</span><span style="color:#D73A49;--shiki-dark:#F97583">|</span><span style="color:#E36209;--shiki-dark:#FFAB70"> GOD</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">    subgraph</span><span style="color:#E36209;--shiki-dark:#FFAB70"> GOD</span><span style="color:#D73A49;--shiki-dark:#F97583">[</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"Go Daemon"</span><span style="color:#D73A49;--shiki-dark:#F97583">]</span></span>
+<span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">        SM</span><span style="color:#D73A49;--shiki-dark:#F97583">[</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"Session Manager\n→ Git Worktree Creator\n.worktrees/{session-id}/"</span><span style="color:#D73A49;--shiki-dark:#F97583">]</span></span>
+<span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">        TMUX</span><span style="color:#D73A49;--shiki-dark:#F97583">[</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"Tmux/PTY Spawner"</span><span style="color:#D73A49;--shiki-dark:#F97583">]</span></span>
+<span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">        AW</span><span style="color:#D73A49;--shiki-dark:#F97583">[</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"23 Agent Wrappers\n(Claude Code · Aider · Cursor · Codex…)"</span><span style="color:#D73A49;--shiki-dark:#F97583">]</span></span>
+<span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">        GHP</span><span style="color:#D73A49;--shiki-dark:#F97583">[</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"GitHub/GitLab API Poller\nCI status + PR comments"</span><span style="color:#D73A49;--shiki-dark:#F97583">]</span></span>
+<span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">        DB</span><span style="color:#D73A49;--shiki-dark:#F97583">[</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"SQLite DB + CDC Layer\n→ broadcasts deltas via WebSocket"</span><span style="color:#D73A49;--shiki-dark:#F97583">]</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    SM </span><span style="color:#D73A49;--shiki-dark:#F97583">--</span><span style="color:#032F62;--shiki-dark:#9ECBFF">> TMUX </span><span style="color:#D73A49;--shiki-dark:#F97583">--></span><span style="color:#E36209;--shiki-dark:#FFAB70"> AW</span></span>
+<span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    AW </span><span style="color:#D73A49;--shiki-dark:#F97583">-->|</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"pushes code"</span><span style="color:#D73A49;--shiki-dark:#F97583">|</span><span style="color:#E36209;--shiki-dark:#FFAB70"> GHP</span></span>
+<span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    GHP </span><span style="color:#D73A49;--shiki-dark:#F97583">-->|</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"injects failures\nback into agent stdin"</span><span style="color:#D73A49;--shiki-dark:#F97583">|</span><span style="color:#E36209;--shiki-dark:#FFAB70"> AW</span></span>
+<span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    DB </span><span style="color:#D73A49;--shiki-dark:#F97583">-->|</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"delta push"</span><span style="color:#D73A49;--shiki-dark:#F97583">|</span><span style="color:#E36209;--shiki-dark:#FFAB70"> UI</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    style UI fill</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">4f46e5</span><span style="color:#24292E;--shiki-dark:#E1E4E8">,</span><span style="color:#E36209;--shiki-dark:#FFAB70">color</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">fff</span></span>
+<span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    style SM fill</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">065f46</span><span style="color:#24292E;--shiki-dark:#E1E4E8">,</span><span style="color:#E36209;--shiki-dark:#FFAB70">color</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">fff</span></span>
+<span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    style AW fill</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">1e3a5f</span><span style="color:#24292E;--shiki-dark:#E1E4E8">,</span><span style="color:#E36209;--shiki-dark:#FFAB70">color</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">bfdbfe</span></span>
+<span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    style DB fill</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">374151</span><span style="color:#24292E;--shiki-dark:#E1E4E8">,</span><span style="color:#E36209;--shiki-dark:#FFAB70">color</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">d1d5db</span></span>
+<span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    style GHP fill</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">451a03</span><span style="color:#24292E;--shiki-dark:#E1E4E8">,</span><span style="color:#E36209;--shiki-dark:#FFAB70">color</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">fde68a</span></span></code></pre>
 <h2 id="how-worktrees-work-as-lightweight-vm-substitutes">How Worktrees Work as Lightweight VM Substitutes</h2>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="go"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Simplified from the actual codebase</span></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">func</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> (</span><span style="color:#E36209;--shiki-dark:#FFAB70">s </span><span style="color:#D73A49;--shiki-dark:#F97583">*</span><span style="color:#6F42C1;--shiki-dark:#B392F0">Session</span><span style="color:#24292E;--shiki-dark:#E1E4E8">) </span><span style="color:#6F42C1;--shiki-dark:#B392F0">CreateWorktree</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(</span><span style="color:#E36209;--shiki-dark:#FFAB70">branchName</span><span style="color:#D73A49;--shiki-dark:#F97583"> string</span><span style="color:#24292E;--shiki-dark:#E1E4E8">) </span><span style="color:#D73A49;--shiki-dark:#F97583">error</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
