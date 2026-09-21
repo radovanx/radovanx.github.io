@@ -508,13 +508,16 @@ View on GitHub
 <h2 id="sources">Sources</h2>
 <ul>
 <li><strong><a href="https://thenewstack.io/zed-delta-github-alternative/">“Everyone’s in a race to replace GitHub”: Zed launches Delta</a></strong> (Paul Sawers, The New Stack, September 16, 2026) — public beta launch announcement: the Delta model, DeltaDB, thread-based collaboration, and Zed’s own migration away from pull requests</li>
+<li><strong><a href="https://zed.dev/blog/delta-public-beta">Replace PRs with Delta — Now in Public Beta</a></strong> (Zed Blog, September 2026) — official Zed blog post on the public beta launch</li>
+<li><strong><a href="https://www.businesswire.com/news/home/20250820782241/en/Zed-Raises-$32M-Series-B-Led-by-Sequoia-to-Scale-Collaborative-AI-Coding-Vision">Zed Raises $32M Series B Led by Sequoia</a></strong> (BusinessWire, August 20, 2025) — confirms $32M Series B funding round and Sequoia lead</li>
+<li><strong><a href="https://github.blog/news-insights/company-news/github-availability-report-august-2026/">GitHub Availability Report: August 2026</a></strong> (GitHub Blog) — official incident timeline; confirms August 17 outage, 7h47m duration, ~20% web/API error rates</li>
 </ul>
-<p>Zed Industries (the Rust-based code editor company, founded by GitHub Atom veterans, $32M Sequoia round August 2025) launched <strong>Delta</strong> in public beta on September 16, 2026. Delta is a collaborative coding environment where developers and agents work together in <strong>shared threads</strong> rather than pull requests. The central thesis: pull requests were designed for humans working alone; threads preserve the full agent conversation context that diffs discard.</p>
+<p>Zed Industries (the Rust-based code editor company, founded by GitHub Atom veterans, <a href="https://www.businesswire.com/news/home/20250820782241/en/Zed-Raises-$32M-Series-B-Led-by-Sequoia-to-Scale-Collaborative-AI-Coding-Vision">$32M Series B Sequoia round August 2025</a>) launched <strong>Delta</strong> in public beta on September 16, 2026. Delta is a collaborative coding environment where developers and agents work together in <strong>shared threads</strong> rather than pull requests. The central thesis: pull requests were designed for humans working alone; threads preserve the full agent conversation context that diffs discard.</p>
 <blockquote>
 <p><strong>Key insight:</strong> “I believe the thread will replace the commit or branch as the fundamental unit of software development.” — Nathan Sobo, CEO of Zed. A PR shows <em>what changed</em>. A thread shows <em>why it changed and how</em>.</p>
 </blockquote>
 <h2 id="the-problem-github-wasnt-built-for-agents">The Problem: GitHub Wasn’t Built for Agents</h2>
-<p>GitHub hit serious scale problems in 2026:</p>
+<p>GitHub hit serious scale problems in 2026. The comparison that makes the explosion vivid: <a href="https://github.blog/news-insights/octoverse/what-986-million-code-pushes-say-about-the-developer-workflow-in-2025/">GitHub’s 2025 Octoverse report</a> counted 986 million commits for the <strong>entire year</strong>. By August 2026, GitHub was processing that many commits every <strong>ten days</strong>. (<a href="https://thenewstack.io/github-2-9b-monthly-commits/">The New Stack</a>)</p>
 
 
 
@@ -536,8 +539,12 @@ View on GitHub
 
 
 
-<table><thead><tr><th>Period</th><th>Monthly commit volume</th></tr></thead><tbody><tr><td>All of 2025</td><td>~1 billion</td></tr><tr><td>April 2026</td><td>1.4 billion/month</td></tr><tr><td>August 2026</td><td>2.9 billion/month</td></tr></tbody></table>
-<p>That 2.9× jump in seven months traces directly to agents generating, revising, and submitting code faster than human workflows ever could. The load produced hundreds of incidents over twelve months — including a near-eight-hour disruption in August 2026 with web and API error rates reaching ~20%.</p>
+
+
+
+
+<table><thead><tr><th>Period</th><th>Commit volume</th><th>Basis</th></tr></thead><tbody><tr><td>All of 2025</td><td>~986 million</td><td>Full year (Octoverse 2025)</td></tr><tr><td>April 2026</td><td>1.4 billion</td><td>Per month</td></tr><tr><td>August 2026</td><td>2.9 billion</td><td>Per month</td></tr></tbody></table>
+<p>That near-tripling of monthly volume in four months traces directly to agents generating, revising, and submitting code faster than human workflows ever could. The load produced hundreds of incidents over twelve months — including a <a href="https://github.blog/news-insights/company-news/github-availability-report-august-2026/">near-eight-hour disruption on August 17, 2026</a> (13:28–21:15 UTC, 7h 47m) with web and API error rates reaching ~20% (<a href="https://github.blog/news-insights/company-news/github-availability-report-august-2026/">GitHub availability report</a>).</p>
 <p>Beyond reliability: the <strong>interaction model</strong> itself breaks down. When an agent does the reasoning, the PR captures the resulting diff but discards:</p>
 <ul>
 <li>The conversation that produced the decision</li>
@@ -637,8 +644,8 @@ View on GitHub
 
 
 
-<table><thead><tr><th>Company</th><th>Product</th><th>Approach</th></tr></thead><tbody><tr><td><strong>Zed</strong></td><td>Delta (public beta)</td><td>Thread-based; DeltaDB operation-level history</td></tr><tr><td><strong>Cursor</strong></td><td>Origin (August 2026)</td><td>Git hosting + PRs + Cursor agents under one roof</td></tr><tr><td><strong>GitLab</strong></td><td>Project Switch (private beta)</td><td>“Next-generation SCM”</td></tr></tbody></table>
-<p>All three launched within weeks of each other. The common driver: GitHub’s reliability failures and the agent-era collaboration mismatch.</p>
+<table><thead><tr><th>Company</th><th>Product</th><th>Approach</th></tr></thead><tbody><tr><td><strong>Zed</strong></td><td><a href="https://zed.dev/blog/delta-public-beta">Delta</a> (public beta, Sep 2026)</td><td>Thread-based; DeltaDB operation-level history</td></tr><tr><td><strong>Cursor</strong></td><td><a href="https://cursor.com/changelog/origin-code-hosting">Origin</a> (beta, Aug 17 2026)</td><td>Git hosting + PRs + Cursor agents under one roof</td></tr><tr><td><strong>GitLab</strong></td><td><a href="https://ir.gitlab.com/news/news-details/2026/GitLab-Announces-New-Capabilities-to-Give-Enterprises-Speed-and-Control-at-Agentic-Scale/default.aspx">Next-Gen SCM</a> (private beta, Jun 2026)</td><td>Agent-optimized repo access; replaces clones with structured API; 50× faster agent task execution</td></tr></tbody></table>
+<p>All three launched within months of each other. The common driver: GitHub’s reliability failures and the agent-era collaboration mismatch.</p>
 <h2 id="what-stays">What Stays</h2>
 <p>Delta is an intermediate step, not a clean break:</p>
 <ul>
