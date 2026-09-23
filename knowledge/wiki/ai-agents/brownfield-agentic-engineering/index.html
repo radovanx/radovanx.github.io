@@ -232,6 +232,9 @@ View on GitHub
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// echo classifyPath('src/auth/middleware.php');  // Output: "red"    — pair with human</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// echo classifyPath('src/api/users.php');        // Output: "yellow" — characterization tests first</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// echo classifyPath('src/utils/format.php');     // Output: "green"  — agent operates freely</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-46" type="button">Run PHP</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-46" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-46" style="display:none"></pre></div>
+<blockquote>
+<p><strong>Key insight:</strong> The zone classifier makes your risk model machine-readable. Without it, every agent session re-negotiates where it’s safe to operate — and agents always choose wrong for brownfield code. The classifier turns a policy document into an automatic guard.</p>
+</blockquote>
 <h3 id="2-write-down-what-the-code-cant-say">2. Write Down What the Code Can’t Say</h3>
 <p>Agents excel at inferring code structure but are <strong>blind to domain rules, historical context, and trade-offs</strong>. The code doesn’t say “we tried caching this in 2024 and it caused a race condition.” Feed that knowledge explicitly:</p>
 <ul>
