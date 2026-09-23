@@ -517,7 +517,7 @@ View on GitHub
 <p><strong>Key insight:</strong> “I believe the thread will replace the commit or branch as the fundamental unit of software development.” — Nathan Sobo, CEO of Zed. A PR shows <em>what changed</em>. A thread shows <em>why it changed and how</em>.</p>
 </blockquote>
 <h2 id="the-problem-github-wasnt-built-for-agents">The Problem: GitHub Wasn’t Built for Agents</h2>
-<p>GitHub hit serious scale problems in 2026. The comparison that makes the explosion vivid: <a href="https://github.blog/news-insights/octoverse/what-986-million-code-pushes-say-about-the-developer-workflow-in-2025/">GitHub’s 2025 Octoverse report</a> counted 986 million commits for the <strong>entire year</strong>. By August 2026, GitHub was processing that many commits every <strong>ten days</strong>. (<a href="https://thenewstack.io/github-2-9b-monthly-commits/">The New Stack</a>)</p>
+<p>GitHub hit serious scale problems in 2026. The comparison that makes the explosion vivid: <a href="https://github.blog/news-insights/octoverse/what-986-million-code-pushes-say-about-the-developer-workflow-in-2025/">GitHub’s 2025 Octoverse report</a> counted 986 million <strong>code pushes</strong> for the <strong>entire year</strong> (the Octoverse report measures pushes, not commits; each push can contain multiple commits). By August 2026, GitHub was processing that many commits every <strong>ten days</strong>. (<a href="https://thenewstack.io/github-2-9b-monthly-commits/">The New Stack</a>)</p>
 
 
 
@@ -543,7 +543,11 @@ View on GitHub
 
 
 
-<table><thead><tr><th>Period</th><th>Commit volume</th><th>Basis</th></tr></thead><tbody><tr><td>All of 2025</td><td>~986 million</td><td>Full year (Octoverse 2025)</td></tr><tr><td>April 2026</td><td>1.4 billion</td><td>Per month</td></tr><tr><td>August 2026</td><td>2.9 billion</td><td>Per month</td></tr></tbody></table>
+
+
+
+
+<table><thead><tr><th>Period</th><th>Volume</th><th>Basis</th><th>Metric</th></tr></thead><tbody><tr><td>All of 2025</td><td>~986 million</td><td>Full year (Octoverse 2025)</td><td>Code pushes (public repos)</td></tr><tr><td>April 2026</td><td>1.4 billion</td><td>Per month</td><td>Commits (all write path, incl. private/agent)</td></tr><tr><td>August 2026</td><td>2.9 billion</td><td>Per month</td><td>Commits (all write path, incl. private/agent)</td></tr></tbody></table>
 <p>That near-tripling of monthly volume in four months traces directly to agents generating, revising, and submitting code faster than human workflows ever could. The load produced hundreds of incidents over twelve months — including a <a href="https://github.blog/news-insights/company-news/github-availability-report-august-2026/">near-eight-hour disruption on August 17, 2026</a> (13:28–21:15 UTC, 7h 47m) with web and API error rates reaching ~20% (<a href="https://github.blog/news-insights/company-news/github-availability-report-august-2026/">GitHub availability report</a>).</p>
 <p>Beyond reliability: the <strong>interaction model</strong> itself breaks down. When an agent does the reasoning, the PR captures the resulting diff but discards:</p>
 <ul>
