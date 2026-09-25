@@ -237,7 +237,7 @@ View on GitHub
 
 
 <table><thead><tr><th>Before</th><th>With AI formalization</th></tr></thead><tbody><tr><td>Human referees spend months-to-years</td><td>Lean checks the proof in minutes</td></tr><tr><td>“99% certain” is the best outcome</td><td>Verified to the axioms — certain</td></tr><tr><td>Errors may propagate into other work</td><td>The compiler catches broken links</td></tr><tr><td>Novel results pile up faster than review</td><td>AI produces and formalizes in parallel</td></tr></tbody></table>
-<p>Kevin Buzzard (Imperial College London): <em>“If the automatic formalization of FLT is possible now, then we have taken a big step towards automatic formalization of the modern mathematical literature. Such autoformalization techniques will lead to new tools, rooting out errors in the current mathematical corpus and lightening the load of referees. The techniques will also enable us to rigorously check LLM-generated mathematics, which is currently typically an extremely costly human-led process.”</em></p>
+<p>Kevin Buzzard (Imperial College London), quoted in the <a href="https://www.anthropic.com/research/formalizing-fermats-last-theorem">Anthropic research blog</a>: <em>“If the automatic formalization of FLT is possible now, then we have taken a big step towards automatic formalization of the modern mathematical literature. Such autoformalization techniques will lead to new tools, rooting out errors in the current mathematical corpus and lightening the load of referees. The techniques will also enable us to rigorously check LLM-generated mathematics, which is currently typically an extremely costly human-led process.”</em></p>
 <h3 id="2-writing-lean-helps-claude-prove-novel-results">2. Writing Lean Helps Claude Prove Novel Results</h3>
 <p>An observation from the FLT campaign: Claude appears to use Lean formalization to <strong>independently check its own hypotheses</strong> — similar to how it writes numerical simulations to verify it’s on the right track. The formal system acts as a real-time debugger for mathematical reasoning.</p>
 <p>Many of Anthropic’s recent Claude-authored mathematical results have been formalized in parallel with their proofs. This suggests a self-verification loop:</p>
@@ -300,7 +300,6 @@ View on GitHub
 </ol>
 <h2 id="further-reading">Further Reading</h2>
 <ul>
-<li><strong><a href="https://mitpress.mit.edu/">The Proof in the Code</a></strong> — book about the history of the Lean theorem prover and the formalization of mathematics</li>
 <li><strong><a href="https://www.youtube.com/watch?v=nUN4NDVIfVI">Fermat’s Last Theorem (BBC, 1996)</a></strong> — interviews with Wiles and other mathematicians involved in the proof; interviews with Wiles and others at the moment of discovery</li>
 <li><strong><a href="https://homepages.inf.ed.ac.uk/wadler/papers/propositions-as-types/propositions-as-types.pdf">Propositions as Types</a></strong> (Philip Wadler) — technical history of the underlying discipline of proof assistants like Lean, Rocq, and Agda</li>
 <li><strong><a href="https://asteriskmag.com/issues/09/automating-math">Automating Math</a></strong> (Adam Marblestone, Asterisk Magazine) — broader perspective on AI’s role in mathematics</li>
