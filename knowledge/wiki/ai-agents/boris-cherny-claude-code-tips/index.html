@@ -184,6 +184,7 @@ View on GitHub
 
 
 <table><thead><tr><th>Tips 1–7 cover</th><th>Tips 8–13 cover</th></tr></thead><tbody><tr><td>Parallelism (worktrees, instances)</td><td>Formatting automation (hooks)</td></tr><tr><td>Model choice (Opus quality)</td><td>Permissions (settings.json pre-allow)</td></tr><tr><td>Team knowledge (CLAUDE.md)</td><td>Tool integrations (MCP)</td></tr><tr><td>PR-level learning (@claude)</td><td>Long runs (background, loops)</td></tr><tr><td>Planning (plan mode, subagents)</td><td>Auto mode (middle ground)</td></tr><tr><td>Slash commands (inner loops)</td><td><strong>Verification</strong> (the #1 tip)</td></tr></tbody></table>
+<p></p><div class="section-hero-image"><img src="https://opengraph.githubassets.com/1/anthropics/claude-code" alt="Claude Code — the agentic coding system Boris Cherny built at Anthropic; &#x22;surprisingly vanilla&#x22; setup proves great out-of-the-box defaults" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #00E5FFdd, #38BDF888, #BD93F9cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(69% 69% at 26% 81%, #00E5FF, transparent), radial-gradient(66% 66% at 75% 18%, #38BDF8, transparent), radial-gradient(54% 54% at 51% 21%, #A78BFA, transparent), linear-gradient(150deg, #00E5FF, #BD93F9);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Claude Code — the agentic coding system Boris Cherny built at Anthropic; "surprisingly vanilla" setup proves great out-of-the-box defaults</span></div><p></p>
 <h3 id="8-posttooluse-hooks-for-formatting">8. PostToolUse Hooks for Formatting</h3>
 <p>A <code>PostToolUse</code> hook auto-formats Claude’s code. While Claude generates well-formatted code 90% of the time, the hook catches edge cases before CI failures:</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">{</span></span>
@@ -256,6 +257,7 @@ Risky operations (deleting files, force-pushing) → still flagged.</p>
 <span class="line"><span>  Especially look for edge cases and ui issues.</span></span></code></pre>
 <hr>
 <p>The thirteen original tips cover the <strong>foundational loop</strong>: start parallel, use the best model, build team knowledge, review into CLAUDE.md, plan first, encode automations, verify everything. The February–April 2026 releases add customization, autonomy, and context management on top of that foundation.</p>
+<p></p><div class="section-hero-image"><img src="https://howborisusesclaudecode.com/og.png" alt="howborisusesclaudecode.com — fan-made collection of 127+ tips from the Claude Code creator; sourced from Twitter/X threads Jan–Apr 2026" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #86EFACdd, #6EE7B788, #2DD4BFcc);"></div><div class="section-hero-gradient" style="background: radial-gradient(73% 73% at 34% 72%, #86EFAC, transparent), radial-gradient(66% 66% at 23% 15%, #6EE7B7, transparent), radial-gradient(72% 72% at 81% 66%, #5EEAD4, transparent), radial-gradient(57% 57% at 77% 21%, #2DD4BF, transparent), linear-gradient(75deg, #86EFAC, #2DD4BF);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">howborisusesclaudecode.com — fan-made collection of 127+ tips from the Claude Code creator; sourced from Twitter/X threads Jan–Apr 2026</span></div><p></p>
 <h2 id="customization-tips-february-2026">Customization Tips (February 2026)</h2>
 
 
@@ -394,6 +396,9 @@ Risky operations (deleting files, force-pushing) → still flagged.</p>
 <span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    style CLEAR fill</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">4f46e5</span><span style="color:#24292E;--shiki-dark:#E1E4E8">,</span><span style="color:#E36209;--shiki-dark:#FFAB70">color</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">fff</span></span></code></pre>
 <blockquote>
 <p>“The single habit that signals good context management is /rewind, not correction. Don’t add a failed attempt and a correction to your context — rewind and start fresh with what you learned.”</p>
+</blockquote>
+<blockquote>
+<p><strong>Key insight:</strong> The verification loop is the highest-leverage investment in Claude Code quality, but most users skip it. Giving Claude a way to check its own work — a browser extension, a test runner, a type-checker — produces 2–3× better output than any other technique. Boris spent years building Claude Code and this is the tip he leads with. The verification mechanism is not an optional step; it’s the engine the entire loop runs on.</p>
 </blockquote>
 <h2 id="memory">Memory</h2>
 <p>Built-in memory system (<code>/memory</code>):</p>

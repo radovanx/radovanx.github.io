@@ -244,6 +244,7 @@ View on GitHub
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Flow: agent pushes code → CI fails → orchestrator types the failure into agent's terminal</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">//       → agent reads it like any other input → agent fixes → pushes again → repeat until green</span></span></code></pre>
 <p>This feedback loop is what enables autonomous parallel operation: you spin up the agents, walk away, and check the Electron UI when done.</p>
+<p></p><div class="section-hero-image"><img src="https://opengraph.githubassets.com/1/Untrivial-ai/agent-orchestrator" alt="Untrivial Agent Orchestrator on GitHub — 11.9K stars; Go daemon + Electron UI + SQLite CDC layer for running 23 parallel AI coding agents with closed-loop CI feedback" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #22D3EEdd, #0EA5E988, #6366F1cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(75% 75% at 58% 62%, #22D3EE, transparent), radial-gradient(85% 85% at 39% 78%, #0EA5E9, transparent), radial-gradient(79% 79% at 49% 28%, #3B82F6, transparent), linear-gradient(42deg, #22D3EE, #6366F1);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Untrivial Agent Orchestrator on GitHub — 11.9K stars; Go daemon + Electron UI + SQLite CDC layer for running 23 parallel AI coding agents with closed-loop CI feedback</span></div><p></p>
 <h2 id="state-management-sqlite-with-change-data-capture">State Management: SQLite with Change Data Capture</h2>
 
 
@@ -277,6 +278,9 @@ View on GitHub
 
 <table><thead><tr><th>Layer</th><th>Technology</th><th>Role</th></tr></thead><tbody><tr><td>Storage</td><td>SQLite</td><td>session state, git state, CI status</td></tr><tr><td>Reactivity</td><td>Custom CDC layer</td><td>broadcasts deltas on every write</td></tr><tr><td>Transport</td><td>WebSocket</td><td>streams deltas to Electron UI in real time</td></tr><tr><td>Frontend</td><td>React</td><td>renders terminal output, git diffs, session status</td></tr></tbody></table>
 <p>No polling from the UI — pure delta push. The frontend knows about an agent’s output the instant it’s written to SQLite.</p>
+<blockquote>
+<p><strong>Key insight:</strong> The CDC layer is what makes 23 parallel agents manageable. Without delta push, the UI would need to poll all 23 sessions for updates — O(n) API calls per second. With CDC, the Electron UI gets every state change instantly as a broadcast from SQLite writes. The agent count stops being a scaling problem for the UI.</p>
+</blockquote>
 <h2 id="capabilities-and-limitations">Capabilities and Limitations</h2>
 
 
