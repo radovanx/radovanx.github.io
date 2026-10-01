@@ -138,7 +138,7 @@ View on GitHub
 <h2 id="goal-based-loops">Goal-Based Loops</h2>
 <p>Sometimes a single turn isn’t enough — especially for complex tasks. <code>/goal</code> extends how long Claude keeps iterating by defining what “done” looks like. An evaluator model checks the condition after each attempt and sends Claude back to work until the goal is met or a turn cap is hit.</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">/goal</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> get</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> the</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> homepage</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> Lighthouse</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> score</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> to</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> 90</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> or</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> above,</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> stop</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> after</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> 5</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> tries.</span></span></code></pre>
-<p><strong>Why deterministic criteria work best:</strong> “Number of tests passing” or “Lighthouse score ≥ 90” is unambiguous. “Make it look better” is not — Claude has to guess when to stop.</p>
+<p>Deterministic criteria work best: “Number of tests passing” or “Lighthouse score ≥ 90” is unambiguous. “Make it look better” is not — Claude has to guess when to stop.</p>
 <h2 id="time-based-loops">Time-Based Loops</h2>
 <p>Some work is recurring (the task stays the same, only inputs change) or depends on external systems (poll and react to what changed).</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># /loop runs on your computer — stops if you turn it off</span></span>
@@ -154,13 +154,7 @@ View on GitHub
 <span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">/goal:</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> don't stop until every report found this run is triaged, actioned, and responded to.</span></span>
 <span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">When fixing a bug, use a workflow to explore three solutions in parallel worktrees</span></span>
 <span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">and have a judge adversarially review them.</span></span></code></pre>
-<p>This combines:</p>
-<ul>
-<li><code>/schedule</code> → triggers every hour (no human needed)</li>
-<li><code>/goal</code> → defines what “done” looks like for each run</li>
-<li>Dynamic workflows → parallel worktrees, adversarial judge</li>
-<li>Auto mode → runs without stopping to ask for permissions</li>
-</ul>
+<p>The four primitives compose: <code>/schedule</code> triggers every hour without human input, <code>/goal</code> defines the done condition per run, dynamic workflows fan out parallel worktrees with an adversarial judge, and auto mode removes permission prompts. Remove any one and the autonomy breaks.</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">sequenceDiagram</span></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">    participant</span><span style="color:#E36209;--shiki-dark:#FFAB70"> S</span><span style="color:#D73A49;--shiki-dark:#F97583"> as</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> /schedule (trigger)</span></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">    participant</span><span style="color:#E36209;--shiki-dark:#FFAB70"> G</span><span style="color:#D73A49;--shiki-dark:#F97583"> as</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> /goal (exit condition)</span></span>
@@ -174,9 +168,6 @@ View on GitHub
 <span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    G</span><span style="color:#D73A49;--shiki-dark:#F97583">->></span><span style="color:#E36209;--shiki-dark:#FFAB70">AM</span><span style="color:#D73A49;--shiki-dark:#F97583">:</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> Run without permission prompts</span></span>
 <span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    AM</span><span style="color:#D73A49;--shiki-dark:#F97583">-->></span><span style="color:#E36209;--shiki-dark:#FFAB70">G</span><span style="color:#D73A49;--shiki-dark:#F97583">:</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> Complete — goal condition met</span></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">    Note</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> over</span><span style="color:#E36209;--shiki-dark:#FFAB70"> S</span><span style="color:#D73A49;--shiki-dark:#F97583">,</span><span style="color:#E36209;--shiki-dark:#FFAB70">AM</span><span style="color:#D73A49;--shiki-dark:#F97583">:</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> Schedule fires again on next trigger</span></span></code></pre>
-<blockquote>
-<p><strong>Key insight:</strong> The proactive loop is the composition of four primitives — scheduling, goal-checking, parallel workflows, and auto mode. Remove any one and the autonomy breaks: no schedule means a human triggers it, no goal means it runs forever, no workflow means no parallelism, no auto mode means it stops to ask permission.</p>
-</blockquote>
 <h2 id="code-quality-in-loops">Code Quality in Loops</h2>
 <p>The quality of a loop’s output depends on the system around it:</p>
 
