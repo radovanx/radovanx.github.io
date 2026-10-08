@@ -164,7 +164,7 @@ View on GitHub
 <p>Official SDKs: TypeScript (<code>@modelcontextprotocol/sdk</code>), Python (<code>mcp</code>), Go (<code>mcp-go</code>), plus Rust, Java, C#.</p>
 <p><strong>Why Go for MCP servers:</strong> single binary (<code>go build</code> → one file, no <code>node_modules</code>), sub-millisecond startup (MCP servers launch per-session), goroutines handle concurrent tool calls cleanly, and LLMs write clean idiomatic Go.</p>
 <h2 id="mcp-vs-cli-decision-framework">MCP vs CLI Decision Framework</h2>
-<p>If the tool is local, simple, and the agent already has trusted shell access — <strong>use CLI</strong>. One analysis showed CLI can be 94% cheaper (fewer tokens, faster execution) (single source). (<a href="https://kanyilmaz.me/2026/02/23/cli-vs-mcp.html">CLI vs MCP benchmark</a>)</p>
+<p>If the tool is local, simple, and the agent already has trusted shell access — <strong>use CLI</strong>. Multiple analyses show CLI is 92–94% cheaper in tokens (fewer tokens, faster execution). (<a href="https://kanyilmaz.me/2026/02/23/cli-vs-mcp.html">CLI vs MCP benchmark</a>; <a href="https://blocks.ai/blog/mcp-vs-cli-context-window-cost">blocks.ai deep-dive, Aug 2026</a>)</p>
 <p>MCP wins when you need:</p>
 
 
