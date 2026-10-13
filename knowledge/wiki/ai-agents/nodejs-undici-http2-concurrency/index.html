@@ -162,6 +162,7 @@ View on GitHub
 <h2 id="sources">Sources</h2>
 <ul>
 <li><strong><a href="https://atlasflow.com/blog/node-26-5-0-can-turn-concurrent-agents-into-a-queue">Node.js 26.5.0 can turn concurrent agents into a queue</a></strong> (Atlasflow, October 2026) — root-cause analysis of a 4.60x–6.59x agent slowdown traced to Undici 8.7.0’s HTTP/2 multiplexing bug; reproduction steps, version comparison table, and workaround</li>
+<li><strong><a href="https://aident.ai/blog/fix-mcp-tools-list-hang-node-undici-http2">MCP tools/list Hangs on Node? Fix the Undici HTTP/2 Deadlock</a></strong> (Aident.ai, 2026) — second independent report of the same Undici HTTP/2 bug; confirms fix shipped in Undici 8.8.0 on July 20, 2026; manifests as MCP <code>tools/list</code> POST blocked behind open SSE GET</li>
 </ul>
 <p>A bug in <strong>Node.js 26.5.0’s built-in <code>fetch</code></strong> (Undici 8.7.0) serialized concurrent HTTP/2 POST requests, turning what should be parallel agent loops into a queue. Three agents starting together began taking turns. The slowdown ranged from <strong>4.60x to 6.59x</strong> depending on response duration.</p>
 <blockquote>
@@ -184,12 +185,13 @@ View on GitHub
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># Check your version</span></span>
 <span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">node</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -e</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> "console.log(process.version, process.versions.undici)"</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># v26.5.0 8.7.0  ← affected</span></span>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># v26.5.1 8.9.0  ← fixed (July 2026 security release)</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># v26.6.x 8.9.0+ ← fixed</span></span></code></pre>
 <p>HTTP/2 multiplexing allows many independent request streams over one connection — a slow response should never block a new one from starting. Undici 8.7.0 had a bug in this logic:</p>
 <blockquote>
 <p><strong>It treated an HTTP/2 connection as “busy” when a new request had a body and another request was still active.</strong> The new request waited instead of opening another stream.</p>
 </blockquote>
-<p>The fix landed in <strong>Undici 8.8.0</strong> (<a href="https://github.com/nodejs/undici/pull/5538">nodejs/undici#5538</a>):</p>
+<p>The fix landed in <strong>Undici 8.8.0</strong> (PR number unverified — check nodejs/undici changelog; confirmed by Aident.ai as released July 20, 2026 — <a href="https://github.com/nodejs/undici/pull/5538">nodejs/undici#5538</a> cited by Atlasflow):</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>fix(h2): allow stream-bodied requests to multiplex on a busy session</span></span></code></pre>
 <p>The affected code path requires all three conditions simultaneously:</p>
 <ol>
@@ -232,7 +234,7 @@ View on GitHub
 <p><em>10 workers × 5 requests each = 50 total streams. All completed without errors.</em></p>
 <h2 id="fix-options">Fix Options</h2>
 <p><strong>Best fix: upgrade Node</strong></p>
-<p>Any Node.js 26 release shipping Undici 8.8.0+ resolves the issue. Check the exact version in your running container — the <code>node:26</code> Docker tag changes over time:</p>
+<p><strong>Node.js 26.5.1</strong> (emergency security release, July 29, 2026) ships Undici 8.9.0 and resolves the issue. Any Node.js 26.5.1+ release is safe. Check the exact version in your running container — the <code>node:26</code> Docker tag changes over time:</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">node</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -e</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> "console.log(process.version, process.versions.undici)"</span></span></code></pre>
 <p><strong>Workaround until upgrade: share a fixed npm Agent</strong></p>
 <div class="runnable-code-wrapper" data-runnable-id="runnable-147" data-runnable-lang="typescript"><pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Install: npm install undici@8.9.0</span></span>
@@ -321,7 +323,7 @@ View on GitHub
 
 
 
-<table><thead><tr><th>Runtime</th><th>Status</th><th>Notes</th></tr></thead><tbody><tr><td><strong>Node.js 26.5.0 + Undici 8.7.0</strong></td><td>Affected</td><td>Built-in <code>fetch</code> serializes concurrent POST + SSE</td></tr><tr><td><strong>Node.js 24.18.0</strong></td><td>Not affected</td><td>HTTP/1.1 (no multiplexing bug)</td></tr><tr><td><strong>Node.js 26.6.0+</strong></td><td>Fixed</td><td>Ships Undici 8.8.0+</td></tr><tr><td><strong>npm <code>undici@8.9.0</code> with shared <code>Agent</code></strong></td><td>Fixed</td><td>Workaround for Node 26.5.0</td></tr><tr><td><strong>PHP ext-curl + <code>curl_multi</code></strong></td><td>Not affected</td><td>curl_multi handles HTTP/2 multiplexing correctly</td></tr><tr><td><strong>Deno, Bun</strong></td><td>Not affected</td><td>Different HTTP clients</td></tr></tbody></table>
+<table><thead><tr><th>Runtime</th><th>Status</th><th>Notes</th></tr></thead><tbody><tr><td><strong>Node.js 26.5.0 + Undici 8.7.0</strong></td><td>Affected</td><td>Built-in <code>fetch</code> serializes concurrent POST + SSE</td></tr><tr><td><strong>Node.js 24.18.0</strong></td><td>Not affected</td><td>HTTP/1.1 (no multiplexing bug)</td></tr><tr><td><strong>Node.js 26.5.1+</strong></td><td>Fixed</td><td>Ships Undici 8.9.0 (July 2026 security release — <a href="https://nodejs.org/fr/blog/vulnerability/july-2026-security-releases">nodejs.org advisory</a>)</td></tr><tr><td><strong>npm <code>undici@8.9.0</code> with shared <code>Agent</code></strong></td><td>Fixed</td><td>Workaround for Node 26.5.0</td></tr><tr><td><strong>PHP ext-curl + <code>curl_multi</code></strong></td><td>Not affected</td><td>curl_multi handles HTTP/2 multiplexing correctly</td></tr><tr><td><strong>Deno, Bun</strong></td><td>Not affected</td><td>Different HTTP clients</td></tr></tbody></table>
 <h2 id="why-this-matters-for-agents">Why This Matters for Agents</h2>
 <p>The bug disproportionately affects agent workloads because:</p>
 <ol>
