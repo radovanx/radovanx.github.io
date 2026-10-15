@@ -193,7 +193,7 @@ View on GitHub
 
 
 
-<table><thead><tr><th>Signal</th><th>Weight</th><th>Problem</th></tr></thead><tbody><tr><td>Compilation gate</td><td>—</td><td>Binary: code compiles or not</td></tr><tr><td>p5.brush usage check</td><td>—</td><td>Binary: uses the library or not</td></tr><tr><td>Code length ramp</td><td>~32%</td><td>Saturated by step 30; zero gradient afterward</td></tr><tr><td>HPSv3 (human preference model)</td><td>10%</td><td>Showed real variance — but vastly underweighted</td></tr><tr><td>Prompt adherence (council of judges)</td><td>8%</td><td>Correlated 0.85–0.95 with quality judges</td></tr><tr><td>Recognisability</td><td>10%</td><td>Same correlation cluster</td></tr><tr><td>Aesthetics</td><td>15%</td><td>Same correlation cluster</td></tr><tr><td>Technique</td><td>8%</td><td>Same correlation cluster</td></tr><tr><td>Depth</td><td>7%</td><td>Same correlation cluster</td></tr></tbody></table>
+<table><thead><tr><th>Signal</th><th>Weight</th><th>Problem</th></tr></thead><tbody><tr><td>Compilation gate</td><td>—</td><td>Binary: code compiles or not</td></tr><tr><td>p5.brush usage check</td><td>—</td><td>Binary: uses the library or not</td></tr><tr><td>Code length ramp</td><td>~32%</td><td>Saturated by step 30; zero gradient afterward</td></tr><tr><td><a href="https://arxiv.org/abs/2508.03789">HPSv3</a> (human preference model)</td><td>10%</td><td>Showed real variance — but vastly underweighted</td></tr><tr><td>Prompt adherence (council of judges)</td><td>8%</td><td>Correlated 0.85–0.95 with quality judges</td></tr><tr><td>Recognisability</td><td>10%</td><td>Same correlation cluster</td></tr><tr><td>Aesthetics</td><td>15%</td><td>Same correlation cluster</td></tr><tr><td>Technique</td><td>8%</td><td>Same correlation cluster</td></tr><tr><td>Depth</td><td>7%</td><td>Same correlation cluster</td></tr></tbody></table>
 <p>The five quality/adherence judges were measuring the same thing five times (ρ = 0.85–0.95). Code length saturated early and contributed zero gradient from step 30 onward. HPSv3 — the only signal with real variance — was at 10%.</p>
 <p><strong>Result:</strong> The model plateaued at 0.65 reward. Every rollout produced the same flat, clip-art flower with five rounded petals.</p>
 <h2 id="the-fix-pairwise-judgment--reference-pool">The Fix: Pairwise Judgment + Reference Pool</h2>
@@ -237,7 +237,7 @@ View on GitHub
 
 
 
-<table><thead><tr><th>Signal</th><th>Weight</th><th>Type</th></tr></thead><tbody><tr><td>Compile + uses p5.brush</td><td>5%</td><td>Binary gate</td></tr><tr><td>Length check</td><td>5%</td><td>Binary gate</td></tr><tr><td>HPSv3</td><td>30%</td><td>Human preference model</td></tr><tr><td><strong>Pairwise judge vs. reference pool</strong></td><td><strong>60%</strong></td><td>Relative comparison</td></tr></tbody></table>
+<table><thead><tr><th>Signal</th><th>Weight</th><th>Type</th></tr></thead><tbody><tr><td>Compile + uses p5.brush</td><td>5%</td><td>Binary gate</td></tr><tr><td>Length check</td><td>5%</td><td>Binary gate</td></tr><tr><td><a href="https://arxiv.org/abs/2508.03789">HPSv3</a></td><td>30%</td><td>Human preference model</td></tr><tr><td><strong>Pairwise judge vs. reference pool</strong></td><td><strong>60%</strong></td><td>Relative comparison</td></tr></tbody></table>
 <p><strong>Results:</strong> Same base model, same training data. The next run:</p>
 <ul>
 <li>Reached the old plateau 3× faster</li>
@@ -251,7 +251,7 @@ View on GitHub
 <span class="line"><span>↑ new rubric keeps climbing</span></span></code></pre>
 <h2 id="system-prompt-evolution-via-gepa">System Prompt Evolution via GEPA</h2>
 <p>Early system prompts included a 400-line p5.brush API reference. The model produced confident, well-formatted code that <strong>invented APIs that did not exist</strong>. Hallucination increased proportionally with reference documentation length.</p>
-<p>GEPA (a prompt-optimization library) evolved the system prompt against a scoring function: 200 iterations against a taste-anchored 7-shot judge.</p>
+<p><a href="https://arxiv.org/abs/2507.19457">GEPA</a> (a prompt-optimization library, arXiv:2507.19457, Agrawal et al. 2025) evolved the system prompt against a scoring function: 200 iterations against a taste-anchored 7-shot judge.</p>
 <p><strong>Finding:</strong> The optimized prompt had a strict <strong>allowlist of 8 brush methods</strong>, no API documentation, no examples. A short, opinionated allowlist constrains output better than a full API reference.</p>
 <blockquote>
 <p>Shorter, more opinionated prompts beat comprehensive reference docs for preventing hallucination. The model’s imagination fills in gaps accurately when the allowlist is tight.</p>
