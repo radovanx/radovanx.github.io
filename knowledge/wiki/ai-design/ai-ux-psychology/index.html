@@ -547,9 +547,7 @@ View on GitHub
 
 
 <table><thead><tr><th>State</th><th>HTML</th><th>Use when</th></tr></thead><tbody><tr><td><strong>Hidden</strong></td><td><code>display:none</code> / removed from DOM</td><td>Component is not useful, not relevant, not allowed, incompatible, or unavailable; user gains nothing from knowing it exists</td></tr><tr><td><strong>Read-Only</strong></td><td><code>readonly</code> attribute</td><td>Mostly for text inputs (invoice IDs, VAT numbers, system-assigned fields); the user <em>can</em> change it but via a different path (e.g., Settings page)</td></tr><tr><td><strong>Disabled</strong></td><td><code>disabled</code> attribute</td><td>Component exists and user should know, but they cannot interact now — due to permissions, incomplete prerequisites, or a temporary restriction</td></tr></tbody></table>
-<blockquote>
-<p><strong>Key insight:</strong> “Disable if you want the user to know it exists but is unavailable. Hide if the value shown is currently irrelevant.” — Vitaly Friedman. <strong>Never hide buttons or filters by default</strong> — users expect persistent controls and will think they’ve been removed.</p>
-</blockquote>
+<p>“Disable if you want the user to know it exists but is unavailable. Hide if the value shown is currently irrelevant.” — Vitaly Friedman. <strong>Never hide buttons or filters by default</strong> — users expect persistent controls and will think they’ve been removed.</p>
 <h3 id="accessibility-nuances">Accessibility Nuances</h3>
 <p>The <code>disabled</code> vs. <code>aria-disabled</code> vs. <code>readonly</code> split has real accessibility consequences:</p>
 
