@@ -157,11 +157,17 @@ View on GitHub
 <span class="line"><span>check its evidence before you accept it. Finish with one table: service,</span></span>
 <span class="line"><span>affected yes or no, and the evidence.</span></span></code></pre>
 <p>Early testers had Opus 5.5 coordinate parallel subagents on long audits with little oversight.</p>
+<blockquote>
+<p><strong>Key insight:</strong> Parallel subagents are the only practical way to audit codebases too large for a single context window. A 50-service audit that would exhaust one context window in 30 minutes takes the same time but stays accurate when each service gets an isolated subagent — no cross-contamination of findings, no compaction amnesia mid-audit.</p>
+</blockquote>
 <h3 id="keep-the-task-list-in-a-file">Keep the Task List in a File</h3>
 <p>For long runs that will fill the context window:</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Keep a checklist in TASKS.md. Tick each item when it's done,</span></span>
 <span class="line"><span>and add anything new you find.</span></span></code></pre>
 <p>Long runs cause Claude Code to summarize older turns. A file survives that — read the file, not the scrollback, to see where the run is.</p>
+<blockquote>
+<p><strong>Key insight:</strong> TASKS.md is the only state that survives context compaction. Everything in the conversation window eventually gets summarized into a compressed form — TASKS.md stays verbatim. This means task state and progress tracking should always live in a file, never in the conversation.</p>
+</blockquote>
 <h3 id="add-to-a-running-task">Add to a Running Task</h3>
 <p>You can type a follow-up while Claude works and press Enter — the mid-run message lands without interrupting. Restarts cost more with Opus 5.5 (runs are longer), so adding mid-run is the better option: <em>“Also keep the old endpoint names as aliases.”</em></p>
 <h2 id="3-checking-the-result">3. Checking the Result</h2>
