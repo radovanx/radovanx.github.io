@@ -242,6 +242,9 @@ View on GitHub
 <p><strong>Stack with:</strong> Claude Managed Agents (Routines is the scheduling layer on top; not independent).</p>
 <h2 id="composition-patterns">Composition Patterns</h2>
 <p>Real production setups compose these layers. Three common patterns:</p>
+<blockquote>
+<p><strong>Key insight:</strong> Pattern C (Claude Routines + Managed Agents) is the only stack where <strong>no code leaves your machine in plaintext</strong> — everything runs in Anthropic’s cloud. For compliance-sensitive environments, this is the right default. For teams that cannot send code to Anthropic infrastructure (government, healthcare, financial), Pattern B (Warren) is the mandatory alternative — same ephemeral-container model, fully on-premises.</p>
+</blockquote>
 <h3 id="pattern-a--solo-developer-stack">Pattern A — Solo Developer Stack</h3>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Herdr (persistent terminals) → Agent Orchestrator (parallel tasks) → Manual review</span></span></code></pre>
 <p>Zero infrastructure cost. Herdr prevents agents dying mid-run; AO parallelizes tickets.</p>
