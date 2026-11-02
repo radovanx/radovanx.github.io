@@ -61,7 +61,7 @@ View on GitHub
 <ul>
 <li><strong><a href="https://www.prskavec.net/reader/2026-05-27-webexpo/">Under the Hood of AI</a></strong> (Ladislav Prskavec, WebExpo Prague 2026) — five design mistakes, three design pillars, practical implementation guidance. <a href="https://github.com/abtris/mcp-server-example">Demo repo</a>.</li>
 <li><strong><a href="https://arxiv.org/abs/2602.14878">MCP Tool Descriptions Are Smelly!</a></strong> (Hasan et al., arXiv 2602.14878, Feb 2026) — empirical study: 856 tools, 103 MCP servers; 97.1% have at least one description smell</li>
-<li><strong><a href="https://arxiv.org/abs/2602.18914">From Docs to Descriptions</a></strong> (Wang et al., arXiv 2602.18914) — large-scale study: 10,831 MCP servers; 73% duplicate tool names; standard-compliant descriptions chosen 260% more often (72% vs 20% baseline)</li>
+<li><strong><a href="https://arxiv.org/abs/2602.18914">From Docs to Descriptions</a></strong> (Wang et al., arXiv 2602.18914) — large-scale study: 10,831 MCP servers; 73% redundantly repeat the tool name within the description; standard-compliant descriptions chosen 260% more often (72% vs 20% baseline)</li>
 <li><strong><a href="https://www.anthropic.com/engineering/advanced-tool-use">Introducing Advanced Tool Use</a></strong> (Anthropic Engineering) — input examples in tool definitions lift accuracy from 72% to 90% on complex parameter handling</li>
 </ul>
 <p>An MCP tool is a function with a name, a description, and typed arguments. The SDK handles JSON-RPC, transport, and capability negotiation — you write the tool logic.</p>
