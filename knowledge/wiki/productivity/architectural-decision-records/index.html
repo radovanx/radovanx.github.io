@@ -115,14 +115,14 @@ View on GitHub
 <span class="line"><span style="color:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold">## Consequences</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">What becomes easier or harder after this decision?</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">What technical debt is accepted, what is avoided?</span></span></code></pre>
-<p>The Y-statement format (from Zdun et al., <em>Sustainable Architectural Decisions</em>) provides an alternative concise form:</p>
+<p>The Y-statement format (from Zdun et al., <em><a href="https://www.infoq.com/articles/sustainable-architectural-design-decisions">Sustainable Architectural Design Decisions</a></em>, IEEE Software vol. 30 no. 6, 2013, DOI: 10.1109/MS.2013.97) provides an alternative concise form:</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>In the context of {situation},</span></span>
 <span class="line"><span>facing {concern},</span></span>
 <span class="line"><span>we decided {option},</span></span>
 <span class="line"><span>to achieve {quality},</span></span>
 <span class="line"><span>accepting {downside}.</span></span></code></pre>
 <h2 id="seven-templates-compared">Seven Templates Compared</h2>
-<p>The WICSA 2015 paper <em>Architectural Decision Guidance Across Projects</em> compared seven ADR templates across three dimensions:</p>
+<p>The <strong><a href="https://ieeexplore.ieee.org/document/7093048">WICSA 2015 paper</a></strong> <em>Architectural Decision Guidance Across Projects</em> (Zimmermann, Wegmann, Koziolek, Goldschmidt; DOI: 10.1109/WICSA.2015.29) compared seven ADR templates across three dimensions:</p>
 
 
 
@@ -184,7 +184,7 @@ View on GitHub
 <span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    style ADR fill</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">064e3b</span><span style="color:#24292E;--shiki-dark:#E1E4E8">,</span><span style="color:#E36209;--shiki-dark:#FFAB70">color</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">fff</span></span>
 <span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    style READ fill</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">064e3b</span><span style="color:#24292E;--shiki-dark:#E1E4E8">,</span><span style="color:#E36209;--shiki-dark:#FFAB70">color</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">fff</span></span>
 <span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    style CONTEXT fill</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">064e3b</span><span style="color:#24292E;--shiki-dark:#E1E4E8">,</span><span style="color:#E36209;--shiki-dark:#FFAB70">color</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">fff</span></span></code></pre>
-<p>Michael Keeling’s IEEE Software essay <strong><a href="https://ieeexplore.ieee.org/document/9801811/">Love Unrequited: The Story of Architecture, Agile, and How Architecture Decision Records Brought Them Together</a></strong> (Vol. 39, Issue 4, 2022; DOI: 10.1109/MS.2022.3151786) argues that ADRs are the fix for the Agile-architecture tension: Agile discourages big-upfront design, but without <em>some</em> record, teams lose the why behind every structural choice.</p>
+<p>Michael Keeling’s IEEE Software essay <strong><a href="https://ieeexplore.ieee.org/document/9801811/">Love Unrequited: The Story of Architecture, Agile, and How Architecture Decision Records Brought Them Together</a></strong> (Vol. 39, Issue 4, pp. 90–93, 2022; DOI: 10.1109/MS.2022.3151786) argues that ADRs are the fix for the Agile-architecture tension: Agile discourages big-upfront design, but without <em>some</em> record, teams lose the why behind every structural choice.</p>
 <h2 id="adrs-in-practice-the-github-adr-organization">ADRs in Practice: The GitHub adr Organization</h2>
 <p>The <a href="https://github.com/adr">github.com/adr</a> organization maintains tooling, templates, and examples. Their stated goals:</p>
 <ol>
