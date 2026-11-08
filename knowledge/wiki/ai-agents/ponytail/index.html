@@ -123,7 +123,7 @@ View on GitHub
 <p><strong>Key insight:</strong> The code ends up small because it is <em>necessary</em>, not golfed. Lower cost and latency are a side effect, not the goal. Ponytail is about reading the codebase before picking a solution — “lazy about the solution, never about reading.”</p>
 </blockquote>
 <h2 id="benchmarks-ponytail-5-oct-7-2026">Benchmarks (Ponytail 5, Oct 7 2026)</h2>
-<p>Benchmarked against 39 tasks including a real FastAPI + React repo, using Opus 5.5, 5 runs each. The same agent, with and without the skill:</p>
+<p>Benchmarked against 39 tasks including a real FastAPI + React repo, using Opus 5.5, 5 runs each. The same agent, with and without the skill (single source — self-reported by maintainer in the GitHub README; treat headline figures as upper-bound estimates):</p>
 
 
 
@@ -165,8 +165,9 @@ View on GitHub
 
 
 <table><thead><tr><th>Metric</th><th>With Ponytail</th><th>Without</th></tr></thead><tbody><tr><td>Code written</td><td><strong>–53%</strong></td><td>baseline</td></tr><tr><td>Time per task</td><td><strong>–41%</strong></td><td>baseline</td></tr><tr><td>API cost</td><td><strong>–26%</strong></td><td>baseline</td></tr><tr><td>Tokens consumed</td><td><strong>–45%</strong></td><td>baseline</td></tr><tr><td>Risky logic with a test</td><td><strong>98%</strong></td><td>68%</td></tr><tr><td>Security tasks passed</td><td><strong>30 / 30</strong></td><td>—</td></tr></tbody></table>
-<p>In a blind comparison (110 Ponytail 5 replies vs. 67 prior-version replies), Ponytail 5’s output was preferred.</p>
-<p>The six security tasks (SQL injection, path traversal, forged tokens, rate limiting, malformed CSV rows, caching) all passed on 30/30 runs — less code, no less safe.</p>
+<p><strong>Independent corroboration:</strong> KuldeepB19 ran 24 tasks on Opus 4.8 and reported ~44% less code (53% fewer statements) with no correctness or security regression (<a href="https://clawhub.ai/dietrichgebert/skills/ponytail-gain">ponytail gain page</a>). The code-reduction direction is consistent across sources; the headline –53% is from the maintainer’s own agentic run.</p>
+<p>In a blind comparison (110 Ponytail 5 replies vs. 67 prior-version replies), Ponytail 5’s output was preferred (single source — needs verification).</p>
+<p>The six security tasks (SQL injection, path traversal, forged tokens, rate limiting, malformed CSV rows, caching) all passed on 30/30 runs — less code, no less safe (single source — self-reported by maintainer).</p>
 <h2 id="the-ladder-how-ponytail-reasons">The Ladder: How Ponytail Reasons</h2>
 <p>Ponytail does not minimize tokens at the expense of correctness. The ladder runs after understanding the problem:</p>
 <ol>
