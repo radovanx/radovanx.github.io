@@ -62,7 +62,7 @@ View on GitHub
 <ul>
 <li><strong><a href="https://www.youtube.com/watch?v=CZs8J1ZD0CE">Fowler &#x26; Beck — Reinventing Software Dev</a></strong> (Pragmatic Summit, February 11, 2026) — TDD’s resurgence with AI coding, team structure implications, disruption cycles</li>
 <li><strong><a href="https://nolanlawson.com/2026/05/25/using-ai-to-write-better-code-more-slowly/">Using AI to Write Better Code More Slowly</a></strong> (Nolan Lawson, May 2026) — multi-model parallel code review skill; Claude sub-agent + Codex + Cursor Bugbot → collate → final report</li>
-<li><strong><a href="https://lnkd.in/p/dJr8FDM2">Addy Osmani — Agents improve code quality at scale with verification</a></strong> (LinkedIn, October 2026) — define “done” before coding; verification loop as quality source; compounding taste through shared config and hooks</li>
+<li><strong><a href="https://lnkd.in/p/dJr8FDM2">Addy Osmani — Agents improve code quality at scale with verification</a></strong> (LinkedIn, October 2026; Osmani joined Anthropic on September 8, 2026 — <a href="https://runtimewire.com/article/addy-osmani-joins-anthropic-claude-code-developer-experience">source</a>) — define “done” before coding; verification loop as quality source; compounding taste through shared config and hooks</li>
 </ul>
 <p></p><div class="section-hero-image"><img src="https://i.ytimg.com/vi/CZs8J1ZD0CE/maxresdefault.jpg" alt="Fowler &#x26; Beck — Reinventing Software Development in the age of AI (Pragmatic Summit 2026)" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #D4A574dd, #C4956A88, #A67750cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(71% 71% at 62% 51%, #D4A574, transparent), radial-gradient(57% 57% at 23% 74%, #C4956A, transparent), radial-gradient(80% 80% at 21% 78%, #B8865E, transparent), linear-gradient(309deg, #D4A574, #A67750);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">Fowler &#x26; Beck — Reinventing Software Development in the age of AI (Pragmatic Summit 2026)</span></div><p></p>
 <h2 id="tdd-as-ai-verification--becks-resurgence">TDD as AI Verification — Beck’s Resurgence</h2>
@@ -136,7 +136,7 @@ View on GitHub
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Run: 3 FAILED → prompt: "Implement parseAuthToken() to pass ParseAuthTokenTest"</span></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Run: 3 PASSED → AI-generated code is verified; refactor freely</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-25" type="button">Run PHP</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-25" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-25" style="display:none"></pre></div>
 <h2 id="multi-model-code-review--better-code-more-slowly">Multi-Model Code Review — Better Code, More Slowly</h2>
-<p>Nolan Lawson (programmer at Socket, May 2026) published the counterargument to “slop-cannon” AI development: <strong>LLMs are equally effective for writing high-quality code more slowly.</strong></p>
+<p>Nolan Lawson (programmer at Socket (single source — needs verification), May 2026) published the counterargument to “slop-cannon” AI development: <strong>LLMs are equally effective for writing high-quality code more slowly.</strong></p>
 <p>The core insight: multiple independent models reduce hallucinations and bogus bugs. Running the same PR through three different models in parallel produces near-zero false positive rates, because models share different training blind spots.</p>
 <p><strong>The skill (paraphrased):</strong></p>
 <blockquote>
@@ -180,7 +180,7 @@ View on GitHub
 </ul>
 <p>This complements the <code>Agent Skills</code> framework: <code>/review</code> (OWASP + 5-axis) handles structural discipline; the multi-model skill handles breadth and blind-spot coverage.</p>
 <h2 id="define-done-first--the-verification-loop-addy-osmani">Define Done First — The Verification Loop (Addy Osmani)</h2>
-<p>Addy Osmani (Director, Google Cloud AI at Google, October 2026; moved from Chrome to Cloud AI in December 2024 per <a href="https://addyosmani.com/about">his public bio</a>) distills the quality pattern down to a single principle: <strong>verification is what makes agents scale</strong>.</p>
+<p>Addy Osmani (Anthropic, October 2026; <a href="https://runtimewire.com/article/addy-osmani-joins-anthropic-claude-code-developer-experience">joined Anthropic from Google Cloud AI on September 8, 2026</a>) distills the quality pattern down to a single principle: <strong>verification is what makes agents scale</strong>.</p>
 <blockquote>
 <p>“Agents write code ‘much better on average at scale’. The ‘at scale’ part comes from verification. Agents make checking cheap.”</p>
 </blockquote>
