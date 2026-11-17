@@ -178,6 +178,19 @@ View on GitHub
 <h2 id="two-load-bearing-principles">Two Load-Bearing Principles</h2>
 <p><strong>Patch, never regenerate.</strong> After the synthesizer writes the final draft, steps 14–16 are tool-locked to <code>[Read, Edit]</code>. The patcher and polish auditor literally cannot call <code>Write</code> — they apply surgical Edit hunks only. Per-hunk caps make “just rewrite it” mechanically impossible.</p>
 <p><strong>Canonical query is gospel.</strong> The verbatim user prompt is written to <code>research/runs/&#x3C;tag>/query.md</code> once, then re-read by every subsequent step and every spawned subagent. Subagents cannot drift from the original question.</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">graph</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> LR</span></span>
+<span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    SYN</span><span style="color:#D73A49;--shiki-dark:#F97583">[</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"Synthesizer\n(Opus)"</span><span style="color:#D73A49;--shiki-dark:#F97583">]</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">    -->|</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"writes final_report.md"</span><span style="color:#D73A49;--shiki-dark:#F97583">|</span><span style="color:#E36209;--shiki-dark:#FFAB70"> DRAFT</span><span style="color:#D73A49;--shiki-dark:#F97583">[</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"Draft"</span><span style="color:#D73A49;--shiki-dark:#F97583">]</span></span>
+<span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    CRITICS</span><span style="color:#D73A49;--shiki-dark:#F97583">[</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"4 Critics\n(parallel Opus)"</span><span style="color:#D73A49;--shiki-dark:#F97583">]</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">    -->|</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"JSON critique"</span><span style="color:#D73A49;--shiki-dark:#F97583">|</span><span style="color:#E36209;--shiki-dark:#FFAB70"> PATCHER</span></span>
+<span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    DRAFT </span><span style="color:#D73A49;--shiki-dark:#F97583">--></span><span style="color:#E36209;--shiki-dark:#FFAB70"> PATCHER</span><span style="color:#D73A49;--shiki-dark:#F97583">[</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"Patcher\ntool-locked: Read + Edit"</span><span style="color:#D73A49;--shiki-dark:#F97583">]</span></span>
+<span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    PATCHER </span><span style="color:#D73A49;--shiki-dark:#F97583">-->|</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"surgical hunks only"</span><span style="color:#D73A49;--shiki-dark:#F97583">|</span><span style="color:#E36209;--shiki-dark:#FFAB70"> FINAL</span><span style="color:#D73A49;--shiki-dark:#F97583">[</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"Shipped Report"</span><span style="color:#D73A49;--shiki-dark:#F97583">]</span></span>
+<span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    PATCHER </span><span style="color:#D73A49;--shiki-dark:#F97583">-.->|</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"❌ cannot call Write()"</span><span style="color:#D73A49;--shiki-dark:#F97583">|</span><span style="color:#E36209;--shiki-dark:#FFAB70"> BLOCKED</span><span style="color:#D73A49;--shiki-dark:#F97583">[</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"blocked"</span><span style="color:#D73A49;--shiki-dark:#F97583">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    style PATCHER fill</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">166534</span><span style="color:#24292E;--shiki-dark:#E1E4E8">,</span><span style="color:#E36209;--shiki-dark:#FFAB70">color</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">fff</span></span>
+<span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    style DRAFT fill</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">1e3a5f</span><span style="color:#24292E;--shiki-dark:#E1E4E8">,</span><span style="color:#E36209;--shiki-dark:#FFAB70">color</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">bfdbfe</span></span>
+<span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    style BLOCKED fill</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">7f1d1d</span><span style="color:#24292E;--shiki-dark:#E1E4E8">,</span><span style="color:#E36209;--shiki-dark:#FFAB70">color</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">fff</span></span>
+<span class="line"><span style="color:#E36209;--shiki-dark:#FFAB70">    style FINAL fill</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">166534</span><span style="color:#24292E;--shiki-dark:#E1E4E8">,</span><span style="color:#E36209;--shiki-dark:#FFAB70">color</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:#</span><span style="color:#E36209;--shiki-dark:#FFAB70">fff</span></span></code></pre>
 <h2 id="subagent-roster">Subagent Roster</h2>
 <p>15 specialized agents with role-appropriate model defaults (configurable per profile):</p>
 
@@ -279,12 +292,37 @@ View on GitHub
 </blockquote>
 <h2 id="ship-gate">Ship Gate</h2>
 <p>Before any report ships, a verification battery runs:</p>
-<ul>
-<li>Quote integrity: every quoted span must exist verbatim in a vault note</li>
-<li>Retraction check: citing a retracted source unacknowledged is a hard block</li>
-<li>Numeric consistency: numbers untraceable to evidence are flagged</li>
-<li>Cite-check: per-citation binding audit by a skeptical LLM</li>
-</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Check</th><th>What it verifies</th><th>On failure</th></tr></thead><tbody><tr><td><strong>Quote integrity</strong></td><td>Every quoted span exists verbatim in a vault note</td><td>Hard block</td></tr><tr><td><strong>Retraction check</strong></td><td>No unacknowledged retracted source cited</td><td>Hard block</td></tr><tr><td><strong>Numeric consistency</strong></td><td>All numbers traceable to evidence</td><td>Flagged</td></tr><tr><td><strong>Cite-check</strong></td><td>Per-citation binding audit by skeptical LLM</td><td>Review required</td></tr></tbody></table>
 <h2 id="cross-references">Cross-References</h2>
 <ul>
 <li><a href="/knowledge/wiki/ai-agents/long-running-agents/">long running agents</a> — dissertation tier runs 4–8 hours with resumable manifests; the three walls and Ralph loop apply at research-agent scale</li>

@@ -177,6 +177,8 @@ View on GitHub
 <span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">    Text</span><span style="color:#24292E;--shiki-dark:#E1E4E8">({ content: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"Press Ctrl+C to exit"</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> }),</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">  ),</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">)</span></span></code></pre><div class="runnable-toolbar"><button class="runnable-btn" data-run-id="runnable-273" type="button">Run</button><button class="runnable-btn runnable-btn--clear" data-clear-id="runnable-273" type="button" style="display:none">Clear</button></div><pre class="runnable-output" id="output-runnable-273" style="display:none"></pre></div>
+<hr>
+<p></p><div class="section-hero-image"><img src="https://opengraph.githubassets.com/1/anomalyco/opentui" alt="OpenTUI — Zig native core with React and Solid.js bindings; terminal apps share the same component model as web UIs" class="section-hero-photo"><div class="section-hero-wash" style="background: linear-gradient(135deg, #22D3EEdd, #0EA5E988, #6366F1cc);"></div><div class="section-hero-gradient" style="background: radial-gradient(62% 62% at 79% 19%, #22D3EE, transparent), radial-gradient(74% 74% at 70% 76%, #0EA5E9, transparent), radial-gradient(75% 75% at 77% 72%, #3B82F6, transparent), linear-gradient(38deg, #22D3EE, #6366F1);"></div><div class="section-hero-vignette"></div><div class="section-hero-grain"></div><span class="section-hero-label">OpenTUI — Zig native core with React and Solid.js bindings; terminal apps share the same component model as web UIs</span></div><p></p>
 <h2 id="react-bindings">React Bindings</h2>
 <p>Configure <code>tsconfig.json</code> to point JSX at OpenTUI’s React package:</p>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">{</span></span>
@@ -242,6 +244,37 @@ View on GitHub
 <table><thead><tr><th>Element</th><th>Purpose</th></tr></thead><tbody><tr><td><code>&#x3C;text></code></td><td>Styled text with fg/bg colors</td></tr><tr><td><code>&#x3C;box></code></td><td>Container with border, flexbox, padding</td></tr><tr><td><code>&#x3C;scrollbox></code></td><td>Scrollable container</td></tr><tr><td><code>&#x3C;input></code></td><td>Single-line text input</td></tr><tr><td><code>&#x3C;textarea></code></td><td>Multi-line text input</td></tr><tr><td><code>&#x3C;select></code></td><td>Selection list</td></tr><tr><td><code>&#x3C;tab-select></code></td><td>Tab-based selection</td></tr><tr><td><code>&#x3C;code></code></td><td>Syntax-highlighted code block</td></tr><tr><td><code>&#x3C;diff></code></td><td>Unified or split diff viewer</td></tr><tr><td><code>&#x3C;markdown></code></td><td>Markdown rendering</td></tr><tr><td><code>&#x3C;ascii-font></code></td><td>ASCII art text</td></tr></tbody></table>
 <p>Text modifiers work inside <code>&#x3C;text></code>: <code>&#x3C;span></code>, <code>&#x3C;strong></code>, <code>&#x3C;em></code>, <code>&#x3C;u></code>, <code>&#x3C;a></code>, <code>&#x3C;br></code>.</p>
 <h3 id="hooks">Hooks</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Hook</th><th>Returns / Callback</th><th>Use when</th></tr></thead><tbody><tr><td><code>useKeyboard(fn)</code></td><td>Calls <code>fn(key)</code> on each keypress</td><td>Key-driven navigation, shortcuts</td></tr><tr><td><code>useTerminalDimensions()</code></td><td><code>{ width, height }</code> — reactive</td><td>Responsive layouts</td></tr><tr><td><code>useOnResize(fn)</code></td><td>Calls <code>fn(width, height)</code> on resize</td><td>Re-flow on window resize</td></tr><tr><td><code>usePaste(fn)</code></td><td>Calls <code>fn({ bytes })</code> on bracketed paste</td><td>Multi-line text input</td></tr></tbody></table>
 <pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="tsx"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">import</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> { useKeyboard, useTerminalDimensions, useOnResize, usePaste } </span><span style="color:#D73A49;--shiki-dark:#F97583">from</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> "@opentui/react"</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// Keyboard events</span></span>
